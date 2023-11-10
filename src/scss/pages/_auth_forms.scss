@@ -1,0 +1,71 @@
+@use "./../variables" as *;
+
+.auth{
+  background-color: $color-primary-dark;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  // overflow: hidden;
+ 
+  & .form{
+    width: 30vw;
+    height: 100vh;
+    border: 0.1rem solid $color-grey;
+    margin-right: 100px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background: $color-white;
+
+    & h1{
+      font-size: 4rem;
+    }
+    & label{
+      display: block;
+      // padding: 5px;
+      margin: 0.5rem 0;
+    }
+    & input,
+    & select{
+      height: 20px;
+      width: 350px;
+      border: 1px solid #333;
+      padding: 5px;
+      outline: none;
+    }
+
+    & .email,
+    & .password{
+      margin: 2rem 0;
+    }
+    & button{
+      display: block;
+      margin-top: 10px;
+      width: 100px;
+      height: 30px;
+      border: none;
+      color: $color-white;
+      background-color: $color-primary;
+    }
+  }
+
+  & .forgot{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    margin-top: 10px;
+
+    & button{
+      margin-right: auto;
+    }
+    & a{
+      text-align: end;
+      // margin-left: 20px;
+      text-decoration: none;
+      color: $color-primary-light;
+    }
+  }
+
+
+}
+
