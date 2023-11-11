@@ -25,7 +25,13 @@ function ForgotPassword() {
           <div className="email">
 
           <label htmlFor="email">Email Address</label>
-          <input type="email" placeholder="Enter Email" value={passResetEmail} onChange={(e) => setPassResetEmail(e.target.value)}/>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter Email"
+              value={passResetEmail}
+              onChange={(e) => setPassResetEmail(e.target.value)
+            } />
           </div>
 
           <button>Send</button>
