@@ -8,7 +8,6 @@ function Signin() {
 
   function handleSignIn(e) {
     e.preventDefault()
-    alert("Account Created")
 
     // ? clear the form after the data has been submitted
     setSignInEmail("")
@@ -29,6 +28,7 @@ function Signin() {
             <label htmlFor="email">Email: </label>
             <input
               type="email"
+              name="email"
               value={signInEmail}
               placeholder="your@email.com"
               onChange={(e) => setSignInEmail(e.target.value)}
@@ -39,6 +39,7 @@ function Signin() {
             <label htmlFor="password">Password: </label>
             <input
               type="password"
+              name="password"
               placeholder="Password"
               value={signInPassword}
               onChange={(e) => setSignInPassword(e.target.value)}
