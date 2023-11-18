@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FaBars, FaSistrix, FaRegBell } from 'react-icons/fa6';
 import { FiSettings } from 'react-icons/fi';
 
 import { cmrLogo } from './../../assets/logos';
 import { profile3 } from './../../assets/images';
 
+//imorting user infromation
+import { useDispatch, useSelector } from 'react-redux';
+
 import './../styles/main.scss';
+import { loggedIn } from '../../store/auth/authSlice';
+
 function MainNav() {
+	const authUser = useSelector((state) => state.auth);
+	// console.log(authUser);
+	const dispatch = useDispatch();
+
+	const navigate = useNavigate();
+
+	//dispatch to check if user is logged in
+	useEffect(() => {
+		dispatch(loggedIn());
+	}, [dispatch]);
+	
+	
+	//if user is not logged in or user data got deleted from local storage
+	if (!authUser.isLoggedIn || !authUser.user) return navigate('/auth/signin');
 	return (
 		<nav className="main-nav">
 			<div className="main-nav__left">
@@ -50,8 +70,8 @@ function MainNav() {
 						/>
 					</div>
 					<div className="main-nav__profile-details">
-						<h2 className="header-tertiary">Ryan Taylor</h2>
-						<span className="role">Administrator</span>
+						<h2 className="header-tertiary">{authUser.user.name}</h2>
+						<span className="role">{authUser.user.role}</span>
 					</div>
 				</div>
 			</div>

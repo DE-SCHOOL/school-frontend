@@ -2,6 +2,8 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { useNavigate } from 'react-router-dom';
+
 //importing the dispatcher functions
 import { getSpecialties } from '../../store/specialty/specialtySlice';
 import { getDepartments } from './../../store/departments/departmentSlice';
@@ -23,6 +25,9 @@ function SearchCategory({ styles, dropDown, data, setData }) {
 	const dropDn = useRef();
 	const name = useRef();
 	const level = useRef();
+
+	//locator changer
+	const navigate = useNavigate();
 
 	//Get all specialties after initial render
 	useEffect(() => {
@@ -85,6 +90,7 @@ function SearchCategory({ styles, dropDown, data, setData }) {
 		} else {
 			setData(data);
 		}
+		navigate('?curPage=1');
 	};
 	return (
 		<form

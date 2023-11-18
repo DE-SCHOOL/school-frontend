@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getStaffs } from '../../../store/staffs/staffSlice';
 
+//importing Ui/Ux components
 import {
 	Layout,
 	SectionIntro,
 	SectionMainIntro,
 } from '../../../components/layout/';
+
+//importing components
 import { PaggingNumSelect, Paggination } from './../../../components/pagging/';
 import SearchCategory from '../../../components/search/SearchCategory';
 import { TableStaff } from '../../../components/tables/';
@@ -29,9 +32,12 @@ function TeacherList() {
 	const staffs = useSelector((state) => state.staffs.teachers.data);
 	const dispatch = useDispatch();
 
-	const [staffsData, setStaffsState] = useState([]);
-	// console.log(staffs !== undefined ? staffs : 'qqq', 1234);
-	console.log(staffs, staffsData, 'DAT');
+	const [staffsState, setStaffsState] = useState([]);
+
+	//Setting the default number of entries a user can see on the interface.
+	const [numPages, setNumPages] = useState(5);
+
+	//Use Effect to dispatch getting staff actions
 	useEffect(() => {
 		dispatch(getStaffs());
 	}, [dispatch]);
@@ -45,16 +51,32 @@ function TeacherList() {
 				setData={setStaffsState}
 			/>
 			<section className="teachers">
-				<SectionMainIntro title="Teachers" styles="mg-bt" />
-				<PaggingNumSelect />
+				<SectionMainIntro
+					title="Teachers"
+					styles="mg-bt"
+					link={'/teachers/add'}
+				/>
+				{<PaggingNumSelect setItemsPerPage={setNumPages} />}
 				{staffs !== undefined && (
 					<TableStaff
 						styles="mg-top"
-						tableData={staffsData.length !== 0 ? staffsData : staffs}
+						tableData={staffsState.length !== 0 ? staffsState : staffs}
 						header={staffHeader}
+						paggingNum={Number(numPages)}
 					/>
 				)}
-				<Paggination styles="mg-top" />
+
+				{/* Display paggination page only if staffs have been searched from db */}
+				{staffs !== undefined && (
+					<Paggination
+						styles="mg-top"
+						paggingNum={numPages}
+						// parse in the length if staff data is loaded or staff has been searched
+						totalData={
+							staffsState.length !== 0 ? staffsState.length : staffs.length
+						}
+					/>
+				)}
 			</section>
 		</Layout>
 	);

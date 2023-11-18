@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-
 import * as BootstrapIcons from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
+
+import { useSelector } from 'react-redux';
 
 import LeftNavSectionItemList from './LeftNavSectionItemList';
 import { NavLink } from 'react-router-dom';
 
 function LeftNavSectionItem({ icon, list }) {
 	const [isItemOpen, setIsItemOpen] = useState(false);
+
+	const actor = useSelector((state) => state.auth.user);
 	return (
 		<div className="section-item">
 			<h2
@@ -39,7 +43,15 @@ function LeftNavSectionItem({ icon, list }) {
 			<ul className={`left-list ${isItemOpen ? 'open' : ''}`}>
 				{list.itemList.length !== 0 &&
 					list.itemList.map((it, index) => {
-						return <LeftNavSectionItemList item={it} key={index} itemName={list.item} />;
+						// if(actor.role)
+						return (
+							<LeftNavSectionItemList
+								item={it}
+								key={index}
+								itemName={list.item}
+								actor={actor?.role}
+							/>
+						);
 					})}
 			</ul>
 		</div>

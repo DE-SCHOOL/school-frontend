@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { FaRightLeft } from 'react-icons/fa6';
 import { BsEyeFill, BsFillPenFill } from 'react-icons/bs';
 
+//importing the search param function
+import { useSearchParams } from 'react-router-dom';
+
 import { profile_default } from '../../assets/images';
 //Styled in the table sass file of the component styles
 
@@ -11,16 +14,23 @@ import { getDateFromDateObject } from '../../utilities/getDate';
 import { sortArrayObject } from '../../utilities/sortingInfo';
 
 let DATA_CONST;
-function TableStaff({ styles, tableData, header }) {
+function TableStaff({ styles, tableData, header, paggingNum }) {
+	//declaring state variables
 	const [isSortedBy, setIsSortedBy] = useState('');
 	const [staffData, setStaffData] = useState(tableData.map((dt) => dt));
 
-	console.log(staffData);
+	//search params function in action
+	const [searchParams] = useSearchParams();
+	const cur = Number(searchParams.get('curPage'));
+
+	//assign DATA_CONST a value depending on whether or not a search is performed
 	if (tableData.length === staffData.length) {
 		DATA_CONST = staffData;
 	} else {
 		DATA_CONST = tableData;
 	}
+
+	//function to perform sorting
 	const handleSort = (field, fieldOpt = undefined) => {
 		sortArrayObject(DATA_CONST, setStaffData, setIsSortedBy, field, fieldOpt);
 	};
@@ -76,56 +86,60 @@ function TableStaff({ styles, tableData, header }) {
 
 			<tbody>
 				{DATA_CONST.map((row, index) => {
-					return (
-						<tr key={index}>
-							{/* <td>
+					//maths to decide what entries to show, using paggination
+					let temp = cur ? cur : 1;
+					if (index >= (temp - 1) * paggingNum && index < temp * paggingNum)
+						return (
+							<tr key={index}>
+								{/* <td>
 								<input type="checkbox" name="check-1" />
 							</td> */}
-							<td>
-								<span className="text">{row.matricule}</span>
-							</td>
-							<td>
-								<div className="profile">
-									<img
-										src={row?.profile ? row.profile : profile_default}
-										alt="Student Pic"
-									/>
-									<span className="text">{row.name}</span>
-								</div>
-							</td>
-							<td>
-								<span className="text">{row.email}</span>
-							</td>
-							<td>
-								<span className="text">{getDateFromDateObject(row.dob)}</span>
-							</td>
-							<td>
-								<span className="text caps">{row.gender}</span>
-							</td>
-							<td>
-								<span className="text caps">{row.role}</span>
-							</td>
-							<td>
-								<span className="text">{row.department?.name}</span>
-							</td>
-							{/* <td>
+								<td>
+									<span className="text">{row.matricule}</span>
+								</td>
+								<td>
+									<div className="profile">
+										<img
+											src={row?.profile ? row.profile : profile_default}
+											alt="Student Pic"
+										/>
+										<span className="text">{row.name}</span>
+									</div>
+								</td>
+								<td>
+									<span className="text">{row.email}</span>
+								</td>
+								<td>
+									<span className="text">{getDateFromDateObject(row.dob)}</span>
+								</td>
+								<td>
+									<span className="text caps">{row.gender}</span>
+								</td>
+								<td>
+									<span className="text caps">{row.role}</span>
+								</td>
+								<td>
+									<span className="text">{row.department?.name}</span>
+								</td>
+								{/* <td>
 								<span className="text">{row.address}</span>
 							</td> */}
-							<td>
-								<span className="text">{row.tel}</span>
-							</td>
-							<td>
-								<div className="actions">
-									<Link to="/student/view">
-										<BsEyeFill />
-									</Link>
-									<Link to="/student/edit">
-										<BsFillPenFill />
-									</Link>
-								</div>
-							</td>
-						</tr>
-					);
+								<td>
+									<span className="text">{row.tel}</span>
+								</td>
+								<td>
+									<div className="actions">
+										<Link to="/student/view">
+											<BsEyeFill />
+										</Link>
+										<Link to="/student/edit">
+											<BsFillPenFill />
+										</Link>
+									</div>
+								</td>
+							</tr>
+						);
+					return null;
 				})}
 			</tbody>
 		</table>

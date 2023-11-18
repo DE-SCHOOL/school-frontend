@@ -14,12 +14,14 @@ export const getStaffs = createAsyncThunk(
 		try {
 			const res = await axios({
 				method: 'get',
-				url: `http://127.0.0.1:8001/api/v1/staff`,
+				url: 'http://localhost:8000/api/v1/staff',
+				withCredentials: true,
 			});
-			console.log(res.data);
+
+			// console.log(res.data);
 			return res.data;
 		} catch (err) {
-			console.log(err);
+			// console.log(err);
 			// const msg = getApiError();
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
@@ -50,7 +52,7 @@ export const addStaff = createAsyncThunk(
 		try {
 			const res = await axios({
 				method: 'post',
-				url: `http://127.0.0.1:8001/api/v1/staff/register`,
+				url: 'http://localhost:8000/api/v1/staff/register',
 				data: {
 					gender,
 					matricule,
@@ -68,11 +70,12 @@ export const addStaff = createAsyncThunk(
 					role,
 					picture,
 				},
+				withCredentials: true,
 			});
-			console.log(res.data)
+			// console.log(res.data);
 			return res.data;
 		} catch (err) {
-			console.log(err);
+			// console.log(err);
 			// const msg = getApiError();
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
@@ -103,14 +106,17 @@ const staffSlice = createSlice({
 			.addCase(getStaffs.rejected, (state, action) => {
 				state.error = action.payload;
 				state.isLoading = false;
-			}).addCase(addStaff.pending, (state) => {
+			})
+			.addCase(addStaff.pending, (state) => {
 				state.isLoading = true;
-			}).addCase(addStaff.rejected, (state) => {
+			})
+			.addCase(addStaff.rejected, (state) => {
 				state.error = true;
 				state.isLoading = false;
-			}).addCase(addStaff.fulfilled, (state, action) => {
-				state.isLoading = false;
 			})
+			.addCase(addStaff.fulfilled, (state, action) => {
+				state.isLoading = false;
+			});
 	},
 });
 

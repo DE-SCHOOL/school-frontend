@@ -5,6 +5,7 @@ import staffReducer from './staffs/staffSlice';
 import studentReducer from './students/studentSlice';
 import specialtyReducer from './specialty/specialtySlice';
 import departmentReducer from './departments/departmentSlice';
+import authReducer from './auth/authSlice';
 
 //CREATING THE VARIOUS REDUCERS
 const store = configureStore({
@@ -13,6 +14,7 @@ const store = configureStore({
 		students: studentReducer,
 		specialty: specialtyReducer,
 		departments: departmentReducer,
+		auth: authReducer,
 	},
 });
 

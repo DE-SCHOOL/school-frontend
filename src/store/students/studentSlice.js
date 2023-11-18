@@ -14,12 +14,14 @@ export const getStudents = createAsyncThunk(
 		try {
 			const res = await axios({
 				method: 'get',
-				url: 'http://localhost:8001/api/v1/student',
+				url: 'http://localhost:8000/api/v1/student',
+				withCredentials: true,
 			});
 			// console.log(res.data);
 			return res.data;
 		} catch (err) {
 			// const msg = getApiError();
+			console.log(err);
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
 	}
@@ -50,7 +52,7 @@ export const addStudent = createAsyncThunk(
 			console.log(name, matricule);
 			const res = await axios({
 				method: 'post',
-				url: 'http://localhost:8001/api/v1/student',
+				url: 'http://localhost:8000/api/v1/student',
 				data: {
 					name,
 					matricule,
@@ -67,6 +69,7 @@ export const addStudent = createAsyncThunk(
 					level,
 					entry_certificate,
 				},
+				withCredentials: true
 			});
 
 			// console.log(res);

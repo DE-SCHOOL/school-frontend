@@ -13,7 +13,8 @@ export const getDepartments = createAsyncThunk(
 		try {
 			const res = await axios({
 				method: 'get',
-				url: 'http://localhost:8001/api/v1/department',
+				url: 'http://localhost:8000/api/v1/department',
+				withCredentials: true,
 			});
 			return res.data;
 		} catch (err) {
