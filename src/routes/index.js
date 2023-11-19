@@ -6,12 +6,15 @@ import StudentRoute from './pages/students';
 import TeacherRoute from './pages/teachers';
 import AuthRoute from './authentication';
 import Loader from '../components/loaders/Loader';
+import AdminDashboard from '../components/dashboards/AdminDashboard';
+
 
 function Router() {
 	return (
 		<>
 			<Routes>
-				<Route path='/loader' element={ <Loader />} />
+				<Route path='/loader' element={<Loader />} />
+				<Route path='/admin' element = {<AdminDashboard />}></Route>
 			</Routes>
 			<StudentRoute />
 			<TeacherRoute />
