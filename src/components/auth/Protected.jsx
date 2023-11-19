@@ -11,7 +11,7 @@ function Protected({ children, restrict }) {
 	// console.log(user, restrict.includes(user.role));
 
 	useEffect(() => {
-		if (!restrict.includes(user.role)) {
+		if (!restrict.includes(user?.role)) {
 			return navigate('/auth/signin');
 		}
 	}, [navigate]);

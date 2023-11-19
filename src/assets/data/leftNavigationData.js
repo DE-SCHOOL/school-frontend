@@ -410,7 +410,7 @@ const data = [
 			},
 			{
 				item: 'logout',
-				link: 'logout',
+				link: '',
 				icon: <MdLogout />,
 				itemList: [],
 				roles: [

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 //importing the useSelector  and dispatchers
@@ -37,10 +37,14 @@ function Signin() {
 
 	//PREFERABLE TO USE THE USEeFFECT HOOK here -------------------------------------------<<<<<<<<<<<
 	// On successful login, redirect user to new page
-	if (logInData.isLoggedIn || logInData.user) {
-		// console.log('User successfully logged in');
-		navigate('/teachers/add');
-	}
+	useEffect(() => {
+		const objArr = Object.keys(logInData.user);
+		const user = JSON.parse(localStorage.getItem('loggedIn'));
+		if (objArr.length > 0 || Object.keys(user).length > 0) {
+			console.log('User successfully logged in');
+			navigate('/teachers/list');
+		}
+	}, [logInData, navigate]);
 
 	return (
 		<div className="auth">
