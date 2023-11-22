@@ -6,6 +6,7 @@ const initialState = {
 	teachers: [],
 	error: false,
 	isLoading: false,
+	errorMessage: null,
 };
 
 export const getStaffs = createAsyncThunk(
@@ -21,9 +22,9 @@ export const getStaffs = createAsyncThunk(
 			// console.log(res.data);
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			// const msg = getApiError();
-			return thunkAPI.rejectWithValue({ error: err.message });
+			let error = err.response.data?.message || 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
 		}
 	}
 );
@@ -72,12 +73,13 @@ export const addStaff = createAsyncThunk(
 				},
 				withCredentials: true,
 			});
-			// console.log(res.data);
+			console.log(res.data);
 			return res.data;
 		} catch (err) {
-			// console.log(err);
+			console.log(err);
 			// const msg = getApiError();
-			return thunkAPI.rejectWithValue({ error: err.message });
+			let error = err?.response.data.message || 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
 		}
 	}
 );
@@ -98,24 +100,29 @@ const staffSlice = createSlice({
 			.addCase(getStaffs.fulfilled, (state, action) => {
 				state.teachers = action.payload;
 				state.isLoading = false;
+				state.errorMessage = null;
 			})
 			.addCase(getStaffs.pending, (state, action) => {
 				// console.log(action.payload);
 				state.isLoading = true;
 			})
 			.addCase(getStaffs.rejected, (state, action) => {
-				state.error = action.payload;
+				state.error = true;
 				state.isLoading = false;
+				console.log(action.payload, 111122222);
+				state.errorMessage = action.payload.error;
 			})
 			.addCase(addStaff.pending, (state) => {
 				state.isLoading = true;
 			})
-			.addCase(addStaff.rejected, (state) => {
+			.addCase(addStaff.rejected, (state, action) => {
 				state.error = true;
 				state.isLoading = false;
+				state.errorMessage = action.payload.error;
 			})
 			.addCase(addStaff.fulfilled, (state, action) => {
 				state.isLoading = false;
+				state.errorMessage = null;
 			});
 	},
 });

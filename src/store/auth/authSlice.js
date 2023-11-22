@@ -6,6 +6,7 @@ const initialState = {
 	isLoading: false,
 	error: false,
 	isLoggedIn: false,
+	errorMessage: null,
 };
 
 export const login = createAsyncThunk(
@@ -21,11 +22,10 @@ export const login = createAsyncThunk(
 			console.log(res, 'RES', res.data);
 			//Store information in local storage
 			localStorage.setItem('loggedIn', JSON.stringify(res.data.data));
-			console.log('New');
 			return res.data;
 		} catch (err) {
-			console.log(err);
-			return thunkAPI.rejectWithValue({ error: err.message });
+			let error = err?.response.data.message || 'Something went wront';
+			return thunkAPI.rejectWithValue({ error });
 		}
 	}
 );
@@ -64,10 +64,13 @@ const authSlice = createSlice({
 				state.user = action.payload;
 				state.isLoading = false;
 				state.isLoggedIn = true;
+				state.errorMessage = null;
 			})
 			.addCase(login.rejected, (state, action) => {
+				console.log(action, 'action');
 				state.error = true;
 				state.isLoading = false;
+				state.errorMessage = action.payload.error;
 			})
 			.addCase(logout.pending, (state, action) => {
 				state.isLoading = true;

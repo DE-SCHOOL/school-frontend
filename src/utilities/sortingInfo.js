@@ -16,8 +16,8 @@ export const sortArrayObject = (
 
 	if (field && fieldOpt) {
 		tempData.sort((a, b) => {
-			let first = a[field][fieldOpt];
-			let second = b[field][fieldOpt];
+			let first = a[field][fieldOpt] || null;
+			let second = b[field][fieldOpt] || null;
 
 			// console.log(first, second);
 			if (first < second) {

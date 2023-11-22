@@ -5,9 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import AuthAnimator from '../../components/auth/AuthAnimator';
+import Loader from './../../components/loaders/Loader';
 
 //importing the action creator function
 import { login } from '../../store/auth/authSlice';
+import Success from '../../components/signal/Success';
+import Failure from '../../components/signal/Failure';
 
 function Signin() {
 	//initializing states for email and password
@@ -37,9 +40,11 @@ function Signin() {
 
 	//PREFERABLE TO USE THE USEeFFECT HOOK here -------------------------------------------<<<<<<<<<<<
 	// On successful login, redirect user to new page
+	console.log(logInData);
 	useEffect(() => {
-		const objArr = Object.keys(logInData.user);
-		const user = JSON.parse(localStorage.getItem('loggedIn'));
+		const objArr = Object.keys(logInData.user || {});
+		let user = JSON.parse(localStorage.getItem('loggedIn'));
+		user = user ? user : {};
 		if (objArr.length > 0 || Object.keys(user).length > 0) {
 			console.log('User successfully logged in');
 			navigate('/teachers/list');
@@ -64,6 +69,7 @@ function Signin() {
 							placeholder="your@email.com"
 							onChange={(e) => setSignInEmail(e.target.value)}
 							autoComplete="email"
+							required
 						/>
 					</div>
 
@@ -75,6 +81,7 @@ function Signin() {
 							placeholder="Password"
 							value={signInPassword}
 							onChange={(e) => setSignInPassword(e.target.value)}
+							required
 						/>
 					</div>
 
@@ -84,6 +91,10 @@ function Signin() {
 					</div>
 				</form>
 			</div>
+			{logInData.isLoading && <Loader />}
+			{logInData.error === true && (
+				<Failure message={logInData.errorMessage} />
+			)}
 		</div>
 	);
 }
