@@ -1,0 +1,68 @@
+@use './../variables' as *;
+
+.social{
+  display: flex;
+  padding: 20;
+  border-radius: 20px;
+  background-color: $color-white;
+}
+.info {
+  margin-right: auto;
+}
+
+.info h4 {
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.info h6 {
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+.icon{
+  height: 50px;
+  width: 50px;
+  font-size: 30px;
+  padding-top: 5px;
+  justify-content: center;
+  text-align: center;
+
+  & span{
+    align-self: center;
+    display: block;
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: $color-primary-light;
+
+    & .overview-icon{
+     color: $color-white;
+    }
+  }
+}
+.media{
+  display: flex;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: $color-white;
+
+ & span{
+  align-self: center;
+  display: block;
+  height: 30px;
+  width: 30px;
+  border-radius: 5px;
+}
+
+& .media-icon{
+  height: 30px;
+  width: 30px;
+}
+
+}
