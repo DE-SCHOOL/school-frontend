@@ -12,7 +12,8 @@ export const getSpecialties = createAsyncThunk(
 		try {
 			const res = await axios({
 				method: 'get',
-				url: 'http://localhost:8001/api/v1/specialty',
+				url: 'http://localhost:8000/api/v1/specialty',
+				withCredentials: true,
 			});
 
 			// console.log(res.data);
@@ -49,8 +50,8 @@ const specialtySlice = createSlice({
 	},
 });
 
-const {reducer} = specialtySlice ;
+const { reducer } = specialtySlice;
 
-export const {removeSpecialties} = specialtySlice.actions;
+export const { removeSpecialties } = specialtySlice.actions;
 
 export default reducer;

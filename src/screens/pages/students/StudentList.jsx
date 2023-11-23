@@ -54,7 +54,11 @@ function StudentList() {
 			)}
 			<section className="student">
 				{/* Section About, Download, Add, and Refresh */}
-				<SectionMainIntro title="Students" styles="mg-bt" />
+				<SectionMainIntro
+					title="Students"
+					styles="mg-bt"
+					link={'/students/add'}
+				/>
 
 				{/* Select the number of items to be shown on a page */}
 				<PaggingNumSelect setItemsPerPage={setNumPages} />

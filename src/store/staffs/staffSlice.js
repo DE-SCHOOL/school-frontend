@@ -6,6 +6,7 @@ const initialState = {
 	teachers: [],
 	error: false,
 	isLoading: false,
+	errorMessage: null,
 };
 
 export const getStaffs = createAsyncThunk(
@@ -14,14 +15,16 @@ export const getStaffs = createAsyncThunk(
 		try {
 			const res = await axios({
 				method: 'get',
-				url: `http://127.0.0.1:8001/api/v1/staff`,
+				url: 'http://localhost:8000/api/v1/staff',
+				withCredentials: true,
 			});
-			console.log(res.data);
+
+			// console.log(res.data);
 			return res.data;
 		} catch (err) {
-			console.log(err);
 			// const msg = getApiError();
-			return thunkAPI.rejectWithValue({ error: err.message });
+			let error = err.response.data?.message || 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
 		}
 	}
 );
@@ -50,7 +53,7 @@ export const addStaff = createAsyncThunk(
 		try {
 			const res = await axios({
 				method: 'post',
-				url: `http://127.0.0.1:8001/api/v1/staff/register`,
+				url: 'http://localhost:8000/api/v1/staff/register',
 				data: {
 					gender,
 					matricule,
@@ -68,13 +71,15 @@ export const addStaff = createAsyncThunk(
 					role,
 					picture,
 				},
+				withCredentials: true,
 			});
-			console.log(res.data)
+			console.log(res.data);
 			return res.data;
 		} catch (err) {
 			console.log(err);
 			// const msg = getApiError();
-			return thunkAPI.rejectWithValue({ error: err.message });
+			let error = err?.response.data.message || 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
 		}
 	}
 );
@@ -95,22 +100,30 @@ const staffSlice = createSlice({
 			.addCase(getStaffs.fulfilled, (state, action) => {
 				state.teachers = action.payload;
 				state.isLoading = false;
+				state.errorMessage = null;
 			})
 			.addCase(getStaffs.pending, (state, action) => {
 				// console.log(action.payload);
 				state.isLoading = true;
 			})
 			.addCase(getStaffs.rejected, (state, action) => {
-				state.error = action.payload;
-				state.isLoading = false;
-			}).addCase(addStaff.pending, (state) => {
-				state.isLoading = true;
-			}).addCase(addStaff.rejected, (state) => {
 				state.error = true;
 				state.isLoading = false;
-			}).addCase(addStaff.fulfilled, (state, action) => {
-				state.isLoading = false;
+				console.log(action.payload, 111122222);
+				state.errorMessage = action.payload.error;
 			})
+			.addCase(addStaff.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(addStaff.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload.error;
+			})
+			.addCase(addStaff.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.errorMessage = null;
+			});
 	},
 });
 

@@ -1,6 +1,7 @@
 @use './../variables' as *;
 form#student,
-form#teacher {
+form#teacher,
+form#department {
 	& .form {
 		display: flex;
 		gap: 2rem;

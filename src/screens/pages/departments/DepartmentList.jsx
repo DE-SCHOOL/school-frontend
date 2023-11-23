@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getStaffs } from '../../../store/staffs/staffSlice';
+import { getDepartments } from '../../../store/departments/departmentSlice';
 
 //importing Ui/Ux components
 import {
@@ -12,68 +12,69 @@ import {
 //importing components
 import { PaggingNumSelect, Paggination } from './../../../components/pagging/';
 import SearchCategory from '../../../components/search/SearchCategory';
-import { TableStaff } from '../../../components/tables/';
+import { TableDepartment } from '../../../components/tables/';
 
 //initializing table header information
-const staffHeader = {
-	id: 'Matricule',
+const departmentHeader = {
 	name: 'Name',
-	email: 'email',
-	gender: 'gender',
-	role: 'role',
-	dob: 'DoB',
-	tel: 'phone Number',
-	acts: 'actions',
-	department: 'department',
-	address: 'address',
+	hod: 'HOD',
+	program: 'Program',
 };
 
-function TeacherList() {
-	const staffs = useSelector((state) => state.staffs.teachers.data);
+function DepartmentList() {
+	const departments = useSelector(
+		(state) => state.departments.departments.data
+	);
 	const dispatch = useDispatch();
 
-	const [staffsState, setStaffsState] = useState([]);
+	console.log(departments, 123);
+
+	const [departmentState, setDepartmentState] = useState([]);
 
 	//Setting the default number of entries a user can see on the interface.
 	const [numPages, setNumPages] = useState(5);
 
 	//Use Effect to dispatch getting staff actions
 	useEffect(() => {
-		dispatch(getStaffs());
+		dispatch(getDepartments());
 	}, [dispatch]);
 	return (
 		<Layout>
-			<SectionIntro title="Teachers" main="Teacher" sub="List" />
+			<SectionIntro title="Departments" main="Department" sub="List" />
 			<SearchCategory
 				styles={'mg-top-md mg-bt-md'}
 				dropDown="department"
-				data={staffs}
-				setData={setStaffsState}
+				data={departments}
+				setData={setDepartmentState}
 			/>
 			<section className="teachers">
 				<SectionMainIntro
-					title="Teachers"
+					title="Departments"
 					styles="mg-bt"
-					link={'/teachers/add'}
+					link={'/departments/add'}
 				/>
 				{<PaggingNumSelect setItemsPerPage={setNumPages} />}
-				{staffs !== undefined && (
-					<TableStaff
+				{departments !== undefined && (
+					<TableDepartment
 						styles="mg-top"
-						tableData={staffsState.length !== 0 ? staffsState : staffs}
-						header={staffHeader}
+						tableData={
+							departmentState.length !== 0 ? departmentState : departments
+						}
+						header={departmentHeader}
 						paggingNum={Number(numPages)}
 					/>
 				)}
 
 				{/* Display paggination page only if staffs have been searched from db */}
-				{staffs !== undefined && (
+				{departments !== undefined && (
 					<Paggination
 						styles="mg-top"
 						paggingNum={numPages}
 						// parse in the length if staff data is loaded or staff has been searched
 						totalData={
-							staffsState.length !== 0 ? staffsState.length : staffs.length
+							departmentState.length !== 0
+								? departmentState.length
+								: departments.length
 						}
 					/>
 				)}
@@ -82,4 +83,4 @@ function TeacherList() {
 	);
 }
 
-export default TeacherList;
+export default DepartmentList;

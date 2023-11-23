@@ -23,8 +23,6 @@ function TableStudent({ styles, tableData, header, paggingNum }) {
 	const [searchParams] = useSearchParams();
 	const curPage = searchParams.get('curPage');
 
-	console.log(curPage);
-	// console.log(tableData, 'data', studentData);
 	//Defining function to complete sorting
 	if (tableData.length === studentData.length) {
 		DATA_CONST = studentData;

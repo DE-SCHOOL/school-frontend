@@ -26,10 +26,10 @@
 	display: flex;
 	align-items: center;
 
-	h2{
+	h2 {
 		margin-right: auto;
 	}
-	.actions{
+	.actions {
 		display: flex;
 		align-items: center;
 		gap: 2rem;
@@ -39,6 +39,10 @@
 			justify-content: center;
 			align-items: center;
 			gap: 1.5rem;
+		}
+		a {
+			color: $color-white;
+			text-decoration: none;
 		}
 	}
 	// button {

@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
-
 import * as BootstrapIcons from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
+
+import { logout } from '../../store/auth/authSlice';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import LeftNavSectionItemList from './LeftNavSectionItemList';
 import { NavLink } from 'react-router-dom';
+import HandleNavEffects from '../../utilities/navigationEffects';
 
 function LeftNavSectionItem({ icon, list }) {
 	const [isItemOpen, setIsItemOpen] = useState(false);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	const actor = useSelector((state) => state.auth.user);
 	return (
 		<div className="section-item">
 			<h2
@@ -20,7 +29,13 @@ function LeftNavSectionItem({ icon, list }) {
 					<span className="text">{list.item}</span>
 				)}
 				{list.itemList.length === 0 && (
-					<NavLink to={list.link} className="link-head">
+					<NavLink
+						to={list.link}
+						className="link-head"
+						onClick={() =>
+							HandleNavEffects(list.item, dispatch, logout, navigate)
+						}
+					>
 						<span className="text">{list.item}</span>
 					</NavLink>
 				)}
@@ -39,7 +54,15 @@ function LeftNavSectionItem({ icon, list }) {
 			<ul className={`left-list ${isItemOpen ? 'open' : ''}`}>
 				{list.itemList.length !== 0 &&
 					list.itemList.map((it, index) => {
-						return <LeftNavSectionItemList item={it} key={index} itemName={list.item} />;
+						// if(actor.role)
+						return (
+							<LeftNavSectionItemList
+								item={it}
+								key={index}
+								itemName={list.item}
+								actor={actor?.role}
+							/>
+						);
 					})}
 			</ul>
 		</div>

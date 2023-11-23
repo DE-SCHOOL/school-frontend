@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 //import action creator slices
 import { getDepartments } from '../../store/departments/departmentSlice';
 import { addStaff } from '../../store/staffs/staffSlice';
+import Failure from '../signal/Failure';
+import Loader from './../../components/loaders/Loader';
 
 //initialize default information
 const defaultInfo = {
@@ -34,6 +36,7 @@ function StaffForm() {
 	const departments = useSelector(
 		(state) => state.departments.departments.data
 	);
+	const staffss = useSelector((state) => state.staffs);
 
 	//Get all departments after initial render
 	useEffect(() => {
@@ -45,7 +48,7 @@ function StaffForm() {
 		e.preventDefault();
 
 		dispatch(addStaff({ ...staffData, department: department.current.value }));
-		setStaffData(defaultInfo);
+		// setStaffData(defaultInfo);
 	};
 
 	return (
@@ -323,6 +326,9 @@ function StaffForm() {
 			<button className="button-main button-main-medium mg-top-md">
 				submit
 			</button>
+			{staffss.error === true && <Failure message={staffss.errorMessage} />}
+			{/* {staffss.error === false && setStaffData(defaultInfo)} */}
+			{staffss.isLoading && <Loader />}
 		</form>
 	);
 }
