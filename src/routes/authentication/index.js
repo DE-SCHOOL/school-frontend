@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { SignIn, ForgotPassword } from '../../screens/authentication';
+import { SignIn, ForgotPassword} from '../../screens/authentication';
 
 function AuthRoute() {
 	return (

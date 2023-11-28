@@ -25,7 +25,7 @@ function MainNav() {
 	}, [dispatch]);
 
 	//if user is not logged in or user data got deleted from local storage
-	if (!authUser.isLoggedIn || !authUser.user) return navigate('/auth/signin');
+	// if (!authUser.isLoggedIn || !authUser.user) return navigate('/auth/signin');
 	return (
 		<nav className="main-nav">
 			<div className="main-nav__left">
@@ -68,10 +68,10 @@ function MainNav() {
 							className="image-pic__small rounded"
 						/>
 					</div>
-					<div className="main-nav__profile-details">
+{/* 					<div className="main-nav__profile-details">
 						<h2 className="header-tertiary">{authUser.user.name}</h2>
 						<span className="role">{authUser.user.role}</span>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</nav>
