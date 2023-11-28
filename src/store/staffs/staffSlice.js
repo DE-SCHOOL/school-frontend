@@ -23,7 +23,9 @@ export const getStaffs = createAsyncThunk(
 			return res.data;
 		} catch (err) {
 			// const msg = getApiError();
-			let error = err.response.data?.message || 'Something went wrong';
+			console.log(err);
+			let error = err.response.data?.message;
+			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
 	}
@@ -78,7 +80,8 @@ export const addStaff = createAsyncThunk(
 		} catch (err) {
 			console.log(err);
 			// const msg = getApiError();
-			let error = err?.response.data.message || 'Something went wrong';
+			let error = err?.response.data.message;
+			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
 	}
@@ -110,7 +113,7 @@ const staffSlice = createSlice({
 				state.error = true;
 				state.isLoading = false;
 				console.log(action.payload, 111122222);
-				state.errorMessage = action.payload.error;
+				state.errorMessage = action.payload?.error;
 			})
 			.addCase(addStaff.pending, (state) => {
 				state.isLoading = true;
@@ -118,7 +121,7 @@ const staffSlice = createSlice({
 			.addCase(addStaff.rejected, (state, action) => {
 				state.error = true;
 				state.isLoading = false;
-				state.errorMessage = action.payload.error;
+				state.errorMessage = action.payload?.error;
 			})
 			.addCase(addStaff.fulfilled, (state, action) => {
 				state.isLoading = false;

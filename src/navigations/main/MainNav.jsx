@@ -23,8 +23,7 @@ function MainNav() {
 	useEffect(() => {
 		dispatch(loggedIn());
 	}, [dispatch]);
-	
-	
+
 	//if user is not logged in or user data got deleted from local storage
 	// if (!authUser.isLoggedIn || !authUser.user) return navigate('/auth/signin');
 	return (

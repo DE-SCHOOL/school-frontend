@@ -20,7 +20,9 @@ export const getPrograms = createAsyncThunk(
 			return res.data;
 		} catch (err) {
 			console.log(err);
-			const error = err?.response?.data?.message || 'Something went Wrong';
+			let error = err?.response?.data?.message;
+			error = error ? error : 'Something went very Wrong';
+			console.log(error);
 			return thunkAPI.rejectWithValue({ error });
 		}
 	}
@@ -44,7 +46,7 @@ const programSlice = createSlice({
 			.addCase(getPrograms.rejected, (state, action) => {
 				state.error = true;
 				state.isLoading = false;
-				state.errorMessage = action.payload.error;
+				state.errorMessage = action.payload?.error;
 			});
 	},
 });

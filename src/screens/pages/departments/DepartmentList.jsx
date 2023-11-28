@@ -43,7 +43,7 @@ function DepartmentList() {
 			<SectionIntro title="Departments" main="Department" sub="List" />
 			<SearchCategory
 				styles={'mg-top-md mg-bt-md'}
-				dropDown="department"
+				dropDown="program"
 				data={departments}
 				setData={setDepartmentState}
 			/>
