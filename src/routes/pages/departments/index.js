@@ -27,7 +27,7 @@ function DepartmentRoute() {
 				<Route
 					path="list"
 					element={
-						<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
+						<Protected restrict={RIGHTS.TO_ALL_STAFF}>
 							<DepartmentList />
 						</Protected>
 					}

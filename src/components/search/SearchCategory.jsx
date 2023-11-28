@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 //importing the dispatcher functions
 import { getSpecialties } from '../../store/specialty/specialtySlice';
 import { getDepartments } from './../../store/departments/departmentSlice';
+import { getPrograms } from '../../store/program/programSlice';
 
 //Styled in the search sass component file
 function SearchCategory({ styles, dropDown, data, setData }) {
@@ -17,9 +18,14 @@ function SearchCategory({ styles, dropDown, data, setData }) {
 			state.specialty.specialties.length !== 0 ? state.specialty : null;
 		const departments =
 			state.departments.departments.length !== 0 ? state.departments : null;
+		const programs =
+			state.programs.programs.length !== 0 ? state.programs : null;
+		console.log(state.programs, 22222222);
 
-		return { specialty, departments };
+		return { specialty, departments, programs };
 	});
+
+	console.log(dropDownData, 1111111111);
 
 	//Initialzing hooks
 	const dropDn = useRef();
@@ -35,6 +41,8 @@ function SearchCategory({ styles, dropDown, data, setData }) {
 			dispatch(getSpecialties());
 		} else if (dropDown === 'department') {
 			dispatch(getDepartments());
+		} else if (dropDown === 'program') {
+			dispatch(getPrograms());
 		}
 
 		// eslint-disable-next-line
@@ -129,6 +137,19 @@ function SearchCategory({ styles, dropDown, data, setData }) {
 						return (
 							<option key={department._id} value={department._id}>
 								{department.name}
+							</option>
+						);
+					})}
+				</select>
+			)}
+			{dropDown === 'program' && (
+				<select name="program" ref={dropDn}>
+					<option value="">Search by programs</option>
+
+					{dropDownData?.programs?.programs?.data?.map((program) => {
+						return (
+							<option key={program._id} value={program._id}>
+								{program.name}
 							</option>
 						);
 					})}

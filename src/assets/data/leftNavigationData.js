@@ -105,7 +105,7 @@ const data = [
 					{
 						name: 'department list',
 						link: 'list',
-						roles: ['hod', 'director', 'admin'],
+						roles: ['hod', 'director', 'admin', 'lecturer', 'secreteriat'],
 					},
 					{
 						name: 'department view',

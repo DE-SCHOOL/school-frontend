@@ -12,7 +12,7 @@ function Protected({ children, restrict }) {
 
 	useEffect(() => {
 		if (!restrict.includes(user?.role)) {
-			return navigate('/auth/signin');
+			return navigate(-1);
 		}
 	}, [navigate]);
 
