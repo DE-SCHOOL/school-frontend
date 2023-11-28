@@ -1,0 +1,92 @@
+
+@use './../variables' as *;
+// styling the events side bar
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.semester{
+  display: flex;
+  margin-bottom: 30px;
+
+  .activity{
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    margin-right: auto;
+    padding: 0;
+
+    & .lesson-progress{
+      display: flex;
+      width: 650px;
+
+      & .lessons{
+        background-color: $color-white;
+        margin-right: auto;
+        width: 450px;
+        border-radius: 15px;
+      }
+      & .progress{
+        background-color: $color-white;
+        padding: 10px;
+        width: 170px;
+        border-radius: 15px;
+
+        & h5{
+          font-size: 20px;
+        }
+      }
+    }
+
+    & .statistics{
+      background-color: $color-white;
+      border-radius: 15px;
+      width: 100%;
+      margin: 20px;
+    }
+
+    & .history{
+      background-color: $color-white;
+      border-radius: 15px;
+      width: 650px;
+
+      & .table{
+        display: flex;
+        width: 650;
+        padding: 15px;
+    
+        & .timetable{
+          margin-right: auto;
+    
+          & h4{
+            margin: 5px;
+          }
+          & p{
+            margin: 5px;
+            font-weight: 200;
+          }
+          & ul li{
+            list-style-type: none;
+            display: inline;
+            font-size: 15px;
+            margin: 5px;
+            font-weight: 200;
+          }
+    
+        }
+    }
+  }
+}
+
+  & .side-bar{
+    background-color: $color-white;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+}
+

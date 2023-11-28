@@ -12,7 +12,6 @@ function Layout({ children }) {
 				<br />
 				<br />
 				<br />
-
 				{children}
 			</main>
 		</>

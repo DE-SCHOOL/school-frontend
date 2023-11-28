@@ -9,14 +9,14 @@ import {
 import { Layout } from "../../../components/layout";
 import Footer from "../../../components/layout/Footer";
 
-const startStudetns = [
+const starStudents = [
   {
     id: "swe2019",
     name: "John Doe",
     marks: 1190,
     percentage: 98,
     year: 2019,
-    picture: "",
+    picture: 'https://randomuser.me/api/portraits/thumb/women/53.jpg',
   },
   {
     id: "its218",
@@ -24,7 +24,7 @@ const startStudetns = [
     marks: 1175,
     percentage: 94,
     year: 2018,
-    picture: "",
+    picture: 'https://randomuser.me/api/portraits/thumb/men/48.jpg',
   },
   {
     id: "swe2017",
@@ -32,7 +32,7 @@ const startStudetns = [
     marks: 1196,
     percentage: 99,
     year: 2017,
-    picture: "",
+    picture: 'https://randomuser.me/api/portraits/thumb/women/16.jpg',
   },
   {
     id: "gwd2016",
@@ -40,7 +40,7 @@ const startStudetns = [
     marks: 1198,
     percentage: 99,
     year: 2016,
-    picture: "",
+    picture: 'https://randomuser.me/api/portraits/thumb/men/10.jpg',
   },
   {
     id: "swe2015",
@@ -48,7 +48,7 @@ const startStudetns = [
     marks: 1189,
     percentage: 98,
     year: 2019,
-    picture: "",
+    picture: 'https://randomuser.me/api/portraits/thumb/men/72.jpg',
   },
 ];
 
@@ -108,16 +108,16 @@ function AdminDashboard({ backgroundColor }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {startStudetns.map((student, index) => {
+                  {starStudents.map((student, index) => {
                     return (
                       <tr key={index} className="body">
                         <td> {student.id} </td>
-                        <td>
+                        <td className="flex">
+                          <img src={student.picture} alt={student.name} />
                           <a href="/">{student.name}</a></td>
                         <td className="centered-text"> {student.marks} </td>
                         <td className="centered-text">
-                          {" "}
-                          {student.percentage}%{" "}
+                          {student.percentage}%
                         </td>
                         <td> {student.year} </td>
                       </tr>

@@ -40,7 +40,6 @@
   cursor: pointer;
   color: #495057;
 }
-
 /* styling the overview of the school with summary and all */
 
 .school-overview,
@@ -138,7 +137,23 @@ td {
     text-decoration: none;
     color: #495057;
     cursor: pointer;
+    align-self: center;
+    justify-self: center;
   }
+  & img{
+    height: 30px;
+    align-self: center;
+    width: 30px;
+    border-radius: 100%;
+    margin-right: 5px;
+  }
+}
+
+.flex{
+  display: flex;
+  text-align: right;
+  align-items: center;
+  justify-content: center;
 }
 
 tr:nth-child(even) {
