@@ -1,0 +1,53 @@
+@use './../variables' as *;
+
+.student-activity{
+  display: flex;
+  padding: 10px 20px;
+
+  & h5{
+    font-size: 25px;
+  }
+
+  & .activity-awards{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    & img{
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .award-details {
+      margin-right: auto;
+      padding: 15px;
+
+      & h4{
+        font-size: 14px;
+        display: block;
+        font-family: sans-serif;
+        margin-bottom: 5px;
+      }
+      & h5 {
+        font-size: 13px;
+        font-family: sans-serif;
+        display: block;
+        font-weight: lighter;
+      }
+    }
+  }
+  & .award-time {
+    background-color: $color-primary-light;
+    color: $color-white;
+    font-size: 15px;
+    width: 25%;
+    text-align: center;
+    height: 25px;
+    padding: 5px;
+    border-radius: 7px;
+  }
+
+
+}

@@ -1,3 +1,5 @@
+import { FaCalendar, FaClock } from "react-icons/fa"
+
 function TeachingHistory(){
   return(
     <table>

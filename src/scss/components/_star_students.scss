@@ -1,0 +1,47 @@
+.star-students-table{
+  position: relative;
+  padding: 20px;
+  height: 90%;
+
+
+  & table{
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    padding-bottom: 0;
+
+    & .table-headings{
+      text-align: center;
+      padding: 10px;
+
+      & th {
+        color: #495057;
+        font-weight: bolder;
+        background-color: #f8f9fa;
+        border-color: #eff2f7;
+        border-collapse: collapse;
+        box-sizing: border-box;
+        padding: 10px;
+      }
+    }
+
+    & td{
+      padding: 10px;
+      text-align: center;
+      
+      &:first-child{
+        text-transform: uppercase;
+      }
+
+      & img{
+        height: 30px;
+        align-self: center;
+        width: 30px;
+        border-radius: 100%;
+        margin-right: 5px;
+      }
+    }
+    
+  }
+}
