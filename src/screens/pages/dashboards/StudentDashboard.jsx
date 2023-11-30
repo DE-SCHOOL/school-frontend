@@ -100,7 +100,7 @@ function StudentDashboard(){
               </div>
             </div>
             <div className="side-bar card">
-              <Calendar onChange={onChange} value={value} />
+              <Calendar onChange={onChange} value={value} className="calendar"/>
               <TeacherCalendar />
               <TeacherCalendar />
               <TeacherCalendar />

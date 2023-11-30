@@ -45,23 +45,12 @@
 
   & .card-title{
     font-size: 20px;
+    
     margin-top: 5px;
     padding: 10px;
     padding-left: 15px;
   }
 }
-
-.flex{
-  display: flex;
-  text-align: right;
-  align-items: center;
-  justify-content: center;
-}
-
-tr:nth-child(even) {
-  background-color: #f8f9fa;
-}
-
 /* styling the social media things */
 /* remember that some styles are gotten from above, from the overview class */
 

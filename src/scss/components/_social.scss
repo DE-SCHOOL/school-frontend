@@ -8,19 +8,26 @@
 }
 .info {
   margin-right: auto;
-}
 
-.info h4 {
-  font-size: 17px;
-  font-weight: 500;
-  margin-bottom: 5px;
+  & h4{
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+  }
+  & h6 {
+    font-weight: bolder;
+    font-size: 1.8rem;
+  }
 }
-
-.info h6 {
-  font-size: 25px;
-  font-weight: bolder;
+.overview-headings{
+  & h4{
+    font-size: 2.2rem;
+    color: $color-grey-dark;
+  }
+  & h6{
+    font-size: 2rem;
+    color: $color-grey-dark;
+  }
 }
-
 .icon{
   height: 50px;
   width: 50px;
@@ -29,16 +36,15 @@
   text-align: center;
 
   & span{
-    align-self: center;
-    display: block;
+    background-color: $color-primary;
+    display: flex;
     height: 50px;
     width: 50px;
-    padding-top: 5px;
     border-radius: 5px;
-    background-color: $color-primary-light;
 
     & .overview-icon{
      color: $color-white;
+     align-self: center;
     }
   }
 }
