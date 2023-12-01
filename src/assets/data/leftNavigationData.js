@@ -151,11 +151,11 @@ const data = [
 				],
 			},
 			{
-				item: 'subjects',
+				item: 'courses',
 				icon: <SiCoursera />,
 				itemList: [
 					{
-						name: 'subject list',
+						name: 'course list',
 						link: 'list',
 						roles: [
 							'student',
@@ -167,12 +167,12 @@ const data = [
 						],
 					},
 					{
-						name: 'subject add',
+						name: 'course add',
 						link: 'add',
 						roles: ['hod', 'director', 'admin'],
 					},
 					{
-						name: 'subject edit',
+						name: 'course edit',
 						link: 'edit',
 						roles: ['hod', 'director', 'admin'],
 					},
