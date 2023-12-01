@@ -6,9 +6,9 @@ table {
 		width: 100%;
 		tr {
 			// border: 1px solid black;
-			padding: 0.5rem 0rem;
+			// padding: 3rem 0rem !important;
 			&:nth-child(odd) {
-				background-color: lighten($color-grey-light, 1%);
+				background-color: $color-grey-light;
 			}
 			th {
 				// text-align: center;
@@ -21,6 +21,7 @@ table {
 					}
 				}
 			}
+
 			th.sorted {
 				& svg {
 					color: $color-primary;
@@ -29,6 +30,7 @@ table {
 			th,
 			td {
 				text-align: left;
+				padding: 1rem 0rem;
 				// padding-left: .3rem;
 				// border: 1px solid blue;
 				// padding: 0 ;
@@ -72,6 +74,12 @@ table {
 						}
 					}
 				}
+			}
+		}
+		.course--row {
+			td,
+			th:not(:last-child) {
+				text-align: center !important;
 			}
 		}
 		tr.head {

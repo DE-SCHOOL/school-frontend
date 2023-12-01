@@ -93,6 +93,10 @@
 ::placeholder {
 	color: $color-grey;
 }
+::selection {
+	background-color: $color-primary;
+	color: $color-white;
+}
 
 .input {
 	border: none;
