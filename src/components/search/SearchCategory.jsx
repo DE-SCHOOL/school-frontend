@@ -20,12 +20,10 @@ function SearchCategory({ styles, dropDown, data, setData }) {
 			state.departments.departments.length !== 0 ? state.departments : null;
 		const programs =
 			state.programs.programs.length !== 0 ? state.programs : null;
-		console.log(state.programs, 22222222);
 
 		return { specialty, departments, programs };
 	});
 
-	console.log(dropDownData, 1111111111);
 
 	//Initialzing hooks
 	const dropDn = useRef();
