@@ -7,6 +7,8 @@ import specialtyReducer from './specialty/specialtySlice';
 import departmentReducer from './departments/departmentSlice';
 import authReducer from './auth/authSlice';
 import programReducer from './program/programSlice';
+import courseReducer from './courses/courseSlice';
+import curPageReducer from './cur page/curPageSlice';
 
 //CREATING THE VARIOUS REDUCERS
 const store = configureStore({
@@ -17,6 +19,8 @@ const store = configureStore({
 		departments: departmentReducer,
 		auth: authReducer,
 		programs: programReducer,
+		courses: courseReducer,
+		curPage: curPageReducer,
 	},
 });
 

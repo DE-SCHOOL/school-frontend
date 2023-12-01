@@ -9,6 +9,7 @@ import Loader from '../components/loaders/Loader';
 import DashboardRoute from './pages/dashboards';
 import DepartmentRoute from './pages/departments';
 import SpecialtyRoute from './pages/specialties';
+import CourseRoute from './pages/courses';
 
 // import AdminDashboard from '../components/dashboards/AdminDashboard';
 
@@ -26,6 +27,7 @@ function Router() {
 			<AuthRoute />
 			<DashboardRoute />
 			<SpecialtyRoute />
+			<CourseRoute />
 		</>
 	);
 }
