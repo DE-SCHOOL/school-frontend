@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { PDFViewer } from '@react-pdf/renderer';
+// import { PDFViewer } from '@react-pdf/renderer';
 
 //IMPORTING the different pages
 import { CourseAdd, CourseList } from './../../../screens/pages/courses';

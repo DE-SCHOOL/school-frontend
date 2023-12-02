@@ -27,9 +27,19 @@ const data = [
 					{
 						name: 'teacher dashboard',
 						link: 'teacher',
-						roles: ['lecturer', 'secreteriat', 'hod', 'director'],
+						roles: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 					},
 					{ name: 'student dashboard', link: 'student', roles: ['student'] },
+					{
+						name: 'assign course',
+						link: 'course-assign',
+						roles: ['hod', 'director', 'admin'],
+					},
+					{
+						name: 'staff courses',
+						link: 'staff-course',
+						roles: ['hod', 'director', 'admin'],
+					},
 				],
 			},
 			{

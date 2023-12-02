@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout, SectionIntro } from '../../../components/layout';
 import { CourseForm } from '../../../components/form';
 
-function StudentAdd() {
+function CourseAdd() {
 	return (
 		<Layout>
 			<SectionIntro title="Add courses" main="course" sub="add" />
@@ -14,4 +14,4 @@ function StudentAdd() {
 	);
 }
 
-export default StudentAdd;
+export default CourseAdd;

@@ -62,7 +62,7 @@ const courseSlice = createSlice({
 				state.isLoading = false;
 			})
 			.addCase(createCourse.rejected, (state, action) => {
-				state.errorMessage = action.payload.error;
+				state.errorMessage = action.payload?.error;
 				state.error = true;
 				state.isLoading = false;
 			})
@@ -75,7 +75,7 @@ const courseSlice = createSlice({
 				state.isLoading = false;
 			})
 			.addCase(getCourses.rejected, (state, action) => {
-				state.errorMessage = action.payload.error;
+				state.errorMessage = action.payload?.error;
 				state.error = true;
 				state.isLoading = false;
 			});

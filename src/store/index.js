@@ -9,6 +9,7 @@ import authReducer from './auth/authSlice';
 import programReducer from './program/programSlice';
 import courseReducer from './courses/courseSlice';
 import curPageReducer from './cur page/curPageSlice';
+import dashboardReducer from './dashboard/dashboardSlice';
 
 //CREATING THE VARIOUS REDUCERS
 const store = configureStore({
@@ -21,6 +22,7 @@ const store = configureStore({
 		programs: programReducer,
 		courses: courseReducer,
 		curPage: curPageReducer,
+		dashboard: dashboardReducer,
 	},
 });
 

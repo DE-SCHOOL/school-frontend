@@ -46,7 +46,7 @@ function CourseList() {
 			{/* {courses?.length !== 0 && ( */}
 			<SearchCategory
 				styles={'mg-top-md mg-bt-md'}
-				dropDown="specialty"
+				dropDown="course"
 				data={courses}
 				setData={setCoursesState}
 			/>

@@ -3,3 +3,4 @@ export { default as TableStaff } from './TableStaff';
 export { default as TableDepartment } from './TableDepartment';
 export { default as TableSpecialties } from './TableSpecialties';
 export { default as TableCourses } from './TableCourses';
+export { default as TableStaffCourse } from './TableStaffCourse';
