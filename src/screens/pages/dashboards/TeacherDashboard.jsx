@@ -1,5 +1,5 @@
 import { FaPerson } from "react-icons/fa6"
-import { Layout } from "../../../components/layout"
+import { Layout, SectionIntro } from "../../../components/layout"
 import Footer from "../../../components/layout/Footer"
 import Overview from "../../../components/social/Overview"
 import { FaBook, FaClock, FaGraduationCap, FaTimes } from "react-icons/fa"
@@ -16,36 +16,32 @@ function TeacherDashboard(){
 	return(
 		<Layout>
 			<div className="dashboard-body">
-				<div className="page-header">
-				<h1>Welcome Teacher!</h1>
-				<ul>
-				<li>
-					<a href="/">Home</a>
-				</li>
-				<li>/Teacher</li>
-				</ul>
-				</div>
+				<SectionIntro 
+				title="Welcome"
+				main="Admin"
+				sub="Home"
+				/>
 
 				<div className="school-overview">
 					<Overview
 						groupName="Total Classes"
 						number="04/06"
-						children={<FaPerson />}
+						children={<FaPerson className="overview-icon"/>}
 					/>
 					<Overview
 						groupName="Total Lessons"
 						number="40/60"
-						children={<FaBook />}
+						children={<FaBook className="overview-icon"/>}
 					/>
 					<Overview
 						groupName="Total Students"
 						number="30/50"
-						children={<FaGraduationCap/>}
+						children={<FaGraduationCap className="overview-icon"/>}
 					/>
 					<Overview
 						groupName="Total Hours"
 						number="15/20"
-						children={<FaClock />}
+						children={<FaClock className="overview-icon"/>}
 					/>
 				</div>
 
@@ -104,10 +100,12 @@ function TeacherDashboard(){
 							</div>
 					</div>
 					<div className="side-bar card">
-						<Calendar onChange={onChange} value={value} />
+						<Calendar onChange={onChange} value={value} className="calendar"/>
+						<div className="cal-container">
 						<TeacherCalendar />
 						<TeacherCalendar />
 						<TeacherCalendar />
+						</div>
 					</div>
 				</div>
 			</div>

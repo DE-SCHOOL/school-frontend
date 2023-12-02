@@ -1,3 +1,5 @@
+@use './../variables' as *;
+
 .star-students-table{
   position: relative;
   padding: 20px;
@@ -16,13 +18,21 @@
       padding: 10px;
 
       & th {
-        color: #495057;
+        color: $color-grey;
         font-weight: bolder;
         background-color: #f8f9fa;
-        border-color: #eff2f7;
+        border-color: $color-white;
         border-collapse: collapse;
         box-sizing: border-box;
         padding: 10px;
+      }
+    }
+    & tbody{
+      padding: 0;
+    }
+    tr{
+      &:nth-child(even){
+        background-color: #f8f9fa;
       }
     }
 
@@ -41,6 +51,10 @@
         border-radius: 100%;
         margin-right: 5px;
       }
+    }
+    .flex{
+      display: flex;
+      align-items: center;
     }
     
   }

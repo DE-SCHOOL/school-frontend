@@ -6,7 +6,7 @@ function Overview({
 
   return (
     <div className="overview">
-      <div className="info">
+      <div className="info overview-headings">
         <h4>{groupName}</h4>
         <h6>{number}</h6>
       </div>

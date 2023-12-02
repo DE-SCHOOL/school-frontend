@@ -2,33 +2,35 @@
 // styling the events side bar
 .semester {
 	display: flex;
-	margin-bottom: 30px;
+	margin: 3rem 1rem;
+	gap: 4rem;
 
 	.activity {
 		display: flex;
 		flex-direction: column;
 		border-radius: 15px;
-		margin-right: auto;
+		// margin-right: auto;
 		padding: 0;
+		width: 65%;
 
 		& .lesson-progress {
 			display: flex;
-			width: 650px;
+			gap: 3rem;
+			width: 100%;
 
 			& .lessons {
 				background-color: $color-white;
-				margin-right: auto;
-				width: 450px;
-				border-radius: 15px;
+				width: 70%;
+				border-radius: 1.5rem;
 			}
 			& .progress {
 				background-color: $color-white;
-				padding: 10px;
-				width: 170px;
-				border-radius: 15px;
+				padding: 1rem;
+				width: 27%;
+				border-radius: 1.5rem;
 
 				& h5 {
-					font-size: 20px;
+					font-size: 2rem;
 				}
 			}
 		}
@@ -37,41 +39,40 @@
 			background-color: $color-white;
 			border-radius: 15px;
 			width: 100%;
-			margin: 20px;
+			height: 5rem;
+			margin: 20px 0;
+			text-align: center;
 		}
 
 		& .history {
 			background-color: $color-white;
 			border-radius: 15px;
-			width: 650px;
-
-			& .table {
-				display: flex;
-				width: 650;
-				padding: 15px;
-
-				& .timetable {
-					margin-right: auto;
-
-					& h4 {
-						margin: 5px;
-					}
-					& p {
-						margin: 5px;
-						font-weight: 200;
-					}
-					& ul li {
-						list-style-type: none;
-						display: inline;
-						font-size: 15px;
-						margin: 5px;
-						font-weight: 200;
-					}
-				}
-			}
+			width: 100%;
 		}
 	}
 
+	& .side-bar {
+		background-color: $color-white;
+		align-items: center;
+		width: 35%;
+		display: flex;
+		flex-direction: column;
+		padding: 10px;
+		border-radius: 1.5rem;
+
+		& .calendar {
+			border: none;
+		}
+
+		& .cal-container {
+			margin-top: 2rem;
+
+			&:active {
+				background-color: $color-primary-dark;
+				color: $color-white;
+			}
+		}
+	}
 	& .side-bar {
 		background-color: $color-white;
 		width: 450px;

@@ -3,36 +3,39 @@
 .teacher-calendar{
   display: flex;
   align-items: center;
-  padding-top: 20px;
-  width: 400px;
+  margin: 1.5rem 0;
+  gap: 1.5rem;
 
   & p{
-    margin-right: auto;
+    font-size: 1.4rem;
   }
 
   & .teacher-calendar-box{
     display: flex;
     width: 75%;
-    border-left: 5px solid $color-primary;
-    padding-left: 5px;
+    gap: 1rem;
+    border-left: 0.3rem solid $color-primary;
+    padding-left: 0.7rem;
 
     & .teacher-calendar-event{
-      margin-right: auto;
+      width: 60%;
 
       & h4{
         margin-bottom: 8px;
-        font-size: 19px;
+        font-size: 1.5rem;
         color: $color-black;
       }
 
       & h5{
         font-weight: 400;
-        font-size: 16px;
+        font-size: 1.3rem;
       }
     }
 
     & span{
       display: block;
+      font-size: 1.3rem;
+      width: 37%;
       align-self: center;
       
     }
