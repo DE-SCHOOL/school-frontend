@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { FaRightLeft } from 'react-icons/fa6';
-import { BsEyeFill, BsFillPenFill } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 
 import { setCurData } from '../../store/cur page/curPageSlice';
@@ -40,6 +38,7 @@ function TableStaff({ styles, tableData, header, paggingNum }) {
 
 	useEffect(() => {
 		dispatch(setCurData(DATA_CONST));
+		// eslint-disable-next-line
 	}, [dispatch, DATA_CONST]);
 
 	return (
@@ -77,11 +76,6 @@ function TableStaff({ styles, tableData, header, paggingNum }) {
 						<FaRightLeft onClick={() => handleSort('specialty')} />
 						<span className="text">{header.specialty}</span>
 					</th>
-					{header.acts !== 'none' && (
-						<th>
-							<span className="text">{header.acts}</span>
-						</th>
-					)}
 				</tr>
 			</thead>
 
@@ -127,18 +121,6 @@ function TableStaff({ styles, tableData, header, paggingNum }) {
 										})}
 									</span>
 								</td>
-								{header.acts !== 'none' && (
-									<td>
-										<div className="actions">
-											<Link to="/student/view">
-												<BsEyeFill />
-											</Link>
-											<Link to="/student/edit">
-												<BsFillPenFill />
-											</Link>
-										</div>
-									</td>
-								)}
 							</tr>
 						);
 					return null;

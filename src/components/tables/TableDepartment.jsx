@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { FaRightLeft } from 'react-icons/fa6';
-import { BsEyeFill, BsFillPenFill } from 'react-icons/bs';
 
 //importing the search param function
 import { useSearchParams } from 'react-router-dom';
 
-import { profile_default } from '../../assets/images';
 //Styled in the table sass file of the component styles
 
 //Utility functions
-import { getDateFromDateObject } from '../../utilities/getDate';
 import { sortArrayObject } from '../../utilities/sortingInfo';
 
 let DATA_CONST;
@@ -55,9 +51,6 @@ function TableDepartment({ styles, tableData, header, paggingNum }) {
 						<FaRightLeft onClick={() => handleSort('program', 'name')} />
 						<span className="text">{header.program}</span>
 					</th>
-					<th>
-						<span className="text">Actions</span>
-					</th>
 				</tr>
 			</thead>
 
@@ -79,19 +72,6 @@ function TableDepartment({ styles, tableData, header, paggingNum }) {
 								</td>
 								<td>
 									<span className="text caps">{row.program?.name}</span>
-								</td>
-								{/* <td>
-									<span className="text">{row.department?.name}</span>
-								</td> */}
-								<td>
-									<div className="actions">
-										<Link to="/student/view">
-											<BsEyeFill />
-										</Link>
-										<Link to="/student/edit">
-											<BsFillPenFill />
-										</Link>
-									</div>
 								</td>
 							</tr>
 						);
