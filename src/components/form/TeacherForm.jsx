@@ -48,7 +48,7 @@ function StaffForm() {
 		e.preventDefault();
 
 		dispatch(addStaff({ ...staffData, department: department.current.value }));
-		// setStaffData(defaultInfo);
+		setStaffData(defaultInfo);
 	};
 
 	return (

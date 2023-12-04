@@ -5,6 +5,7 @@ const initialState = {
 	isLoading: false,
 	error: false,
 	errorMessage: null,
+	specialtyName: '',
 };
 
 export const getSpecialties = createAsyncThunk(
@@ -18,6 +19,25 @@ export const getSpecialties = createAsyncThunk(
 			});
 
 			// console.log(res.data);
+			return res.data;
+		} catch (err) {
+			console.log(err);
+			return thunkAPI.rejectWithValue({ error: err.message });
+		}
+	}
+);
+
+export const getSpecialtyCourses = createAsyncThunk(
+	'specialty/getSpecialtyCourses',
+	async ({ id }, thunkAPI) => {
+		try {
+			const res = await axios({
+				method: 'get',
+				url: `http://localhost:8000/api/v1/course/specialty/${id}`,
+				withCredentials: true,
+			});
+
+			console.log(res.data);
 			return res.data;
 		} catch (err) {
 			console.log(err);
@@ -81,6 +101,21 @@ const specialtySlice = createSlice({
 				state.errorMessage = null;
 			})
 			.addCase(createSpecialties.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error || action.payload;
+			})
+			.addCase(getSpecialtyCourses.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(getSpecialtyCourses.fulfilled, (state, action) => {
+				console.log(action.payload);
+				state.specialties = action.payload;
+				state.specialtyName = action.payload.data[0]?.specialty[0]?.name || '';
+				state.isLoading = false;
+				state.errorMessage = null;
+			})
+			.addCase(getSpecialtyCourses.rejected, (state, action) => {
 				state.error = true;
 				state.isLoading = false;
 				state.errorMessage = action.payload?.error || action.payload;

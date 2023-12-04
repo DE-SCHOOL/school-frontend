@@ -33,6 +33,14 @@ function SpecialtyRoute() {
 						</Protected>
 					}
 				/>
+				<Route
+					path="view/:id"
+					element={
+						<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
+							<SpecialtyView />
+						</Protected>
+					}
+				/>
 			</Route>
 		</Routes>
 	);
