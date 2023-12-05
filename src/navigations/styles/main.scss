@@ -8,7 +8,7 @@
 	background-color: $color-white;
 	margin-left: 30rem;
 	position: fixed;
-	width: calc(100% - 32rem);
+	width: calc(100% - 30rem);
 	top: 0;
 	&__right,
 	&__left {
@@ -71,6 +71,7 @@
 			gap: 0.5rem;
 			.role {
 				color: $color-primary;
+				text-transform: capitalize;
 			}
 		}
 

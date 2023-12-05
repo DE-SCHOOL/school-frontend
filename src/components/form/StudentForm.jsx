@@ -1,8 +1,16 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+//import action creator slices
 import { getSpecialties } from '../../store/specialty/specialtySlice';
 import { addStudent } from '../../store/students/studentSlice';
 
+//import reactions
+// import {Failure} from '../signal';
+import Failure from './../signal/Failure'
+import Loader from '../loaders/Loader';
+
+//initialize default information
 const defaultInfo = {
 	level: '200',
 	gender: 'male',
@@ -21,29 +29,27 @@ const defaultInfo = {
 };
 
 function StudentForm({ styles }) {
+	//create dispatch to dispatch actions and useSelect for getting out information
 	const dispatch = useDispatch();
 	const specialties = useSelector((state) => state.specialty.specialties.data);
-	console.log(specialties);
+	const studentss = useSelector((state) => state.students);
+	//initialize the main hooks
 	const [studentData, setStudentData] = useState(defaultInfo);
 	const specialty = useRef();
-	console.log(studentData, 'DATA');
+	// console.log(studentData, 'DATA');
 
+	//Get all specialties after initial render
 	useEffect(() => {
 		dispatch(getSpecialties());
 	}, [dispatch]);
 
+	//Execute this function when you click submit, to add a student
 	const registerStudent = (e) => {
 		e.preventDefault();
-
-		// setStudentData((prev) => {
-		// 	return { ...prev, specialty: specialty.current.value };
-		// });
 
 		dispatch(
 			addStudent({ ...studentData, specialty: specialty.current.value })
 		);
-
-		console.log(studentData);
 		// setStudentData(defaultInfo);
 	};
 	return (
@@ -308,39 +314,6 @@ function StudentForm({ styles }) {
 						})}
 					</select>
 				</div>
-				{/* <div className="form-item">
-					<span className="desc">
-						First name <em>*</em>
-					</span>
-					<input type="text" placeholder="Enter your first name" name="test" />
-				</div>
-				<div className="form-item">
-					<span className="desc">
-						First name <em>*</em>
-					</span>
-					<input
-						type="text"
-						placeholder="Enter your first name"
-						name="first-name"
-						autoComplete="first-name"
-					/>
-				</div>
-				<div className="form-item">
-					<span className="desc">
-						First name <em>*</em>
-					</span>
-					<input
-						type="text"
-						placeholder="Enter your first name"
-						name="last-name"
-					/>
-				</div>
-				<div className="form-item">
-					<span className="desc">
-						First name <em>*</em>
-					</span>
-					<input type="text" placeholder="Enter your first name" name="test" />
-				</div>*/}
 				<div className="form-item mg-top form-file">
 					<span className="text">Upload Student Photo (200px X 200px) </span>
 					<input type="file" name="profile" className="mg-top" />
@@ -349,6 +322,9 @@ function StudentForm({ styles }) {
 			<button className="button-main button-main-medium mg-top-md">
 				submit
 			</button>
+			{studentss.error === true && studentss.errorMessage && <Failure message={studentss.errorMessage} />}
+			{/* {studentss.error === false && setStaffData(defaultInfo)} */}
+			{studentss.isLoading && <Loader />}
 		</form>
 	);
 }

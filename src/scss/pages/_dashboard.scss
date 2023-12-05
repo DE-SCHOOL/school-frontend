@@ -1,0 +1,71 @@
+@use './../variables' as *;
+
+
+/* stylng the whole body of the page */
+
+.dashboard-body {
+  background-color: #f7f7fa;
+  height: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0;
+}
+
+/* styling the overview of the school with summary and all */
+
+.school-overview,
+.social-media {
+  columns: 4 200px;
+  padding: 20px;
+  gap: 20px;
+}
+.overview,
+.social {
+  display: flex;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #fff;
+}
+
+/* styling the star student cards and student activity card */
+.card {
+  display: flex;
+  padding: 5px;
+  flex-shrink: 0;
+}
+
+.card_body {
+  border-radius: 20px;
+  margin: 20px;
+  width: 100%;
+  background-color: #fff;
+
+  & .card-title{
+    font-size: 20px;
+    
+    margin-top: 5px;
+    padding: 10px;
+    padding-left: 15px;
+  }
+}
+/* styling the social media things */
+/* remember that some styles are gotten from above, from the overview class */
+
+.social {
+  color: #fff;
+}
+
+/* styling the footer */
+footer {
+  text-align: center;
+  font-size: 3rem;
+  background-color: #fff;
+  padding: 20px;
+  margin: 0;
+  text-transform: uppercase;
+
+  & h4{
+    font-weight: 400;
+    font-size: 13px;
+    color: #495057;
+  }
+}

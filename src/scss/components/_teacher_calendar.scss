@@ -1,0 +1,43 @@
+@use './../variables' as *;
+
+.teacher-calendar{
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  gap: 1.5rem;
+
+  & p{
+    font-size: 1.4rem;
+  }
+
+  & .teacher-calendar-box{
+    display: flex;
+    width: 75%;
+    gap: 1rem;
+    border-left: 0.3rem solid $color-primary;
+    padding-left: 0.7rem;
+
+    & .teacher-calendar-event{
+      width: 60%;
+
+      & h4{
+        margin-bottom: 8px;
+        font-size: 1.5rem;
+        color: $color-black;
+      }
+
+      & h5{
+        font-weight: 400;
+        font-size: 1.3rem;
+      }
+    }
+
+    & span{
+      display: block;
+      font-size: 1.3rem;
+      width: 37%;
+      align-self: center;
+      
+    }
+  }
+}
