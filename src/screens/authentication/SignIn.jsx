@@ -9,7 +9,6 @@ import Loader from './../../components/loaders/Loader';
 
 //importing the action creator function
 import { login } from '../../store/auth/authSlice';
-import Success from '../../components/signal/Success';
 import Failure from '../../components/signal/Failure';
 
 function Signin() {
@@ -92,9 +91,7 @@ function Signin() {
 				</form>
 			</div>
 			{logInData.isLoading && <Loader />}
-			{logInData.error === true && (
-				<Failure message={logInData.errorMessage} />
-			)}
+			{logInData.error === true && <Failure message={logInData.errorMessage} />}
 		</div>
 	);
 }
