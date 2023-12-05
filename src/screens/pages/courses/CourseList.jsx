@@ -55,7 +55,7 @@ function CourseList() {
 				{/* Section About, Download, Add, and Refresh */}
 				<SectionMainIntro
 					title="Courses"
-					styles="mg-bt"
+					styles="mg-bt mg-top"
 					link={'/courses/add'}
 				/>
 

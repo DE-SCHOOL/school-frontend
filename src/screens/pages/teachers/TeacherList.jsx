@@ -53,7 +53,7 @@ function TeacherList() {
 			<section className="teachers">
 				<SectionMainIntro
 					title="Teachers"
-					styles="mg-bt"
+					styles="mg-bt mg-top"
 					link={'/teachers/add'}
 				/>
 				{<PaggingNumSelect setItemsPerPage={setNumPages} />}

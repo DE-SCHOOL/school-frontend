@@ -56,7 +56,7 @@ function StudentList() {
 				{/* Section About, Download, Add, and Refresh */}
 				<SectionMainIntro
 					title="Students"
-					styles="mg-bt"
+					styles="mg-bt mg-top"
 					link={'/students/add'}
 				/>
 
