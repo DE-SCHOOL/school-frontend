@@ -24,7 +24,7 @@ const staffHeader = {
 	dob: 'DoB',
 	tel: 'phone Number',
 	acts: 'actions',
-	department: 'department',
+	// department: 'department',
 	address: 'address',
 };
 
@@ -46,7 +46,7 @@ function TeacherList() {
 			<SectionIntro title="Teachers" main="Teacher" sub="List" />
 			<SearchCategory
 				styles={'mg-top-md mg-bt-md'}
-				dropDown="department"
+				dropDown=""
 				data={staffs}
 				setData={setStaffsState}
 			/>

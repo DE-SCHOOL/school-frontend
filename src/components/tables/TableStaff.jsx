@@ -66,10 +66,10 @@ function TableStaff({ styles, tableData, header, paggingNum }) {
 						<FaRightLeft onClick={() => handleSort('role')} />
 						<span className="text">{header.role}</span>
 					</th>
-					<th className={`${isSortedBy === 'department' ? 'sorted' : ''}`}>
+					{/* <th className={`${isSortedBy === 'department' ? 'sorted' : ''}`}>
 						<FaRightLeft onClick={() => handleSort('department')} />
 						<span className="text">{header.department}</span>
-					</th>
+					</th> */}
 					{/* <th>
 						<FaRightLeft />
 						<span className="text">{header.address}</span>
@@ -118,9 +118,9 @@ function TableStaff({ styles, tableData, header, paggingNum }) {
 								<td>
 									<span className="text caps">{row.role}</span>
 								</td>
-								<td>
+								{/* <td>
 									<span className="text">{row.department?.name}</span>
-								</td>
+								</td> */}
 								{/* <td>
 								<span className="text">{row.address}</span>
 							</td> */}

@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 //import action creator slices
-import { getDepartments } from '../../store/departments/departmentSlice';
+// import { getDepartments } from '../../store/departments/departmentSlice';
 import { addStaff } from '../../store/staffs/staffSlice';
 import Failure from '../signal/Failure';
 import Loader from './../../components/loaders/Loader';
@@ -12,7 +12,7 @@ const defaultInfo = {
 	gender: 'male',
 	matricule: '',
 	name: '',
-	department: '',
+	// department: '',
 	address: '',
 	dob: '',
 	pob: '',
@@ -29,25 +29,25 @@ const defaultInfo = {
 function StaffForm() {
 	//initialize the main hooks
 	const [staffData, setStaffData] = useState(defaultInfo);
-	const department = useRef();
+	// const department = useRef();
 
 	//create dispatch to dispatch actions and useSelect for getting out information
 	const dispatch = useDispatch();
-	const departments = useSelector(
-		(state) => state.departments.departments.data
-	);
+	// const departments = useSelector(
+	// 	(state) => state.departments.departments.data
+	// );
 	const staffss = useSelector((state) => state.staffs);
 
 	//Get all departments after initial render
-	useEffect(() => {
-		dispatch(getDepartments());
-	}, [dispatch]);
+	// useEffect(() => {
+	// 	dispatch(getDepartments());
+	// }, [dispatch]);
 
 	//Execute this function when you click submit, to add a teacher
 	const handleAddStaff = (e) => {
 		e.preventDefault();
 
-		dispatch(addStaff({ ...staffData, department: department.current.value }));
+		dispatch(addStaff({ ...staffData }));
 		setStaffData(defaultInfo);
 	};
 
@@ -108,7 +108,7 @@ function StaffForm() {
 						}
 					/>
 				</div>
-				<div className="form-item">
+				{/* <div className="form-item">
 					<span className="desc">
 						Department <em>*</em>
 					</span>
@@ -134,7 +134,7 @@ function StaffForm() {
 							<option value="null">No department Available</option>
 						)}
 					</select>
-				</div>
+				</div> */}
 				<div className="form-item">
 					<span className="desc">
 						Date of birth <em>*</em>
