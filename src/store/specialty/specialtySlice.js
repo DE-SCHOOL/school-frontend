@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { apiRequest } from '../APIs/apiRequest';
 const initialState = {
 	specialties: [],
 	isLoading: false,
@@ -12,16 +12,15 @@ export const getSpecialties = createAsyncThunk(
 	'specialty/getSpecialties',
 	async (thunkAPI) => {
 		try {
-			const res = await axios({
-				method: 'get',
-				url: 'http://localhost:8000/api/v1/specialty',
-				withCredentials: true,
-			});
+			const res = await apiRequest(
+				'get',
+				`http://localhost:8000/api/v1/specialty`
+			);
 
 			// console.log(res.data);
 			return res.data;
 		} catch (err) {
-			console.log(err);
+			// console.log(err);
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
 	}
@@ -31,16 +30,14 @@ export const getSpecialtyCourses = createAsyncThunk(
 	'specialty/getSpecialtyCourses',
 	async ({ id }, thunkAPI) => {
 		try {
-			const res = await axios({
-				method: 'get',
-				url: `http://localhost:8000/api/v1/course/specialty/${id}`,
-				withCredentials: true,
-			});
-
-			console.log(res.data);
+			const res = await apiRequest(
+				'get',
+				`http://localhost:8000/api/v1/course/specialty/${id}`
+			);
+			// console.log(res.data);
 			return res.data;
 		} catch (err) {
-			console.log(err);
+			// console.log(err);
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
 	}
@@ -50,17 +47,15 @@ export const createSpecialties = createAsyncThunk(
 	'specialty/createSpecialties',
 	async ({ name, department }, thunkAPI) => {
 		try {
-			const res = await axios({
-				method: 'post',
-				url: 'http://localhost:8000/api/v1/specialty',
-				data: { name, department },
-				withCredentials: true,
-			});
-
+			const res = await apiRequest(
+				'post',
+				`http://localhost:8000/api/v1/specialty`,
+				{ name, department }
+			);
 			// console.log(res.data);
 			return res.data;
 		} catch (err) {
-			console.log(err);
+			// console.log(err);
 			const error = err?.response?.data?.message || 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}

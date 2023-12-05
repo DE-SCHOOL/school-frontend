@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { apiRequest } from '../APIs/apiRequest';
 // import getApiError from '../../utilities/getApiError';
 
 const initialState = {
@@ -12,16 +12,15 @@ export const getStudents = createAsyncThunk(
 	'student/getStudents',
 	async (thunkAPI) => {
 		try {
-			const res = await axios({
-				method: 'get',
-				url: 'http://localhost:8000/api/v1/student',
-				withCredentials: true,
-			});
+			const res = await apiRequest(
+				'get',
+				`http://localhost:8000/api/v1/student`
+			);
 			// console.log(res.data);
 			return res.data;
 		} catch (err) {
 			// const msg = getApiError();
-			console.log(err);
+			// console.log(err);
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
 	}
@@ -49,11 +48,11 @@ export const addStudent = createAsyncThunk(
 		thunkAPI
 	) => {
 		try {
-			console.log(name, matricule);
-			const res = await axios({
-				method: 'post',
-				url: 'http://localhost:8000/api/v1/student',
-				data: {
+			// console.log(name, matricule);
+			const res = await apiRequest(
+				'post',
+				`http://localhost:8000/api/v1/student`,
+				{
 					name,
 					matricule,
 					specialty,
@@ -68,14 +67,12 @@ export const addStudent = createAsyncThunk(
 					parent_tel,
 					level,
 					entry_certificate,
-				},
-				withCredentials: true
-			});
-
+				}
+			);
 			// console.log(res);
 			return res.data;
 		} catch (err) {
-			console.log(err);
+			// console.log(err);
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
 	}
@@ -86,15 +83,6 @@ const studentSlice = createSlice({
 	initialState,
 	reducers: {
 		removeStudent() {},
-		// searchStudentName(state, action) {
-		// 	const student = state.students.filter(
-		// 		(std) => std.name === action.payload
-		// 	);
-		// 	// console.log(student, state.students, action.payload);
-		// 	state.students = student;
-		// 	console.log(state.students);
-		// },
-		// searchStudentLevel() {},
 	},
 	extraReducers: (builder) => {
 		builder

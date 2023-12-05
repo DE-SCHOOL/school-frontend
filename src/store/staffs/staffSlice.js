@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { apiRequest } from '../APIs/apiRequest';
 // import getApiError from '../../utilities/getApiError';
 
 const initialState = {
@@ -13,17 +13,12 @@ export const getStaffs = createAsyncThunk(
 	'staff/getStaffs',
 	async (thunkAPI) => {
 		try {
-			const res = await axios({
-				method: 'get',
-				url: 'http://localhost:8000/api/v1/staff',
-				withCredentials: true,
-			});
-
+			const res = await apiRequest('get', `/api/v1/staff`);
 			// console.log(res.data);
 			return res.data;
 		} catch (err) {
 			// const msg = getApiError();
-			console.log(err);
+			// console.log(err);
 			let error = err.response.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
@@ -53,10 +48,10 @@ export const addStaff = createAsyncThunk(
 		thunkAPI
 	) => {
 		try {
-			const res = await axios({
-				method: 'post',
-				url: 'http://localhost:8000/api/v1/staff/register',
-				data: {
+			const res = await apiRequest(
+				'post',
+				`http://localhost:8000/api/v1/staff/register`,
+				{
 					gender,
 					matricule,
 					name,
@@ -72,13 +67,12 @@ export const addStaff = createAsyncThunk(
 					marital_status,
 					role,
 					picture,
-				},
-				withCredentials: true,
-			});
-			console.log(res.data);
+				}
+			);
+			// console.log(res.data);
 			return res.data;
 		} catch (err) {
-			console.log(err);
+			// console.log(err);
 			// const msg = getApiError();
 			let error = err?.response.data.message;
 			error = error ? error : 'Something went wrong';
@@ -112,7 +106,6 @@ const staffSlice = createSlice({
 			.addCase(getStaffs.rejected, (state, action) => {
 				state.error = true;
 				state.isLoading = false;
-				console.log(action.payload, 111122222);
 				state.errorMessage = action.payload?.error;
 			})
 			.addCase(addStaff.pending, (state) => {

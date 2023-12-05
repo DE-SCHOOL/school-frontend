@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { apiRequest } from './../APIs/apiRequest';
 
 const initialState = {
 	user: {},
@@ -13,13 +13,12 @@ export const login = createAsyncThunk(
 	'user/login',
 	async ({ email, password }, thunkAPI) => {
 		try {
-			const res = await axios({
-				method: 'post',
-				url: 'http://localhost:8000/api/v1/staff/login',
-				data: { email, password },
-				withCredentials: true,
-			});
-			console.log(res, 'RES', res.data);
+			const res = await apiRequest(
+				'post',
+				`http://localhost:8000/api/v1/staff/login`,
+				{ email, password }
+			);
+			// console.log(res, 'RES', res.data);
 			//Store information in local storage
 			localStorage.setItem('loggedIn', JSON.stringify(res.data.data));
 			return res.data;
@@ -32,15 +31,11 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk('user/logout', async (thunkAPI) => {
 	try {
-		console.log(12345678);
-		const res = await axios({
-			method: 'get',
-			url: 'http://localhost:8000/api/v1/staff/logout',
-		});
-		console.log(987456321);
+		const res = await apiRequest('get', `http://localhost:8000/api/v1/staff/logout`)
+		// console.log(987456321);
 		return res.data;
 	} catch (err) {
-		console.log(err);
+		// console.log(err);
 		return thunkAPI.rejectWithValue({ error: err });
 	}
 });
