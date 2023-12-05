@@ -15,24 +15,22 @@ import * as RIGHTS from './../../../utilities/restrict';
 function DepartmentRoute() {
 	return (
 		<Routes>
-			<Route path="/departments">
-				<Route
-					path="add"
-					element={
-						<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
-							<DepartmentAdd />
-						</Protected>
-					}
-				/>
-				<Route
-					path="list"
-					element={
-						<Protected restrict={RIGHTS.TO_ALL_STAFF}>
-							<DepartmentList />
-						</Protected>
-					}
-				/>
-			</Route>
+			<Route
+				path="/departments/add"
+				element={
+					<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
+						<DepartmentAdd />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/departments/list"
+				element={
+					<Protected restrict={RIGHTS.TO_ALL_STAFF}>
+						<DepartmentList />
+					</Protected>
+				}
+			/>
 		</Routes>
 	);
 }

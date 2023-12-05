@@ -16,9 +16,8 @@ import * as RIGHTS from './../../../utilities/restrict';
 function SpecialtyRoute() {
 	return (
 		<Routes>
-			<Route path="/specialties">
 				<Route
-					path="add"
+					path="/specialties/add"
 					element={
 						<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
 							<SpecialtyAdd />
@@ -26,7 +25,7 @@ function SpecialtyRoute() {
 					}
 				/>
 				<Route
-					path="list"
+					path="/specialties/list"
 					element={
 						<Protected restrict={RIGHTS.TO_ALL_STAFF}>
 							<SpecialtyList />
@@ -34,14 +33,13 @@ function SpecialtyRoute() {
 					}
 				/>
 				<Route
-					path="view/:id"
+					path="/specialties/view/:id"
 					element={
 						<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
 							<SpecialtyView />
 						</Protected>
 					}
 				/>
-			</Route>
 		</Routes>
 	);
 }
