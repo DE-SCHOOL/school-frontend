@@ -30,7 +30,7 @@ function LeftNavSectionItem({ icon, list }) {
 				)}
 				{list.itemList.length === 0 && (
 					<NavLink
-						to={list.link}
+						to={`/${list.link}`}
 						className="link-head"
 						onClick={() =>
 							HandleNavEffects(list.item, dispatch, logout, navigate)
