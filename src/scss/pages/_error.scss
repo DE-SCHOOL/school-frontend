@@ -1,0 +1,46 @@
+@use './../variables' as *;
+.error {
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	&--icon {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		font-size: 10rem;
+		color: $color-primary;
+	}
+	h1.header--primary {
+		font-size: 8rem;
+		color: $color-grey-dark;
+		text-transform: capitalize;
+	}
+	& .text {
+		color: $color-grey;
+	}
+	a {
+		text-decoration: none;
+
+		& .btn {
+			background-color: $color-primary;
+			color: $color-white;
+			display: flex;
+			gap: 2rem;
+			padding: 1.2rem;
+			border: none;
+			border-radius: 0.5rem;
+			font-size: 3rem;
+			cursor: pointer;
+		}
+	}
+}
+.page {
+	height: 100vh;
+	width: 100vw;
+	position: relative;
+}
