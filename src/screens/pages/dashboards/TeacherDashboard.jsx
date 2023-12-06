@@ -2,13 +2,11 @@ import { FaPerson } from "react-icons/fa6"
 import { Layout, SectionIntro } from "../../../components/layout"
 import Footer from "../../../components/layout/Footer"
 import Overview from "../../../components/social/Overview"
-import { FaBook, FaClock, FaGraduationCap, FaTimes } from "react-icons/fa"
-import TeacherCalendar from "../../../components/events/TeacherCalendar"
-import LessonsTable from "../../../components/events/LessonsTable"
+import { FaBook, FaClock, FaGraduationCap} from "react-icons/fa"
+import {TeacherCalendar, LessonsTable}from "../../../components/events/index"
 import { BiLoader } from "react-icons/bi"
 import Calendar from 'react-calendar'
 import { useState } from "react"
-import 'react-calendar/dist/Calendar.css';
 
 function TeacherDashboard(){
 	const [value, onChange] = useState(new Date());
@@ -18,7 +16,7 @@ function TeacherDashboard(){
 			<div className="dashboard-body">
 				<SectionIntro 
 				title="Welcome"
-				main="Admin"
+				main="Teacher"
 				sub="Home"
 				/>
 
@@ -49,6 +47,7 @@ function TeacherDashboard(){
 					<div className="activity">
 						<div className="lesson-progress">
 							<div className="lessons">
+								<h3>Up coming lessons</h3>
 								<LessonsTable 
 								lessonName="Digital Electronics" 
 								date="Dec 03, 2023"
@@ -79,6 +78,7 @@ function TeacherDashboard(){
 								<BiLoader />
 							</div>
 							<div className="history">
+								<h3>Teaching history</h3>
 								<LessonsTable
 								lessonName="Maths Analysis"
 								date="Oct 19, 2023"
@@ -102,6 +102,7 @@ function TeacherDashboard(){
 					<div className="side-bar card">
 						<Calendar onChange={onChange} value={value} className="calendar"/>
 						<div className="cal-container">
+							<h3>Upcoming Events</h3>
 						<TeacherCalendar />
 						<TeacherCalendar />
 						<TeacherCalendar />

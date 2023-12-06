@@ -24,10 +24,19 @@
       gap: 3rem;
       width: 100%;
 
+      
       & .lessons{
         background-color: $color-white;
         width: 70%;
         border-radius: 1.5rem;
+        padding: 1rem;
+
+        & h3{
+          text-align: center;
+          color: $color-grey-dark;
+          padding: 1rem;
+          font-size: 2rem;
+        }
       }
       & .progress{
         background-color: $color-white;
@@ -37,6 +46,7 @@
 
         & h5{
           font-size: 2rem;
+          color: $color-grey-dark;
         }
       }
     }
@@ -52,9 +62,17 @@
 
     & .history{
       background-color: $color-white;
-      border-radius: 15px;
+      border-radius: 1.5rem;
       width: 100%;
-  }
+      padding: 1rem;
+
+      & h3{
+        text-align: center;
+        color: $color-grey-dark;
+        padding: 1rem;
+        font-size: 2rem;
+      }
+    }
 }
 
   & .side-bar{
@@ -63,19 +81,20 @@
     width: 35%;
     display: flex;
     flex-direction: column;
-    padding: 10px;
     border-radius: 1.5rem;
-
-     & .calendar{
-     border: none;
-    }
     
     & .cal-container{
-      margin-top: 2rem;
-      
-      &:active{
-        background-color: $color-primary-dark;
-        color: $color-white;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     margin-top: 1rem;
+     width: 100%;
+ 
+      & h3{
+        text-align: center;
+        color: $color-grey-dark;
+        padding: 1rem;
+        font-size: 2rem;
       }
       
     }

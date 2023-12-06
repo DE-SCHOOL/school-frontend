@@ -1,5 +1,4 @@
 export {default as LessonsTable} from './LessonsTable'
-export {default as PageHeader} from './PageHeader'
 export {default as StudentActivity} from './StudentActivity'
 export {default as StudentLessons} from './StudentLessons'
 export {default as TeacherCalendar} from './TeacherCalendar'
