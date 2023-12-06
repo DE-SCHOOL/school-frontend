@@ -13,17 +13,16 @@ export const login = createAsyncThunk(
 	'user/login',
 	async ({ email, password }, thunkAPI) => {
 		try {
-			const res = await apiRequest(
-				'post',
-				`/api/v1/staff/login`,
-				{ email, password }
-			);
+			const res = await apiRequest('post', `/api/v1/staff/login`, {
+				email,
+				password,
+			});
 			// console.log(res, 'RES', res.data);
 			//Store information in local storage
 			localStorage.setItem('loggedIn', JSON.stringify(res.data.data));
 			return res.data;
 		} catch (err) {
-			let error = err?.response.data.message || 'Something went wront';
+			let error = err?.response?.data?.message || 'Something went wront';
 			return thunkAPI.rejectWithValue({ error });
 		}
 	}
@@ -31,7 +30,7 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk('user/logout', async (thunkAPI) => {
 	try {
-		const res = await apiRequest('get', `/api/v1/staff/logout`)
+		const res = await apiRequest('get', `/api/v1/staff/logout`);
 		// console.log(987456321);
 		return res.data;
 	} catch (err) {
@@ -65,7 +64,7 @@ const authSlice = createSlice({
 				console.log(action, 'action');
 				state.error = true;
 				state.isLoading = false;
-				state.errorMessage = action.payload.error;
+				state.errorMessage = action.payload?.error;
 			})
 			.addCase(logout.pending, (state, action) => {
 				state.isLoading = true;
