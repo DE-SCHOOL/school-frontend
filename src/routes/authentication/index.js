@@ -7,6 +7,7 @@ function AuthRoute() {
 			{/* <Route path="register" element={< Register />} /> */}
 			<Route path="/auth/signin" element={<SignIn />} />
 			<Route path="/auth/forgot-password" element={<ForgotPassword />} />
+			<Route path="/" element={<SignIn />} />
 		</Routes>
 	);
 }
