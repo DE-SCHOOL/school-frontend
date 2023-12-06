@@ -7,7 +7,7 @@ import { addStudent } from '../../store/students/studentSlice';
 
 //import reactions
 // import {Failure} from '../signal';
-import Failure from './../signal/Failure'
+import Failure from './../signal/Failure';
 import Loader from '../loaders/Loader';
 
 //initialize default information
@@ -50,7 +50,7 @@ function StudentForm({ styles }) {
 		dispatch(
 			addStudent({ ...studentData, specialty: specialty.current.value })
 		);
-		// setStudentData(defaultInfo);
+		setStudentData(defaultInfo);
 	};
 	return (
 		<form
@@ -294,17 +294,7 @@ function StudentForm({ styles }) {
 					<span className="desc">
 						Specialty <em>*</em>
 					</span>
-					<select
-						name="specialty"
-						id=""
-						onChange={(e) =>
-							setStudentData((prev) => {
-								return { ...prev, specialty: e.target.value };
-							})
-						}
-						value={specialties ? specialties[0]._id : ''}
-						ref={specialty}
-					>
+					<select name="specialty" id="" ref={specialty}>
 						{specialties?.map((specialty) => {
 							return (
 								<option key={specialty._id} value={specialty._id}>
@@ -322,7 +312,9 @@ function StudentForm({ styles }) {
 			<button className="button-main button-main-medium mg-top-md">
 				submit
 			</button>
-			{studentss.error === true && studentss.errorMessage && <Failure message={studentss.errorMessage} />}
+			{studentss.error === true && studentss.errorMessage && (
+				<Failure message={studentss.errorMessage} />
+			)}
 			{/* {studentss.error === false && setStaffData(defaultInfo)} */}
 			{studentss.isLoading && <Loader />}
 		</form>

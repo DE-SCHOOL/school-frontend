@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { FaRightLeft } from 'react-icons/fa6';
-import { BsEyeFill, BsFillPenFill } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 
 import { setCurData } from '../../store/cur page/curPageSlice';
@@ -40,6 +38,7 @@ function TableStaff({ styles, tableData, header, paggingNum }) {
 
 	useEffect(() => {
 		dispatch(setCurData(DATA_CONST));
+		// eslint-disable-next-line
 	}, [dispatch, DATA_CONST]);
 
 	return (
@@ -77,9 +76,6 @@ function TableStaff({ styles, tableData, header, paggingNum }) {
 						<FaRightLeft onClick={() => handleSort('specialty')} />
 						<span className="text">{header.specialty}</span>
 					</th>
-					<th>
-						<span className="text">{header.acts}</span>
-					</th>
 				</tr>
 			</thead>
 
@@ -87,6 +83,7 @@ function TableStaff({ styles, tableData, header, paggingNum }) {
 				{DATA_CONST.map((row, index) => {
 					//maths to decide what entries to show, using paggination
 					let temp = cur ? cur : 1;
+					// console.log(row);
 					if (index >= (temp - 1) * paggingNum && index < temp * paggingNum)
 						return (
 							<tr key={index} className="course--row">
@@ -100,7 +97,7 @@ function TableStaff({ styles, tableData, header, paggingNum }) {
 									<span className="text">{row.name}</span>
 								</td>
 								<td>
-									<span className="text">{row.levels.join(', ')}</span>
+									<span className="text">{row.levels?.join(', ')}</span>
 								</td>
 								<td>
 									<span className="text">{row.semester}</span>
@@ -123,16 +120,6 @@ function TableStaff({ styles, tableData, header, paggingNum }) {
 											);
 										})}
 									</span>
-								</td>
-								<td>
-									<div className="actions">
-										<Link to="/student/view">
-											<BsEyeFill />
-										</Link>
-										<Link to="/student/edit">
-											<BsFillPenFill />
-										</Link>
-									</div>
 								</td>
 							</tr>
 						);

@@ -128,10 +128,10 @@ function TableStudent({ styles, tableData, header, paggingNum }) {
 								</td>
 								<td>
 									<div className="actions">
-										<Link to="/student/view">
+										<Link to={`/students/view/${row._id}`}>
 											<BsEyeFill />
 										</Link>
-										<Link to="/student/edit">
+										<Link to={`/students/edit/${row._id}`}>
 											<BsFillPenFill />
 										</Link>
 									</div>

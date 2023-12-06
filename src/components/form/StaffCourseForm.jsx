@@ -60,7 +60,7 @@ function StaffCourseForm({ styles }) {
 					<select name="staff" id="" ref={staff}>
 						{staffs?.map((staf, index) => (
 							<option value={staf._id} key={index}>
-								{staf.name}
+								{`${staf.name} (${staf.matricule})`}
 							</option>
 						))}
 					</select>

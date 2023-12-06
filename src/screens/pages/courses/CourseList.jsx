@@ -51,11 +51,11 @@ function CourseList() {
 				setData={setCoursesState}
 			/>
 			{/* )} */}
-			<section className="student">
+			<section className="teachers">
 				{/* Section About, Download, Add, and Refresh */}
 				<SectionMainIntro
 					title="Courses"
-					styles="mg-bt"
+					styles="mg-bt mg-top"
 					link={'/courses/add'}
 				/>
 

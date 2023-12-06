@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { apiRequest } from '../APIs/apiRequest';
 
 const initialState = {
 	courses: [],
@@ -12,16 +12,15 @@ export const getCourses = createAsyncThunk(
 	'course/getCourses',
 	async (thunkAPI) => {
 		try {
-			const res = await axios({
-				method: 'get',
-				url: 'http://localhost:8000/api/v1/course',
-				withCredentials: true,
-			});
-			console.log(res.data);
+			const res = await apiRequest(
+				'get',
+				`/api/v1/course`
+			);
+			// console.log(res.data);
 			return res.data;
 		} catch (err) {
 			const error = err?.response?.data?.message || 'Something went wrong';
-			console.log(err);
+			// console.log(err);
 			return thunkAPI.rejectWithValue({ error });
 		}
 	}
@@ -34,12 +33,12 @@ export const createCourse = createAsyncThunk(
 		thunkAPI
 	) => {
 		try {
-			const res = await axios({
-				method: 'post',
-				url: 'http://localhost:8000/api/v1/course',
-				data: { name, specialty, code, semester, levels, status, credit_value },
-				withCredentials: true,
-			});
+			const res = await apiRequest(
+				'post',
+				`/api/v1/course`,
+				{ name, specialty, code, semester, levels, status, credit_value }
+			);
+
 			return res.data;
 		} catch (err) {
 			const error = err?.response?.data?.message || 'Something went wrong';

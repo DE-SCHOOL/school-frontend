@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { apiRequest } from '../APIs/apiRequest';
 
 const initialState = {
 	departments: [],
@@ -12,33 +12,28 @@ export const getDepartments = createAsyncThunk(
 	'department/getDepartments',
 	async (thunkAPI) => {
 		try {
-			const res = await axios({
-				method: 'get',
-				url: 'http://localhost:8000/api/v1/department',
-				withCredentials: true,
-			});
+			const res = await apiRequest('get', `/api/v1/department`);
 			return res.data;
 		} catch (err) {
-			console.log(err);
+			// console.log(err);
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
 	}
 );
-
+console.log(process.env);
 export const createDepartment = createAsyncThunk(
 	'department/create',
 	async ({ name, hod, program }, thunkAPI) => {
 		try {
-			const res = await axios({
-				method: 'post',
-				url: 'http://localhost:8000/api/v1/department',
-				withCredentials: true,
-				data: { name, hod, program },
+			const res = await apiRequest('post', `/api/v1/department`, {
+				name,
+				hod,
+				program,
 			});
 			// console.log()
 			return res.data;
 		} catch (err) {
-			console.log(err);
+			// console.log(err);
 			const error = err?.response?.data?.message || 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}

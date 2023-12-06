@@ -40,7 +40,7 @@ function StaffCourseList() {
 			<section className="teachers mg-top-lg">
 				<SectionMainIntro
 					title="Specialties"
-					styles="mg-bt"
+					styles="mg-bt mg-top"
 					link={'/dashboard/course-assign'}
 				/>
 				{<PaggingNumSelect setItemsPerPage={setNumPages} />}

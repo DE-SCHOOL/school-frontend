@@ -47,7 +47,7 @@ function SpecialtyList() {
 			<section className="teachers">
 				<SectionMainIntro
 					title="Specialties"
-					styles="mg-bt"
+					styles="mg-bt mg-top"
 					link={'/specialties/add'}
 				/>
 				{<PaggingNumSelect setItemsPerPage={setNumPages} />}

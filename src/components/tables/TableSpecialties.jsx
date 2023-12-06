@@ -70,10 +70,10 @@ function TableSpecialties({ styles, tableData, header, paggingNum }) {
 								</td>
 								<td>
 									<div className="actions">
-										<Link to="/student/view">
+										<Link to={`/specialties/view/${row._id}`}>
 											<BsEyeFill />
 										</Link>
-										<Link to="/student/edit">
+										<Link to="/specialties/edit">
 											<BsFillPenFill />
 										</Link>
 									</div>

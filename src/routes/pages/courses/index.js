@@ -13,24 +13,22 @@ import * as RIGHTS from './../../../utilities/restrict';
 function CourseRoute() {
 	return (
 		<Routes>
-			<Route path="/courses">
-				<Route
-					path="add"
-					element={
-						<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
-							<CourseAdd />
-						</Protected>
-					}
-				/>
-				<Route
-					path="list"
-					element={
-						<Protected restrict={RIGHTS.TO_ALL_STAFF}>
-							<CourseList />
-						</Protected>
-					}
-				/>
-			</Route>
+			<Route
+				path="/courses/add"
+				element={
+					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
+						<CourseAdd />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/courses/list"
+				element={
+					<Protected restrict={RIGHTS.TO_ALL_STAFF}>
+						<CourseList />
+					</Protected>
+				}
+			/>
 		</Routes>
 	);
 }

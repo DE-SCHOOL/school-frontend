@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BsCheckCircleFill } from 'react-icons/bs';
 
 function Success() {

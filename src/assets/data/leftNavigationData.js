@@ -315,7 +315,7 @@ const data = [
 			},
 			{
 				item: 'time table',
-				link: 'ime-table',
+				link: 'time-table',
 				icon: <BiTable />,
 				itemList: [],
 				roles: [

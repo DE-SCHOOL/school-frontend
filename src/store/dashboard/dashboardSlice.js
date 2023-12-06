@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-// import getApiError from '../../utilities/getApiError';
+import { apiRequest } from '../APIs/apiRequest';
 
 const initialState = {
 	staffCourse: [],
@@ -13,16 +12,15 @@ export const getStaffCourse = createAsyncThunk(
 	'dashboard/getStaffCourse',
 	async (thunkAPI) => {
 		try {
-			const res = await axios({
-				method: 'get',
-				url: 'http://localhost:8000/api/v1/staff-course',
-				withCredentials: true,
-			});
+			const res = await apiRequest(
+				'get',
+				`/api/v1/staff-course`
+			);
 			// console.log(res.data);
 			return res.data;
 		} catch (err) {
 			// const msg = getApiError();
-			console.log(err);
+			// console.log(err);
 			let error = err.response.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
@@ -34,19 +32,15 @@ export const assignCourse = createAsyncThunk(
 	'dashboard/assignCourse',
 	async ({ courses, staff }, thunkAPI) => {
 		try {
-			const res = await axios({
-				method: 'post',
-				url: 'http://localhost:8000/api/v1/staff-course',
-				data: {
-					courses,
-					staff,
-				},
-				withCredentials: true,
-			});
-			console.log(res.data);
+			const res = await apiRequest(
+				'post',
+				`/api/v1/staff-course`,
+				{ courses, staff }
+			);
+			// console.log(res.data);
 			return res.data;
 		} catch (err) {
-			console.log(err);
+			// console.log(err);
 			// const msg = getApiError();
 			let error = err?.response.data.message;
 			error = error ? error : 'Something went wrong';
