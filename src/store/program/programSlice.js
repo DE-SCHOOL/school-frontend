@@ -14,7 +14,7 @@ export const getPrograms = createAsyncThunk(
 		try {
 			const res = await apiRequest(
 				'get',
-				`http://localhost:8000/api/v1/program`
+				`/api/v1/program`
 			);
 			return res.data;
 		} catch (err) {

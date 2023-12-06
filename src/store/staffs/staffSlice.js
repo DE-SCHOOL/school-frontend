@@ -50,7 +50,7 @@ export const addStaff = createAsyncThunk(
 		try {
 			const res = await apiRequest(
 				'post',
-				`http://localhost:8000/api/v1/staff/register`,
+				`/api/v1/staff/register`,
 				{
 					gender,
 					matricule,

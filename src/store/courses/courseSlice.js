@@ -14,7 +14,7 @@ export const getCourses = createAsyncThunk(
 		try {
 			const res = await apiRequest(
 				'get',
-				`http://localhost:8000/api/v1/course`
+				`/api/v1/course`
 			);
 			// console.log(res.data);
 			return res.data;
@@ -35,7 +35,7 @@ export const createCourse = createAsyncThunk(
 		try {
 			const res = await apiRequest(
 				'post',
-				`http://localhost:8000/api/v1/course`,
+				`/api/v1/course`,
 				{ name, specialty, code, semester, levels, status, credit_value }
 			);
 

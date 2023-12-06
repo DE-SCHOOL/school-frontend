@@ -14,7 +14,7 @@ export const getStudents = createAsyncThunk(
 		try {
 			const res = await apiRequest(
 				'get',
-				`http://localhost:8000/api/v1/student`
+				`/api/v1/student`
 			);
 			// console.log(res.data);
 			return res.data;
@@ -51,7 +51,7 @@ export const addStudent = createAsyncThunk(
 			// console.log(name, matricule);
 			const res = await apiRequest(
 				'post',
-				`http://localhost:8000/api/v1/student`,
+				`/api/v1/student`,
 				{
 					name,
 					matricule,

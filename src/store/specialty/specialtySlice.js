@@ -14,7 +14,7 @@ export const getSpecialties = createAsyncThunk(
 		try {
 			const res = await apiRequest(
 				'get',
-				`http://localhost:8000/api/v1/specialty`
+				`/api/v1/specialty`
 			);
 
 			// console.log(res.data);
@@ -32,7 +32,7 @@ export const getSpecialtyCourses = createAsyncThunk(
 		try {
 			const res = await apiRequest(
 				'get',
-				`http://localhost:8000/api/v1/course/specialty/${id}`
+				`/api/v1/course/specialty/${id}`
 			);
 			// console.log(res.data);
 			return res.data;
@@ -49,7 +49,7 @@ export const createSpecialties = createAsyncThunk(
 		try {
 			const res = await apiRequest(
 				'post',
-				`http://localhost:8000/api/v1/specialty`,
+				`/api/v1/specialty`,
 				{ name, department }
 			);
 			// console.log(res.data);

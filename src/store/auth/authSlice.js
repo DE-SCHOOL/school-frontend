@@ -15,7 +15,7 @@ export const login = createAsyncThunk(
 		try {
 			const res = await apiRequest(
 				'post',
-				`http://localhost:8000/api/v1/staff/login`,
+				`/api/v1/staff/login`,
 				{ email, password }
 			);
 			// console.log(res, 'RES', res.data);
@@ -31,7 +31,7 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk('user/logout', async (thunkAPI) => {
 	try {
-		const res = await apiRequest('get', `http://localhost:8000/api/v1/staff/logout`)
+		const res = await apiRequest('get', `/api/v1/staff/logout`)
 		// console.log(987456321);
 		return res.data;
 	} catch (err) {
