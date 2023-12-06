@@ -20,7 +20,7 @@ export const getDepartments = createAsyncThunk(
 		}
 	}
 );
-console.log(process.env);
+// console.log(process.env);
 export const createDepartment = createAsyncThunk(
 	'department/create',
 	async ({ name, hod, program }, thunkAPI) => {
