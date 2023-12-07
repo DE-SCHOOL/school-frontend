@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const apiRequest = async (method, url, data = '') => {
+export const apiRequest = async (method, url, data = '', cred=true) => {
 	url =
 		`${process.env.REACT_APP_NODE_HOST_APP}` +
 		url;
@@ -9,6 +9,6 @@ export const apiRequest = async (method, url, data = '') => {
 		method,
 		url,
 		data: data !== '' ? data : null,
-		withCredentials: true,
+		withCredentials: cred,
 	});
 };
