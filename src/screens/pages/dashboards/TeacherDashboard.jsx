@@ -8,10 +8,10 @@ import { BiLoader } from "react-icons/bi"
 import Calendar from 'react-calendar'
 import { useState } from "react"
 
-function TeacherDashboard(){
+function TeacherDashboard() {
 	const [value, onChange] = useState(new Date());
 
-	return(
+	return (
 		<Layout>
 			<div className="dashboard-body">
 				<SectionIntro 
@@ -24,22 +24,22 @@ function TeacherDashboard(){
 					<Overview
 						groupName="Total Classes"
 						number="04/06"
-						children={<FaPerson className="overview-icon"/>}
+						children={<FaPerson className="overview-icon" />}
 					/>
 					<Overview
 						groupName="Total Lessons"
 						number="40/60"
-						children={<FaBook className="overview-icon"/>}
+						children={<FaBook className="overview-icon" />}
 					/>
 					<Overview
 						groupName="Total Students"
 						number="30/50"
-						children={<FaGraduationCap className="overview-icon"/>}
+						children={<FaGraduationCap className="overview-icon" />}
 					/>
 					<Overview
 						groupName="Total Hours"
 						number="15/20"
-						children={<FaClock className="overview-icon"/>}
+						children={<FaClock className="overview-icon" />}
 					/>
 				</div>
 
@@ -58,15 +58,17 @@ function TeacherDashboard(){
 									<button>Reschedule</button>
 									</>}
 								/>
-								<LessonsTable 
-								lessonName="Digital Electronics" 
-								date="Dec 03, 2023"
-								time="7:30 - 8:30 am"
-								classRoom="Classroom 201"
-								children={<>
-								<button>Confirm</button>
-								<button>Reschedule</button>
-								</>}
+								<LessonsTable
+									lessonName="Digital Electronics"
+									date="Dec 03, 2023"
+									time="7:30 - 8:30 am"
+									classRoom="Classroom 201"
+									children={
+										<>
+											<button>Confirm</button>
+											<button>Reschedule</button>
+										</>
+									}
 								/>
 							</div>
 							<div className="progress">
@@ -83,24 +85,24 @@ function TeacherDashboard(){
 								lessonName="Maths Analysis"
 								date="Oct 19, 2023"
 								time="09:30 - 11:30 am"
-								children={<button>Completed</button> }
-								/>
-								<LessonsTable 
+								children={<button>Completed</button>}
+							/>
+							<LessonsTable
 								lessonName="Project Management"
 								date="Sept 06, 2023"
 								time="07:30 - 19:30 am"
-								children={<button>Completed</button> }
-								/>
-								<LessonsTable 
+								children={<button>Completed</button>}
+							/>
+							<LessonsTable
 								lessonName="SDLC"
 								date="Sept 06, 2023"
 								time="12:00 - 02:00 pm"
-								children={<button>Completed</button> }
-								/>
-							</div>
+								children={<button>Completed</button>}
+							/>
+						</div>
 					</div>
 					<div className="side-bar card">
-						<Calendar onChange={onChange} value={value} className="calendar"/>
+						<Calendar onChange={onChange} value={value} className="calendar" />
 						<div className="cal-container">
 							<h3>Upcoming Events</h3>
 						<TeacherCalendar />
@@ -112,7 +114,7 @@ function TeacherDashboard(){
 			</div>
 			<Footer />
 		</Layout>
-)
+	);
 }
 
-export default TeacherDashboard
+export default TeacherDashboard;

@@ -27,9 +27,19 @@ const data = [
 					{
 						name: 'teacher dashboard',
 						link: 'teacher',
-						roles: ['lecturer', 'secreteriat', 'hod', 'director'],
+						roles: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 					},
 					{ name: 'student dashboard', link: 'student', roles: ['student'] },
+					{
+						name: 'assign course',
+						link: 'course-assign',
+						roles: ['hod', 'director', 'admin'],
+					},
+					{
+						name: 'staff courses',
+						link: 'staff-course',
+						roles: ['hod', 'director', 'admin'],
+					},
 				],
 			},
 			{
@@ -151,11 +161,11 @@ const data = [
 				],
 			},
 			{
-				item: 'subjects',
+				item: 'courses',
 				icon: <SiCoursera />,
 				itemList: [
 					{
-						name: 'subject list',
+						name: 'course list',
 						link: 'list',
 						roles: [
 							'student',
@@ -167,12 +177,12 @@ const data = [
 						],
 					},
 					{
-						name: 'subject add',
+						name: 'course add',
 						link: 'add',
 						roles: ['hod', 'director', 'admin'],
 					},
 					{
-						name: 'subject edit',
+						name: 'course edit',
 						link: 'edit',
 						roles: ['hod', 'director', 'admin'],
 					},
@@ -305,7 +315,7 @@ const data = [
 			},
 			{
 				item: 'time table',
-				link: 'ime-table',
+				link: 'time-table',
 				icon: <BiTable />,
 				itemList: [],
 				roles: [

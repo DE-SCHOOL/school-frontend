@@ -15,32 +15,31 @@ import * as RIGHTS from './../../../utilities/restrict';
 function TeacherRoute() {
 	return (
 		<Routes>
-			<Route path="/teachers">
-				<Route
-					path="add"
-					element={
-						<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
-							<TeacherAdd />
-						</Protected>
-					}
-				/>
-				<Route
-					path="list"
-					element={
-						<Protected restrict={RIGHTS.TO_ALL_STAFF}>
-							<TeacherList />
-						</Protected>
-					}
-				/>
-				<Route
-					path="view"
-					element={
-						<Protected restrict={RIGHTS.TO_ALL_STAFF}>
-							<TeacherView />
-						</Protected>
-					}
-				/>
-			</Route>
+			<Route
+				path="/teachers/add"
+				element={
+					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
+						<TeacherAdd />
+					</Protected>
+				}
+			/>
+			<Route
+				exact
+				path="/teachers/list"
+				element={
+					<Protected restrict={RIGHTS.TO_ALL_STAFF}>
+						<TeacherList />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/teachers/view"
+				element={
+					<Protected restrict={RIGHTS.TO_ALL_STAFF}>
+						<TeacherView />
+					</Protected>
+				}
+			/>
 		</Routes>
 	);
 }

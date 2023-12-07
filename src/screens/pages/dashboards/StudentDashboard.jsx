@@ -21,7 +21,7 @@ function StudentDashboard(){
 				sub="Home"
 				/>
 
-        <div className="school-overview">
+				<div className="school-overview">
 					<Overview
 						groupName="All Courses"
 						number="04/06"
@@ -145,4 +145,4 @@ function StudentDashboard(){
   )
 }
 
-export default StudentDashboard
+export default StudentDashboard;

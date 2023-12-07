@@ -1,18 +1,63 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import AdminDashboard from '../../../screens/pages/dashboards/AdminDashboard'
-import TeacherDashboard from '../../../screens/pages/dashboards/TeacherDashboard'
-import StudentDashboard from '../../../screens/pages/dashboards/StudentDashboard'
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import {
+	AdminDashboard,
+	TeacherDashboard,
+	StudentDashboard,
+} from '../../../screens/pages/dashboards';
+
+import {
+	AsignStaffCourses,
+	ViewAllStaffCourses,
+} from './../../../screens/pages/staff courses';
+
+import Protected from './../../../components/auth/Protected';
+import * as RIGHT from './../../../utilities/restrict';
 
 function DashboardRoute() {
-  return (
-    <Routes>
-      <Route path='/dashboards'>
-        <Route path='admin' element={<AdminDashboard /> } />
-        <Route path='teacher' element={<TeacherDashboard />} />
-        <Route path='student' element={<StudentDashboard />} />
-      </Route>
-    </Routes>
-  )
+	return (
+		<Routes>
+			<Route
+				path="/dashboard/admin"
+				element={
+					<Protected restrict={['admin']}>
+						<AdminDashboard />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/dashboard/teacher"
+				element={
+					<Protected restrict={RIGHT.TO_ALL_STAFF}>
+						<TeacherDashboard />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/dashboard/student"
+				element={
+					<Protected restrict={['student']}>
+						<StudentDashboard />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/dashboard/course-assign"
+				element={
+					<Protected restrict={RIGHT.TO_MAIN_ADMIN}>
+						<AsignStaffCourses />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/dashboard/staff-course"
+				element={
+					<Protected restrict={RIGHT.TO_MAIN_ADMIN}>
+						<ViewAllStaffCourses />
+					</Protected>
+				}
+			/>
+		</Routes>
+	);
 }
-export default DashboardRoute
+export default DashboardRoute;

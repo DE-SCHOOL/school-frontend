@@ -20,13 +20,9 @@ function SearchCategory({ styles, dropDown, data, setData }) {
 			state.departments.departments.length !== 0 ? state.departments : null;
 		const programs =
 			state.programs.programs.length !== 0 ? state.programs : null;
-		console.log(state.programs, 22222222);
 
 		return { specialty, departments, programs };
 	});
-
-	console.log(dropDownData, 1111111111);
-
 	//Initialzing hooks
 	const dropDn = useRef();
 	const name = useRef();
@@ -50,7 +46,7 @@ function SearchCategory({ styles, dropDown, data, setData }) {
 
 	//Search algorithm
 	const handleSearch = (e) => {
-		e.preventDefault();
+		e.preventDefault(); 
 		let fakeValue;
 		if (name.current.value !== '') {
 			let { value } = name.current;
@@ -81,7 +77,7 @@ function SearchCategory({ styles, dropDown, data, setData }) {
 			});
 			setData(students);
 			// console.log(students)
-		} else if (dropDn.current.value) {
+		} else if (dropDn?.current?.value) {
 			let { value } = dropDn.current;
 
 			value = value.toString().toLowerCase();

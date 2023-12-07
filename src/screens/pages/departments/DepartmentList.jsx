@@ -50,7 +50,7 @@ function DepartmentList() {
 			<section className="teachers">
 				<SectionMainIntro
 					title="Departments"
-					styles="mg-bt"
+					styles="mg-bt mg-top"
 					link={'/departments/add'}
 				/>
 				{<PaggingNumSelect setItemsPerPage={setNumPages} />}

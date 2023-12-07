@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 //import location changer
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Protected({ children, restrict }) {
 	const navigate = useNavigate();
@@ -14,6 +14,7 @@ function Protected({ children, restrict }) {
 		if (!restrict.includes(user?.role)) {
 			return navigate(-1);
 		}
+		// eslint-disable-next-line
 	}, [navigate]);
 
 	return <>{children}</>;
