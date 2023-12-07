@@ -23,7 +23,7 @@ export const login = createAsyncThunk(
 			return res.data;
 		} catch (err) {
 			let error = err?.response?.data?.message || 'Something went wrong';
-			return thunkAPI.rejectWithValue({ error: err });
+			return thunkAPI.rejectWithValue({ error });
 		}
 	}
 );
