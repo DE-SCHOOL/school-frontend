@@ -39,7 +39,7 @@ function Signin() {
 
 	//PREFERABLE TO USE THE USEeFFECT HOOK here -------------------------------------------<<<<<<<<<<<
 	// On successful login, redirect user to new page
-	console.log(logInData);
+	// console.log(logInData);
 	useEffect(() => {
 		const objArr = Object.keys(logInData.user || {});
 		let user = JSON.parse(localStorage.getItem('loggedIn'));
