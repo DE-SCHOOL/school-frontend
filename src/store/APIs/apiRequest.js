@@ -4,7 +4,7 @@ export const apiRequest = async (method, url, data = '', cred=true) => {
 	url =
 		`${process.env.REACT_APP_NODE_HOST_APP}` +
 		url;
-	console.log(url);
+	console.log(url, cred);
 	return await axios({
 		method,
 		url,
