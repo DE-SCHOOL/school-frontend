@@ -2,7 +2,7 @@ import React from 'react';
 import { BsFileXFill } from 'react-icons/bs';
 
 function Failure({ className, message = 'Something Went Wrong' }) {
-	console.log(message);
+	// console.log(message);
 	let code = (
 		<div className={`signal failed ${className}`}>
 			<BsFileXFill className="icon" />
