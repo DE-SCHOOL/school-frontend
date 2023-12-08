@@ -16,7 +16,7 @@ export const login = createAsyncThunk(
 			const res = await apiRequest('post', `/api/v1/staff/login`, {
 				email,
 				password,
-			}, false);
+			});
 			// console.log(res, 'RES', res.data);
 			//Store information in local storage
 			localStorage.setItem('loggedIn', JSON.stringify(res.data.data));
