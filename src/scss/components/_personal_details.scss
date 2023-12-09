@@ -1,0 +1,25 @@
+@use './../variables' as *;
+
+.personal-details{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem;
+
+  & .details-icon{
+    text-align: center;
+    color: $color-grey-dark;
+  }
+
+  & h4{
+    margin: 0.5rem 0;
+    font-weight: 600;
+  }
+
+  & h5{
+    margin: 0.5rem 0;
+    color: $color-grey-dark;
+    font-weight: 500;
+  }
+}
+
