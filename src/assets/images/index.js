@@ -13,6 +13,8 @@ import profile12 from './profile12.jpeg';
 import profile13 from './profile13.jpeg';
 import profile14 from './profile14.jpeg';
 import profile_default from './default.png';
+import avatar from './avatar.jpg';
+import profilebg from './profilebg.jpg';
 
 export {
 	profile1,
@@ -30,4 +32,6 @@ export {
 	profile13,
 	profile14,
 	profile_default,
+	avatar,
+	profilebg
 };
