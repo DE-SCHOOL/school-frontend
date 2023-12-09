@@ -22,7 +22,7 @@ export const login = createAsyncThunk(
 			localStorage.setItem('loggedIn', JSON.stringify(res.data.data));
 			return res.data;
 		} catch (err) {
-			let error = err?.response?.data?.message || 'Something went wront';
+			let error = err?.response?.data?.message || 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
 	}
