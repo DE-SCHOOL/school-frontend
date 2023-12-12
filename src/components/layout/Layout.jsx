@@ -10,7 +10,7 @@ function Layout({ children }) {
 			<main className="main from-left">
 				<br />
 				<br />
-				<br />
+				{/* <br /> */}
 				<br />
 				{children}
 			</main>

@@ -1,6 +1,6 @@
 function StudentLesson({children,title, about }){
   return(
-    <div className="student-lesson">
+    <div className="student_lesson">
       <div className="lesson-icon">
         <span>{children}</span>
       </div>
