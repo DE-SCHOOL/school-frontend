@@ -1,0 +1,19 @@
+@use './../variables' as *;
+
+.profile-details{
+  text-align: center;
+  width: 30%;
+
+  & h2{
+    font-size: 1.8rem;
+    color: $color-grey;
+    margin: 0.5rem;
+  }
+
+  & h3{
+    font-size: 2.2rem;
+    margin: 0.5rem;
+
+    
+  }
+}

@@ -6,17 +6,22 @@ import {
   FaInstagram, FaLinkedinIn,
   FaMoneyBill, FaTwitter
 } from 'react-icons/fa'
-import { Layout } from "../../../components/layout";
+import { Layout, SectionIntro } from "../../../components/layout";
 import Footer from "../../../components/layout/Footer";
 import { profile1, profile12, profile4, profile8 } from "../../../assets/images";
-import {StudentActivity, PageHeader, StarStudents} from '../../../components/events/index';
+import {StudentActivity, StarStudents} from '../../../components/events/index';
 
-function AdminDashboard({ backgroundColor }) {
+function AdminDashboard() {
 
   return (
     <Layout>
       <div className="dashboard-body">
-        <PageHeader person="Admin" userType="Admin"/>
+        
+        <SectionIntro
+        title="Welcome"
+        main="Admin"
+        sub="Home"
+        />
 
         <div className="school-overview">
           <Overview groupName="Students" number="500+" children={<FaGraduationCap className="overview-icon" />}

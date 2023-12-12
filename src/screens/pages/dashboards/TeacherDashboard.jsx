@@ -1,14 +1,12 @@
-import { FaPerson } from 'react-icons/fa6';
-import { Layout, SectionIntro } from '../../../components/layout';
-import Footer from '../../../components/layout/Footer';
-import Overview from '../../../components/social/Overview';
-import { FaBook, FaClock, FaGraduationCap } from 'react-icons/fa';
-import TeacherCalendar from '../../../components/events/TeacherCalendar';
-import LessonsTable from '../../../components/events/LessonsTable';
-import { BiLoader } from 'react-icons/bi';
-import Calendar from 'react-calendar';
-import { useState } from 'react';
-import 'react-calendar/dist/Calendar.css';
+import { FaPerson } from "react-icons/fa6"
+import { Layout, SectionIntro } from "../../../components/layout"
+import Footer from "../../../components/layout/Footer"
+import Overview from "../../../components/social/Overview"
+import { FaBook, FaClock, FaGraduationCap} from "react-icons/fa"
+import {TeacherCalendar, LessonsTable}from "../../../components/events/index"
+import { BiLoader } from "react-icons/bi"
+import Calendar from 'react-calendar'
+import { useState } from "react"
 
 function TeacherDashboard() {
 	const [value, onChange] = useState(new Date());
@@ -16,7 +14,11 @@ function TeacherDashboard() {
 	return (
 		<Layout>
 			<div className="dashboard-body">
-				<SectionIntro title="Welcome" main="Admin" sub="Home" />
+				<SectionIntro 
+				title="Welcome"
+				main="Teacher"
+				sub="Home"
+				/>
 
 				<div className="school-overview">
 					<Overview
@@ -45,17 +47,16 @@ function TeacherDashboard() {
 					<div className="activity">
 						<div className="lesson-progress">
 							<div className="lessons">
-								<LessonsTable
-									lessonName="Digital Electronics"
-									date="Dec 03, 2023"
-									time="7:30 - 8:30 am"
-									classRoom="Classroom 301"
-									children={
-										<>
-											<button>Confirm</button>
-											<button>Reschedule</button>
-										</>
-									}
+								<h3>Up coming lessons</h3>
+								<LessonsTable 
+								lessonName="Digital Electronics" 
+								date="Dec 03, 2023"
+								time="7:30 - 8:30 am"
+								classRoom="Classroom 301"
+								children={<>
+									<button>Confirm</button>
+									<button>Reschedule</button>
+									</>}
 								/>
 								<LessonsTable
 									lessonName="Digital Electronics"
@@ -75,11 +76,12 @@ function TeacherDashboard() {
 							</div>
 						</div>
 
-						<div className="statistics">
-							<BiLoader />
-						</div>
-						<div className="history">
-							<LessonsTable
+							<div className="statistics">
+								<BiLoader />
+							</div>
+							<div className="history">
+								<h3>Teaching history</h3>
+								<LessonsTable
 								lessonName="Maths Analysis"
 								date="Oct 19, 2023"
 								time="09:30 - 11:30 am"
@@ -102,9 +104,10 @@ function TeacherDashboard() {
 					<div className="side-bar card">
 						<Calendar onChange={onChange} value={value} className="calendar" />
 						<div className="cal-container">
-							<TeacherCalendar />
-							<TeacherCalendar />
-							<TeacherCalendar />
+							<h3>Upcoming Events</h3>
+						<TeacherCalendar />
+						<TeacherCalendar />
+						<TeacherCalendar />
 						</div>
 					</div>
 				</div>

@@ -1,0 +1,22 @@
+@use './../variables' as *;
+
+.student_lesson{
+  // border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+
+  & .lesson-icon{
+    color: $color-grey-dark;
+  }
+
+  & .lesson-detail{
+
+    & h3{
+      font-size: 1.3rem;
+      padding: 0.2rem;
+    }
+  }
+}

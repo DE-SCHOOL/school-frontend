@@ -1,0 +1,21 @@
+@use './../variables' as *;
+
+.student_timetable{
+  background-color: $color-white;
+  border-radius: 1.5rem;
+  padding: 1rem;
+
+  & .time{
+    display: flex;
+    width: 100%;
+
+    & .stats{
+      width: 25%;
+      text-align: center;
+    }
+
+    & .lesson{
+      width: 25%;
+    }
+  }
+}
