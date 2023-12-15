@@ -48,27 +48,23 @@ export const addStaff = createAsyncThunk(
 		thunkAPI
 	) => {
 		try {
-			const res = await apiRequest(
-				'post',
-				`/api/v1/staff/register`,
-				{
-					gender,
-					matricule,
-					name,
-					department,
-					address,
-					dob,
-					pob,
-					email,
-					tel,
-					password,
-					confirmPassword,
-					high_certificate,
-					marital_status,
-					role,
-					picture,
-				}
-			);
+			const res = await apiRequest('post', `/api/v1/staff/register`, {
+				gender,
+				matricule,
+				name,
+				department,
+				address,
+				dob,
+				pob,
+				email,
+				tel,
+				password,
+				confirmPassword,
+				high_certificate,
+				marital_status,
+				role,
+				picture,
+			});
 			// console.log(res.data);
 			return res.data;
 		} catch (err) {
