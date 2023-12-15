@@ -40,6 +40,11 @@ const data = [
 						link: 'staff-course',
 						roles: ['hod', 'director', 'admin'],
 					},
+					{
+						name: 'my students',
+						link: 'my-students',
+						roles: ['lecturer', 'hod', 'director', 'admin'],
+					},
 				],
 			},
 			{
@@ -167,14 +172,7 @@ const data = [
 					{
 						name: 'course list',
 						link: 'list',
-						roles: [
-							'student',
-							'lecturer',
-							'secreteriat',
-							'hod',
-							'director',
-							'admin',
-						],
+						roles: ['hod', 'director', 'admin'],
 					},
 					{
 						name: 'course add',
@@ -185,6 +183,11 @@ const data = [
 						name: 'course edit',
 						link: 'edit',
 						roles: ['hod', 'director', 'admin'],
+					},
+					{
+						name: 'my courses',
+						link: 'my-courses',
+						roles: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 					},
 				],
 			},
