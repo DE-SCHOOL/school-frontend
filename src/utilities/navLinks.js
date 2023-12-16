@@ -20,4 +20,6 @@ export const commingUp = [
 	'/transport',
 	'/blog/view',
 	'/blog/add',
+	'/marks/:courseID/add',
+	'/marks/:courseID/edit',
 ];

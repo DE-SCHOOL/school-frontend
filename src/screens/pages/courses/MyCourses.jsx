@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCourses } from '../../../store/courses/courseSlice';
+import { myCourses } from '../../../store/courses/courseSlice';
 import {
 	Layout,
 	SectionIntro,
@@ -25,7 +25,7 @@ function MyCourses() {
 	//Defining the dispatch function, and the useSelector to get students data
 	const dispatch = useDispatch();
 	const courses = useSelector((state) => state.courses.courses.data);
-
+	console.log(courses, 111222);
 	//saving the student data in a useState
 	const [coursesState, setCoursesState] = useState([]);
 
@@ -33,14 +33,16 @@ function MyCourses() {
 	const [numPages, setNumPages] = useState(5);
 
 	//useEffect to dispatch student data after initial render
+	const teacherID = JSON.parse(localStorage.getItem('loggedIn'))._id;
 	useEffect(() => {
-		dispatch(getCourses());
+		dispatch(myCourses({ teacherID }));
+		// eslint-disable-next-line
 	}, [dispatch]);
 
 	return (
 		<Layout>
 			{/* Displaying the page introduction and directory */}
-			<SectionIntro title="Courses" main="Course" sub="List" />
+			<SectionIntro title="Courses" main="My Courses" sub="List" />
 
 			{/* Displaying search filter only if student data has fully loaded */}
 			{/* {courses?.length !== 0 && ( */}
