@@ -104,12 +104,12 @@ const data = [
 					{
 						name: 'teachers add',
 						link: 'add',
-						roles: ['hod', 'director', 'admin'],
+						roles: ['director', 'admin'],
 					},
 					{
 						name: 'teachers edit',
 						link: 'edit',
-						roles: ['hod', 'director', 'admin'],
+						roles: ['director', 'admin'],
 					},
 				],
 			},
