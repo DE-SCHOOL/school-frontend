@@ -12,10 +12,7 @@ export const getCourses = createAsyncThunk(
 	'course/getCourses',
 	async (thunkAPI) => {
 		try {
-			const res = await apiRequest(
-				'get',
-				`/api/v1/course`
-			);
+			const res = await apiRequest('get', `/api/v1/course`);
 			// console.log(res.data);
 			return res.data;
 		} catch (err) {
@@ -33,15 +30,34 @@ export const createCourse = createAsyncThunk(
 		thunkAPI
 	) => {
 		try {
-			const res = await apiRequest(
-				'post',
-				`/api/v1/course`,
-				{ name, specialty, code, semester, levels, status, credit_value }
-			);
+			const res = await apiRequest('post', `/api/v1/course`, {
+				name,
+				specialty,
+				code,
+				semester,
+				levels,
+				status,
+				credit_value,
+			});
 
 			return res.data;
 		} catch (err) {
 			const error = err?.response?.data?.message || 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+
+export const myCourses = createAsyncThunk(
+	'course/getMyCourses',
+	async ({ teacherID }, thunkAPI) => {
+		try {
+			const res = await apiRequest('get', `/api/v1/staff-course/${teacherID}`);
+			// console.log(res.data);
+			return res.data;
+		} catch (err) {
+			const error = err?.response?.data?.message || 'Something went wrong';
+			// console.log(err);
 			return thunkAPI.rejectWithValue({ error });
 		}
 	}
@@ -74,6 +90,20 @@ const courseSlice = createSlice({
 				state.isLoading = false;
 			})
 			.addCase(getCourses.rejected, (state, action) => {
+				state.errorMessage = action.payload?.error;
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error;
+			})
+			.addCase(myCourses.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(myCourses.fulfilled, (state, action) => {
+				state.courses = action.payload;
+				state.errorMessage = null;
+				state.isLoading = false;
+			})
+			.addCase(myCourses.rejected, (state, action) => {
 				state.errorMessage = action.payload?.error;
 				state.error = true;
 				state.isLoading = false;
