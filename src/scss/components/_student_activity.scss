@@ -2,10 +2,12 @@
 
 .student-activity{
   display: flex;
-  padding: 10px 20px;
+  height: 7rem;
+  padding: 0.5rem 2rem;
 
   & h5{
     font-size: 25px;
+    margin: 1rem;
   }
 
   & .activity-awards{
@@ -22,16 +24,18 @@
 
     .award-details {
       margin-right: auto;
-      padding: 15px;
+      padding: 0;
 
       & h4{
         font-size: 14px;
+        margin: 0.7rem;
         display: block;
         font-family: sans-serif;
         margin-bottom: 5px;
       }
       & h5 {
         font-size: 13px;
+        margin: 0.7rem;
         font-family: sans-serif;
         display: block;
         font-weight: lighter;
@@ -43,7 +47,10 @@
     color: $color-white;
     font-size: 15px;
     width: 25%;
-    text-align: center;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 25px;
     padding: 5px;
     border-radius: 7px;
