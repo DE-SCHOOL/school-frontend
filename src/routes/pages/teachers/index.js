@@ -18,7 +18,7 @@ function TeacherRoute() {
 			<Route
 				path="/teachers/add"
 				element={
-					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
+					<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
 						<TeacherAdd />
 					</Protected>
 				}

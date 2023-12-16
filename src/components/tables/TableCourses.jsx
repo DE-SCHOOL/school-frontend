@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { FaRightLeft } from 'react-icons/fa6';
 import { useDispatch } from 'react-redux';
-
+import { BsEyeFill, BsFillPenFill } from 'react-icons/bs';
 import { setCurData } from '../../store/cur page/curPageSlice';
 
 //importing the search param function
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 
 //Styled in the table sass file of the component styles
 
@@ -13,7 +13,13 @@ import { useSearchParams } from 'react-router-dom';
 import { sortArrayObject } from '../../utilities/sortingInfo';
 
 let DATA_CONST;
-function TableStaff({ styles, tableData, header, paggingNum }) {
+function TableStaff({
+	styles,
+	tableData,
+	header,
+	paggingNum,
+	tableType = 'all',
+}) {
 	//declaring state variables
 	const [isSortedBy, setIsSortedBy] = useState('');
 	const [staffData, setStaffData] = useState(tableData.map((dt) => dt));
@@ -76,6 +82,11 @@ function TableStaff({ styles, tableData, header, paggingNum }) {
 						<FaRightLeft onClick={() => handleSort('specialty')} />
 						<span className="text">{header.specialty}</span>
 					</th>
+					{tableType !== 'all' && (
+						<th>
+							<span className="text">Actions</span>
+						</th>
+					)}
 				</tr>
 			</thead>
 
@@ -121,6 +132,18 @@ function TableStaff({ styles, tableData, header, paggingNum }) {
 										})}
 									</span>
 								</td>
+								{tableType !== 'all' && (
+									<td>
+										<div className="actions">
+											<Link to={`/marks/${row._id}/add`}>
+												<BsEyeFill />
+											</Link>
+											<Link to={`/marks/${row._id}/edit`}>
+												<BsFillPenFill />
+											</Link>
+										</div>
+									</td>
+								)}
 							</tr>
 						);
 					return null;

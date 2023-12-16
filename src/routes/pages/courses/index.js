@@ -3,7 +3,11 @@ import { Routes, Route } from 'react-router-dom';
 // import { PDFViewer } from '@react-pdf/renderer';
 
 //IMPORTING the different pages
-import { CourseAdd, CourseList } from './../../../screens/pages/courses';
+import {
+	CourseAdd,
+	CourseList,
+	MyCourses,
+} from './../../../screens/pages/courses';
 
 //importing a protector component
 import Protected from '../../../components/auth/Protected';
@@ -24,8 +28,16 @@ function CourseRoute() {
 			<Route
 				path="/courses/list"
 				element={
-					<Protected restrict={RIGHTS.TO_ALL_STAFF}>
+					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
 						<CourseList />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/courses/my-courses"
+				element={
+					<Protected restrict={RIGHTS.TO_ALL_STAFF}>
+						<MyCourses />
 					</Protected>
 				}
 			/>
