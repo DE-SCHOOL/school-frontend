@@ -2,7 +2,10 @@
 
 .social{
   display: flex;
-  padding: 2rem;
+  width: 24rem;
+  padding: 1rem;
+  align-items: center;
+  height: 8rem;
   border-radius: 2rem;
   background-color: $color-white;
 }
@@ -11,34 +14,41 @@
 
   & h4{
     margin-bottom: 0.5rem;
+    margin: 1rem;
     font-size: 1.8rem;
   }
   & h6 {
     font-weight: bolder;
+    margin: 1rem;
     font-size: 1.8rem;
   }
 }
 .overview-headings{
+
   & h4{
     font-size: 2.2rem;
+    margin: 1rem;
     color: $color-grey-dark;
   }
   & h6{
     font-size: 2rem;
+    margin: 1rem;
     color: $color-grey-dark;
   }
 }
 .icon{
   height: 50px;
   width: 50px;
-  font-size: 30px;
   justify-content: center;
-  text-align: center;
+  align-items: center;
+  font-size: 30px;
 
   & span{
     background-color: $color-primary;
     display: flex;
     height: 50px;
+    align-self: center;
+    justify-self: center;
     width: 50px;
     border-radius: 5px;
 
