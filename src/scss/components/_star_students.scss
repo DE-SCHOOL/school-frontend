@@ -1,9 +1,8 @@
 @use './../variables' as *;
 
 .star-students-table{
-  position: relative;
   padding: 20px;
-  height: 90%;
+  height: 100%;
 
 
   & table{
