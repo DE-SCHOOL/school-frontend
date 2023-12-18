@@ -9,7 +9,7 @@ import {
 } from 'react-icons/md';
 import { BiTable } from 'react-icons/bi';
 import { IoLibrarySharp, IoSettings } from 'react-icons/io5';
-import { FaBloggerB, FaHotel } from 'react-icons/fa';
+import { FaBloggerB, FaHotel, FaSchool } from 'react-icons/fa';
 // ['lecturer', 'secreteriat', 'hod', 'director', 'admin']
 const data = [
 	{
@@ -115,7 +115,7 @@ const data = [
 			},
 			{
 				item: 'programs',
-				icon: <BootstrapIcon.BsBuildingsFill />,
+				icon: <FaSchool />,
 				itemList: [
 					{
 						name: 'program list',
