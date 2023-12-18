@@ -114,6 +114,32 @@ const data = [
 				],
 			},
 			{
+				item: 'programs',
+				icon: <BootstrapIcon.BsBuildingsFill />,
+				itemList: [
+					{
+						name: 'program list',
+						link: 'list',
+						roles: ['hod', 'director', 'admin', 'lecturer', 'secreteriat'],
+					},
+					{
+						name: 'program view',
+						link: 'view',
+						roles: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
+					},
+					{
+						name: 'program add',
+						link: 'add',
+						roles: ['admin'],
+					},
+					{
+						name: 'program edit',
+						link: 'edit',
+						roles: ['admin'],
+					},
+				],
+			},
+			{
 				item: 'departments',
 				icon: <BootstrapIcon.BsBuildingsFill />,
 				itemList: [
