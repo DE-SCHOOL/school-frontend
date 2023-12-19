@@ -9,7 +9,7 @@ import {
 } from 'react-icons/md';
 import { BiTable } from 'react-icons/bi';
 import { IoLibrarySharp, IoSettings } from 'react-icons/io5';
-import { FaBloggerB, FaHotel } from 'react-icons/fa';
+import { FaBloggerB, FaHotel, FaSchool } from 'react-icons/fa';
 // ['lecturer', 'secreteriat', 'hod', 'director', 'admin']
 const data = [
 	{
@@ -110,6 +110,32 @@ const data = [
 						name: 'teachers edit',
 						link: 'edit',
 						roles: ['director', 'admin'],
+					},
+				],
+			},
+			{
+				item: 'programs',
+				icon: <FaSchool />,
+				itemList: [
+					{
+						name: 'program list',
+						link: 'list',
+						roles: ['hod', 'director', 'admin', 'lecturer', 'secreteriat'],
+					},
+					{
+						name: 'program view',
+						link: 'view',
+						roles: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
+					},
+					{
+						name: 'program add',
+						link: 'add',
+						roles: ['admin'],
+					},
+					{
+						name: 'program edit',
+						link: 'edit',
+						roles: ['admin'],
 					},
 				],
 			},
