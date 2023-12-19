@@ -43,8 +43,8 @@ function ProgramForm({ styles }) {
 			})
 		);
 		setProgramData(defaultInfo);
-		director.current.value = '';
-		subDirector.current.value = '';
+		// director.current.value = '';
+		// subDirector.current.value = '';
 	};
 	return (
 		<form
