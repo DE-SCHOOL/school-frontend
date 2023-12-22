@@ -13,7 +13,7 @@ import Protected from '../../../components/auth/Protected';
 
 // importing different rights
 import * as RIGHTS from './../../../utilities/restrict';
-function SpecialtyRoute() {
+function ProgramRoute() {
 	return (
 		<Routes>
 			<Route
@@ -44,4 +44,4 @@ function SpecialtyRoute() {
 	);
 }
 
-export default SpecialtyRoute;
+export default ProgramRoute;
