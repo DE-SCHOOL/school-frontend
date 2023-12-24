@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 //IMPORTING the different pages
-import { MarksAddCA, MarksAddExam } from './../../../screens/pages/marks';
+import { MarksAddCA, MarksAddExam, MarkList } from './../../../screens/pages/marks';
 
 //importing a protector component
 import Protected from '../../../components/auth/Protected';
@@ -25,6 +25,14 @@ function MarkRoute() {
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
 						<MarksAddExam />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/marks/list"
+				element={
+					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
+						<MarkList />
 					</Protected>
 				}
 			/>
