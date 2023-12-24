@@ -82,11 +82,9 @@ function TableStaff({
 						<FaRightLeft onClick={() => handleSort('specialty')} />
 						<span className="text">{header.specialty}</span>
 					</th>
-					{tableType !== 'all' && (
-						<th>
-							<span className="text">Actions</span>
-						</th>
-					)}
+					<th>
+						<span className="text">Marks</span>
+					</th>
 				</tr>
 			</thead>
 
@@ -135,11 +133,29 @@ function TableStaff({
 								{tableType !== 'all' && (
 									<td>
 										<div className="actions">
-											<Link to={`/marks/${row._id}/add`}>
-												<BsEyeFill />
+											<Link to={`/marks/${row._id}/ca/add`}>
+												<button className="marks-action button-main caps">
+													CA
+												</button>
 											</Link>
-											<Link to={`/marks/${row._id}/edit`}>
+											{/* <Link to={`/marks/${row._id}/edit`}>
 												<BsFillPenFill />
+											</Link> */}
+										</div>
+									</td>
+								)}
+								{tableType === 'all' && (
+									<td>
+										<div className="actions">
+											<Link to={`/marks/${row._id}/ca/add`}>
+												<button className="marks-action button-main caps">
+													CA
+												</button>
+											</Link>
+											<Link to={`/marks/${row._id}/exam/add`}>
+												<button className="marks-action button-main caps">
+													EXAM
+												</button>
 											</Link>
 										</div>
 									</td>
