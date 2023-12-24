@@ -217,6 +217,22 @@ const data = [
 					},
 				],
 			},
+			{
+				item: 'marks',
+				icon: <BootstrapIcon.BsFillBookmarkStarFill />,
+				itemList: [
+					{
+						name: 'marks list',
+						link: 'list',
+						roles: ['hod', 'director', 'admin'],
+					},
+					{
+						name: 'my mark list',
+						link: 'my-list',
+						roles: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
+					},
+				],
+			},
 		],
 	},
 	{
