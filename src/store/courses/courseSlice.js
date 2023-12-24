@@ -63,6 +63,20 @@ export const myCourses = createAsyncThunk(
 	}
 );
 
+export const getCourse = createAsyncThunk(
+	'course/getCourse',
+	async ({ id }, thunkAPI) => {
+		try {
+			const res = await apiRequest('get', `/api/v1/course/${id}`);
+			// console.log(res.data, 'COURSE');
+			return res.data;
+		} catch (err) {
+			const error = err?.response?.data?.message || 'Something went wrong';
+			// console.log(err);
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
 const courseSlice = createSlice({
 	name: 'course',
 	initialState,
@@ -90,7 +104,6 @@ const courseSlice = createSlice({
 				state.isLoading = false;
 			})
 			.addCase(getCourses.rejected, (state, action) => {
-				state.errorMessage = action.payload?.error;
 				state.error = true;
 				state.isLoading = false;
 				state.errorMessage = action.payload?.error;
@@ -107,6 +120,19 @@ const courseSlice = createSlice({
 				state.errorMessage = action.payload?.error;
 				state.error = true;
 				state.isLoading = false;
+			})
+			.addCase(getCourse.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(getCourse.fulfilled, (state, action) => {
+				state.courses = action.payload.data;
+				state.errorMessage = null;
+				state.isLoading = false;
+			})
+			.addCase(getCourse.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error;
 			});
 	},
 });
