@@ -61,3 +61,30 @@ form#department {
 		}
 	}
 }
+
+.table-form {
+	table.marks {
+		border-collapse: collapse;
+		thead {
+			background-color: $color-primary;
+			color: $color-white;
+		}
+		tr {
+			border: 1px solid $color-primary !important;
+			td,
+			th {
+				text-align: center;
+				border: 1px solid $color-primary;
+				padding: 0.5rem;
+			}
+			input {
+				width: 100%;
+				box-sizing: border-box;
+				text-align: center;
+				border: none;
+				outline: none;
+				padding: 0.5rem;
+			}
+		}
+	}
+}

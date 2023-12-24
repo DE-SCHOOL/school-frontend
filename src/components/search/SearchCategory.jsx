@@ -1,7 +1,7 @@
 //importing react application
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { BsRepeat } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 
 //importing the dispatcher functions
@@ -46,7 +46,7 @@ function SearchCategory({ styles, dropDown, data, setData }) {
 
 	//Search algorithm
 	const handleSearch = (e) => {
-		e.preventDefault(); 
+		e.preventDefault();
 		let fakeValue;
 		if (name.current.value !== '') {
 			let { value } = name.current;
@@ -54,11 +54,11 @@ function SearchCategory({ styles, dropDown, data, setData }) {
 
 			// eslint-disable-next-line
 			const students = data.filter((std) => {
-				fakeValue = std.name.toLowerCase();
+				fakeValue = std.name?.toLowerCase();
 				let found =
-					fakeValue.startsWith(value) ||
-					fakeValue.endsWith(value) ||
-					fakeValue.includes(value);
+					fakeValue?.startsWith(value) ||
+					fakeValue?.endsWith(value) ||
+					fakeValue?.includes(value);
 				if (found) return std;
 			});
 			setData(students);
@@ -151,7 +151,12 @@ function SearchCategory({ styles, dropDown, data, setData }) {
 					})}
 				</select>
 			)}
-			<button className="button-main button-main-medium">Search</button>
+			<button
+				className="button-main button-main-medium"
+				style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}
+			>
+				Search <BsRepeat />
+			</button>
 		</form>
 	);
 }

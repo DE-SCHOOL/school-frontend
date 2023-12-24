@@ -2,41 +2,37 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 //IMPORTING the different pages
-import {
-	ProgramAdd,
-	ProgramList,
-	ProgramView,
-} from './../../../screens/pages/programs';
+import { MarksAddCA, MarksAddExam, MarkList } from './../../../screens/pages/marks';
 
 //importing a protector component
 import Protected from '../../../components/auth/Protected';
 
 // importing different rights
 import * as RIGHTS from './../../../utilities/restrict';
-function ProgramRoute() {
+function MarkRoute() {
 	return (
 		<Routes>
 			<Route
-				path="/programs/add"
-				element={
-					<Protected restrict={['admin']}>
-						<ProgramAdd />
-					</Protected>
-				}
-			/>
-			<Route
-				path="/programs/list"
+				path="/marks/:courseID/ca/add"
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_STAFF}>
-						<ProgramList />
+						<MarksAddCA />
 					</Protected>
 				}
 			/>
 			<Route
-				path="/programs/view/:id"
+				path="/marks/:courseID/exam/add"
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
-						<ProgramView />
+						<MarksAddExam />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/marks/list"
+				element={
+					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
+						<MarkList />
 					</Protected>
 				}
 			/>
@@ -44,4 +40,4 @@ function ProgramRoute() {
 	);
 }
 
-export default ProgramRoute;
+export default MarkRoute;
