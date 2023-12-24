@@ -54,11 +54,11 @@ function SearchCategory({ styles, dropDown, data, setData }) {
 
 			// eslint-disable-next-line
 			const students = data.filter((std) => {
-				fakeValue = std.name.toLowerCase();
+				fakeValue = std.name?.toLowerCase();
 				let found =
-					fakeValue.startsWith(value) ||
-					fakeValue.endsWith(value) ||
-					fakeValue.includes(value);
+					fakeValue?.startsWith(value) ||
+					fakeValue?.endsWith(value) ||
+					fakeValue?.includes(value);
 				if (found) return std;
 			});
 			setData(students);
