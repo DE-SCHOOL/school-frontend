@@ -226,11 +226,6 @@ const data = [
 						link: 'list',
 						roles: ['hod', 'director', 'admin'],
 					},
-					{
-						name: 'my mark list',
-						link: 'my-list',
-						roles: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
-					},
 				],
 			},
 		],
