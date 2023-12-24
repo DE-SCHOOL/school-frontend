@@ -54,7 +54,7 @@ function MyStudentList() {
 					setData={setStudentsState}
 				/>
 			)}
-			<section className="student">
+			<section className="students">
 				{/* Section About, Download, Add, and Refresh */}
 				<SectionMainIntro
 					title="Students"
