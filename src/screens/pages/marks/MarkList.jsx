@@ -7,7 +7,7 @@ import {
 	SectionMainIntro,
 } from '../../../components/layout/';
 import { PaggingNumSelect, Paggination } from './../../../components/pagging/';
-import SearchCategory from '../../../components/search/SearchCategory';
+// import SearchCategory from '../../../components/search/SearchCategory';
 import { TableMarks } from '../../../components/tables/';
 
 const markHeader = {
@@ -28,7 +28,7 @@ function MarkList() {
 	const marks = useSelector((state) => state.marks.markSheet);
 
 	//saving the mark data in a useState
-	const [markState, setMarkState] = useState(marks);
+	const [markState] = useState(marks);
 
 	//Setting the default number of entries a user can see on the interface.
 	const [numPages, setNumPages] = useState(5);
