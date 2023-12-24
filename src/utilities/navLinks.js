@@ -1,6 +1,6 @@
 export const commingUp = [
 	'/students/view',
-	'/teachers/view',
+	// '/teachers/view',
 	'/departments/view',
 	'/specialty/view',
 	'/specialties/view',
