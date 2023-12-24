@@ -55,8 +55,6 @@ const data = [
 						name: 'student list',
 						link: 'list',
 						roles: [
-							'student',
-							'lecturer',
 							'secreteriat',
 							'hod',
 							'director',
