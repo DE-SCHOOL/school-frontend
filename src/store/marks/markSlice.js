@@ -42,6 +42,19 @@ export const getMarkSheetsPerCoursePerStudents = createAsyncThunk(
 		}
 	}
 );
+export const getAllStudentsMarkSheet = createAsyncThunk(
+	'mark/getAllStudentsMarkSheet',
+	async (thunkAPI) => {
+		try {
+			const res = await apiRequest('get', `/api/v1/mark/`);
+			return res.data;
+		} catch (err) {
+			let error = err.response.data?.message;
+			error = error ? error : 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
 
 export const updateStudentsMark = createAsyncThunk(
 	'mark/updateStudentsMark',
@@ -105,7 +118,19 @@ const markSlice = createSlice({
 				state.markSheet = action.payload.data;
 				state.isLoading = false;
 				state.errorMessage = null;
-			});
+			}).addCase(getAllStudentsMarkSheet.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error;
+			})
+			.addCase(getAllStudentsMarkSheet.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(getAllStudentsMarkSheet.fulfilled, (state, action) => {
+				state.markSheet = action.payload.data;
+				state.isLoading = false;
+				state.errorMessage = null;
+			})
 	},
 });
 
