@@ -5,4 +5,5 @@ export { default as SpecialtyForm } from './SpecialtyForm';
 export { default as CourseForm } from './CourseForm';
 export { default as StaffCourseForm } from './StaffCourseForm';
 export { default as ProgramForm } from './ProgramForm';
-export { default as MarkTableForm } from './MarkTableForm';
+export { default as MarkTableFormCA } from './MarkTableFormCA';
+export { default as MarkTableFormExam } from './MarkTableFormExam';

@@ -7,7 +7,7 @@ import Failure from './../signal/Failure';
 import Loader from '../loaders/Loader';
 import { updateStudentsMark } from '../../store/marks/markSlice';
 
-function MarkTableForm({ students, length, semester }) {
+function MarkTableFormExam({ students, length, semester }) {
 	//length is to help getMarkSheetsPerCoursePerStudents everytime this component is involved in any render
 
 	let marks = useSelector((state) => state.marks);
@@ -57,7 +57,7 @@ function MarkTableForm({ students, length, semester }) {
 				id: params.courseID,
 				marks: studentsMark, //array of students marks
 				students: studentIDs, //array of students id
-				markType: `${semester}CA`, //semester definition
+				markType: `${semester}Exam`, //semester definition
 			})
 		);
 	};
@@ -75,12 +75,12 @@ function MarkTableForm({ students, length, semester }) {
 							<th>Name (Matricule)</th>
 							{semester === 's1' && (
 								<th>
-									1 <sup>st</sup>Semester CA
+									1<sup>st</sup> Semester Exam
 								</th>
 							)}
 							{semester === 's2' && (
 								<th>
-									2 <sup>nd</sup>Semester CA
+									2<sup>nd</sup> Semester Exam
 								</th>
 							)}
 						</tr>
@@ -100,10 +100,10 @@ function MarkTableForm({ students, length, semester }) {
 												// required
 												name={sheet?.student._id}
 												defaultValue={
-													semester === 's1' ? sheet?.s1CA : sheet?.s2CA
+													semester === 's1' ? sheet?.s1Exam : sheet?.s2Exam
 												}
 												autoComplete={`${sheet?.student._id}`}
-												max={30}
+												max={70}
 												min={0}
 											/>
 										</td>
@@ -127,4 +127,4 @@ function MarkTableForm({ students, length, semester }) {
 	);
 }
 
-export default MarkTableForm;
+export default MarkTableFormExam;

@@ -11,7 +11,7 @@ import {
 import Failure from '../../../components/signal/Failure';
 import Loader from '../../../components/loaders/Loader';
 import { Layout, SectionIntro } from '../../../components/layout';
-import { MarkTableForm } from '../../../components/form';
+import { MarkTableFormCA } from '../../../components/form';
 import { getCourse } from '../../../store/courses/courseSlice';
 
 function MarksAddCA() {
@@ -82,7 +82,7 @@ function MarksAddCA() {
 			)}
 			{markSheet?.length !== 0 && (
 				<section className="marks mg-top">
-					<MarkTableForm
+					<MarkTableFormCA
 						students={students}
 						length={markSheet.length}
 						semester={course?.semester}
