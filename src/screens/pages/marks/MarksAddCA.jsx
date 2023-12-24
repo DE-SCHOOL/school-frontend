@@ -8,13 +8,13 @@ import {
 	getMarkSheetsPerCoursePerStudents,
 } from '../../../store/marks/markSlice';
 
-import Failure from './../../../components/signal/Failure';
+import Failure from '../../../components/signal/Failure';
 import Loader from '../../../components/loaders/Loader';
 import { Layout, SectionIntro } from '../../../components/layout';
-import { MarkTableForm } from './../../../components/form';
+import { MarkTableForm } from '../../../components/form';
 import { getCourse } from '../../../store/courses/courseSlice';
 
-function MarksAdd() {
+function MarksAddCA() {
 	const params = useParams();
 	const students = useSelector((state) => state.students.students);
 	const markSheet = useSelector((state) => state.marks.markSheet);
@@ -98,4 +98,4 @@ function MarksAdd() {
 	);
 }
 
-export default MarksAdd;
+export default MarksAddCA;
