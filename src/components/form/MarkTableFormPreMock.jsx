@@ -1,0 +1,111 @@
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+
+import { getMarkSheetsPerCoursePerStudents } from '../../store/marks/markSlice';
+import Failure from './../signal/Failure';
+import Loader from '../loaders/Loader';
+import { updateStudentsMark } from '../../store/marks/markSlice';
+
+function MarkTableFormPreMock({ students, length, semester }) {
+	//length is to help getMarkSheetsPerCoursePerStudents everytime this component is involved in any render
+
+	let marks = useSelector((state) => state.marks);
+	const dispatch = useDispatch();
+	const params = useParams();
+	const studentIDs = [];
+	students.map((student) => {
+		studentIDs.push(student._id);
+		return student;
+	});
+
+	useEffect(() => {
+		dispatch(
+			getMarkSheetsPerCoursePerStudents({
+				id: params.courseID,
+				students: studentIDs,
+			})
+		);
+		//eslint-disable-next-line
+	}, [params.courseID, dispatch, length]);
+
+	const handleSubmitMarks = (e) => {
+		e.preventDefault();
+
+		//Get information about the form elements
+		const elements = Array.from(e.target);
+
+		//Get an array of all the marks entered in the same order as the student names
+		let studentsMark = [];
+		elements.map((el, index) => {
+			if (index + 1 !== elements.length) {
+				studentsMark.push(el.value * 1);
+			}
+			return el;
+		});
+
+		dispatch(
+			updateStudentsMark({
+				id: params.courseID,
+				marks: studentsMark, //array of students marks
+				students: studentIDs, //array of students id
+				markType: `preMock`, //semester definition
+			})
+		);
+	};
+	return (
+		<div className="table-form">
+			<form
+				action=""
+				className="table-form mg-top"
+				onSubmit={handleSubmitMarks}
+			>
+				<table className="marks mg-top">
+					<thead>
+						<tr>
+							<th>SN</th>
+							<th>Name (Matricule)</th>
+							<th>Pre Mock ( / 100)</th>
+						</tr>
+					</thead>
+					<tbody>
+						{semester !== undefined &&
+							marks?.markSheet?.map((sheet, index) => {
+								return (
+									<tr key={index}>
+										<td>{index + 1}</td>
+										<td>
+											{sheet?.student.name} ({sheet?.student.matricule})
+										</td>
+										<td>
+											<input
+												type="number"
+												// required
+												name={sheet?.student._id}
+												defaultValue={sheet?.preMock}
+												autoComplete={`${sheet?.student._id}`}
+												max={100}
+												min={0}
+											/>
+										</td>
+									</tr>
+								);
+							})}
+					</tbody>
+				</table>
+				<div className="mg-top">
+					<button className="button-main button-main-medium caps mg-top">
+						Submit Marks
+					</button>
+				</div>
+			</form>
+			{marks.error === true && marks.errorMessage && (
+				<Failure message={marks.errorMessage} />
+			)}
+			{/* {marks.error === false && setStaffData(defaultInfo)} */}
+			{marks.isLoading && <Loader />}
+		</div>
+	);
+}
+
+export default MarkTableFormPreMock;
