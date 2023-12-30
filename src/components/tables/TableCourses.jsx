@@ -90,6 +90,7 @@ function TableStaff({
 
 			<tbody>
 				{DATA_CONST.map((row, index) => {
+					console.log(row.levels);
 					//maths to decide what entries to show, using paggination
 					let temp = cur ? cur : 1;
 					// console.log(row);
@@ -157,6 +158,26 @@ function TableStaff({
 													EXAM
 												</button>
 											</Link>
+											{row.levels.join(' ').indexOf('200') !== -1 && (
+												<Link
+													to={`/marks/${row._id}/pre-mock/add`}
+													className="mg-left"
+												>
+													<button className="marks-action button-main caps">
+														PMock
+													</button>
+												</Link>
+											)}
+											{row.levels.join(' ').indexOf('200') !== -1 && (
+												<Link
+													to={`/marks/${row._id}/mock/add`}
+													className="mg-left"
+												>
+													<button className="marks-action button-main caps">
+														Mock
+													</button>
+												</Link>
+											)}
 										</div>
 									</td>
 								)}
