@@ -85,6 +85,14 @@ function TableMarks({ styles, tableData, header, paggingNum }) {
 							2<sup>nd</sup> Total
 						</span>
 					</th>
+					<th className={`${isSortedBy === 'preMock' ? 'sorted' : ''}`}>
+						<FaRightLeft onClick={() => handleSort('preMock')} />
+						<span className="text">Pre Mock</span>
+					</th>
+					<th className={`${isSortedBy === 'mock' ? 'sorted' : ''}`}>
+						<FaRightLeft onClick={() => handleSort('mock')} />
+						<span className="text">Mock</span>
+					</th>
 				</tr>
 			</thead>
 			{/* Table Body */}
@@ -126,6 +134,12 @@ function TableMarks({ styles, tableData, header, paggingNum }) {
 								</td>
 								<td>
 									<span className="text">{row.s2Total}</span>
+								</td>
+								<td>
+									<span className="text">{row.preMock}</span>
+								</td>
+								<td>
+									<span className="text">{row.mock}</span>
 								</td>
 							</tr>
 						);
