@@ -7,6 +7,7 @@ const initialState = {
 	error: false,
 	isLoading: false,
 	errorMessage: null,
+	success: null,
 };
 
 export const getStaffs = createAsyncThunk(
@@ -111,10 +112,12 @@ const staffSlice = createSlice({
 				state.error = true;
 				state.isLoading = false;
 				state.errorMessage = action.payload?.error;
+				state.success = null;
 			})
 			.addCase(addStaff.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.errorMessage = null;
+				state.success = Date.now() + 1000 * 4;
 			});
 	},
 });

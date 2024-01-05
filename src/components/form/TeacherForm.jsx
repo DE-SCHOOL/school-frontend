@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // import { getDepartments } from '../../store/departments/departmentSlice';
 import { addStaff } from '../../store/staffs/staffSlice';
 import Failure from '../signal/Failure';
+import Success from '../signal/Success';
 import Loader from './../../components/loaders/Loader';
 
 //initialize default information
@@ -329,6 +330,7 @@ function StaffForm() {
 			{staffss.error === true && <Failure message={staffss.errorMessage} />}
 			{/* {staffss.error === false && setStaffData(defaultInfo)} */}
 			{staffss.isLoading && <Loader />}
+			{/* {staffss.success !== null && staffss.success > D<Success />} */}
 		</form>
 	);
 }
