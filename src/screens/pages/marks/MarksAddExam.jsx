@@ -19,7 +19,7 @@ function MarksAddExam() {
 	const students = useSelector((state) => state.students.students);
 	const markSheet = useSelector((state) => state.marks.markSheet);
 	const marks = useSelector((state) => state.marks);
-	const course = useSelector((state) => state.courses.courses);
+	const course = useSelector((state) => state.courses.course);
 	// const
 	const dispatch = useDispatch();
 
@@ -44,19 +44,54 @@ function MarksAddExam() {
 		//eslint-disable-next-line
 	}, [dispatch, params.courseID, students.length]);
 
-	//Function to createMarkSheet if it does not exist
-	const handleCreateMarkSheet = () => {
-		if (students?.length !== 0) {
-			const studentIDs = [];
-			students.map((student) => {
-				studentIDs.push(student._id);
+	//Check if the markSheet available is upto the number of students offering the course
+	//Important if a student is registered after a markSheet was created
+	let numStudents = students?.length || 1;
+	let markSheetLength = markSheet?.length || 0;
+	let studOnMarkSheet = []; //list of studentIDs on marksheet;
+	let studNotOnMarkSheet = [];
+
+	if (numStudents !== markSheetLength) {
+		//get list of all student IDs
+		markSheet.map((sheet) => {
+			studOnMarkSheet.push(sheet.student._id);
+			return sheet;
+		});
+
+		students.map((student) => {
+			//get an array of studentIDs who are not yet on the marksheet
+			let exists = studOnMarkSheet.includes(student._id);
+			if (exists) {
 				return student;
-			});
-			console.log(studentIDs, params.courseID);
-			dispatch(
-				createInitialMarkSheet({ students: studentIDs, id: params.courseID })
-			);
-		}
+			} else {
+				studNotOnMarkSheet.push(student._id);
+			}
+
+			return student;
+		});
+	}
+
+	//Function to createMarkSheet if it does not exist
+	const handleCreateMarkSheet = (studIDs) => {
+		//studentIDs is an array of students whose markSheets are to be created
+		dispatch(
+			createInitialMarkSheet({ students: studIDs, id: params.courseID })
+		);
+
+		//list of all students offering the course
+		const studentIDs = [];
+		students.map((student) => {
+			studentIDs.push(student._id);
+			return student;
+		});
+
+		//Then get the whole markSheet. That is, include those which already existed before this function call
+		dispatch(
+			getMarkSheetsPerCoursePerStudents({
+				id: params.courseID,
+				students: studentIDs,
+			})
+		);
 	};
 	return (
 		<Layout>
@@ -65,11 +100,11 @@ function MarksAddExam() {
 				main={course?.length !== 0 ? `${course?.name}(${course?.code})` : ''}
 				sub="Marks"
 			/>
-			{markSheet?.length === 0 && (
+			{markSheet?.length !== students?.length && (
 				<div className="mg-top">
 					<button
 						className="button-main button-main-medium caps mg-top"
-						onClick={handleCreateMarkSheet}
+						onClick={() => handleCreateMarkSheet(studNotOnMarkSheet)}
 					>
 						Generate Mark Sheet
 					</button>
@@ -80,7 +115,7 @@ function MarksAddExam() {
 					<span>No student(s) offering this course yet</span>
 				</div>
 			)}
-			{markSheet?.length !== 0 && (
+			{markSheet?.length === students?.length && (
 				<section className="marks mg-top">
 					<MarkTableFormExam
 						students={students}
