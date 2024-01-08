@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { FaRightLeft } from 'react-icons/fa6';
+import { BsEyeFill, BsFillPenFill } from 'react-icons/bs';
 
 //importing the search param function
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 
 //Styled in the table sass file of the component styles
 
@@ -51,6 +52,9 @@ function TableDepartment({ styles, tableData, header, paggingNum }) {
 						<FaRightLeft onClick={() => handleSort('program', 'name')} />
 						<span className="text">{header.program}</span>
 					</th>
+					<th>
+						<span className="text">Actions</span>
+					</th>
 				</tr>
 			</thead>
 
@@ -72,6 +76,16 @@ function TableDepartment({ styles, tableData, header, paggingNum }) {
 								</td>
 								<td>
 									<span className="text caps">{row.program?.name}</span>
+								</td>
+								<td>
+									<div className="actions">
+										<Link to={`/departments/view/${row._id}`}>
+											<BsEyeFill />
+										</Link>
+										<Link to={`/departments/edit/${row._id}`}>
+											<BsFillPenFill />
+										</Link>
+									</div>
 								</td>
 							</tr>
 						);

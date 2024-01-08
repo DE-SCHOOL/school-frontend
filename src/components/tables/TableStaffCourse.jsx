@@ -89,10 +89,10 @@ function TableStaffCourse({ styles, tableData, header, paggingNum }) {
 								</td>
 								<td>
 									<div className="actions">
-										<Link to="/student/view">
+										<Link to={`/dashboard/staff-course/view/${row.staff?._id}`}>
 											<BsEyeFill />
 										</Link>
-										<Link to="/student/edit">
+										<Link to={`/dashboard/staff-course/edit/${row.staff?._id}`}>
 											<BsFillPenFill />
 										</Link>
 									</div>

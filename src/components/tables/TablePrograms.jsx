@@ -82,10 +82,10 @@ function TablePrograms({ styles, tableData, header, paggingNum }) {
 								</td>
 								<td>
 									<div className="actions">
-										<Link to={`/programs/${row._id}/view`}>
+										<Link to={`/programs/view/${row._id}`}>
 											<BsEyeFill />
 										</Link>
-										<Link to={`/programs/${row._id}/edit`}>
+										<Link to={`/programs/edit/${row._id}`}>
 											<BsFillPenFill />
 										</Link>
 									</div>

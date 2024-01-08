@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaRightLeft } from 'react-icons/fa6';
 import { useDispatch } from 'react-redux';
-// import { BsEyeFill, BsFillPenFill } from 'react-icons/bs';
+import { BsFillPenFill } from 'react-icons/bs';
 import { setCurData } from '../../store/cur page/curPageSlice';
 
 //importing the search param function
@@ -85,6 +85,11 @@ function TableStaff({
 					<th>
 						<span className="text">Marks</span>
 					</th>
+					{tableType === 'all' && (
+						<th>
+							<span className="text">Action</span>
+						</th>
+					)}
 				</tr>
 			</thead>
 
@@ -139,9 +144,6 @@ function TableStaff({
 													CA
 												</button>
 											</Link>
-											{/* <Link to={`/marks/${row._id}/edit`}>
-												<BsFillPenFill />
-											</Link> */}
 										</div>
 									</td>
 								)}
@@ -153,7 +155,10 @@ function TableStaff({
 													CA
 												</button>
 											</Link>
-											<Link to={`/marks/${row._id}/exam/add`}>
+											<Link
+												to={`/marks/${row._id}/exam/add`}
+												className="mg-left"
+											>
 												<button className="marks-action button-main caps">
 													EXAM
 												</button>
@@ -179,6 +184,15 @@ function TableStaff({
 												</Link>
 											)}
 										</div>
+									</td>
+								)}
+								{tableType === 'all' && (
+									<td style={{ textAlign: 'center' }}>
+										{/* <div className="actions"> */}
+										<Link to={`/courses/edit/${row._id}`}>
+											<BsFillPenFill />
+										</Link>
+										{/* </div> */}
 									</td>
 								)}
 							</tr>
