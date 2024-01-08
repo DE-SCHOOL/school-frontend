@@ -6,7 +6,7 @@ function SpecialtyAdd() {
 	return (
 		<Layout>
 			<SectionIntro title="Add Specialties" main="Specialty" sub="add" />
-			<section className="specialty mg-top">
+			<section className="students mg-top">
 				<h2 className="header-secondary">Specialty Information</h2>
 				<SpecialtyForm styles="mg-top-md" />
 			</section>
