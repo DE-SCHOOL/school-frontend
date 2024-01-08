@@ -6,6 +6,7 @@ const initialState = {
 	isLoading: false,
 	error: false,
 	errorMessage: null,
+	course: [],
 };
 
 export const getCourses = createAsyncThunk(
@@ -38,6 +39,22 @@ export const createCourse = createAsyncThunk(
 				levels,
 				status,
 				credit_value,
+			});
+
+			return res.data;
+		} catch (err) {
+			const error = err?.response?.data?.message || 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+
+export const editCourse = createAsyncThunk(
+	'course/editCourse',
+	async ({ values, id }, thunkAPI) => {
+		try {
+			const res = await apiRequest('patch', `/api/v1/course/${id}`, {
+				...values,
 			});
 
 			return res.data;
@@ -95,11 +112,26 @@ const courseSlice = createSlice({
 				state.error = true;
 				state.isLoading = false;
 			})
+			.addCase(editCourse.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(editCourse.fulfilled, (state, action) => {
+				state.course = action.payload.data;
+				state.courses = [];
+				state.errorMessage = null;
+				state.isLoading = false;
+			})
+			.addCase(editCourse.rejected, (state, action) => {
+				state.errorMessage = action.payload?.error;
+				state.error = true;
+				state.isLoading = false;
+			})
 			.addCase(getCourses.pending, (state, action) => {
 				state.isLoading = true;
 			})
 			.addCase(getCourses.fulfilled, (state, action) => {
 				state.courses = action.payload;
+				state.course = {};
 				state.errorMessage = null;
 				state.isLoading = false;
 			})
@@ -112,7 +144,7 @@ const courseSlice = createSlice({
 				state.isLoading = true;
 			})
 			.addCase(myCourses.fulfilled, (state, action) => {
-				state.courses = action.payload;
+				state.course = action.payload;
 				state.errorMessage = null;
 				state.isLoading = false;
 			})
@@ -125,7 +157,8 @@ const courseSlice = createSlice({
 				state.isLoading = true;
 			})
 			.addCase(getCourse.fulfilled, (state, action) => {
-				state.courses = action.payload.data;
+				state.course = action.payload.data;
+				state.courses = {};
 				state.errorMessage = null;
 				state.isLoading = false;
 			})
