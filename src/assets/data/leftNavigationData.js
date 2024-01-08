@@ -54,12 +54,7 @@ const data = [
 					{
 						name: 'student list',
 						link: 'list',
-						roles: [
-							'secreteriat',
-							'hod',
-							'director',
-							'admin',
-						],
+						roles: ['secreteriat', 'hod', 'director', 'admin'],
 					},
 					{
 						name: 'student view',
@@ -78,11 +73,11 @@ const data = [
 						link: 'add',
 						roles: ['secreteriat', 'hod', 'director', 'admin'],
 					},
-					{
-						name: 'student edit',
-						link: 'edit',
-						roles: ['secreteriat', 'hod', 'director', 'admin'],
-					},
+					// {
+					// 	name: 'student edit',
+					// 	link: 'edit',
+					// 	roles: ['secreteriat', 'hod', 'director', 'admin'],
+					// },
 				],
 			},
 			{
@@ -104,11 +99,11 @@ const data = [
 						link: 'add',
 						roles: ['director', 'admin'],
 					},
-					{
-						name: 'teachers edit',
-						link: 'edit',
-						roles: ['director', 'admin'],
-					},
+					// {
+					// 	name: 'teachers edit',
+					// 	link: 'edit',
+					// 	roles: ['director', 'admin'],
+					// },
 				],
 			},
 			{
@@ -130,11 +125,11 @@ const data = [
 						link: 'add',
 						roles: ['admin'],
 					},
-					{
-						name: 'program edit',
-						link: 'edit',
-						roles: ['admin'],
-					},
+					// {
+					// 	name: 'program edit',
+					// 	link: 'edit',
+					// 	roles: ['admin'],
+					// },
 				],
 			},
 			{
@@ -156,11 +151,11 @@ const data = [
 						link: 'add',
 						roles: ['director', 'admin'],
 					},
-					{
-						name: 'department edit',
-						link: 'edit',
-						roles: ['director', 'admin'],
-					},
+					// {
+					// 	name: 'department edit',
+					// 	link: 'edit',
+					// 	roles: ['director', 'admin'],
+					// },
 				],
 			},
 			{
@@ -182,11 +177,11 @@ const data = [
 						link: 'add',
 						roles: ['hod', 'director', 'admin'],
 					},
-					{
-						name: 'specialty edit',
-						link: 'edit',
-						roles: ['hod', 'director', 'admin'],
-					},
+					// {
+					// 	name: 'specialty edit',
+					// 	link: 'edit',
+					// 	roles: ['hod', 'director', 'admin'],
+					// },
 				],
 			},
 			{
@@ -203,11 +198,11 @@ const data = [
 						link: 'add',
 						roles: ['hod', 'director', 'admin'],
 					},
-					{
-						name: 'course edit',
-						link: 'edit',
-						roles: ['hod', 'director', 'admin'],
-					},
+					// {
+					// 	name: 'course edit',
+					// 	link: 'edit',
+					// 	roles: ['hod', 'director', 'admin'],
+					// },
 					{
 						name: 'my courses',
 						link: 'my-courses',
