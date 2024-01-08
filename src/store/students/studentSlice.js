@@ -4,6 +4,7 @@ import { apiRequest } from '../APIs/apiRequest';
 
 const initialState = {
 	students: [],
+	student: {},
 	error: false,
 	isLoading: false,
 	errorMessage: null,
@@ -32,6 +33,23 @@ export const getStudentsPerCourseOffering = createAsyncThunk(
 			return res.data;
 		} catch (err) {
 			// const msg = getApiError();
+			// console.log(err);
+			return thunkAPI.rejectWithValue({ error: err.message });
+		}
+	}
+);
+
+export const editStudent = createAsyncThunk(
+	'student/editStudent',
+	async ({ reqData, id }, thunkAPI) => {
+		try {
+			// console.log(name, matricule);
+			const res = await apiRequest('patch', `/api/v1/student/${id}`, {
+				...reqData,
+			});
+			// console.log(res);
+			return res.data;
+		} catch (err) {
 			// console.log(err);
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
@@ -90,11 +108,27 @@ export const getStaffStudents = createAsyncThunk(
 	async ({ id }, thunkAPI) => {
 		try {
 			const res = await apiRequest('get', `/api/v1/student/${id}/students`);
-			console.log(res.data, 111111);
+			// console.log(res.data, 111111);
 			return res.data;
 		} catch (err) {
 			let error = err.response.data?.message;
-			console.log(err, 'message');
+			// console.log(err, 'message');
+			error = error ? error : 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+
+export const getStudent = createAsyncThunk(
+	'student/getStudent',
+	async ({ id }, thunkAPI) => {
+		try {
+			const res = await apiRequest('get', `/api/v1/student/${id}`);
+			// console.log(res.data, 111111);
+			return res.data;
+		} catch (err) {
+			let error = err.response.data?.message;
+			// console.log(err, 'message');
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -119,8 +153,21 @@ const studentSlice = createSlice({
 			})
 			.addCase(getStudents.fulfilled, (state, action) => {
 				state.students = action.payload.data;
+				state.student = {};
 				state.isLoading = false;
 				state.errorMessage = null;
+			})
+			.addCase(getStudent.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error;
+			})
+			.addCase(getStudent.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(getStudent.fulfilled, (state, action) => {
+				state.student = action.payload.data;
+				state.isLoading = false;
 			})
 			.addCase(addStudent.fulfilled, (state, action) => {
 				// state.students = action.payload.data;
@@ -144,7 +191,6 @@ const studentSlice = createSlice({
 				state.isLoading = true;
 			})
 			.addCase(getStaffStudents.fulfilled, (state, action) => {
-				console.log('THIS IS RUBUISH');
 				state.students = action.payload.data;
 				state.isLoading = false;
 				state.errorMessage = null;
@@ -161,6 +207,20 @@ const studentSlice = createSlice({
 				state.students = action.payload.data;
 				state.isLoading = false;
 				state.errorMessage = null;
+			})
+			.addCase(editStudent.fulfilled, (state, action) => {
+				state.students = [];
+				state.student = action.payload.data;
+				state.isLoading = false;
+				state.errorMessage = null;
+			})
+			.addCase(editStudent.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(editStudent.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error;
 			});
 	},
 });
