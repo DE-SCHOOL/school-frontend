@@ -25,7 +25,7 @@ const markHeader = {
 function MarkList() {
 	//Defining the dispatch function, and the useSelector to get students data
 	const dispatch = useDispatch();
-	const marks = useSelector((state) => state.marks.markSheet);
+	const marks = useSelector((state) => state.marks.allMarkSheet);
 
 	//saving the mark data in a useState
 	const [markState] = useState(marks);
