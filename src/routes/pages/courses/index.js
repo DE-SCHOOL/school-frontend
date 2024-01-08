@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 //IMPORTING the different pages
 import {
 	CourseAdd,
+	CourseEdit,
 	CourseList,
 	MyCourses,
 } from './../../../screens/pages/courses';
@@ -38,6 +39,14 @@ function CourseRoute() {
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_STAFF}>
 						<MyCourses />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/courses/edit/:id"
+				element={
+					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
+						<CourseEdit />
 					</Protected>
 				}
 			/>

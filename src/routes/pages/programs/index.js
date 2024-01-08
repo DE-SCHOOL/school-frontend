@@ -6,6 +6,7 @@ import {
 	ProgramAdd,
 	ProgramList,
 	ProgramView,
+	ProgramEdit,
 } from './../../../screens/pages/programs';
 
 //importing a protector component
@@ -37,6 +38,14 @@ function ProgramRoute() {
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
 						<ProgramView />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/programs/edit/:id"
+				element={
+					<Protected restrict={['admin']}>
+						<ProgramEdit />
 					</Protected>
 				}
 			/>
