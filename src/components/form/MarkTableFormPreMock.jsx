@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { FaArrowDown } from 'react-icons/fa6';
 
 import { getMarkSheetsPerCoursePerStudents } from '../../store/marks/markSlice';
 import Failure from './../signal/Failure';
@@ -53,6 +54,9 @@ function MarkTableFormPreMock({ students, length, semester }) {
 			})
 		);
 	};
+	const handleDownloadDoc = () => {
+		window.print();
+	};
 	return (
 		<div className="table-form">
 			<form
@@ -65,6 +69,7 @@ function MarkTableFormPreMock({ students, length, semester }) {
 						<tr>
 							<th>SN</th>
 							<th>Name (Matricule)</th>
+							<th>Level</th>
 							<th>Pre Mock ( / 100)</th>
 						</tr>
 					</thead>
@@ -77,6 +82,7 @@ function MarkTableFormPreMock({ students, length, semester }) {
 										<td>
 											{sheet?.student.name} ({sheet?.student.matricule})
 										</td>
+										<td>{sheet?.student.level}</td>
 										<td>
 											<input
 												type="number"
@@ -93,9 +99,20 @@ function MarkTableFormPreMock({ students, length, semester }) {
 							})}
 					</tbody>
 				</table>
-				<div className="mg-top">
-					<button className="button-main button-main-medium caps mg-top">
+				<div className="mg-top button-marks">
+					<button
+						className="button-main button-main-medium caps mg-top"
+						type="submit"
+					>
 						Submit Marks
+					</button>
+					<button
+						type="button"
+						className="button-main button-main-medium caps mg-top button-marks__flex"
+						onClick={handleDownloadDoc}
+					>
+						<FaArrowDown />
+						<span className="text">Download</span>
 					</button>
 				</div>
 			</form>
