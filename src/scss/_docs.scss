@@ -1,0 +1,21 @@
+@media print {
+	.button-marks,
+	nav.main-nav,
+	nav.left-nav,
+	div.section-intro,
+	div.section-main-intro {
+		display: none !important;
+	}
+	// table-layout: ;
+	table {
+		// table-layout: auto;
+		// width: 100%;
+		table-layout: fixed;
+		// width: 98% !important;
+		// margin-top: -10rem !important;
+		position: fixed;
+		top: 20rem;
+		left: 2px;
+		margin: 0 auto;
+	}
+}
