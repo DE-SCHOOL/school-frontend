@@ -7,7 +7,7 @@ const initialState = {
 	error: false,
 	isLoading: false,
 	errorMessage: null,
-	success: null,
+	teacher: {},
 };
 
 export const getStaffs = createAsyncThunk(
@@ -78,6 +78,37 @@ export const addStaff = createAsyncThunk(
 	}
 );
 
+export const editStaff = createAsyncThunk(
+	'staff/editStaff',
+	async ({ reqData, id }, thunkAPI) => {
+		try {
+			// console.log(name, matricule);
+			const res = await apiRequest('patch', `/api/v1/staff/${id}`, {
+				...reqData,
+			});
+			// console.log(res);
+			return res.data;
+		} catch (err) {
+			// console.log(err);
+			return thunkAPI.rejectWithValue({ error: err.message });
+		}
+	}
+);
+
+export const getStaff = createAsyncThunk(
+	'staff/getStaff',
+	async ({ id }, thunkAPI) => {
+		try {
+			// console.log(name, matricule);
+			const res = await apiRequest('get', `/api/v1/staff/${id}`);
+			// console.log(res);
+			return res.data;
+		} catch (err) {
+			// console.log(err);
+			return thunkAPI.rejectWithValue({ error: err.message });
+		}
+	}
+);
 const staffSlice = createSlice({
 	name: 'staff',
 	initialState,
@@ -93,6 +124,7 @@ const staffSlice = createSlice({
 		builder
 			.addCase(getStaffs.fulfilled, (state, action) => {
 				state.teachers = action.payload;
+				state.teacher = {};
 				state.isLoading = false;
 				state.errorMessage = null;
 			})
@@ -105,6 +137,20 @@ const staffSlice = createSlice({
 				state.isLoading = false;
 				state.errorMessage = action.payload?.error;
 			})
+			.addCase(getStaff.fulfilled, (state, action) => {
+				state.teacher = action.payload.data;
+				state.isLoading = false;
+				state.errorMessage = null;
+			})
+			.addCase(getStaff.pending, (state, action) => {
+				// console.log(action.payload);
+				state.isLoading = true;
+			})
+			.addCase(getStaff.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error;
+			})
 			.addCase(addStaff.pending, (state) => {
 				state.isLoading = true;
 			})
@@ -112,12 +158,24 @@ const staffSlice = createSlice({
 				state.error = true;
 				state.isLoading = false;
 				state.errorMessage = action.payload?.error;
-				state.success = null;
 			})
 			.addCase(addStaff.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.errorMessage = null;
-				state.success = Date.now() + 1000 * 4;
+			})
+			.addCase(editStaff.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(editStaff.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error;
+			})
+			.addCase(editStaff.fulfilled, (state, action) => {
+				state.teacher = action.payload.data;
+				state.teachers = [];
+				state.isLoading = false;
+				state.errorMessage = null;
 			});
 	},
 });
