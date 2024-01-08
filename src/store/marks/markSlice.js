@@ -7,6 +7,7 @@ const initialState = {
 	error: false,
 	isLoading: false,
 	errorMessage: null,
+	allMarkSheet: [],
 };
 
 export const createInitialMarkSheet = createAsyncThunk(
@@ -118,7 +119,8 @@ const markSlice = createSlice({
 				state.markSheet = action.payload.data;
 				state.isLoading = false;
 				state.errorMessage = null;
-			}).addCase(getAllStudentsMarkSheet.rejected, (state, action) => {
+			})
+			.addCase(getAllStudentsMarkSheet.rejected, (state, action) => {
 				state.error = true;
 				state.isLoading = false;
 				state.errorMessage = action.payload?.error;
@@ -127,10 +129,10 @@ const markSlice = createSlice({
 				state.isLoading = true;
 			})
 			.addCase(getAllStudentsMarkSheet.fulfilled, (state, action) => {
-				state.markSheet = action.payload.data;
+				state.allMarkSheet = action.payload.data;
 				state.isLoading = false;
 				state.errorMessage = null;
-			})
+			});
 	},
 });
 
