@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // import { getDepartments } from '../../store/departments/departmentSlice';
 import { addStaff } from '../../store/staffs/staffSlice';
 import Failure from '../signal/Failure';
-import Success from '../signal/Success';
+// import Success from '../signal/Success';
 import Loader from './../../components/loaders/Loader';
 
 //initialize default information
