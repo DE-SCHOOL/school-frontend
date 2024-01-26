@@ -1,4 +1,4 @@
-//get date as YYYY-MM-DD
+//get date as MM-DD-YYYY
 
 export const getDateFromDateObject = (Obj) => {
 	let dateObj = new Date(Obj);
