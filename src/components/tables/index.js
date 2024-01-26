@@ -6,3 +6,4 @@ export { default as TableCourses } from './TableCourses';
 export { default as TableStaffCourse } from './TableStaffCourse';
 export { default as TablePrograms } from './TablePrograms';
 export { default as TableMarks } from './TableMarks';
+export { default as TableResults } from './TableResults';
