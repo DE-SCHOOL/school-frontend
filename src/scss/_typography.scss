@@ -40,7 +40,7 @@
 			margin-bottom: 4rem;
 		}
 		&-lg {
-			margin-bottom: 6rem;
+			margin-bottom: 6rem !important;
 		}
 	}
 	&-left {
@@ -84,6 +84,9 @@
 		font-size: 1.6rem;
 	}
 	&-secondary {
+		&.center {
+			text-align: center;
+		}
 		margin: 0;
 		padding: 0;
 		// font-size: 1.6rem;
@@ -145,4 +148,8 @@
 		align-items: center;
 		gap: 1.5rem;
 	}
+}
+
+.line {
+	border-bottom: 4px solid $color-primary !important;
 }
