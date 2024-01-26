@@ -14,7 +14,13 @@ import { sortArrayObject } from '../../utilities/sortingInfo';
 //Styled in the table sass file of the component styles
 let DATA_CONST;
 
-function TableStudent({ styles, tableData, header, paggingNum }) {
+function TableStudent({
+	styles,
+	tableData,
+	header,
+	paggingNum,
+	tableType = '',
+}) {
 	//declaring state variables
 	const [isSortedBy, setIsSortedBy] = useState('');
 	const [studentData, setStudentData] = useState(tableData);
@@ -77,14 +83,21 @@ function TableStudent({ styles, tableData, header, paggingNum }) {
 						<FaRightLeft onClick={() => handleSort('address')} />
 						<span className="text">{header.address}</span>
 					</th>
-					<th>
-						<span className="text">{header.acts}</span>
-					</th>
+					{tableType !== 'results' && (
+						<th>
+							<span className="text">{header.acts}</span>
+						</th>
+					)}
+					{tableType === 'results' && (
+						<th>
+							<span className="text">Results</span>
+						</th>
+					)}
 				</tr>
 			</thead>
 			{/* Table Body */}
 			<tbody>
-				{DATA_CONST.map((row, index) => {
+				{DATA_CONST?.map((row, index) => {
 					//implementing pagination
 					let temp = curPage ? curPage : 1;
 					if (
@@ -92,7 +105,7 @@ function TableStudent({ styles, tableData, header, paggingNum }) {
 						index + 1 <= Number(paggingNum) * (temp * 1)
 					)
 						return (
-							<tr key={index}>
+							<tr key={index} className="course--row">
 								{/* <td>
 								<input type="checkbox" name="check-1" />
 							</td> */}
@@ -126,16 +139,27 @@ function TableStudent({ styles, tableData, header, paggingNum }) {
 								<td>
 									<span className="text">{row.address}</span>
 								</td>
-								<td>
-									<div className="actions">
-										<Link to={`/students/view/${row._id}`}>
-											<BsEyeFill />
-										</Link>
-										<Link to={`/students/edit/${row._id}`}>
-											<BsFillPenFill />
-										</Link>
-									</div>
-								</td>
+								{tableType !== 'results' && (
+									<td>
+										<div className="actions">
+											<Link to={`/students/view/${row._id}`}>
+												<BsEyeFill />
+											</Link>
+											<Link to={`/students/edit/${row._id}`}>
+												<BsFillPenFill />
+											</Link>
+										</div>
+									</td>
+								)}
+								{tableType === 'results' && (
+									<td>
+										<div className="actions results">
+											<Link to={`/exam center/student-marks/${row._id}`}>
+												<BsEyeFill />
+											</Link>
+										</div>
+									</td>
+								)}
 							</tr>
 						);
 					return null;
