@@ -211,12 +211,17 @@ const data = [
 				],
 			},
 			{
-				item: 'marks',
+				item: 'exam center',
 				icon: <BootstrapIcon.BsFillBookmarkStarFill />,
 				itemList: [
 					{
 						name: 'marks list',
 						link: 'list',
+						roles: ['hod', 'director', 'admin'],
+					},
+					{
+						name: 'student marks',
+						link: 'student-marks',
 						roles: ['hod', 'director', 'admin'],
 					},
 				],
