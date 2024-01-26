@@ -7,7 +7,7 @@ import {
 	MarksAddExam,
 	MarkList,
 	MarksAddPreMock,
-	MarksAddMock
+	MarksAddMock,
 } from './../../../screens/pages/marks';
 
 //importing a protector component
@@ -15,6 +15,8 @@ import Protected from '../../../components/auth/Protected';
 
 // importing different rights
 import * as RIGHTS from './../../../utilities/restrict';
+import StudentMarks from '../../../screens/pages/exam center/StudentsMarks';
+import StudentResult from '../../../screens/pages/exam center/StudentResult';
 function MarkRoute() {
 	return (
 		<Routes>
@@ -51,10 +53,26 @@ function MarkRoute() {
 				}
 			/>
 			<Route
-				path="/marks/list"
+				path="/exam center/list"
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
 						<MarkList />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/exam center/student-marks"
+				element={
+					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
+						<StudentMarks />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/exam center/student-marks/:studentID"
+				element={
+					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
+						<StudentResult />
 					</Protected>
 				}
 			/>
