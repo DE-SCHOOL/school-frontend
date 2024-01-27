@@ -38,7 +38,7 @@ function MarkList() {
 		dispatch(getAllStudentsMarkSheet());
 	}, [dispatch]);
 
-	console.log(marks);
+	// console.log(marks);
 	return (
 		<Layout>
 			{/* Displaying the page introduction and directory */}

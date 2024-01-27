@@ -27,7 +27,7 @@ function DepartmentList() {
 	);
 	const dispatch = useDispatch();
 
-	console.log(departments, 123);
+	// console.log(departments, 123);
 
 	const [departmentState, setDepartmentState] = useState([]);
 
