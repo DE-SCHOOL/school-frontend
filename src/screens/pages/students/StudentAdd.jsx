@@ -4,7 +4,7 @@ import { StudentForm } from '../../../components/form';
 
 function StudentAdd() {
 	return (
-		<Layout>
+		<Layout mainNav="studentAddOnly">
 			<SectionIntro title="Add Students" main="Student" sub="add" />
 			<section className="students mg-top">
 				<h2 className="header-secondary">Student Information</h2>

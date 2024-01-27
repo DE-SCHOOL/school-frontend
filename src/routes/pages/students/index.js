@@ -36,9 +36,9 @@ function StudentRoute() {
 			<Route
 				path="/students/add"
 				element={
-					<Protected restrict={RIGHTS.TO_ALL_OFFICE_STAFF}>
-						<StudentAdd />
-					</Protected>
+					// <Protected restrict={RIGHTS.TO_ALL_OFFICE_STAFF} studOnly="allow">
+					<StudentAdd />
+					// </Protected>
 				}
 			/>
 			<Route

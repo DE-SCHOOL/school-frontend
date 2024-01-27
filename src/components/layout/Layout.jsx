@@ -2,10 +2,10 @@ import React from 'react';
 
 import { MainNav, LeftNav } from '../../navigations';
 
-function Layout({ children }) {
+function Layout({ children, mainNav = '' }) {
 	return (
 		<>
-			<MainNav />
+			{mainNav === '' && <MainNav />}
 			<LeftNav />
 			<main className="main from-left">
 				<br />
