@@ -4,15 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCoursesPerSpecialty } from '../../store/courses/courseSlice';
 import { getStudentMarkSheetAllCourses } from '../../store/marks/markSlice';
 let semester = 's1';
-let TCE = 0; // Total credit earned
-let TGP = 0; // Total grade points
-let TWP = 0; // Total weighted points
-let TCV = 0; // Total credit value
 
 function TableResults({ student }) {
 	const dispatch = useDispatch();
 	const courses = useSelector((state) => state.courses.courses);
 	const marksInfo = useSelector((state) => state.marks.studentCoursesMarks);
+
+	// const resultInfo  = {};
+	let TCE = 0; // Total credit earned
+	let TGP = 0; // Total grade points
+	let TWP = 0; // Total weighted points
+	let TCV = 0; // Total credit value
 
 	useEffect(() => {
 		//get courses per specialty (all courses a student in a particular specialty does)
@@ -21,7 +23,7 @@ function TableResults({ student }) {
 		//Get all courses that fall under the student's specialty depending on the student's current level
 	}, [dispatch, student?.specialty?._id]);
 
-	//Get the
+	//Get the coursesID and find the marksinformation of a particular student
 	useEffect(() => {
 		if (courses?.length > 0) {
 			let courseIDs = [];

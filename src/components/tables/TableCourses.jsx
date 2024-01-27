@@ -95,7 +95,7 @@ function TableStaff({
 
 			<tbody>
 				{DATA_CONST.map((row, index) => {
-					console.log(row.levels);
+					// console.log(row.levels);
 					//maths to decide what entries to show, using paggination
 					let temp = cur ? cur : 1;
 					// console.log(row);
