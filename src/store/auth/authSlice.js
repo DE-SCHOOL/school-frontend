@@ -30,11 +30,10 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk('user/logout', async (thunkAPI) => {
 	try {
+		localStorage.removeItem('loggedIn');
 		const res = await apiRequest('get', `/api/v1/staff/logout`);
-		// console.log(987456321);
 		return res.data;
 	} catch (err) {
-		// console.log(err);
 		return thunkAPI.rejectWithValue({ error: err });
 	}
 });
@@ -75,7 +74,6 @@ const authSlice = createSlice({
 			})
 			.addCase(logout.fulfilled, (state, action) => {
 				state.user = {};
-				localStorage.setItem('loggedIn', JSON.stringify({}));
 				state.isLoggedIn = false;
 				state.isLoading = false;
 			});
