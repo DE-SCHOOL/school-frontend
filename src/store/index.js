@@ -10,6 +10,8 @@ import programReducer from './program/programSlice';
 import courseReducer from './courses/courseSlice';
 import curPageReducer from './cur page/curPageSlice';
 import dashboardReducer from './dashboard/dashboardSlice';
+import markReducer from './marks/markSlice';
+import examReducer from './exams/examSlice';
 
 //CREATING THE VARIOUS REDUCERS
 const store = configureStore({
@@ -23,6 +25,8 @@ const store = configureStore({
 		courses: courseReducer,
 		curPage: curPageReducer,
 		dashboard: dashboardReducer,
+		marks: markReducer,
+		exams: examReducer,
 	},
 });
 

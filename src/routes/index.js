@@ -6,8 +6,10 @@ import TeacherRoute from './pages/teachers';
 import AuthRoute from './authentication';
 import DashboardRoute from './pages/dashboards';
 import DepartmentRoute from './pages/departments';
+import ProgramRoute from './pages/programs';
 import SpecialtyRoute from './pages/specialties';
 import CourseRoute from './pages/courses';
+import MarkRoute from './pages/marks';
 import ErrorRoute from './errors';
 
 function Router() {
@@ -16,10 +18,12 @@ function Router() {
 			<StudentRoute />
 			<TeacherRoute />
 			<DepartmentRoute />
+			<ProgramRoute />
 			<AuthRoute />
 			<DashboardRoute />
 			<SpecialtyRoute />
 			<CourseRoute />
+			<MarkRoute />
 			<ErrorRoute />
 		</React.Fragment>
 	);

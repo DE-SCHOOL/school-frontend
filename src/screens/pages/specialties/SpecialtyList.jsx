@@ -24,7 +24,7 @@ function SpecialtyList() {
 	const specialties = useSelector((state) => state.specialty.specialties.data);
 	const dispatch = useDispatch();
 
-	console.log(specialties, 123);
+	// console.log(specialties, 123);
 
 	const [specialtyState, setSpecialtyState] = useState([]);
 

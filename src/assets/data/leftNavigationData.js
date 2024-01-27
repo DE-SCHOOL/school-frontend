@@ -9,7 +9,7 @@ import {
 } from 'react-icons/md';
 import { BiTable } from 'react-icons/bi';
 import { IoLibrarySharp, IoSettings } from 'react-icons/io5';
-import { FaBloggerB, FaHotel } from 'react-icons/fa';
+import { FaBloggerB, FaHotel, FaSchool } from 'react-icons/fa';
 // ['lecturer', 'secreteriat', 'hod', 'director', 'admin']
 const data = [
 	{
@@ -40,6 +40,11 @@ const data = [
 						link: 'staff-course',
 						roles: ['hod', 'director', 'admin'],
 					},
+					{
+						name: 'my students',
+						link: 'my-students',
+						roles: ['lecturer', 'hod', 'director', 'admin'],
+					},
 				],
 			},
 			{
@@ -49,14 +54,7 @@ const data = [
 					{
 						name: 'student list',
 						link: 'list',
-						roles: [
-							'student',
-							'lecturer',
-							'secreteriat',
-							'hod',
-							'director',
-							'admin',
-						],
+						roles: ['secreteriat', 'hod', 'director', 'admin'],
 					},
 					{
 						name: 'student view',
@@ -75,11 +73,11 @@ const data = [
 						link: 'add',
 						roles: ['secreteriat', 'hod', 'director', 'admin'],
 					},
-					{
-						name: 'student edit',
-						link: 'edit',
-						roles: ['secreteriat', 'hod', 'director', 'admin'],
-					},
+					// {
+					// 	name: 'student edit',
+					// 	link: 'edit',
+					// 	roles: ['secreteriat', 'hod', 'director', 'admin'],
+					// },
 				],
 			},
 			{
@@ -99,13 +97,39 @@ const data = [
 					{
 						name: 'teachers add',
 						link: 'add',
-						roles: ['hod', 'director', 'admin'],
+						roles: ['director', 'admin'],
+					},
+					// {
+					// 	name: 'teachers edit',
+					// 	link: 'edit',
+					// 	roles: ['director', 'admin'],
+					// },
+				],
+			},
+			{
+				item: 'programs',
+				icon: <FaSchool />,
+				itemList: [
+					{
+						name: 'program list',
+						link: 'list',
+						roles: ['hod', 'director', 'admin', 'lecturer', 'secreteriat'],
 					},
 					{
-						name: 'teachers edit',
-						link: 'edit',
-						roles: ['hod', 'director', 'admin'],
+						name: 'program view',
+						link: 'view',
+						roles: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 					},
+					{
+						name: 'program add',
+						link: 'add',
+						roles: ['admin'],
+					},
+					// {
+					// 	name: 'program edit',
+					// 	link: 'edit',
+					// 	roles: ['admin'],
+					// },
 				],
 			},
 			{
@@ -127,11 +151,11 @@ const data = [
 						link: 'add',
 						roles: ['director', 'admin'],
 					},
-					{
-						name: 'department edit',
-						link: 'edit',
-						roles: ['director', 'admin'],
-					},
+					// {
+					// 	name: 'department edit',
+					// 	link: 'edit',
+					// 	roles: ['director', 'admin'],
+					// },
 				],
 			},
 			{
@@ -153,11 +177,11 @@ const data = [
 						link: 'add',
 						roles: ['hod', 'director', 'admin'],
 					},
-					{
-						name: 'specialty edit',
-						link: 'edit',
-						roles: ['hod', 'director', 'admin'],
-					},
+					// {
+					// 	name: 'specialty edit',
+					// 	link: 'edit',
+					// 	roles: ['hod', 'director', 'admin'],
+					// },
 				],
 			},
 			{
@@ -167,23 +191,37 @@ const data = [
 					{
 						name: 'course list',
 						link: 'list',
-						roles: [
-							'student',
-							'lecturer',
-							'secreteriat',
-							'hod',
-							'director',
-							'admin',
-						],
+						roles: ['hod', 'director', 'admin'],
 					},
 					{
 						name: 'course add',
 						link: 'add',
 						roles: ['hod', 'director', 'admin'],
 					},
+					// {
+					// 	name: 'course edit',
+					// 	link: 'edit',
+					// 	roles: ['hod', 'director', 'admin'],
+					// },
 					{
-						name: 'course edit',
-						link: 'edit',
+						name: 'my courses',
+						link: 'my-courses',
+						roles: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
+					},
+				],
+			},
+			{
+				item: 'exam center',
+				icon: <BootstrapIcon.BsFillBookmarkStarFill />,
+				itemList: [
+					{
+						name: 'marks list',
+						link: 'list',
+						roles: ['hod', 'director', 'admin'],
+					},
+					{
+						name: 'student marks',
+						link: 'student-marks',
 						roles: ['hod', 'director', 'admin'],
 					},
 				],

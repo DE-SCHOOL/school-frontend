@@ -6,16 +6,29 @@ const initialState = {
 	error: false,
 	errorMessage: null,
 	specialtyName: '',
+	specialty: {},
 };
 
 export const getSpecialties = createAsyncThunk(
 	'specialty/getSpecialties',
 	async (thunkAPI) => {
 		try {
-			const res = await apiRequest(
-				'get',
-				`/api/v1/specialty`
-			);
+			const res = await apiRequest('get', `/api/v1/specialty`);
+
+			// console.log(res.data);
+			return res.data;
+		} catch (err) {
+			// console.log(err);
+			return thunkAPI.rejectWithValue({ error: err.message });
+		}
+	}
+);
+
+export const getSpecialty = createAsyncThunk(
+	'specialty/getSpecialty',
+	async ({ id }, thunkAPI) => {
+		try {
+			const res = await apiRequest('get', `/api/v1/specialty/${id}`);
 
 			// console.log(res.data);
 			return res.data;
@@ -30,10 +43,7 @@ export const getSpecialtyCourses = createAsyncThunk(
 	'specialty/getSpecialtyCourses',
 	async ({ id }, thunkAPI) => {
 		try {
-			const res = await apiRequest(
-				'get',
-				`/api/v1/course/specialty/${id}`
-			);
+			const res = await apiRequest('get', `/api/v1/course/specialty/${id}`);
 			// console.log(res.data);
 			return res.data;
 		} catch (err) {
@@ -47,11 +57,28 @@ export const createSpecialties = createAsyncThunk(
 	'specialty/createSpecialties',
 	async ({ name, department }, thunkAPI) => {
 		try {
-			const res = await apiRequest(
-				'post',
-				`/api/v1/specialty`,
-				{ name, department }
-			);
+			const res = await apiRequest('post', `/api/v1/specialty`, {
+				name,
+				department,
+			});
+			// console.log(res.data);
+			return res.data;
+		} catch (err) {
+			// console.log(err);
+			const error = err?.response?.data?.message || 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+
+export const editSpecialty = createAsyncThunk(
+	'specialty/edit',
+	async ({ name, department, id }, thunkAPI) => {
+		try {
+			const res = await apiRequest('patch', `/api/v1/specialty/${id}`, {
+				name,
+				department,
+			});
 			// console.log(res.data);
 			return res.data;
 		} catch (err) {
@@ -77,12 +104,27 @@ const specialtySlice = createSlice({
 				state.isLoading = true;
 			})
 			.addCase(getSpecialties.fulfilled, (state, action) => {
-				console.log(action.payload);
+				// console.log(action.payload);
 				state.specialties = action.payload;
+				state.specialty = {};
 				state.isLoading = false;
 				state.errorMessage = null;
 			})
 			.addCase(getSpecialties.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error || action.payload;
+			})
+			.addCase(getSpecialty.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(getSpecialty.fulfilled, (state, action) => {
+				state.specialties = [];
+				state.specialty = action.payload.data;
+				state.isLoading = false;
+				state.errorMessage = null;
+			})
+			.addCase(getSpecialty.rejected, (state, action) => {
 				state.error = true;
 				state.isLoading = false;
 				state.errorMessage = action.payload?.error || action.payload;
@@ -96,6 +138,20 @@ const specialtySlice = createSlice({
 				state.errorMessage = null;
 			})
 			.addCase(createSpecialties.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error || action.payload;
+			})
+			.addCase(editSpecialty.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(editSpecialty.fulfilled, (state, action) => {
+				state.specialties = [];
+				state.specialty = action.payload.data;
+				state.isLoading = false;
+				state.errorMessage = null;
+			})
+			.addCase(editSpecialty.rejected, (state, action) => {
 				state.error = true;
 				state.isLoading = false;
 				state.errorMessage = action.payload?.error || action.payload;

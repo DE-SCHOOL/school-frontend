@@ -6,6 +6,7 @@ const initialState = {
 	isLoading: false,
 	error: false,
 	errorMessage: null,
+	department: {},
 };
 
 export const getDepartments = createAsyncThunk(
@@ -20,12 +21,44 @@ export const getDepartments = createAsyncThunk(
 		}
 	}
 );
-// console.log(process.env);
+
+export const getDepartment = createAsyncThunk(
+	'department/getDepartment',
+	async ({ id }, thunkAPI) => {
+		try {
+			const res = await apiRequest('get', `/api/v1/department/${id}`);
+			return res.data;
+		} catch (err) {
+			// console.log(err);
+			return thunkAPI.rejectWithValue({ error: err.message });
+		}
+	}
+);
+
 export const createDepartment = createAsyncThunk(
 	'department/create',
 	async ({ name, hod, program }, thunkAPI) => {
 		try {
 			const res = await apiRequest('post', `/api/v1/department`, {
+				name,
+				hod,
+				program,
+			});
+			// console.log()
+			return res.data;
+		} catch (err) {
+			// console.log(err);
+			const error = err?.response?.data?.message || 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+
+export const editDepartment = createAsyncThunk(
+	'department/edit',
+	async ({ name, hod, program, id }, thunkAPI) => {
+		try {
+			const res = await apiRequest('patch', `/api/v1/department/${id}`, {
 				name,
 				hod,
 				program,
@@ -60,6 +93,20 @@ const departmentSlice = createSlice({
 			})
 			.addCase(getDepartments.fulfilled, (state, action) => {
 				state.departments = action.payload;
+				state.department = {};
+				state.isLoading = false;
+				state.errorMessage = null;
+			})
+			.addCase(getDepartment.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(getDepartment.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error || action.payload;
+			})
+			.addCase(getDepartment.fulfilled, (state, action) => {
+				state.department = action.payload.data;
 				state.isLoading = false;
 				state.errorMessage = null;
 			})
@@ -73,6 +120,20 @@ const departmentSlice = createSlice({
 			})
 			.addCase(createDepartment.fulfilled, (state, action) => {
 				// state.departments = action.payload;
+				state.isLoading = false;
+				state.errorMessage = null;
+			})
+			.addCase(editDepartment.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(editDepartment.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error || action.payload;
+			})
+			.addCase(editDepartment.fulfilled, (state, action) => {
+				state.department = action.payload.data;
+				state.departments = [];
 				state.isLoading = false;
 				state.errorMessage = null;
 			});

@@ -56,7 +56,7 @@ table {
 						display: flex;
 						// justify-content: center;
 						align-items: center;
-						gap: 2rem;
+						gap: 4rem;
 
 						a {
 							// border: 1px solid black;
@@ -72,6 +72,23 @@ table {
 
 							background-color: $color-grey-light;
 						}
+					}
+					div.results {
+						justify-content: center;
+					}
+					a {
+						// border: 1px solid black;
+						// height: 3rem;
+						// width: 3rem;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						border-radius: 100%;
+						// background-color: $color-grey;
+						text-decoration: none;
+						color: $color-grey;
+
+						background-color: $color-grey-light;
 					}
 				}
 			}
@@ -89,6 +106,91 @@ table {
 				padding: 2rem 1rem;
 				span.text {
 					margin-left: 1.5rem;
+				}
+			}
+		}
+	}
+	&.results {
+		text-align: center;
+		border-collapse: collapse;
+		thead {
+			border: 2px solid $color-primary;
+			tr {
+				background-color: $color-primary;
+				color: $color-white;
+				th {
+					padding: 1rem 0;
+					border: 1px solid $color-white;
+				}
+			}
+		}
+		tbody {
+			tr {
+				td {
+					padding: 1rem 0;
+					border: 1px solid $color-primary;
+				}
+			}
+		}
+	}
+}
+.total-gpa {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	& table.gpa {
+		text-align: center;
+		border-collapse: collapse;
+		width: 25%;
+		thead {
+			border: 2px solid $color-primary;
+			tr {
+				background-color: $color-primary;
+				color: $color-white;
+				font-size: 2rem;
+				th {
+					padding: 3rem 0;
+					&:first-child {
+						border-right: 1px solid $color-white;
+					}
+				}
+				th.gpa-value {
+					background-color: $color-grey-light;
+					color: $color-black;
+					letter-spacing: 3px;
+				}
+			}
+		}
+	}
+	& table.results-total {
+		text-align: center;
+		border-collapse: collapse;
+		table-layout: auto !important;
+		width: 60%;
+		thead {
+			border: 2px solid $color-primary;
+			tr {
+				background-color: $color-primary;
+				color: $color-white;
+				th {
+					padding: 1rem 0;
+					border: 1px solid $color-white;
+				}
+			}
+		}
+		tbody {
+			tr {
+				td {
+					padding: 1rem 0;
+					border: 1px solid $color-primary;
+				}
+				th {
+					padding: 1rem 0;
+					background-color: $color-primary;
+					color: $color-white;
+					border: 1px solid $color-primary;
+					border-left: 2px solid $color-primary;
+					border-right: 1px solid $color-white;
 				}
 			}
 		}

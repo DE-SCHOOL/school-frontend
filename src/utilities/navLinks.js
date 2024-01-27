@@ -1,7 +1,8 @@
 export const commingUp = [
 	'/students/view',
-	'/teachers/view',
+	// '/teachers/view',
 	'/departments/view',
+	'/programs/view',
 	'/specialty/view',
 	'/specialties/view',
 	'/accounts/fees-collection',
@@ -20,4 +21,6 @@ export const commingUp = [
 	'/transport',
 	'/blog/view',
 	'/blog/add',
+	// '/marks/:courseID/add',
+	// '/marks/:courseID/edit',
 ];

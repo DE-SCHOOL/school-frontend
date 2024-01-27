@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { FaRightLeft } from 'react-icons/fa6';
 import { useDispatch } from 'react-redux';
-
+import { BsFillPenFill } from 'react-icons/bs';
 import { setCurData } from '../../store/cur page/curPageSlice';
 
 //importing the search param function
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 
 //Styled in the table sass file of the component styles
 
@@ -13,7 +13,13 @@ import { useSearchParams } from 'react-router-dom';
 import { sortArrayObject } from '../../utilities/sortingInfo';
 
 let DATA_CONST;
-function TableStaff({ styles, tableData, header, paggingNum }) {
+function TableStaff({
+	styles,
+	tableData,
+	header,
+	paggingNum,
+	tableType = 'all',
+}) {
 	//declaring state variables
 	const [isSortedBy, setIsSortedBy] = useState('');
 	const [staffData, setStaffData] = useState(tableData.map((dt) => dt));
@@ -76,11 +82,20 @@ function TableStaff({ styles, tableData, header, paggingNum }) {
 						<FaRightLeft onClick={() => handleSort('specialty')} />
 						<span className="text">{header.specialty}</span>
 					</th>
+					<th>
+						<span className="text">Marks</span>
+					</th>
+					{tableType === 'all' && (
+						<th>
+							<span className="text">Action</span>
+						</th>
+					)}
 				</tr>
 			</thead>
 
 			<tbody>
 				{DATA_CONST.map((row, index) => {
+					// console.log(row.levels);
 					//maths to decide what entries to show, using paggination
 					let temp = cur ? cur : 1;
 					// console.log(row);
@@ -121,6 +136,65 @@ function TableStaff({ styles, tableData, header, paggingNum }) {
 										})}
 									</span>
 								</td>
+								{tableType !== 'all' && (
+									<td>
+										<div className="actions">
+											<Link to={`/marks/${row._id}/ca/add`}>
+												<button className="marks-action button-main caps">
+													CA
+												</button>
+											</Link>
+										</div>
+									</td>
+								)}
+								{tableType === 'all' && (
+									<td>
+										<div className="actions">
+											<Link to={`/marks/${row._id}/ca/add`}>
+												<button className="marks-action button-main caps">
+													CA
+												</button>
+											</Link>
+											<Link
+												to={`/marks/${row._id}/exam/add`}
+												className="mg-left"
+											>
+												<button className="marks-action button-main caps">
+													EXAM
+												</button>
+											</Link>
+											{row.levels.join(' ').indexOf('200') !== -1 && (
+												<Link
+													to={`/marks/${row._id}/pre-mock/add`}
+													className="mg-left"
+												>
+													<button className="marks-action button-main caps">
+														PMock
+													</button>
+												</Link>
+											)}
+											{row.levels.join(' ').indexOf('200') !== -1 && (
+												<Link
+													to={`/marks/${row._id}/mock/add`}
+													className="mg-left"
+												>
+													<button className="marks-action button-main caps">
+														Mock
+													</button>
+												</Link>
+											)}
+										</div>
+									</td>
+								)}
+								{tableType === 'all' && (
+									<td style={{ textAlign: 'center' }}>
+										{/* <div className="actions"> */}
+										<Link to={`/courses/edit/${row._id}`}>
+											<BsFillPenFill />
+										</Link>
+										{/* </div> */}
+									</td>
+								)}
 							</tr>
 						);
 					return null;

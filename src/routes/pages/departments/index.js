@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import {
 	DepartmentAdd,
 	DepartmentList,
+	DepartmentEdit,
 } from './../../../screens/pages/departments';
 
 //importing a protector component
@@ -28,6 +29,14 @@ function DepartmentRoute() {
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_STAFF}>
 						<DepartmentList />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/departments/edit/:id"
+				element={
+					<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
+						<DepartmentEdit />
 					</Protected>
 				}
 			/>

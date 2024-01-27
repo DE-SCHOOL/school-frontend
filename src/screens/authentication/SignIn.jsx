@@ -91,7 +91,9 @@ function Signin() {
 				</form>
 			</div>
 			{logInData.isLoading && <Loader />}
-			{logInData.error === true && <Failure message={logInData.errorMessage} />}
+			{logInData.error === true && logInData.errorMessage && (
+				<Failure message={logInData.errorMessage} />
+			)}
 		</div>
 	);
 }

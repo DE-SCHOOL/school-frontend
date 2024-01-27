@@ -10,6 +10,7 @@
 	font-weight: bolder;
 	cursor: pointer;
 	text-transform: capitalize;
+	font-family: $font-styles;
 
 	&-small {
 		padding: 1rem 1rem;
@@ -39,8 +40,11 @@
 			margin-bottom: 4rem;
 		}
 		&-lg {
-			margin-bottom: 6rem;
+			margin-bottom: 6rem !important;
 		}
+	}
+	&-left {
+		margin-left: 0.5rem;
 	}
 }
 
@@ -80,6 +84,9 @@
 		font-size: 1.6rem;
 	}
 	&-secondary {
+		&.center {
+			text-align: center;
+		}
 		margin: 0;
 		padding: 0;
 		// font-size: 1.6rem;
@@ -128,4 +135,21 @@
 
 .caps {
 	text-transform: capitalize;
+}
+
+.button-marks {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+
+	&__flex {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+	}
+}
+
+.line {
+	border-bottom: 4px solid $color-primary !important;
 }

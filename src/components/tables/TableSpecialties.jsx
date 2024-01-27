@@ -73,7 +73,7 @@ function TableSpecialties({ styles, tableData, header, paggingNum }) {
 										<Link to={`/specialties/view/${row._id}`}>
 											<BsEyeFill />
 										</Link>
-										<Link to="/specialties/edit">
+										<Link to={`/specialties/edit/${row._id}`}>
 											<BsFillPenFill />
 										</Link>
 									</div>
