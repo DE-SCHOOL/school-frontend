@@ -98,8 +98,10 @@ export const addStudent = createAsyncThunk(
 			// console.log(res);
 			return res.data;
 		} catch (err) {
-			// console.log(err);
-			return thunkAPI.rejectWithValue({ error: err.message });
+			let error = err.response.data?.message;
+			// console.log(err, 'message');
+			error = error ? error : 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
 		}
 	}
 );

@@ -50,7 +50,7 @@ function StudentForm({ styles }) {
 		dispatch(
 			addStudent({ ...studentData, specialty: specialty.current.value })
 		);
-		setStudentData(defaultInfo);
+		// setStudentData(defaultInfo);
 	};
 	return (
 		<form
@@ -304,10 +304,11 @@ function StudentForm({ styles }) {
 						})}
 					</select>
 				</div>
-				<div className="form-item mg-top form-file">
+				{/* LET STUDENTS SEND THEIR INFORMATION */}
+				{/* <div className="form-item mg-top form-file">
 					<span className="text">Upload Student Photo (200px X 200px) </span>
 					<input type="file" name="profile" className="mg-top" />
-				</div>
+				</div> */}
 			</div>
 			<button className="button-main button-main-medium mg-top-md">
 				submit
