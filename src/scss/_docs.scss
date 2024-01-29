@@ -1,21 +1,68 @@
+@use './variables' as *;
+
 @media print {
 	.button-marks,
 	nav.main-nav,
 	nav.left-nav,
-	div.section-intro,
-	div.section-main-intro {
+	div.section-intro h1,
+	div.section-main-intro,
+	.no-display {
 		display: none !important;
 	}
-	// table-layout: ;
-	table {
-		// table-layout: auto;
-		// width: 100%;
-		table-layout: fixed;
-		// width: 98% !important;
-		// margin-top: -10rem !important;
-		position: fixed;
-		top: 20rem;
-		left: 2px;
-		margin: 0 auto;
+	div.section-intro {
+		text-align: center;
+		position: absolute;
+		top: 0rem;
+		left: 40%;
+		transform: translateX(-50%);
+	}
+	.table-form table {
+		table-layout: auto;
+		position: absolute;
+		top: 2rem;
+		left: 0px;
+		width: 100%;
+	}
+	.table-form {
+		width: 100%;
+	}
+
+	.result-info {
+		position: absolute;
+		top: 15rem;
+		left: 0px;
+		width: 100%;
+		font-size: 1.3rem !important;
+
+		.gpa {
+			background-color: red;
+			thead {
+				tr {
+					font-size: 1.5rem !important;
+				}
+			}
+		}
+	}
+	.student-detail-results {
+		position: absolute;
+		top: 0rem;
+		left: 0px;
+		width: 100%;
+	}
+
+	.stud-info {
+		& .section {
+			div {
+				.prop {
+					width: fit-content !important;
+					color: $color-primary;
+					font-size: 1.3rem;
+				}
+				.value {
+					max-width: 40rem;
+					font-size: 1.3rem;
+				}
+			}
+		}
 	}
 }

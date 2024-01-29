@@ -73,11 +73,12 @@ const data = [
 						link: 'add',
 						roles: ['secreteriat', 'hod', 'director', 'admin'],
 					},
-					// {
-					// 	name: 'student edit',
-					// 	link: 'edit',
-					// 	roles: ['secreteriat', 'hod', 'director', 'admin'],
-					// },
+					{
+						name: 'print list',
+						link: 'print',
+						roles: ['secreteriat', 'hod', 'director', 'admin'],
+						target: true,
+					},
 				],
 			},
 			{

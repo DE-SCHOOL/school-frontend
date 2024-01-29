@@ -1,0 +1,83 @@
+@use './../variables' as *;
+
+@media print {
+	body {
+		background-color: $color-white;
+	}
+	.search-category {
+		display: none;
+	}
+	.print-student-title {
+		margin-bottom: 0rem !important;
+	}
+	.stud-print {
+		width: 100% !important;
+	}
+	table.table-print {
+		// top: 0rem !important;
+		margin-top: 0rem !important;
+		thead {
+			tr {
+				th {
+					svg {
+						display: none;
+					}
+					.text {
+						margin-left: 0rem !important;
+					}
+				}
+			}
+		}
+	}
+}
+
+.print-student-title {
+	font-size: 2.3rem;
+	color: $color-primary;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 2rem;
+	text-transform: uppercase;
+}
+
+table.table-print {
+	table-layout: auto;
+	border-collapse: collapse;
+	border: 2px solid $color-primary;
+	thead {
+		background-color: $color-primary;
+		tr {
+			th {
+				text-align: left;
+				border-right: 1px solid $color-white;
+				border-left: 1px solid $color-white;
+				color: $color-white;
+				padding: 0.5rem;
+				svg {
+					transform: rotate(90deg);
+				}
+				.text {
+					margin-left: 2rem;
+				}
+
+				&.sorted svg {
+					color: lighten($color-primary-light, 15%);
+				}
+			}
+		}
+	}
+	tbody {
+		tr {
+			td {
+				padding: 1rem 1rem;
+				border: 1px solid $color-primary;
+			}
+		}
+	}
+}
+
+.stud-print {
+	width: 80%;
+	margin: 0 auto;
+}
