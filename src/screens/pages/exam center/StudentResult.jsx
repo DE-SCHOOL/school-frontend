@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { FaArrowDown } from 'react-icons/fa';
 
 //importing slices
 import StudentInfo from '../../../components/social/StudentInfo';
@@ -28,13 +29,24 @@ function StudentResult() {
 			{student !== undefined && Object.entries(student).length !== 0 && (
 				<StudentInfo student={student} />
 			)}
-			<div className="line mg-bt mg-top"></div>
-			<h2 className="header-secondary center mg-top-lg">
-				First Semester Results
-			</h2>
+
 			{student !== undefined && Object.entries(student).length !== 0 && (
 				<TableResults student={student} />
 			)}
+			<span
+				className="button-main button-main-medium no-display"
+				style={{
+					display: 'flex',
+					alignItems: 'center',
+					gap: '2rem',
+					width: '15rem',
+					marginTop: '2rem',
+				}}
+				onClick={() => window.print()}
+			>
+				<FaArrowDown />
+				Download
+			</span>
 			{exams.error === true && exams.errorMessage && (
 				<Failure message={exams.errorMessage} />
 			)}

@@ -1,8 +1,7 @@
 //importing react application
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { BsRepeat } from 'react-icons/bs';
-// import { useNavigate } from 'react-router-dom';
+import { FaArrowDown } from 'react-icons/fa';
 
 //importing the dispatcher functions
 import { getSpecialties } from '../../store/specialty/specialtySlice';
@@ -10,7 +9,9 @@ import { getDepartments } from './../../store/departments/departmentSlice';
 import { getPrograms } from '../../store/program/programSlice';
 import { getStudentsPerSearch } from '../../store/exams/examSlice';
 
-function SearchStudents({ styles }) {
+let TITLE = 'ALL STUDENTS';
+
+function SearchStudents({ styles, type = '' }) {
 	//create dispatch to dispatch actions and useSelect for getting out information
 	const dispatch = useDispatch();
 	const dropDownData = useSelector((state) => {
@@ -37,11 +38,11 @@ function SearchStudents({ styles }) {
 
 		//collecting search data
 		const searchData = {
-			specialty: spty.current.value,
-			department: dept.current.value,
-			program: pgm.current.value,
-			name: name.current.value,
-			level: level.current.value,
+			specialty: spty.current?.value,
+			department: dept.current?.value,
+			program: pgm.current?.value,
+			name: name.current?.value,
+			level: level.current?.value,
 		};
 
 		//clean the data
@@ -49,8 +50,15 @@ function SearchStudents({ styles }) {
 			if (searchData[x] === '') delete searchData[x];
 		}
 
-		console.log(searchData);
 		dispatch(getStudentsPerSearch(searchData));
+
+		if (pgm.current.value !== '') {
+			TITLE = 'STUDENT LIST: ' + pgm.current.selectedOptions[0].innerText;
+		} else if (dept.current.value !== '') {
+			TITLE = 'STUDENT LIST: ' + dept.current.selectedOptions[0].innerText;
+		} else if (spty.current.value !== '') {
+			TITLE = 'STUDENT LIST: ' + spty.current.selectedOptions[0].innerText;
+		}
 	};
 	//Get all specialties after initial render
 	useEffect(() => {
@@ -61,64 +69,84 @@ function SearchStudents({ styles }) {
 		// eslint-disable-next-line
 	}, [dispatch]);
 
+	const handlePrint = () => {
+		window.print();
+	};
 	return (
-		<form
-			action=""
-			name="search-category"
-			className={`search-category ${styles ? styles : ''}`}
-			onSubmit={handleSearch}
-		>
-			<input placeholder="Search by name" type="text" name="name" ref={name} />
-			<select name="level" ref={level}>
-				<option value="">Search by Level</option>
-				<option value="200">Level 200</option>
-				<option value="300">Level 300</option>
-				<option value="400">Level 400</option>
-			</select>
-
-			<select name="specialty" ref={spty}>
-				<option value="">Search by specialty</option>
-
-				{dropDownData?.specialty?.specialties?.data?.map((specialty) => {
-					return (
-						<option key={specialty._id} value={specialty._id}>
-							{specialty.name}
-						</option>
-					);
-				})}
-			</select>
-
-			<select name="department" ref={dept}>
-				<option value="">Search by departments</option>
-
-				{dropDownData?.departments?.departments?.data?.map((department) => {
-					return (
-						<option key={department._id} value={department._id}>
-							{department.name}
-						</option>
-					);
-				})}
-			</select>
-
-			<select name="program" ref={pgm}>
-				<option value="">Search by programs</option>
-
-				{dropDownData?.programs?.programs?.data?.map((program) => {
-					return (
-						<option key={program._id} value={program._id}>
-							{program.name}
-						</option>
-					);
-				})}
-			</select>
-
-			<button
-				className="button-main button-main-medium"
-				style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}
+		<React.Fragment>
+			<form
+				action=""
+				name="search-category"
+				className={`search-category ${styles ? styles : ''}`}
+				onSubmit={handleSearch}
 			>
-				Search
-			</button>
-		</form>
+				{type === '' && (
+					<React.Fragment>
+						<input
+							placeholder="Search by name"
+							type="text"
+							name="name"
+							ref={name}
+						/>
+						<select name="level" ref={level}>
+							<option value="">Search by Level</option>
+							<option value="200">Level 200</option>
+							<option value="300">Level 300</option>
+							<option value="400">Level 400</option>
+						</select>
+					</React.Fragment>
+				)}
+
+				<select name="specialty" ref={spty}>
+					<option value="">Search by specialty</option>
+
+					{dropDownData?.specialty?.specialties?.data?.map((specialty) => {
+						return (
+							<option key={specialty._id} value={specialty._id}>
+								{specialty.name}
+							</option>
+						);
+					})}
+				</select>
+
+				<select name="department" ref={dept}>
+					<option value="">Search by departments</option>
+
+					{dropDownData?.departments?.departments?.data?.map((department) => {
+						return (
+							<option key={department._id} value={department._id}>
+								{department.name}
+							</option>
+						);
+					})}
+				</select>
+
+				<select name="program" ref={pgm}>
+					<option value="">Search by programs</option>
+
+					{dropDownData?.programs?.programs?.data?.map((program) => {
+						return (
+							<option key={program._id} value={program._id}>
+								{program.name}
+							</option>
+						);
+					})}
+				</select>
+
+				<button className="button-main button-main-medium">Search</button>
+				{type === 'print' && (
+					<span
+						className="button-main button-main-medium"
+						style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}
+						onClick={handlePrint}
+					>
+						Download
+						<FaArrowDown />
+					</span>
+				)}
+			</form>
+			{type === 'print' && <h1 className="print-student-title">{TITLE}</h1>}
+		</React.Fragment>
 	);
 }
 

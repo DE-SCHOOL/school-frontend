@@ -7,6 +7,7 @@ import {
 	StudentList,
 	StudentView,
 	StudentEdit,
+	PrintList,
 } from '../../../screens/pages/students';
 
 //importing a protector component
@@ -46,6 +47,14 @@ function StudentRoute() {
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_OFFICE_STAFF}>
 						<StudentEdit />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/students/print"
+				element={
+					<Protected restrict={RIGHTS.TO_ALL_OFFICE_STAFF}>
+						< PrintList />
 					</Protected>
 				}
 			/>

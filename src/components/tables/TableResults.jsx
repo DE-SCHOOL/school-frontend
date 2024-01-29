@@ -44,7 +44,7 @@ function TableResults({ student }) {
 		//eslint-disable-next-line
 	}, [courses?.length]);
 	return (
-		<React.Fragment>
+		<div className='result-info'>
 			<table className="results mg-top">
 				<thead>
 					<tr>
@@ -116,7 +116,7 @@ function TableResults({ student }) {
 					<tbody></tbody>
 				</table>
 			</div>
-		</React.Fragment>
+		</div>
 	);
 }
 

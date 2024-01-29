@@ -76,7 +76,7 @@ const examSlice = createSlice({
 				state.errorMessage = action.payload?.error;
 			})
 			.addCase(getStudentsPerSearch.fulfilled, (state, action) => {
-				console.log(action.payload.data);
+				// console.log(action.payload.data);
 				state.students = action.payload.data;
 				state.student = {};
 				state.errorMessage = null;
