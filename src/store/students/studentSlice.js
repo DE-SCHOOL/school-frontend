@@ -8,6 +8,7 @@ const initialState = {
 	error: false,
 	isLoading: false,
 	errorMessage: null,
+	success: false,
 };
 
 export const getStudents = createAsyncThunk(
@@ -175,9 +176,12 @@ const studentSlice = createSlice({
 				// state.students = action.payload.data;
 				state.isLoading = false;
 				state.errorMessage = null;
+				state.success = true;
 			})
 			.addCase(addStudent.pending, (state, action) => {
 				state.isLoading = true;
+				state.success = false;
+
 			})
 			.addCase(addStudent.rejected, (state, action) => {
 				state.error = true;

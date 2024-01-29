@@ -81,3 +81,8 @@ table.table-print {
 	width: 80%;
 	margin: 0 auto;
 }
+@media screen and (max-width: 1000px) {
+	.stud-print {
+		width: 95%;
+	}
+}
