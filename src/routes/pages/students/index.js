@@ -8,6 +8,7 @@ import {
 	StudentView,
 	StudentEdit,
 	PrintList,
+	StudentRegister,
 } from '../../../screens/pages/students';
 
 //importing a protector component
@@ -37,9 +38,9 @@ function StudentRoute() {
 			<Route
 				path="/students/add"
 				element={
-					// <Protected restrict={RIGHTS.TO_ALL_OFFICE_STAFF} studOnly="allow">
-					<StudentAdd />
-					// </Protected>
+					<Protected restrict={RIGHTS.TO_ALL_OFFICE_STAFF} studOnly="allow">
+						<StudentAdd />
+					</Protected>
 				}
 			/>
 			<Route
@@ -54,8 +55,16 @@ function StudentRoute() {
 				path="/students/print"
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_OFFICE_STAFF}>
-						< PrintList />
+						<PrintList />
 					</Protected>
+				}
+			/>
+			<Route
+				path="/landmark/student-registration"
+				element={
+					// <Protected restrict={RIGHTS.TO_ALL_OFFICE_STAFF}>
+					<StudentRegister />
+					// </Protected>
 				}
 			/>
 		</Routes>

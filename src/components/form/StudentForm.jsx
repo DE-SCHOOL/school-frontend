@@ -8,6 +8,7 @@ import { addStudent } from '../../store/students/studentSlice';
 //import reactions
 // import {Failure} from '../signal';
 import Failure from './../signal/Failure';
+import Success from './../signal/Success';
 import Loader from '../loaders/Loader';
 
 //initialize default information
@@ -316,6 +317,7 @@ function StudentForm({ styles }) {
 			{studentss.error === true && studentss.errorMessage && (
 				<Failure message={studentss.errorMessage} />
 			)}
+			{studentss.success === true && <Success />}
 			{/* {studentss.error === false && setStaffData(defaultInfo)} */}
 			{studentss.isLoading && <Loader />}
 		</form>
