@@ -2,6 +2,20 @@
 form#student,
 form#teacher,
 form#department {
+	@media screen and (max-width: 750px) {
+		.form {
+			&-item {
+				width: 45% !important;
+			}
+		}
+	}
+	@media screen and (max-width: 500px) {
+		.form {
+			&-item {
+				width: 95% !important;
+			}
+		}
+	}
 	& .form {
 		display: flex;
 		gap: 2rem;
