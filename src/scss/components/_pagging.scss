@@ -12,10 +12,11 @@
 		align-items: center;
 
 		a {
-			padding: 1rem 1.5rem;
+			padding: 0.5rem.75rem;
 			border: 1px solid $color-primary;
 			text-decoration: none;
 			transition: 0.3s all;
+			font-size: 1.3rem;
 			&:hover {
 				color: $color-white;
 				background-color: $color-primary;

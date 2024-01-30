@@ -336,7 +336,9 @@ function TeacherFormEdit() {
 			<button className="button-main button-main-medium mg-top-md">
 				modify
 			</button>
-			{staffss.error === true && <Failure message={staffss.errorMessage} />}
+			{staffss.error === true && staffss.errorMessage && (
+				<Failure message={staffss.errorMessage} />
+			)}
 			{/* {staffss.error === false && setStaffData(defaultInfo)} */}
 			{staffss.isLoading && <Loader />}
 			{/* {staffss.success !== null && staffss.success > D<Success />} */}

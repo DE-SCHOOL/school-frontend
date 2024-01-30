@@ -31,7 +31,7 @@ function StudentList() {
 	const [studentsState, setStudentsState] = useState(students);
 
 	//Setting the default number of entries a user can see on the interface.
-	const [numPages, setNumPages] = useState(5);
+	const [numPages, setNumPages] = useState(25);
 
 	//useEffect to dispatch student data after initial render
 	useEffect(() => {
@@ -52,7 +52,7 @@ function StudentList() {
 					setData={setStudentsState}
 				/>
 			)}
-			<section className="students">
+			<section className="students mg-top-md">
 				{/* Section About, Download, Add, and Refresh */}
 				<SectionMainIntro
 					title="Students"

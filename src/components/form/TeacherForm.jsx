@@ -8,6 +8,10 @@ import Failure from '../signal/Failure';
 // import Success from '../signal/Success';
 import Loader from './../../components/loaders/Loader';
 
+import { rolePriority } from '../../utilities/restrict';
+const rle = JSON.parse(localStorage.getItem('loggedIn')).role;
+let priorityMatch = 0;
+
 //initialize default information
 const defaultInfo = {
 	gender: 'male',
@@ -51,6 +55,9 @@ function StaffForm({ type = '' }) {
 		dispatch(addStaff({ ...staffData }));
 		setStaffData(defaultInfo);
 	};
+
+	console.log(rle);
+	alert(rle);
 
 	return (
 		<form action="" name="form" id="teacher" onSubmit={handleAddStaff}>
@@ -236,11 +243,19 @@ function StaffForm({ type = '' }) {
 							})
 						}
 					>
-						<option value="lecturer">Lecturer</option>
+						{rolePriority.map(({ role, priority }, index) => {
+							if (role === rle && rle !== 'admin') {
+								priorityMatch = priority;
+							}
+							if (priorityMatch < priority)
+								return <option value={`${role}`}>{role}</option>;
+							return '';
+						})}
+						{/* <option value="lecturer">Lecturer</option>
 						<option value="secreteriat">Secreteriat</option>
 						<option value="hod">HOD</option>
 						<option value="director">Director</option>
-						<option value="admin">Admin</option>
+						<option value="admin">Admin</option> */}
 					</select>
 				</div>
 				<div className="form-item">
@@ -329,7 +344,9 @@ function StaffForm({ type = '' }) {
 			<button className="button-main button-main-medium mg-top-md">
 				submit
 			</button>
-			{staffss.error === true && <Failure message={staffss.errorMessage} />}
+			{staffss.error === true && staffss.errorMessage && (
+				<Failure message={staffss.errorMessage} />
+			)}
 			{/* {staffss.error === false && setStaffData(defaultInfo)} */}
 			{staffss.isLoading && <Loader />}
 			{/* {staffss.success !== null && staffss.success > D<Success />} */}
