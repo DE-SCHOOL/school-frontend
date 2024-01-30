@@ -107,7 +107,7 @@ function TableStaff({ styles, tableData, header, paggingNum }) {
 									</div>
 								</td>
 								<td>
-									<span className="text">{row.email}</span>
+									<span className="text email">{row.email}</span>
 								</td>
 								<td>
 									<span className="text">{getDateFromDateObject(row.dob)}</span>
