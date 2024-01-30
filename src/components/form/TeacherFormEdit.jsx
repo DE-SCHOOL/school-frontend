@@ -50,7 +50,7 @@ function TeacherFormEdit() {
 		  }`
 		: '2000-01-01';
 
-	console.log(teacher, dob);
+	// console.log(teacher, dob);
 	useEffect(() => {
 		dispatch(getStaff({ id: param.id }));
 	}, [dispatch, param.id]);

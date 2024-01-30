@@ -56,8 +56,8 @@ function StaffForm({ type = '' }) {
 		setStaffData(defaultInfo);
 	};
 
-	console.log(rle);
-	alert(rle);
+	// console.log(rle);
+	// alert(rle);
 
 	return (
 		<form action="" name="form" id="teacher" onSubmit={handleAddStaff}>
