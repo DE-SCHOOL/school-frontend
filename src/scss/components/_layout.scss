@@ -3,6 +3,10 @@
 	&.from-left {
 		margin: 3.5rem 3rem 2rem;
 		margin-left: 33rem;
+		transition: all 0.4s;
+	}
+	&.from-left-responsive {
+		margin-left: 3rem !important;
 	}
 
 	// background-color: red;

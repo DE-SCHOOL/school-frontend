@@ -67,10 +67,10 @@ function TableStudent({
 						<FaRightLeft onClick={() => handleSort('dob')} />
 						<span className="text">{header.dob}</span>
 					</th>
-					<th className={`${isSortedBy === 'parent_name' ? 'sorted' : ''}`}>
+					{/* <th className={`${isSortedBy === 'parent_name' ? 'sorted' : ''}`}>
 						<FaRightLeft onClick={() => handleSort('parent_name')} />
 						<span className="text">{header.parent}</span>
-					</th>
+					</th> */}
 					<th className={`${isSortedBy === 'tel' ? 'sorted' : ''}`}>
 						<FaRightLeft onClick={() => handleSort('tel')} />
 						<span className="text">{header.tel}</span>
@@ -113,13 +113,14 @@ function TableStudent({
 									<span className="text">{row.matricule}</span>
 								</td>
 								<td>
-									<div className="profile">
+									{/* <div className="profile">
 										<img
 											src={row?.profile ? row.profile : profile_default}
 											alt="Student Pic"
 										/>
-										<span className="text">{row.name}</span>
-									</div>
+										<span className="text name">{row.name}</span>
+									</div> */}
+									<span className="text name">{row.name}</span>
 								</td>
 								<td>
 									<span className="text">Level {row.level}</span>
@@ -127,9 +128,9 @@ function TableStudent({
 								<td>
 									<span className="text">{getDateFromDateObject(row.dob)}</span>
 								</td>
-								<td>
+								{/* <td>
 									<span className="text">{row.parent_name}</span>
-								</td>
+								</td> */}
 								<td>
 									<span className="text">{row.tel}</span>
 								</td>

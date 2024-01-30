@@ -12,6 +12,7 @@ import curPageReducer from './cur page/curPageSlice';
 import dashboardReducer from './dashboard/dashboardSlice';
 import markReducer from './marks/markSlice';
 import examReducer from './exams/examSlice';
+import uiStateReducer from './ui-state/ui-stateSlice';
 
 //CREATING THE VARIOUS REDUCERS
 const store = configureStore({
@@ -27,6 +28,7 @@ const store = configureStore({
 		dashboard: dashboardReducer,
 		marks: markReducer,
 		exams: examReducer,
+		uiState: uiStateReducer,
 	},
 });
 

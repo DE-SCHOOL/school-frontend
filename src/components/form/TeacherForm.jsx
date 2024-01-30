@@ -27,7 +27,7 @@ const defaultInfo = {
 	picture: 'n/a',
 };
 
-function StaffForm() {
+function StaffForm({ type = '' }) {
 	//initialize the main hooks
 	const [staffData, setStaffData] = useState(defaultInfo);
 	// const department = useRef();
@@ -318,10 +318,12 @@ function StaffForm() {
 						}
 					/>
 				</div>
-				<div className="form-item mg-top form-file">
-					<span className="text">Upload Teacher Photo (200px X 200px) </span>
-					<input type="file" name="profile" className="mg-top" />
-				</div>
+				{type === '' && (
+					<div className="form-item mg-top form-file">
+						<span className="text">Upload Teacher Photo (200px X 200px) </span>
+						<input type="file" name="profile" className="mg-top" />
+					</div>
+				)}
 			</div>
 
 			<button className="button-main button-main-medium mg-top-md">

@@ -1,5 +1,9 @@
 @use './../../scss/variables' as *;
 
+.left-nav-responsive {
+	width: 0rem !important;
+	transition: all 0.4s;
+}
 .left-nav {
 	background-color: $color-white;
 	width: 30rem;
@@ -8,6 +12,7 @@
 	overflow: auto;
 	top: 0;
 	left: 0;
+	transform: all 0.4s;
 	&::-webkit-scrollbar {
 		width: 0.5rem;
 	}
@@ -110,7 +115,6 @@
 			ul.open > h2 {
 				color: $color-primary !important;
 			}
-			
 		}
 	}
 	.section-main {

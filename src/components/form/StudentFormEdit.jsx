@@ -37,6 +37,7 @@ function StudentFormEdit({ styles }) {
 	}`;
 	//initialize the main hooks
 	const [studentData, setStudentData] = useState(defaultInfo);
+	const [dobN, setDOB] = useState('');
 	const specialty = useRef();
 	const DOB = useRef();
 	const name = useRef();
@@ -150,7 +151,8 @@ function StudentFormEdit({ styles }) {
 							ref={DOB}
 							autoComplete="date-of-birth"
 							defaultValue={dob}
-							value={dob}
+							value={dobN !== '' ? dobN : dob}
+							onChange={(e) => setDOB(e.target.value)}
 						/>
 					</div>
 				)}
