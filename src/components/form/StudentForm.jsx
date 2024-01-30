@@ -29,7 +29,7 @@ const defaultInfo = {
 	entry_certificate: '',
 };
 
-function StudentForm({ styles }) {
+function StudentForm({ styles, type = '' }) {
 	//create dispatch to dispatch actions and useSelect for getting out information
 	const dispatch = useDispatch();
 	const specialties = useSelector((state) => state.specialty.specialties.data);
@@ -51,7 +51,7 @@ function StudentForm({ styles }) {
 		dispatch(
 			addStudent({ ...studentData, specialty: specialty.current.value })
 		);
-		// setStudentData(defaultInfo);
+		setStudentData(defaultInfo);
 	};
 	return (
 		<form
@@ -306,10 +306,12 @@ function StudentForm({ styles }) {
 					</select>
 				</div>
 				{/* LET STUDENTS SEND THEIR INFORMATION */}
-				{/* <div className="form-item mg-top form-file">
-					<span className="text">Upload Student Photo (200px X 200px) </span>
-					<input type="file" name="profile" className="mg-top" />
-				</div> */}
+				{type === '' && (
+					<div className="form-item mg-top form-file">
+						<span className="text">Upload Student Photo (200px X 200px) </span>
+						<input type="file" name="profile" className="mg-top" />
+					</div>
+				)}
 			</div>
 			<button className="button-main button-main-medium mg-top-md">
 				submit

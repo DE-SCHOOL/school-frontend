@@ -34,7 +34,9 @@ table {
 				// padding-left: .3rem;
 				// border: 1px solid blue;
 				// padding: 0 ;
-
+				text-transform: uppercase;
+				// text-transform: capitalize !important;
+				font-size: 1.4rem;
 				&:first-child {
 					padding-left: 1.5rem;
 				}

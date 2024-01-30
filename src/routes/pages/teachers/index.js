@@ -4,7 +4,8 @@ import {
 	TeacherAdd,
 	TeacherList,
 	TeacherView,
-	TeacherEdit
+	TeacherEdit,
+	// TeacherRegister,
 } from '../../../screens/pages/teachers';
 
 //importing a protector component
@@ -24,6 +25,14 @@ function TeacherRoute() {
 					</Protected>
 				}
 			/>
+			{/* <Route
+				path="/landmark/staff-registration"
+				element={
+					// <Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
+					<TeacherRegister />
+					// </Protected>
+				}
+			/> */}
 			<Route
 				exact
 				path="/teachers/list"

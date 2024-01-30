@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import './../styles/main.scss';
 import { loggedIn } from '../../store/auth/authSlice';
 
+import { toggleLeftNav } from '../../store/ui-state/ui-stateSlice';
+
 function MainNav() {
 	const authUser = useSelector((state) => state.auth);
 	// console.log(authUser);
@@ -29,7 +31,10 @@ function MainNav() {
 	return (
 		<nav className="main-nav">
 			<div className="main-nav__left">
-				<button className="button-main">
+				<button
+					className="button-main"
+					onClick={() => dispatch(toggleLeftNav())}
+				>
 					<FaBars className="main-nav__responsive" />
 				</button>
 				<form

@@ -8,7 +8,7 @@ function StudentRegister() {
 			<SectionIntro title="Registration" main="Student" sub="register" />
 			<section className="students mg-top">
 				<h2 className="header-secondary">Student Information</h2>
-				<StudentForm styles="mg-top-md" />
+				<StudentForm styles="mg-top-md" type="self" />
 			</section>
 		</div>
 	);
