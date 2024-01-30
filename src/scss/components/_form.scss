@@ -4,6 +4,7 @@ form#teacher,
 form#department {
 	@media screen and (max-width: 750px) {
 		.form {
+			justify-content: center;
 			&-item {
 				width: 45% !important;
 			}
@@ -11,6 +12,7 @@ form#department {
 	}
 	@media screen and (max-width: 500px) {
 		.form {
+			justify-content: center;
 			&-item {
 				width: 95% !important;
 			}

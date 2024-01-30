@@ -9,7 +9,7 @@ import Failure from '../signal/Failure';
 import Loader from './../../components/loaders/Loader';
 
 import { rolePriority } from '../../utilities/restrict';
-const rle = JSON.parse(localStorage.getItem('loggedIn')).role;
+const rle = JSON.parse(localStorage.getItem('loggedIn'))?.role;
 let priorityMatch = 0;
 
 //initialize default information
