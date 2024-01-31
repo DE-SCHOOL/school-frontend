@@ -4,16 +4,30 @@ import TablePrint from '../../../components/tables/TablePrint';
 import SearchStudents from '../../../components/search/SearchStudents';
 import { getStudentsExam } from '../../../store/exams/examSlice';
 
+import Loader from '../../../components/loaders/Loader';
+import Button from '../../../components/buttons/Button';
+
 function StudentList() {
 	//Defining the dispatch function, and the useSelector to get students data
 	const dispatch = useDispatch();
 	const students = useSelector((state) => state.exams.students);
+	const load = useSelector((state) => state.exams);
+	const [scroll, setScroll] = useState(0);
 
 	//useEffect to dispatch student data after initial render
 	useEffect(() => {
 		dispatch(getStudentsExam());
 	}, [dispatch]);
 
+	window.onscroll = () => {
+		if (window.scrollY > 200) {
+			setScroll(1);
+		} else {
+			setScroll(0);
+		}
+	};
+
+	console.log(scroll);
 	return (
 		<div className="stud-print">
 			<SearchStudents styles={'mg-top-md mg-bt-md'} type="print" />
@@ -24,6 +38,8 @@ function StudentList() {
 					<TablePrint styles="mg-top" tableData={students} />
 				)}
 			</section>
+			<Button styles={scroll} />
+			{load.isLoading && <Loader />}
 		</div>
 	);
 }

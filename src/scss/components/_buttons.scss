@@ -1,0 +1,36 @@
+@use './../variables' as *;
+
+button.arrow-up {
+	height: 6rem;
+	width: 6rem;
+	border-radius: 1rem;
+	background-color: $color-primary;
+	color: $color-white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	outline: none;
+	position: fixed;
+	bottom: 2rem;
+	right: 2rem;
+	transition: all 0.4s;
+	cursor: pointer;
+
+	&:hover {
+		background-color: $color-primary-dark;
+		transform: translateY(-1rem);
+	}
+
+	svg {
+		font-size: 4rem;
+		font-weight: bold;
+	}
+}
+
+button.hide {
+	opacity: 0;
+}
+button.show {
+	opacity: 1;
+}

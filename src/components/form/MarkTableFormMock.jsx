@@ -79,7 +79,7 @@ function MarkTableFormMock({ students, length, semester }) {
 								return (
 									<tr key={index}>
 										<td>{index + 1}</td>
-										<td>
+										<td className="stud-name">
 											{sheet?.student.name} ({sheet?.student.matricule})
 										</td>
 										<td>{sheet?.student.level}</td>

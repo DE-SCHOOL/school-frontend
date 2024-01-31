@@ -82,6 +82,8 @@ form#department {
 .table-form {
 	table.marks {
 		border-collapse: collapse;
+		table-layout: auto;
+		width: fit-contents;
 		thead {
 			background-color: $color-primary;
 			color: $color-white;
@@ -93,6 +95,24 @@ form#department {
 				text-align: center;
 				border: 1px solid $color-primary;
 				padding: 0.5rem;
+			}
+			th.sort-name {
+				.text {
+					margin-left: 3rem;
+				}
+				svg {
+					transform: rotate(90deg);
+				}
+				@media print {
+					svg {
+						display: none;
+					}
+				}
+			}
+			td.stud-name {
+				text-align: left;
+				padding-left: 2rem;
+				text-transform: uppercase;
 			}
 			input {
 				width: 100%;

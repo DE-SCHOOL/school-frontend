@@ -81,21 +81,19 @@ function SearchStudents({ styles, type = '' }) {
 				onSubmit={handleSearch}
 			>
 				{type === '' && (
-					<React.Fragment>
-						<input
-							placeholder="Search by name"
-							type="text"
-							name="name"
-							ref={name}
-						/>
-						<select name="level" ref={level}>
-							<option value="">Search by Level</option>
-							<option value="200">Level 200</option>
-							<option value="300">Level 300</option>
-							<option value="400">Level 400</option>
-						</select>
-					</React.Fragment>
+					<input
+						placeholder="Search by name"
+						type="text"
+						name="name"
+						ref={name}
+					/>
 				)}
+				<select name="level" ref={level}>
+					<option value="">Search by Level</option>
+					<option value="200">Level 200</option>
+					<option value="300">Level 300</option>
+					<option value="400">Level 400</option>
+				</select>
 
 				<select name="specialty" ref={spty}>
 					<option value="">Search by specialty</option>
