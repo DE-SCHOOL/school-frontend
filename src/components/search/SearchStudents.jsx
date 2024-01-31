@@ -10,6 +10,7 @@ import { getPrograms } from '../../store/program/programSlice';
 import { getStudentsPerSearch } from '../../store/exams/examSlice';
 
 let TITLE = 'ALL STUDENTS';
+let LEVEL = '';
 
 function SearchStudents({ styles, type = '' }) {
 	//create dispatch to dispatch actions and useSelect for getting out information
@@ -51,6 +52,10 @@ function SearchStudents({ styles, type = '' }) {
 		}
 
 		dispatch(getStudentsPerSearch(searchData));
+
+		if (level.current?.value !== '') {
+			LEVEL = ' - Level ' + level.current?.value;
+		}
 
 		if (pgm.current.value !== '') {
 			TITLE = 'STUDENT LIST: ' + pgm.current.selectedOptions[0].innerText;
@@ -143,7 +148,9 @@ function SearchStudents({ styles, type = '' }) {
 					</span>
 				)}
 			</form>
-			{type === 'print' && <h1 className="print-student-title">{TITLE}</h1>}
+			{type === 'print' && (
+				<h1 className="print-student-title">{TITLE + LEVEL}</h1>
+			)}
 		</React.Fragment>
 	);
 }

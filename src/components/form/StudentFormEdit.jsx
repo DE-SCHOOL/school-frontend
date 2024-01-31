@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSpecialties } from '../../store/specialty/specialtySlice';
 import { editStudent, getStudent } from '../../store/students/studentSlice';
 
+import { getDateFromDateObject } from '../../utilities/getDate';
+
 //import reactions
 import Failure from '../signal/Failure';
 import Loader from '../loaders/Loader';
@@ -53,7 +55,8 @@ function StudentFormEdit({ styles }) {
 	const level = useRef();
 	const gender = useRef();
 
-	// console.log(studentData, 'DATA');
+	console.log(dob);
+	console.log(dobN);
 
 	//Get all specialties after initial render
 	useEffect(() => {
@@ -150,8 +153,12 @@ function StudentFormEdit({ styles }) {
 							name="date-of-birth"
 							ref={DOB}
 							autoComplete="date-of-birth"
-							defaultValue={dob}
-							value={dobN !== '' ? dobN : dob}
+							defaultValue={getDateFromDateObject(dob, -1)}
+							value={
+								dobN !== ''
+									? getDateFromDateObject(dobN, -1)
+									: getDateFromDateObject(dob, -1)
+							}
 							onChange={(e) => setDOB(e.target.value)}
 						/>
 					</div>
