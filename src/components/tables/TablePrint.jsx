@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaRightLeft } from 'react-icons/fa6';
 
 import { sortArrayObject } from '../../utilities/sortingInfo';
+import { getDateFromDateObject } from '../../utilities/getDate';
 
 let DATA_CONST;
 
@@ -36,16 +37,21 @@ function TablePrint({ tableData }) {
 						<FaRightLeft onClick={() => handleSort('name')} />
 						<span className="text">Student Name</span>
 					</th>
-					<th className={`${isSortedBy === 'tel' ? 'sorted' : ''}`}>
-						<FaRightLeft onClick={() => handleSort('tel')} />
-						<span className="text">Phone No</span>
+					<th className={`${isSortedBy === 'pob' ? 'sorted' : ''}`}>
+						<FaRightLeft onClick={() => handleSort('pob')} />
+						<span className="text">POB</span>
 					</th>
 					<th className={`${isSortedBy === 'gender' ? 'sorted' : ''}`}>
 						<FaRightLeft onClick={() => handleSort('gender')} />
 						<span className="text">Gender</span>
 					</th>
-					<th>
-						<span className="text">Information</span>
+					<th className={`${isSortedBy === 'dob' ? 'sorted' : ''}`}>
+						<FaRightLeft onClick={() => handleSort('dob')} />
+						<span className="text">DOB</span>
+					</th>
+					<th className={`${isSortedBy === 'level' ? 'sorted' : ''}`}>
+						<FaRightLeft onClick={() => handleSort('level')} />
+						<span className="text">Level</span>
 					</th>
 				</tr>
 			</thead>
@@ -63,13 +69,18 @@ function TablePrint({ tableData }) {
 								<span className="text">{student.name}</span>
 							</td>
 							<td>
-								<span className="text">{student.tel}</span>
+								<span className="text">{student.pob}</span>
 							</td>
 							<td>
 								<span className="text caps">{student.gender}</span>
 							</td>
 							<td>
-								<span className="text"></span>
+								<span className="text">
+									{getDateFromDateObject(student.dob)}
+								</span>
+							</td>
+							<td>
+								<span className="text caps">{student.level}</span>
 							</td>
 						</tr>
 					);

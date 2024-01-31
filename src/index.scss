@@ -4,8 +4,10 @@
 //MY STYLES
 @import './scss/main.scss';
 
-
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 		monospace;
+}
+body, html {
+	scroll-behavior: smooth;
 }
