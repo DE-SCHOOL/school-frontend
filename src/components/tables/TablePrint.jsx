@@ -49,10 +49,6 @@ function TablePrint({ tableData }) {
 						<FaRightLeft onClick={() => handleSort('dob')} />
 						<span className="text">DOB</span>
 					</th>
-					<th className={`${isSortedBy === 'level' ? 'sorted' : ''}`}>
-						<FaRightLeft onClick={() => handleSort('level')} />
-						<span className="text">Level</span>
-					</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -78,9 +74,6 @@ function TablePrint({ tableData }) {
 								<span className="text">
 									{getDateFromDateObject(student.dob)}
 								</span>
-							</td>
-							<td>
-								<span className="text caps">{student.level}</span>
 							</td>
 						</tr>
 					);
