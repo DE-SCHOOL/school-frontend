@@ -1,6 +1,6 @@
 //get date as MM-DD-YYYY
 
-export const getDateFromDateObject = (Obj) => {
+export const getDateFromDateObject = (Obj, spec = 0) => {
 	let dateObj = new Date(Obj);
 	const year = dateObj.getFullYear();
 
@@ -10,7 +10,10 @@ export const getDateFromDateObject = (Obj) => {
 
 	//format day
 	let day = dateObj.getDate();
-	day = day < 10 ? `0${day}` : day;
+	day = day < 10 ? `0${day + spec}` : day + spec;
 
-	return `${month}-${day}-${year}`;
+	// console.log(`${year}-${month}-${day}`);
+	if (spec === 0) return `${month}-${day}-${year}`;
+
+	return `${year}-${month}-${day}`;
 };
