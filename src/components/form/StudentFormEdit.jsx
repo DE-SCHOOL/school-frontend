@@ -154,11 +154,7 @@ function StudentFormEdit({ styles }) {
 							ref={DOB}
 							autoComplete="date-of-birth"
 							defaultValue={getDateFromDateObject(dob, -1)}
-							value={
-								dobN !== ''
-									? getDateFromDateObject(dobN, -1)
-									: getDateFromDateObject(dob, -1)
-							}
+							value={dobN !== '' ? dobN : getDateFromDateObject(dob, -1)}
 							onChange={(e) => setDOB(e.target.value)}
 						/>
 					</div>
