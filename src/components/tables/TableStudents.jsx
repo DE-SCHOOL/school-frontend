@@ -2,10 +2,9 @@
 import React, { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { FaRightLeft } from 'react-icons/fa6';
-import { BsEyeFill, BsFillPenFill } from 'react-icons/bs';
-
-//importing default profile image
-import { profile_default } from '../../assets/images';
+import { BsEyeFill, BsFillPenFill, BsFillTrash3Fill } from 'react-icons/bs';
+import { useSelector, useDispatch } from 'react-redux';
+import { setDeleteEntity } from '../../store/ui-state/ui-stateSlice';
 
 //importing utility functions
 import { getDateFromDateObject } from '../../utilities/getDate';
@@ -28,6 +27,8 @@ function TableStudent({
 	//Declaring set params
 	const [searchParams] = useSearchParams();
 	const curPage = searchParams.get('curPage');
+	const user = useSelector((state) => state.auth.user);
+	const dispatch = useDispatch();
 
 	//Defining function to complete sorting
 	if (tableData.length === studentData.length) {
@@ -47,7 +48,7 @@ function TableStudent({
 		<table className={`standard ${styles ? styles : ''}`}>
 			{/* Table heading */}
 			<thead>
-				<tr className="head">
+				<tr className="head stud">
 					{/* <th className={`${isSortedBy === 'matricule' ? 'sorted' : ''}`}>
 						<input type="checkbox" name="check" id="check-all" />
 					</th> */}
@@ -144,11 +145,27 @@ function TableStudent({
 									<td>
 										<div className="actions">
 											<Link to={`/students/view/${row._id}`}>
-												<BsEyeFill />
+												<BsEyeFill className="view" />
 											</Link>
 											<Link to={`/students/edit/${row._id}`}>
-												<BsFillPenFill />
+												<BsFillPenFill className="edit" />
 											</Link>
+											{user.role === 'admin' && (
+												<Link
+													to="#"
+													onClick={() =>
+														dispatch(
+															setDeleteEntity({
+																deleteID: row._id,
+																type: 'student',
+																deleteName: row.name,
+															})
+														)
+													}
+												>
+													<BsFillTrash3Fill className="delete" />
+												</Link>
+											)}
 										</div>
 									</td>
 								)}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaRightLeft } from 'react-icons/fa6';
-import { BsEyeFill, BsFillPenFill } from 'react-icons/bs';
+import { BsEyeFill, BsFillPenFill, BsFillTrash3Fill } from 'react-icons/bs';
+import { useDispatch, useSelector } from 'react-redux';
 
 //importing the search param function
 import { useSearchParams, Link } from 'react-router-dom';
@@ -9,12 +10,15 @@ import { useSearchParams, Link } from 'react-router-dom';
 
 //Utility functions
 import { sortArrayObject } from '../../utilities/sortingInfo';
+import { setDeleteEntity } from '../../store/ui-state/ui-stateSlice';
 
 let DATA_CONST;
 function TableDepartment({ styles, tableData, header, paggingNum }) {
 	//declaring state variables
 	const [isSortedBy, setIsSortedBy] = useState('');
 	const [staffData, setStaffData] = useState(tableData.map((dt) => dt));
+	const user = useSelector((state) => state.auth.user);
+	const dispatch = useDispatch();
 
 	//search params function in action
 	const [searchParams] = useSearchParams();
@@ -80,11 +84,27 @@ function TableDepartment({ styles, tableData, header, paggingNum }) {
 								<td>
 									<div className="actions">
 										<Link to={`/departments/view/${row._id}`}>
-											<BsEyeFill />
+											<BsEyeFill className="view" />
 										</Link>
 										<Link to={`/departments/edit/${row._id}`}>
-											<BsFillPenFill />
+											<BsFillPenFill className="edit" />
 										</Link>
+										{user.role === 'admin' && (
+											<Link
+												to="#"
+												onClick={() =>
+													dispatch(
+														setDeleteEntity({
+															deleteID: row._id,
+															type: 'department',
+															deleteName: row.name,
+														})
+													)
+												}
+											>
+												<BsFillTrash3Fill className="delete" />
+											</Link>
+										)}
 									</div>
 								</td>
 							</tr>

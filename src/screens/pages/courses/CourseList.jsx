@@ -10,6 +10,9 @@ import { PaggingNumSelect, Paggination } from './../../../components/pagging/';
 import SearchCategory from '../../../components/search/SearchCategory';
 import { TableCourses } from '../../../components/tables/';
 
+import DeleteModal from '../../../components/mod/DeleteModal';
+import Loader from './../../../components/loaders/Loader';
+
 const courseHeader = {
 	id: 'Code',
 	name: 'Name',
@@ -25,6 +28,8 @@ function CourseList() {
 	//Defining the dispatch function, and the useSelector to get students data
 	const dispatch = useDispatch();
 	const courses = useSelector((state) => state.courses.courses.data);
+	const uiState = useSelector((state) => state.uiState.deleteOpt);
+	const isLoading = useSelector((state) => state.courses.isLoading);
 
 	//saving the student data in a useState
 	const [coursesState, setCoursesState] = useState([]);
@@ -85,6 +90,14 @@ function CourseList() {
 					/>
 				)}
 			</section>
+			{uiState.type === 'course' && (
+				<DeleteModal
+					type={uiState.type}
+					id={uiState.deleteID}
+					name={uiState.deleteName}
+				/>
+			)}
+			{isLoading && <Loader />}
 		</Layout>
 	);
 }

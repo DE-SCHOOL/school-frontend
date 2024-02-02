@@ -4,6 +4,11 @@ table {
 	&.standard {
 		border-collapse: collapse;
 		width: 100%;
+		tr.stud {
+			th {
+				text-align: center;
+			}
+		}
 		tr {
 			// border: 1px solid black;
 			// padding: 3rem 0rem !important;
@@ -27,6 +32,7 @@ table {
 					color: $color-primary;
 				}
 			}
+			// th.students
 			th,
 			td {
 				text-align: left;
@@ -58,7 +64,7 @@ table {
 						display: flex;
 						// justify-content: center;
 						align-items: center;
-						gap: 4rem;
+						gap: 2rem;
 
 						a {
 							// border: 1px solid black;
@@ -74,6 +80,7 @@ table {
 
 							background-color: $color-grey-light;
 						}
+						
 					}
 					div.results {
 						justify-content: center;

@@ -1,0 +1,82 @@
+@use './../variables' as *;
+
+.mo {
+	height: 100vh;
+	width: 99vw;
+	position: fixed;
+	left: 0;
+	top: 0;
+	backdrop-filter: blur(10px);
+	.modal {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 50rem;
+		padding: 2rem;
+		background-color: $color-dark;
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+		transition: all 0.4s;
+		border-radius: 2rem;
+		&-text {
+			text-align: justify;
+			line-height: 1.7;
+			color: $color-white;
+			font-weight: 100;
+			span {
+				font-weight: 900;
+			}
+		}
+		input[type='text'] {
+			box-sizing: border-box;
+			padding: 0.7rem 1rem;
+			width: 100%;
+			border-radius: 100px;
+			background-color: lighten($color-dark, 5);
+			color: $color-white;
+			border: 2px solid $color-white;
+			outline: 2px solid $color-grey-light;
+			font-family: $font-styles;
+			font-size: 1.6rem;
+			letter-spacing: 1px;
+		}
+		.action-btn {
+			margin-top: auto;
+			display: flex;
+			gap: 2rem;
+			justify-content: flex-end;
+			.cancel,
+			.confirm {
+				padding: 1rem 1.4rem;
+				font-family: $font-styles;
+				font-size: 1.5rem;
+				border-radius: 100px;
+				border: none;
+				transition: all 0.4s ease-in;
+				cursor: pointer;
+				color: $color-white;
+			}
+			.cancel {
+				background-color: $color-primary;
+				&:hover {
+					background-color: darken($color-primary, 10);
+				}
+			}
+			.confirm {
+				&:disabled {
+					cursor: not-allowed;
+					background-color: transparent;
+					border: 2px solid $color-grey-light;
+				}
+			}
+			.con-btn {
+				background-color: $color-failed;
+				&:hover {
+					background-color: darken($color-failed, 10);
+				}
+			}
+		}
+	}
+}

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FaRightLeft } from 'react-icons/fa6';
 import { useDispatch } from 'react-redux';
-import { BsEyeFill, BsFillPenFill } from 'react-icons/bs';
+import { BsEyeFill, BsFillPenFill, BsFillTrash3Fill } from 'react-icons/bs';
 import { setCurData } from '../../store/cur page/curPageSlice';
+import { useSelector } from 'react-redux';
 
 //importing the search param function
 import { useSearchParams, Link } from 'react-router-dom';
@@ -11,13 +12,14 @@ import { useSearchParams, Link } from 'react-router-dom';
 
 //Utility functions
 import { sortArrayObject } from '../../utilities/sortingInfo';
+import { setDeleteEntity } from '../../store/ui-state/ui-stateSlice';
 
 let DATA_CONST;
 function TablePrograms({ styles, tableData, header, paggingNum }) {
 	//declaring state variables
 	const [isSortedBy, setIsSortedBy] = useState('');
 	const [staffData, setStaffData] = useState(tableData.map((dt) => dt));
-
+	const user = useSelector((state) => state.auth.user);
 	const dispatch = useDispatch();
 
 	//search params function in action
@@ -44,7 +46,7 @@ function TablePrograms({ styles, tableData, header, paggingNum }) {
 	return (
 		<table className={`standard ${styles ? styles : ''}`}>
 			<thead>
-				<tr className="head course--row">
+				<tr className="head">
 					<th className={`${isSortedBy === 'name' ? 'sorted' : ''}`}>
 						<FaRightLeft onClick={() => handleSort('name')} />
 						<span className="text">{header.name}</span>
@@ -70,7 +72,7 @@ function TablePrograms({ styles, tableData, header, paggingNum }) {
 					// console.log(row);
 					if (index >= (temp - 1) * paggingNum && index < temp * paggingNum)
 						return (
-							<tr key={index} className="course--row">
+							<tr key={index} className="">
 								<td>
 									<span className="text">{row.name}</span>
 								</td>
@@ -83,11 +85,27 @@ function TablePrograms({ styles, tableData, header, paggingNum }) {
 								<td>
 									<div className="actions">
 										<Link to={`/programs/view/${row._id}`}>
-											<BsEyeFill />
+											<BsEyeFill className="view" />
 										</Link>
 										<Link to={`/programs/edit/${row._id}`}>
-											<BsFillPenFill />
+											<BsFillPenFill className="edit" />
 										</Link>
+										{user.role === 'admin' && (
+											<Link
+												to="#"
+												onClick={() =>
+													dispatch(
+														setDeleteEntity({
+															deleteID: row._id,
+															type: 'program',
+															deleteName: row.name,
+														})
+													)
+												}
+											>
+												<BsFillTrash3Fill className="delete" />
+											</Link>
+										)}
 									</div>
 								</td>
 							</tr>

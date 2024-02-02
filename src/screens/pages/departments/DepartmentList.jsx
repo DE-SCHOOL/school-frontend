@@ -14,6 +14,9 @@ import { PaggingNumSelect, Paggination } from './../../../components/pagging/';
 import SearchCategory from '../../../components/search/SearchCategory';
 import { TableDepartment } from '../../../components/tables/';
 
+import DeleteModal from '../../../components/mod/DeleteModal';
+import Loader from './../../../components/loaders/Loader';
+
 //initializing table header information
 const departmentHeader = {
 	name: 'Name',
@@ -26,6 +29,8 @@ function DepartmentList() {
 		(state) => state.departments.departments.data
 	);
 	const dispatch = useDispatch();
+	const uiState = useSelector((state) => state.uiState.deleteOpt);
+	const isLoading = useSelector((state) => state.departments.isLoading);
 
 	// console.log(departments, 123);
 
@@ -79,6 +84,14 @@ function DepartmentList() {
 					/>
 				)}
 			</section>
+			{uiState.type === 'department' && (
+				<DeleteModal
+					type={uiState.type}
+					id={uiState.deleteID}
+					name={uiState.deleteName}
+				/>
+			)}
+			{isLoading && <Loader />}
 		</Layout>
 	);
 }

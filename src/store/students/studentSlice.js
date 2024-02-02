@@ -138,6 +138,22 @@ export const getStudent = createAsyncThunk(
 	}
 );
 
+export const deleteStudent = createAsyncThunk(
+	'student/deleteStudent',
+	async ({ id }, thunkAPI) => {
+		try {
+			const res = await apiRequest('delete', `/api/v1/student/${id}`);
+			// console.log(res.data, 111111);
+			return res.data;
+		} catch (err) {
+			let error = err.response.data?.message;
+			// console.log(err, 'message');
+			error = error ? error : 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+
 const studentSlice = createSlice({
 	name: 'student',
 	initialState,
@@ -155,6 +171,20 @@ const studentSlice = createSlice({
 				state.isLoading = true;
 			})
 			.addCase(getStudents.fulfilled, (state, action) => {
+				state.students = action.payload.data;
+				state.student = {};
+				state.isLoading = false;
+				state.errorMessage = null;
+			})
+			.addCase(deleteStudent.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error;
+			})
+			.addCase(deleteStudent.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(deleteStudent.fulfilled, (state, action) => {
 				state.students = action.payload.data;
 				state.student = {};
 				state.isLoading = false;
@@ -181,7 +211,6 @@ const studentSlice = createSlice({
 			.addCase(addStudent.pending, (state, action) => {
 				state.isLoading = true;
 				state.success = false;
-
 			})
 			.addCase(addStudent.rejected, (state, action) => {
 				state.error = true;

@@ -81,6 +81,22 @@ export const editPrograms = createAsyncThunk(
 	}
 );
 
+export const deleteProgram = createAsyncThunk(
+	'program/deleteProgram',
+	async ({ id }, thunkAPI) => {
+		try {
+			const res = await apiRequest('delete', `/api/v1/program/${id}`);
+			// console.log(res.data, 111111);
+			return res.data;
+		} catch (err) {
+			let error = err.response.data?.message;
+			// console.log(err, 'message');
+			error = error ? error : 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+
 const programSlice = createSlice({
 	name: 'program',
 	initialState,
@@ -98,6 +114,21 @@ const programSlice = createSlice({
 				state.isLoading = true;
 			})
 			.addCase(getPrograms.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error;
+			})
+			.addCase(deleteProgram.fulfilled, (state, action) => {
+				state.programs = action.payload;
+				state.program = {};
+				state.isLoading = false;
+				state.errorMessage = null;
+			})
+			.addCase(deleteProgram.pending, (state, action) => {
+				// console.log(action.payload);
+				state.isLoading = true;
+			})
+			.addCase(deleteProgram.rejected, (state, action) => {
 				state.error = true;
 				state.isLoading = false;
 				state.errorMessage = action.payload?.error;

@@ -7,7 +7,7 @@ import { getStudentsExam } from '../../../store/exams/examSlice';
 import Loader from '../../../components/loaders/Loader';
 import Button from '../../../components/buttons/Button';
 
-function StudentList() {
+function PrintList() {
 	//Defining the dispatch function, and the useSelector to get students data
 	const dispatch = useDispatch();
 	const students = useSelector((state) => state.exams.students);
@@ -44,4 +44,4 @@ function StudentList() {
 	);
 }
 
-export default StudentList;
+export default PrintList;
