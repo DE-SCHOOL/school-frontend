@@ -14,6 +14,9 @@ import { PaggingNumSelect, Paggination } from './../../../components/pagging/';
 import SearchCategory from '../../../components/search/SearchCategory';
 import { TableStaff } from '../../../components/tables/';
 
+import Loader from './../../../components/loaders/Loader';
+import DeleteModal from '../../../components/mod/DeleteModal';
+
 //initializing table header information
 const staffHeader = {
 	id: 'Matricule',
@@ -30,6 +33,9 @@ const staffHeader = {
 
 function TeacherList() {
 	const staffs = useSelector((state) => state.staffs.teachers.data);
+	const isLoading = useSelector((state) => state.staffs.isLoading);
+	const uiState = useSelector((state) => state.uiState.deleteOpt);
+	console.log(staffs, isLoading);
 	const dispatch = useDispatch();
 
 	const [staffsState, setStaffsState] = useState([]);
@@ -77,6 +83,14 @@ function TeacherList() {
 						}
 					/>
 				)}
+				{uiState.type === 'staff' && (
+					<DeleteModal
+						type={uiState.type}
+						id={uiState.deleteID}
+						name={uiState.deleteName}
+					/>
+				)}
+				{isLoading && <Loader />}
 			</section>
 		</Layout>
 	);

@@ -89,6 +89,22 @@ export const editSpecialty = createAsyncThunk(
 	}
 );
 
+export const deleteSpecialty = createAsyncThunk(
+	'specialty/deleteSpecialty',
+	async ({ id }, thunkAPI) => {
+		try {
+			const res = await apiRequest('delete', `/api/v1/specialty/${id}`);
+			// console.log(res.data, 111111);
+			return res.data;
+		} catch (err) {
+			let error = err.response.data?.message;
+			// console.log(err, 'message');
+			error = error ? error : 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+
 const specialtySlice = createSlice({
 	name: 'specialty',
 	initialState,
@@ -125,6 +141,20 @@ const specialtySlice = createSlice({
 				state.errorMessage = null;
 			})
 			.addCase(getSpecialty.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error || action.payload;
+			})
+			.addCase(deleteSpecialty.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(deleteSpecialty.fulfilled, (state, action) => {
+				state.specialties = action.payload;
+				state.specialty = [];
+				state.isLoading = false;
+				state.errorMessage = null;
+			})
+			.addCase(deleteSpecialty.rejected, (state, action) => {
 				state.error = true;
 				state.isLoading = false;
 				state.errorMessage = action.payload?.error || action.payload;

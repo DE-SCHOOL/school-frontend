@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FaRightLeft } from 'react-icons/fa6';
 import { useDispatch } from 'react-redux';
-import { BsFillPenFill } from 'react-icons/bs';
+import { BsFillPenFill, BsFillTrash3Fill } from 'react-icons/bs';
 import { setCurData } from '../../store/cur page/curPageSlice';
+import { useSelector } from 'react-redux';
 
 //importing the search param function
 import { useSearchParams, Link } from 'react-router-dom';
@@ -11,6 +12,7 @@ import { useSearchParams, Link } from 'react-router-dom';
 
 //Utility functions
 import { sortArrayObject } from '../../utilities/sortingInfo';
+import { setDeleteEntity } from '../../store/ui-state/ui-stateSlice';
 
 let DATA_CONST;
 function TableStaff({
@@ -23,6 +25,7 @@ function TableStaff({
 	//declaring state variables
 	const [isSortedBy, setIsSortedBy] = useState('');
 	const [staffData, setStaffData] = useState(tableData.map((dt) => dt));
+	const user = useSelector((state) => state.auth.user);
 
 	const dispatch = useDispatch();
 
@@ -188,11 +191,27 @@ function TableStaff({
 								)}
 								{tableType === 'all' && (
 									<td style={{ textAlign: 'center' }}>
-										{/* <div className="actions"> */}
-										<Link to={`/courses/edit/${row._id}`}>
-											<BsFillPenFill />
-										</Link>
-										{/* </div> */}
+										<div className="actions">
+											<Link to={`/courses/edit/${row._id}`}>
+												<BsFillPenFill className="edit" />
+											</Link>
+											{user.role === 'admin' && (
+												<Link
+													to="#"
+													onClick={() =>
+														dispatch(
+															setDeleteEntity({
+																deleteID: row._id,
+																type: 'course',
+																deleteName: row.name,
+															})
+														)
+													}
+												>
+													<BsFillTrash3Fill className="delete" />
+												</Link>
+											)}
+										</div>
 									</td>
 								)}
 							</tr>

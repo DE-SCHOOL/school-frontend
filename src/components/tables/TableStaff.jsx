@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaRightLeft } from 'react-icons/fa6';
-import { BsEyeFill, BsFillPenFill } from 'react-icons/bs';
+import { BsEyeFill, BsFillPenFill, BsFillTrash3Fill } from 'react-icons/bs';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { setDeleteEntity } from '../../store/ui-state/ui-stateSlice';
 
 //importing the search param function
 import { useSearchParams } from 'react-router-dom';
@@ -18,6 +21,8 @@ function TableStaff({ styles, tableData, header, paggingNum }) {
 	//declaring state variables
 	const [isSortedBy, setIsSortedBy] = useState('');
 	const [staffData, setStaffData] = useState(tableData.map((dt) => dt));
+	const user = useSelector((state) => state.auth.user);
+	const dispatch = useDispatch();
 
 	//search params function in action
 	const [searchParams] = useSearchParams();
@@ -38,7 +43,7 @@ function TableStaff({ styles, tableData, header, paggingNum }) {
 	return (
 		<table className={`standard ${styles ? styles : ''}`}>
 			<thead>
-				<tr className="head">
+				<tr className="head teach">
 					{/* <th>
 						<input type="checkbox" name="check" id="check-all" />
 					</th> */}
@@ -130,11 +135,28 @@ function TableStaff({ styles, tableData, header, paggingNum }) {
 								<td>
 									<div className="actions">
 										<Link to={`/teachers/view/${row._id}`}>
-											<BsEyeFill />
+											<BsEyeFill className="view" />
 										</Link>
 										<Link to={`/teachers/edit/${row._id}`}>
-											<BsFillPenFill />
+											<BsFillPenFill className="edit" />
 										</Link>
+
+										{user.role === 'admin' && (
+											<Link
+												to="#"
+												onClick={() =>
+													dispatch(
+														setDeleteEntity({
+															deleteID: row._id,
+															type: 'staff',
+															deleteName: row.name,
+														})
+													)
+												}
+											>
+												<BsFillTrash3Fill className="delete" />
+											</Link>
+										)}
 									</div>
 								</td>
 							</tr>

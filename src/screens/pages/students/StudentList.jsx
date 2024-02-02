@@ -9,6 +9,8 @@ import {
 import { PaggingNumSelect, Paggination } from './../../../components/pagging/';
 import SearchCategory from '../../../components/search/SearchCategory';
 import { TableStudents } from '../../../components/tables/';
+import DeleteModal from '../../../components/mod/DeleteModal';
+import Loader from './../../../components/loaders/Loader';
 
 const studentHeader = {
 	id: 'ID',
@@ -26,6 +28,8 @@ function StudentList() {
 	//Defining the dispatch function, and the useSelector to get students data
 	const dispatch = useDispatch();
 	const students = useSelector((state) => state.students.students);
+	const uiState = useSelector((state) => state.uiState.deleteOpt);
+	const isLoading = useSelector((state) => state.students.isLoading);
 
 	//saving the student data in a useState
 	const [studentsState, setStudentsState] = useState(students);
@@ -88,6 +92,14 @@ function StudentList() {
 					/>
 				)}
 			</section>
+			{uiState.type === 'student' && (
+				<DeleteModal
+					type={uiState.type}
+					id={uiState.deleteID}
+					name={uiState.deleteName}
+				/>
+			)}
+			{isLoading && <Loader />}
 		</Layout>
 	);
 }

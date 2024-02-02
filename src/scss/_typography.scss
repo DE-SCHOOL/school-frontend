@@ -157,3 +157,13 @@
 .email {
 	text-transform: lowercase !important;
 }
+
+.delete {
+	color: $color-failed;
+}
+.view {
+	color: $color-primary;
+}
+.edit {
+	color: $color-success;
+}

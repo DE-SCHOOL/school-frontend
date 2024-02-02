@@ -73,6 +73,22 @@ export const editDepartment = createAsyncThunk(
 	}
 );
 
+export const deleteDepartment = createAsyncThunk(
+	'department/deleteDepartment',
+	async ({ id }, thunkAPI) => {
+		try {
+			const res = await apiRequest('delete', `/api/v1/department/${id}`);
+			// console.log(res.data, 111111);
+			return res.data;
+		} catch (err) {
+			let error = err.response.data?.message;
+			// console.log(err, 'message');
+			error = error ? error : 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+
 const departmentSlice = createSlice({
 	name: 'department',
 	initialState,
@@ -92,6 +108,20 @@ const departmentSlice = createSlice({
 				state.errorMessage = action.payload?.error || action.payload;
 			})
 			.addCase(getDepartments.fulfilled, (state, action) => {
+				state.departments = action.payload;
+				state.department = {};
+				state.isLoading = false;
+				state.errorMessage = null;
+			})
+			.addCase(deleteDepartment.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(deleteDepartment.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error || action.payload;
+			})
+			.addCase(deleteDepartment.fulfilled, (state, action) => {
 				state.departments = action.payload;
 				state.department = {};
 				state.isLoading = false;

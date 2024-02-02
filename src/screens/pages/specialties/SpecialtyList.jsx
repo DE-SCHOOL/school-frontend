@@ -14,6 +14,9 @@ import { PaggingNumSelect, Paggination } from './../../../components/pagging/';
 import SearchCategory from '../../../components/search/SearchCategory';
 import { TableSpecialties } from '../../../components/tables/';
 
+import DeleteModal from '../../../components/mod/DeleteModal';
+import Loader from './../../../components/loaders/Loader';
+
 //initializing table header information
 const departmentHeader = {
 	name: 'Name',
@@ -24,7 +27,8 @@ function SpecialtyList() {
 	const specialties = useSelector((state) => state.specialty.specialties.data);
 	const dispatch = useDispatch();
 
-	// console.log(specialties, 123);
+	const uiState = useSelector((state) => state.uiState.deleteOpt);
+	const isLoading = useSelector((state) => state.specialty?.isLoading);
 
 	const [specialtyState, setSpecialtyState] = useState([]);
 
@@ -76,6 +80,14 @@ function SpecialtyList() {
 					/>
 				)}
 			</section>
+			{uiState.type === 'specialty' && (
+				<DeleteModal
+					type={uiState.type}
+					id={uiState.deleteID}
+					name={uiState.deleteName}
+				/>
+			)}
+			{isLoading && <Loader />}
 		</Layout>
 	);
 }

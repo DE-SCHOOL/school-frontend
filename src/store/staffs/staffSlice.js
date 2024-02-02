@@ -109,6 +109,23 @@ export const getStaff = createAsyncThunk(
 		}
 	}
 );
+
+export const deleteStaff = createAsyncThunk(
+	'staff/deleteStaff',
+	async ({ id }, thunkAPI) => {
+		try {
+			const res = await apiRequest('delete', `/api/v1/staff/${id}`);
+
+			return res.data;
+		} catch (err) {
+			let error = err.response.data?.message;
+			// console.log(err, 'message');
+			error = error ? error : 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+
 const staffSlice = createSlice({
 	name: 'staff',
 	initialState,
@@ -147,6 +164,21 @@ const staffSlice = createSlice({
 				state.isLoading = true;
 			})
 			.addCase(getStaff.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error;
+			})
+			.addCase(deleteStaff.fulfilled, (state, action) => {
+				state.teacher = action.payload.data;
+				state.teacher = {};
+				state.isLoading = false;
+				state.errorMessage = null;
+			})
+			.addCase(deleteStaff.pending, (state, action) => {
+				// console.log(action.payload);
+				state.isLoading = true;
+			})
+			.addCase(deleteStaff.rejected, (state, action) => {
 				state.error = true;
 				state.isLoading = false;
 				state.errorMessage = action.payload?.error;
