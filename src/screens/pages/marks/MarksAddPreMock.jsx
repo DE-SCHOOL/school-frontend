@@ -42,7 +42,7 @@ function MarksAddPreMock() {
 			);
 		}
 		//eslint-disable-next-line
-	}, [dispatch, params.courseID, students.length]);
+	}, [dispatch, params.courseID, students.length, markSheet?.length]);
 
 	//Check if the markSheet available is upto the number of students offering the course
 	//Important if a student is registered after a markSheet was created
