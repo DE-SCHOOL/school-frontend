@@ -17,9 +17,13 @@ export const login = createAsyncThunk(
 				email,
 				password,
 			});
-			// console.log(res, 'RES', res.data);
-			//Store information in local storage
+
+			//Store user information in local storage
 			localStorage.setItem('loggedIn', JSON.stringify(res.data.data));
+
+			//SET DEFAULT SEMESTER
+			localStorage.setItem('semester', JSON.stringify({ current: 's1' }));
+
 			return res.data;
 		} catch (err) {
 			let error = err?.response?.data?.message || 'Something went wrong';
