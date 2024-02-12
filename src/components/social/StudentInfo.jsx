@@ -1,9 +1,10 @@
 import React from 'react';
 import { getDateFromDateObject } from '../../utilities/getDate';
+import { semester } from '../../utilities/periodInfo';
 
-function StudentInfo({ student }) {
+function StudentInfo({ student, styles = '' }) {
 	return (
-		<div className="student-detail-results">
+		<div className={`student-detail-results ${styles}`}>
 			<div className="stud-info">
 				<div className="section">
 					<div>
@@ -50,7 +51,8 @@ function StudentInfo({ student }) {
 			</div>
 			<div className="line mg-bt mg-top"></div>
 			<h2 className="header-secondary center mg-top-lg">
-				First Semester Results
+				{semester() === 's1' ? 'First Semester Results' : ''}
+				{semester() === 's2' ? 'Second Semester Results' : ''}
 			</h2>
 		</div>
 	);
