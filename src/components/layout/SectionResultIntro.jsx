@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaArrowDown } from 'react-icons/fa6';
 import { BsRepeat } from 'react-icons/bs';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 //Styled in the layout sass file in components stying
 
@@ -18,7 +18,13 @@ function SectionResultIntro({ title, styles }) {
 			<div className="actions">
 				<button className="button-main button-main-small">
 					<FaArrowDown />
-					<span className="text">Download All Results</span>
+					<Link
+						to={'/all/results'}
+						target="_blank"
+						style={{ textDecoration: 'none', color: 'inherit' }}
+					>
+						<span className="text">Download All Results</span>
+					</Link>
 				</button>
 				<button
 					className="button-main button-main-small"
