@@ -15,7 +15,7 @@ import { sortArrayObject } from '../../utilities/sortingInfo';
 import { setDeleteEntity } from '../../store/ui-state/ui-stateSlice';
 
 let DATA_CONST;
-function TableStaff({
+function TableCourses({
 	styles,
 	tableData,
 	header,
@@ -24,7 +24,7 @@ function TableStaff({
 }) {
 	//declaring state variables
 	const [isSortedBy, setIsSortedBy] = useState('');
-	const [staffData, setStaffData] = useState(tableData.map((dt) => dt));
+	const [staffData, setStaffData] = useState(tableData?.map((dt) => dt));
 	const user = useSelector((state) => state.auth.user);
 
 	const dispatch = useDispatch();
@@ -152,7 +152,7 @@ function TableStaff({
 								)}
 								{tableType === 'all' && (
 									<td>
-										<div className="actions">
+										<div className="actions btn-list">
 											<Link to={`/marks/${row._id}/ca/add`}>
 												<button className="marks-action button-main caps">
 													CA
@@ -166,7 +166,7 @@ function TableStaff({
 													EXAM
 												</button>
 											</Link>
-											{row.levels.join(' ').indexOf('200') !== -1 && (
+											{row.levels.join(' ').indexOf('300') !== -1 && (
 												<Link
 													to={`/marks/${row._id}/pre-mock/add`}
 													className="mg-left"
@@ -176,7 +176,7 @@ function TableStaff({
 													</button>
 												</Link>
 											)}
-											{row.levels.join(' ').indexOf('200') !== -1 && (
+											{row.levels.join(' ').indexOf('300') !== -1 && (
 												<Link
 													to={`/marks/${row._id}/mock/add`}
 													className="mg-left"
@@ -223,4 +223,4 @@ function TableStaff({
 	);
 }
 
-export default TableStaff;
+export default TableCourses;
