@@ -27,10 +27,13 @@ function PrintList() {
 		}
 	};
 
-	console.log(scroll);
 	return (
 		<div className="stud-print">
-			<SearchStudents styles={'mg-top-md mg-bt-md'} type="print" />
+			<SearchStudents
+				styles={'mg-top-md mg-bt-md'}
+				type="print"
+				form="STUDENT LIST"
+			/>
 
 			<section className="students">
 				{/* Show student table information only if students data has loaded */}
