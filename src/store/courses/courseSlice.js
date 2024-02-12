@@ -114,7 +114,7 @@ export const getCoursesPerSpecialty = createAsyncThunk(
 export const getCoursesPerSpecialtyPerLevel = createAsyncThunk(
 	'course/getCoursesPerSpecialtyPerLevel',
 	async ({ id, level }, thunkAPI) => {
-		console.log({ level });
+		// console.log({ level });
 		try {
 			const res = await apiRequest(
 				'post',
