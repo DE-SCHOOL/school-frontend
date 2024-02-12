@@ -9,10 +9,9 @@ import { getDepartments } from './../../store/departments/departmentSlice';
 import { getPrograms } from '../../store/program/programSlice';
 import { getStudentsPerSearch } from '../../store/exams/examSlice';
 
-let TITLE = 'ALL STUDENTS';
+let TITLE = `ALL STUDENTS`;
 let LEVEL = '';
-
-function SearchStudents({ styles, type = '' }) {
+function SearchStudents({ styles, type = '', form }) {
 	//create dispatch to dispatch actions and useSelect for getting out information
 	const dispatch = useDispatch();
 	const dropDownData = useSelector((state) => {
@@ -54,15 +53,16 @@ function SearchStudents({ styles, type = '' }) {
 		dispatch(getStudentsPerSearch(searchData));
 
 		if (level.current?.value !== '') {
+			TITLE = `${form}: `;
 			LEVEL = ' - Level ' + level.current?.value;
 		}
 
 		if (pgm.current.value !== '') {
-			TITLE = 'STUDENT LIST: ' + pgm.current.selectedOptions[0].innerText;
+			TITLE = `${form}: ` + pgm.current.selectedOptions[0].innerText;
 		} else if (dept.current.value !== '') {
-			TITLE = 'STUDENT LIST: ' + dept.current.selectedOptions[0].innerText;
+			TITLE = `${form}: ` + dept.current.selectedOptions[0].innerText;
 		} else if (spty.current.value !== '') {
-			TITLE = 'STUDENT LIST: ' + spty.current.selectedOptions[0].innerText;
+			TITLE = `${form}: ` + spty.current.selectedOptions[0].innerText;
 		}
 	};
 	//Get all specialties after initial render
