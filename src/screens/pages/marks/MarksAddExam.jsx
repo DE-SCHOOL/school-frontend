@@ -74,9 +74,6 @@ function MarksAddExam() {
 	//Function to createMarkSheet if it does not exist
 	const handleCreateMarkSheet = (studIDs) => {
 		//studentIDs is an array of students whose markSheets are to be created
-		dispatch(
-			createInitialMarkSheet({ students: studIDs, id: params.courseID })
-		);
 
 		//list of all students offering the course
 		const studentIDs = [];
@@ -84,6 +81,11 @@ function MarksAddExam() {
 			studentIDs.push(student._id);
 			return student;
 		});
+		
+		dispatch(
+			createInitialMarkSheet({ students: studIDs, id: params.courseID })
+		);
+
 
 		//Then get the whole markSheet. That is, include those which already existed before this function call
 		dispatch(
