@@ -21,6 +21,7 @@
 		align-items: center;
 	}
 	&__right {
+		position: relative;
 	}
 	&__form {
 		border: 1px solid $color-grey;
@@ -81,7 +82,16 @@
 			cursor: pointer;
 		}
 	}
+	&__semester {
+		height: 4.5rem !important;
+		width: 4.5rem !important;
+		svg#svg {
+			font-size: 1rem !important;
+		}
+	}
 	&__notification,
+	&__semester,
+	&__year,
 	&__settings {
 		// border: 1px solid red;
 		display: flex;
@@ -90,5 +100,33 @@
 		height: 4rem;
 		background-color: $color-grey-light;
 		width: 4rem;
+
+		.semester {
+			background-color: $color-white;
+			width: 10rem;
+			display: flex;
+			flex-direction: column;
+			align-self: center;
+			justify-content: center;
+			position: absolute;
+			top: 2.15rem;
+			left: 26.7%;
+			transform: translateX(-50%);
+			gap: 0rem !important;
+			border: 1px solid rgba($color-grey, 0.3);
+			border-top: none;
+			li {
+				padding: 1rem;
+				list-style: none;
+				text-align: center;
+
+				&:hover {
+					background-color: $color-grey-light;
+				}
+			}
+		}
+		.toggle {
+			display: none !important;
+		}
 	}
 }
