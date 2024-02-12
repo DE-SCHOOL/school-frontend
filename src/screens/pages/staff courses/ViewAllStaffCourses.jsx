@@ -12,6 +12,8 @@ import {
 //importing components
 import { PaggingNumSelect, Paggination } from './../../../components/pagging/';
 import { TableStaffCourse } from '../../../components/tables/';
+import Failure from '../../../components/signal/Failure';
+import Loader from '../../../components/loaders/Loader';
 
 //initializing table header information
 const staffCourseHeader = {
@@ -22,13 +24,14 @@ const staffCourseHeader = {
 
 function StaffCourseList() {
 	const staffCourse = useSelector((state) => state.dashboard.staffCourse.data);
+	const load = useSelector((state) => state.dashboard);
 	const dispatch = useDispatch();
 
 	const [staffCourseState] = useState([]);
 
 	//Setting the default number of entries a user can see on the interface.
 	const [numPages, setNumPages] = useState(5);
-	console.log(staffCourse);
+	// console.log(staffCourse);
 
 	//Use Effect to dispatch getting staff actions
 	useEffect(() => {
@@ -69,6 +72,10 @@ function StaffCourseList() {
 					/>
 				)}
 			</section>
+			{load.error === true && load.errorMessage !== '' && (
+				<Failure message={load.errorMessage} />
+			)}
+			{load.isLoading && <Loader />}
 		</Layout>
 	);
 }
