@@ -1,14 +1,21 @@
 //react libraries and react
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCoursesPerSpecialty } from '../../store/courses/courseSlice';
+// import { getCoursesPerSpecialty } from '../../store/courses/courseSlice';
 import { getStudentMarkSheetAllCourses } from '../../store/marks/markSlice';
-let semester = 's1';
+import Loader from '../loaders/Loader';
+import { getCoursesPerSpecialtyPerLevel } from '../../store/courses/courseSlice';
+import Failure from '../signal/Failure';
 
-function TableResults({ student }) {
+import * as periodInfo from './../../utilities/periodInfo';
+
+function TableResults({ student, styles = '' }) {
 	const dispatch = useDispatch();
 	const courses = useSelector((state) => state.courses.courses);
 	const marksInfo = useSelector((state) => state.marks.studentCoursesMarks);
+	const load = useSelector((state) => state.courses);
+	let semester = periodInfo.semester();
+	// console.log(marksInfo);
 
 	// const resultInfo  = {};
 	let TCE = 0; // Total credit earned
@@ -18,9 +25,16 @@ function TableResults({ student }) {
 
 	useEffect(() => {
 		//get courses per specialty (all courses a student in a particular specialty does)
-		dispatch(getCoursesPerSpecialty({ id: student?.specialty?._id }));
+		dispatch(
+			getCoursesPerSpecialtyPerLevel({
+				id: student?.specialty?._id,
+				level: student?.level,
+			})
+		);
 		//s1, semester is set manually here.
 		//Get all courses that fall under the student's specialty depending on the student's current level
+
+		//eslint-disable-next-line
 	}, [dispatch, student?.specialty?._id]);
 
 	//Get the coursesID and find the marksinformation of a particular student
@@ -37,14 +51,14 @@ function TableResults({ student }) {
 			const searchData = {
 				academicYear,
 				courses: courseIDs,
-				studID: student._id,
+				studID: [student._id],
 			};
 			dispatch(getStudentMarkSheetAllCourses(searchData));
 		}
 		//eslint-disable-next-line
 	}, [courses?.length]);
 	return (
-		<div className='result-info'>
+		<div className={`result-info ${styles}`}>
 			<table className="results mg-top">
 				<thead>
 					<tr>
@@ -110,12 +124,18 @@ function TableResults({ student }) {
 					<thead>
 						<tr>
 							<th>GPA</th>
-							<th className="gpa-value">{Number(TWP / TCV).toFixed(2)}</th>
+							<th className="gpa-value">
+								{Number(TWP / (TCV || 1)).toFixed(2)}
+							</th>
 						</tr>
 					</thead>
 					<tbody></tbody>
 				</table>
 			</div>
+			{load.isLoading && <Loader />}
+			{load.error === true && load.errorMessage && (
+				<Failure message={load.errorMessage} />
+			)}
 		</div>
 	);
 }
