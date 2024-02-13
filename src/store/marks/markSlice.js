@@ -9,6 +9,8 @@ const initialState = {
 	errorMessage: null,
 	allMarkSheet: [],
 	studentCoursesMarks: [],
+	studentsCoursesMarks: [],
+
 };
 
 export const createInitialMarkSheet = createAsyncThunk(
@@ -93,6 +95,24 @@ export const getStudentMarkSheetAllCourses = createAsyncThunk(
 		}
 	}
 );
+
+export const getAllStudentMarkSheetAllCourses = createAsyncThunk(
+	'mark/getAllStudentMarkSheetAllCourses',
+	async (searchData, thunkAPI) => {
+		try {
+			const res = await apiRequest(
+				'post',
+				`/api/v1/mark/all/student/courses`,
+				searchData
+			);
+			return res.data;
+		} catch (err) {
+			let error = err.response.data?.message;
+			error = error ? error : 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
 const markSlice = createSlice({
 	name: 'mark',
 	initialState,
@@ -161,6 +181,19 @@ const markSlice = createSlice({
 			})
 			.addCase(getStudentMarkSheetAllCourses.fulfilled, (state, action) => {
 				state.studentCoursesMarks = action.payload.data;
+				state.isLoading = false;
+				state.errorMessage = null;
+			})
+			.addCase(getAllStudentMarkSheetAllCourses.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error;
+			})
+			.addCase(getAllStudentMarkSheetAllCourses.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(getAllStudentMarkSheetAllCourses.fulfilled, (state, action) => {
+				state.studentsCoursesMarks = action.payload.data;
 				state.isLoading = false;
 				state.errorMessage = null;
 			});

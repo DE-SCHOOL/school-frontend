@@ -24,8 +24,8 @@ const courseHeader = {
 function MyCourses() {
 	//Defining the dispatch function, and the useSelector to get students data
 	const dispatch = useDispatch();
-	const courses = useSelector((state) => state.courses.courses.data);
-	console.log(courses, 111222);
+	const courses = useSelector((state) => state.courses.myCourses.data);
+
 	//saving the student data in a useState
 	const [coursesState, setCoursesState] = useState([]);
 
@@ -49,7 +49,7 @@ function MyCourses() {
 			<SearchCategory
 				styles={'mg-top-md mg-bt-md'}
 				dropDown="course"
-				data={courses}
+				data={courses?.courses}
 				setData={setCoursesState}
 			/>
 			{/* )} */}
@@ -65,11 +65,13 @@ function MyCourses() {
 				<PaggingNumSelect setItemsPerPage={setNumPages} />
 
 				{/* Show student table information only if students data has loaded */}
-				{courses !== undefined && (
+				{courses !== undefined && courses?.courses?.length !== 0 && (
 					<TableCourses
 						styles="mg-top"
 						// parse student data, or student searched data in case a search was performed
-						tableData={coursesState.length !== 0 ? coursesState : courses}
+						tableData={
+							coursesState.length !== 0 ? coursesState : courses.courses
+						}
 						header={courseHeader}
 						paggingNum={numPages}
 						tableType="personal"
@@ -83,7 +85,9 @@ function MyCourses() {
 						paggingNum={numPages}
 						// parse student data length, or student searched data length in case a search was performed
 						totalData={
-							coursesState.length !== 0 ? coursesState.length : courses.length
+							coursesState.length !== 0
+								? coursesState.length
+								: courses.courses.length
 						}
 					/>
 				)}

@@ -45,6 +45,12 @@ function MarkTableFormMock({ students, length, semester }) {
 			return el;
 		});
 
+		let studentIDs = [];
+		marks?.markSheet?.map((sheet) => {
+			studentIDs.push(sheet?.student?._id);
+			return sheet?.student?.name;
+		});
+		
 		dispatch(
 			updateStudentsMark({
 				id: params.courseID,

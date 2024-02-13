@@ -70,30 +70,30 @@ function TableStaffCourse({ styles, tableData, header, paggingNum }) {
 								<td>
 									<span className="text">
 										{row.courses?.map((course, index) => (
-											<>
-												<span key={index}>{course.name}</span>
+											<React.Fragment key={index}>
+												<span>{course.name}</span>
 												<br />
-											</>
+											</React.Fragment>
 										))}
 									</span>
 								</td>
 								<td>
 									<span className="text">
 										{row.courses?.map((course, index) => (
-											<>
+											<React.Fragment key={index}>
 												<span key={index}>{course.levels.join(', ')}</span>
 												<br />
-											</>
+											</React.Fragment>
 										))}
 									</span>
 								</td>
 								<td>
 									<div className="actions">
 										<Link to={`/dashboard/staff-course/view/${row.staff?._id}`}>
-											<BsEyeFill />
+											<BsEyeFill className="view" />
 										</Link>
 										<Link to={`/dashboard/staff-course/edit/${row.staff?._id}`}>
-											<BsFillPenFill />
+											<BsFillPenFill className="edit" />
 										</Link>
 									</div>
 								</td>

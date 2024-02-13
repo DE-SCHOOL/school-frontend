@@ -141,7 +141,7 @@ function CourseForm({ styles }) {
 						</option>
 					</select>
 				</div>
-				{courseSpecialties.length > 0 && (
+				{(courseSpecialties.length > 0 || specialties?.length > 0) && (
 					<div className="form-item">
 						<span className="desc">
 							Specialty <em>*</em>

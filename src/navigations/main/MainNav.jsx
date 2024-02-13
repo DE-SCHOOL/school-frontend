@@ -1,6 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaBars, FaSistrix, FaRegBell } from 'react-icons/fa6';
+import {
+	FaBars,
+	FaSistrix,
+	FaRegBell,
+	FaY,
+	FaS,
+	Fa1,
+	Fa2,
+} from 'react-icons/fa6';
 import { FiSettings } from 'react-icons/fi';
 
 import { cmrLogo } from './../../assets/logos';
@@ -14,12 +22,26 @@ import { loggedIn } from '../../store/auth/authSlice';
 
 import { toggleLeftNav } from '../../store/ui-state/ui-stateSlice';
 
+import * as periodInfo from './../../utilities/periodInfo';
+
 function MainNav() {
+	const [showSemester, setShowSemester] = useState(false);
+	let sem = periodInfo.semester();
+	const navigate = useNavigate();
+
+	const handleSetSemester = (semester) => {
+		setShowSemester((prev) => !prev);
+
+		let curSemester = { current: semester };
+
+		localStorage.setItem('semester', JSON.stringify(curSemester));
+		window.location.assign(
+			`${window.location.pathname + window.location?.search || ''}`
+		);
+	};
 	const authUser = useSelector((state) => state.auth);
 	// console.log(authUser);
 	const dispatch = useDispatch();
-
-	const navigate = useNavigate();
 
 	//dispatch to check if user is logged in
 	useEffect(() => {
@@ -61,6 +83,29 @@ function MainNav() {
 				</span>
 				<span className="main-nav__notification rounded">
 					<FaRegBell className="icons" />
+				</span>
+				<span className="main-nav__semester rounded">
+					<span
+						className="iconss"
+						onClick={() => setShowSemester((prev) => !prev)}
+					>
+						<FaS className="svg" />
+						{sem === 's1' && <Fa1 className="svg" />}
+						{sem === 's2' && <Fa2 className="svg" />}
+					</span>
+					<div className={`semester ${showSemester === false ? 'toggle' : ''}`}>
+						<li onClick={() => handleSetSemester('s1')}>
+							<FaS className="svg" />
+							<Fa1 className="svg" />
+						</li>
+						<li onClick={() => handleSetSemester('s2')}>
+							<FaS className="svg" />
+							<Fa2 className="svg" />
+						</li>
+					</div>
+				</span>
+				<span className="main-nav__year rounded">
+					<FaY className="icons" />
 				</span>
 				<span className="main-nav__settings rounded">
 					<FiSettings className="icons" />

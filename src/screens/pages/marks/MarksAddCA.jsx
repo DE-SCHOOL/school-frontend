@@ -42,7 +42,7 @@ function MarksAddCA() {
 			);
 		}
 		//eslint-disable-next-line
-	}, [dispatch, params.courseID, students.length]);
+	}, [dispatch, params.courseID, students.length, markSheet?.length]);
 
 	//Check if the markSheet available is upto the number of students offering the course
 	//Important if a student is registered after a markSheet was created
@@ -74,9 +74,6 @@ function MarksAddCA() {
 	//Function to createMarkSheet if it does not exist
 	const handleCreateMarkSheet = (studIDs) => {
 		//studentIDs is an array of students whose markSheets are to be created
-		dispatch(
-			createInitialMarkSheet({ students: studIDs, id: params.courseID })
-		);
 
 		//list of all students offering the course
 		const studentIDs = [];
@@ -84,6 +81,10 @@ function MarksAddCA() {
 			studentIDs.push(student._id);
 			return student;
 		});
+
+		dispatch(
+			createInitialMarkSheet({ students: studIDs, id: params.courseID })
+		);
 
 		//Then get the whole markSheet. That is, include those which already existed before this function call
 		dispatch(

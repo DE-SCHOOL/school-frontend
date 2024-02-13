@@ -15,12 +15,12 @@ function MarkTableFormCA({ students, length, semester }) {
 	const dispatch = useDispatch();
 	const params = useParams();
 	const studentIDs = [];
-	students.map((student) => {
-		studentIDs.push(student._id);
-		return student;
-	});
 
 	useEffect(() => {
+		students.map((student) => {
+			studentIDs.push(student._id);
+			return student;
+		});
 		dispatch(
 			getMarkSheetsPerCoursePerStudents({
 				id: params.courseID,
@@ -40,17 +40,15 @@ function MarkTableFormCA({ students, length, semester }) {
 		let studentsMark = [];
 		elements.map((el, index) => {
 			if (index + 1 !== elements.length) {
-				// if (el.value * 1 > 30 || el.value * 1 < 0) {
-				// 	marks = {
-				// 		...marks,
-				// 		error: true,
-				// 		errorMessage:
-				// 			'All CA marks should be positive numbers less than 30',
-				// 	};
-				// }
 				studentsMark.push(el.value * 1);
 			}
 			return el;
+		});
+
+		let studentIDs = [];
+		marks?.markSheet?.map((sheet) => {
+			studentIDs.push(sheet?.student?._id);
+			return sheet?.student?.name;
 		});
 
 		dispatch(

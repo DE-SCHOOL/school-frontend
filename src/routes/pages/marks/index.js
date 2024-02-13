@@ -17,6 +17,7 @@ import Protected from '../../../components/auth/Protected';
 import * as RIGHTS from './../../../utilities/restrict';
 import StudentMarks from '../../../screens/pages/exam center/StudentsMarks';
 import StudentResult from '../../../screens/pages/exam center/StudentResult';
+import { StudentResultAll } from '../../../screens/pages/exam center';
 function MarkRoute() {
 	return (
 		<Routes>
@@ -73,6 +74,14 @@ function MarkRoute() {
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
 						<StudentResult />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/all/results"
+				element={
+					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
+						<StudentResultAll />
 					</Protected>
 				}
 			/>

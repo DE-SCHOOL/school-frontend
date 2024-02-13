@@ -6,7 +6,8 @@
 	nav.left-nav,
 	div.section-intro h1,
 	div.section-main-intro,
-	.no-display {
+	.no-display,
+	.arrow-up {
 		display: none !important;
 	}
 	div.section-intro {
@@ -26,13 +27,13 @@
 	.table-form {
 		width: 100%;
 	}
-
 	.result-info {
 		position: absolute;
 		top: 15rem;
 		left: 0px;
 		width: 100%;
 		font-size: 1.3rem !important;
+		page-break-after: always;
 
 		.gpa {
 			background-color: red;
@@ -43,6 +44,14 @@
 			}
 		}
 	}
+	.print-student-title {
+		page-break-after: always !important;
+	}
+	.no-position {
+		position: relative !important;
+		top: auto;
+	}
+
 	.student-detail-results {
 		position: absolute;
 		top: 0rem;
