@@ -34,7 +34,7 @@ function StudentMarks() {
 	const [studentsState, setStudentsState] = useState(students);
 
 	//Setting the default number of entries a user can see on the interface.
-	const [numPages, setNumPages] = useState(5);
+	const [numPages, setNumPages] = useState(25);
 
 	//useEffect to dispatch student data after initial render
 	useEffect(() => {
