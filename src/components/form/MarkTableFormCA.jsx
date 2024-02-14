@@ -97,7 +97,13 @@ function MarkTableFormCA({ students, length, semester }) {
 										<td className="stud-name">
 											{sheet?.student.name} ({sheet?.student.matricule})
 										</td>
-										<td>{sheet?.student.level}</td>
+										<td>
+											{sheet?.student.level === 602
+												? '600 II'
+												: sheet?.student.level === 601
+												? '600 I'
+												: sheet?.student.level}
+										</td>
 										<td>
 											<input
 												type="number"

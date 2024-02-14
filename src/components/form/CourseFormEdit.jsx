@@ -110,6 +110,15 @@ function CourseForm({ styles }) {
 						<option value="400" selected={course?.levels?.includes(400)}>
 							400
 						</option>
+						<option value="601" selected={course?.levels?.includes(601)}>
+							600 I
+						</option>
+						<option
+							value="602"
+							selected={course?.levels?.includes(602)}
+						>
+							600 II
+						</option>
 					</select>
 				</div>
 				<div className="form-item">

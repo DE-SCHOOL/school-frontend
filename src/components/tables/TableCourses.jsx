@@ -166,7 +166,7 @@ function TableCourses({
 													EXAM
 												</button>
 											</Link>
-											{row.levels.join(' ').indexOf('300') !== -1 && (
+											{row.levels?.join(' ').indexOf('300') !== -1 && (
 												<Link
 													to={`/marks/${row._id}/pre-mock/add`}
 													className="mg-left"
@@ -176,7 +176,7 @@ function TableCourses({
 													</button>
 												</Link>
 											)}
-											{row.levels.join(' ').indexOf('300') !== -1 && (
+											{row.levels?.join(' ').indexOf('300') !== -1 && (
 												<Link
 													to={`/marks/${row._id}/mock/add`}
 													className="mg-left"

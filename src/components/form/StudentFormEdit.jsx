@@ -313,6 +313,18 @@ function StudentFormEdit({ styles }) {
 						>
 							400
 						</option>
+						<option
+							value="601"
+							selected={student?.level === 601 ? true : false}
+						>
+							600 I
+						</option>
+						<option
+							value="602"
+							selected={student?.level === 602 ? true : false}
+						>
+							600 II
+						</option>
 					</select>
 				</div>
 				<div className="form-item">

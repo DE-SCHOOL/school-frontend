@@ -112,6 +112,8 @@ function CourseForm({ styles }) {
 						<option value="200">200</option>
 						<option value="300">300</option>
 						<option value="400">400</option>
+						<option value="601">600 I</option>
+						<option value="602">600 II</option>
 					</select>
 				</div>
 				<div className="form-item">
