@@ -14,8 +14,9 @@ function StaffCourseForm({ styles }) {
 	//create dispatch to dispatch actions and useSelect for getting out information
 	const dispatch = useDispatch();
 	const courses = useSelector((state) => state.courses.courses.data);
-	const staffCourses = useSelector((state) => state.courses.course.data);
+	const staffCourses = useSelector((state) => state.courses.myCourses.data);
 	const staffCourse = useSelector((state) => state.dashboard);
+	// const staffs = useSelector((state) => state.staffs.teachers.data);
 
 	//courseIDs of selected staff
 	let courseIDs = [];
@@ -37,7 +38,7 @@ function StaffCourseForm({ styles }) {
 		dispatch(getStaffs());
 		dispatch(myCourses({ teacherID: param.teacherID }));
 	}, [dispatch, param.teacherID]);
-	console.log(staffCourses, courses);
+	// console.log(staffCourses, courses);
 
 	//Execute this function when you click submit, to add a course
 	const editAssignedCourse = (e) => {
@@ -45,7 +46,7 @@ function StaffCourseForm({ styles }) {
 
 		const options = course.current.selectedOptions;
 		const courses = Array.from(options).map((option) => option.value);
-		console.log(courses);
+		// console.log(courses);
 
 		const values = {
 			courses,
@@ -54,8 +55,9 @@ function StaffCourseForm({ styles }) {
 		// action creator to dispatch information to the database
 		dispatch(editAssignedCourses(values));
 
-		console.log(values);
+		// console.log(values);
 	};
+
 	return (
 		<form
 			action=""
