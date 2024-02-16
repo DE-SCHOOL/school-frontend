@@ -56,7 +56,7 @@ function MarkRoute() {
 			<Route
 				path="/exam center/list"
 				element={
-					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
+					<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
 						<MarkList />
 					</Protected>
 				}
@@ -72,7 +72,7 @@ function MarkRoute() {
 			<Route
 				path="/exam center/student-marks/:studentID"
 				element={
-					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
+					<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
 						<StudentResult />
 					</Protected>
 				}
@@ -80,7 +80,7 @@ function MarkRoute() {
 			<Route
 				path="/all/results"
 				element={
-					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
+					<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
 						<StudentResultAll />
 					</Protected>
 				}
