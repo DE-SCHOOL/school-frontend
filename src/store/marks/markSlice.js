@@ -50,7 +50,7 @@ export const getAllStudentsMarkSheet = createAsyncThunk(
 	'mark/getAllStudentsMarkSheet',
 	async (thunkAPI) => {
 		try {
-			const res = await apiRequest('get', `/api/v1/mark/`);
+			const res = await apiRequest('get', `/api/v1/mark`);
 			return res.data;
 		} catch (err) {
 			let error = err.response.data?.message;
