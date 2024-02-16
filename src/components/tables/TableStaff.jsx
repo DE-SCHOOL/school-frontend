@@ -141,7 +141,7 @@ function TableStaff({ styles, tableData, header, paggingNum }) {
 											<BsFillPenFill className="edit" />
 										</Link>
 
-										{user.role === 'admin' && (
+										{user?.role === 'admin' && (
 											<Link
 												to="#"
 												onClick={() =>
