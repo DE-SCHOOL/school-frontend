@@ -218,12 +218,12 @@ const data = [
 					{
 						name: 'marks list',
 						link: 'list',
-						roles: ['hod', 'director', 'admin'],
+						roles: ['director', 'admin'],
 					},
 					{
 						name: 'student marks',
 						link: 'student-marks',
-						roles: ['hod', 'director', 'admin'],
+						roles: ['director', 'admin'],
 					},
 				],
 			},
