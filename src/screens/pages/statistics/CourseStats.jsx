@@ -53,66 +53,10 @@ function CourseStats() {
 						{courseStats !== undefined ? courseStats?.percentPassed : 0}%
 					</div>
 				</div>
-				<div className="stat-block danger">
-					<div className="heading danger">Percentage Failed</div>
-					<div className="text danger">
-						{courseStats !== undefined ? courseStats?.percentFailed : 0}%
-					</div>
-				</div>
-				<div className="stat-block success">
-					<div className="heading success">Number of A</div>
-					<div className="text success">
-						{courseStats !== undefined ? courseStats?.totalAs : 0}
-					</div>
-				</div>
-				<div className="stat-block primary-dark">
-					<div className="heading primary-dark">
-						Number of B<sup>+</sup>
-					</div>
-					<div className="text primary-dark">
-						{courseStats !== undefined ? courseStats?.totalBplus : 0}
-					</div>
-				</div>
-				<div className="stat-block primary">
-					<div className="heading primary">Number of B</div>
-					<div className="text primary">
-						{courseStats !== undefined ? courseStats?.totalBs : 0}
-					</div>
-				</div>
-				<div className="stat-block primary-light">
-					<div className="heading primary-light">Number of C+</div>
-					<div className="text primary-light">
-						{courseStats !== undefined ? courseStats?.totalCplus : 0}
-					</div>
-				</div>
-				<div className="stat-block primary-light">
-					<div className="heading primary-light">Number of C</div>
-					<div className="text primary-light">
-						{courseStats !== undefined ? courseStats?.totalCs : 0}
-					</div>
-				</div>
-				<div className="stat-block danger">
-					<div className="heading danger">Number of D</div>
-					<div className="text danger">
-						{courseStats !== undefined ? courseStats?.totalDs : 0}
-					</div>
-				</div>
-				<div className="stat-block danger">
-					<div className="heading danger">Number of F</div>
-					<div className="text danger">
-						{courseStats !== undefined ? courseStats?.totalFs : 0}
-					</div>
-				</div>
 				<div className="stat-block success">
 					<div className="heading success">Percentage Passed - boys</div>
 					<div className="text success">
 						{courseStats !== undefined ? courseStats?.percentPassedBoys : 0}%
-					</div>
-				</div>
-				<div className="stat-block danger">
-					<div className="heading danger">Number of Marks less than 40</div>
-					<div className="text danger">
-						{courseStats !== undefined ? courseStats?.numMarksLess40 : 0}
 					</div>
 				</div>
 				<div className="stat-block success">
@@ -121,6 +65,66 @@ function CourseStats() {
 						{courseStats !== undefined ? courseStats?.percentPassedGirls : 0}%
 					</div>
 				</div>
+				<div className="stat-block danger">
+					<div className="heading danger">Percentage Failed</div>
+					<div className="text danger">
+						{courseStats !== undefined ? courseStats?.percentFailed : 0}%
+					</div>
+				</div>
+				<div className="stat-block primary-dark">
+					<div className="heading primary-dark">Number of As</div>
+					<div className="text primary-dark">
+						{courseStats !== undefined ? courseStats?.totalAs : 0}
+					</div>
+				</div>
+				<div className="stat-block primary-dark">
+					<div className="heading primary-dark">
+						Number of Bs<sup>+</sup>
+					</div>
+					<div className="text primary-dark">
+						{courseStats !== undefined ? courseStats?.totalBplus : 0}
+					</div>
+				</div>
+				<div className="stat-block primary">
+					<div className="heading primary">Number of Bs</div>
+					<div className="text primary">
+						{courseStats !== undefined ? courseStats?.totalBs : 0}
+					</div>
+				</div>
+				<div className="stat-block primary-light">
+					<div className="heading primary-light">
+						Number of Cs<sup>+</sup>
+					</div>
+					<div className="text primary-light">
+						{courseStats !== undefined ? courseStats?.totalCplus : 0}
+					</div>
+				</div>
+				<div className="stat-block primary-light">
+					<div className="heading primary-light">Number of Cs</div>
+					<div className="text primary-light">
+						{courseStats !== undefined ? courseStats?.totalCs : 0}
+					</div>
+				</div>
+				<div className="stat-block danger">
+					<div className="heading danger">Number of Ds</div>
+					<div className="text danger">
+						{courseStats !== undefined ? courseStats?.totalDs : 0}
+					</div>
+				</div>
+				<div className="stat-block danger">
+					<div className="heading danger">Number of Fs</div>
+					<div className="text danger">
+						{courseStats !== undefined ? courseStats?.totalFs : 0}
+					</div>
+				</div>
+
+				<div className="stat-block danger">
+					<div className="heading danger">Number of Marks less than 40</div>
+					<div className="text danger">
+						{courseStats !== undefined ? courseStats?.numMarksLess40 : 0}
+					</div>
+				</div>
+
 				<div className="stat-block danger">
 					<div className="heading danger">
 						Number of Marks between 41 and 45
