@@ -8,6 +8,7 @@ const initialState = {
 	errorMessage: null,
 	course: [],
 	myCourses: [],
+	courseStats: undefined,
 };
 
 export const getCourses = createAsyncThunk(
@@ -86,6 +87,24 @@ export const getCourse = createAsyncThunk(
 	async ({ id }, thunkAPI) => {
 		try {
 			const res = await apiRequest('get', `/api/v1/course/${id}`);
+			// console.log(res.data, 'COURSE');
+			return res.data;
+		} catch (err) {
+			const error = err?.response?.data?.message || 'Something went wrong';
+			// console.log(err);
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+
+export const getCourseStats = createAsyncThunk(
+	'course/getCourseStats',
+	async ({ id, semester, academicYear }, thunkAPI) => {
+		try {
+			const res = await apiRequest('post', `/api/v1/course/statistics/${id}`, {
+				semester,
+				academicYear,
+			});
 			// console.log(res.data, 'COURSE');
 			return res.data;
 		} catch (err) {
@@ -184,6 +203,7 @@ const courseSlice = createSlice({
 			})
 			.addCase(getCourses.fulfilled, (state, action) => {
 				state.courses = action.payload;
+				state.courseStats = undefined;
 				state.course = {};
 				state.errorMessage = null;
 				state.isLoading = false;
@@ -225,11 +245,26 @@ const courseSlice = createSlice({
 			})
 			.addCase(getCourse.fulfilled, (state, action) => {
 				state.course = action.payload.data;
+				// state.courseStats = undefined;
 				state.courses = {};
 				state.errorMessage = null;
 				state.isLoading = false;
 			})
 			.addCase(getCourse.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error;
+			})
+			.addCase(getCourseStats.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(getCourseStats.fulfilled, (state, action) => {
+				state.courseStats = action.payload.data;
+				state.courses = {};
+				state.errorMessage = null;
+				state.isLoading = false;
+			})
+			.addCase(getCourseStats.rejected, (state, action) => {
 				state.error = true;
 				state.isLoading = false;
 				state.errorMessage = action.payload?.error;

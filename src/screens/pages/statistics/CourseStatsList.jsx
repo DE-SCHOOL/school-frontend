@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCourses } from '../../../store/courses/courseSlice';
-import {
-	Layout,
-	SectionIntro,
-	SectionMainIntro,
-} from '../../../components/layout/';
-import { PaggingNumSelect, Paggination } from './../../../components/pagging/';
+import { Layout, SectionIntro } from '../../../components/layout';
+import { PaggingNumSelect, Paggination } from '../../../components/pagging';
 import SearchCategory from '../../../components/search/SearchCategory';
-import { TableCourses } from '../../../components/tables/';
+import { TableCourseStats } from '../../../components/tables';
 
 import DeleteModal from '../../../components/mod/DeleteModal';
-import Loader from './../../../components/loaders/Loader';
+import Loader from '../../../components/loaders/Loader';
 
 const courseHeader = {
 	id: 'Code',
@@ -24,7 +20,7 @@ const courseHeader = {
 	credits: 'Credit Value',
 };
 
-function CourseList() {
+function CourseStats() {
 	//Defining the dispatch function, and the useSelector to get students data
 	const dispatch = useDispatch();
 	const courses = useSelector((state) => state.courses.courses.data);
@@ -35,7 +31,7 @@ function CourseList() {
 	const [coursesState, setCoursesState] = useState([]);
 
 	//Setting the default number of entries a user can see on the interface.
-	const [numPages, setNumPages] = useState(10);
+	const [numPages, setNumPages] = useState(5);
 
 	//useEffect to dispatch student data after initial render
 	useEffect(() => {
@@ -45,7 +41,7 @@ function CourseList() {
 	return (
 		<Layout>
 			{/* Displaying the page introduction and directory */}
-			<SectionIntro title="Courses" main="Course" sub="List" />
+			<SectionIntro title="Statistics" main="Course" sub="Stats" />
 
 			{/* Displaying search filter only if student data has fully loaded */}
 			{/* {courses?.length !== 0 && ( */}
@@ -57,19 +53,12 @@ function CourseList() {
 			/>
 			{/* )} */}
 			<section className="teachers">
-				{/* Section About, Download, Add, and Refresh */}
-				<SectionMainIntro
-					title="Courses"
-					styles="mg-bt mg-top"
-					link={'/courses/add'}
-				/>
-
 				{/* Select the number of items to be shown on a page */}
 				<PaggingNumSelect setItemsPerPage={setNumPages} />
 
 				{/* Show student table information only if students data has loaded */}
 				{courses !== undefined && (
-					<TableCourses
+					<TableCourseStats
 						styles="mg-top"
 						// parse student data, or student searched data in case a search was performed
 						tableData={coursesState.length !== 0 ? coursesState : courses}
@@ -102,4 +91,4 @@ function CourseList() {
 	);
 }
 
-export default CourseList;
+export default CourseStats;

@@ -1,6 +1,6 @@
 import * as BootstrapIcon from 'react-icons/bs';
 import { GiTeacher } from 'react-icons/gi';
-import { SiCoursera } from 'react-icons/si';
+import { SiCoursera, SiStatuspage } from 'react-icons/si';
 import { RiMoneyDollarBoxFill } from 'react-icons/ri';
 import {
 	MdHolidayVillage,
@@ -225,6 +225,22 @@ const data = [
 						link: 'student-marks',
 						roles: ['director', 'admin'],
 					},
+				],
+			},
+			{
+				item: 'statistics',
+				icon: <SiStatuspage />,
+				itemList: [
+					{
+						name: 'course stats',
+						link: 'course-stats',
+						roles: ['admin'],
+					},
+					// {
+					// 	name: 'specialty stats',
+					// 	link: 'specialty-stats',
+					// 	roles: ['admin'],
+					// },
 				],
 			},
 		],

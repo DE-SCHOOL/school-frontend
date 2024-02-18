@@ -1,0 +1,90 @@
+@use './../variables' as *;
+
+.stat-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 2rem;
+
+	.danger {
+		border: 4px solid $color-failed;
+	}
+	.success {
+		border: 4px solid $color-success;
+	}
+	.normal {
+		border: 4px solid $color-black;
+		&-fair {
+			border: 4px solid $color-grey;
+		}
+	}
+	.primary-dark {
+		border: 4px solid $color-primary-dark;
+	}
+	.primary {
+		border: 4px solid $color-primary;
+	}
+	.primary-light {
+		border: 4px solid $color-primary-light;
+	}
+	.stat-block {
+		width: 40rem;
+		min-height: 20rem;
+		background-color: $color-white;
+		border-radius: 1.5rem;
+		padding: 1rem;
+		// border: 2px solid blue;
+		display: flex;
+		flex-direction: column;
+
+		.heading {
+			font-size: 1.8rem;
+			font-weight: bold;
+			padding: 0.8rem;
+			text-align: center;
+			border-bottom: 1px solid lighten($color-grey, 25%) !important;
+			text-transform: capitalize;
+		}
+
+		& div.text {
+			flex: 1;
+			font-size: 10rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		& .danger {
+			color: $color-failed;
+			border: none;
+		}
+		& .success {
+			color: $color-success;
+			border: none;
+		}
+		& .normal {
+			color: $color-black;
+			border: none;
+			&-fair {
+				color: $color-grey;
+				border: none;
+			}
+		}
+		& .primary-dark {
+			color: $color-primary-dark;
+			border: none;
+		}
+		& .primary {
+			color: $color-primary;
+			border: none;
+		}
+		& .primary-light {
+			color: $color-primary-light;
+			border: none;
+		}
+	}
+}
+.statistics {
+	border: 1px solid red;
+}
