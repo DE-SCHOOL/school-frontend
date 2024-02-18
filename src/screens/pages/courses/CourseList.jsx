@@ -35,7 +35,7 @@ function CourseList() {
 	const [coursesState, setCoursesState] = useState([]);
 
 	//Setting the default number of entries a user can see on the interface.
-	const [numPages, setNumPages] = useState(5);
+	const [numPages, setNumPages] = useState(10);
 
 	//useEffect to dispatch student data after initial render
 	useEffect(() => {
