@@ -11,6 +11,7 @@ import SpecialtyRoute from './pages/specialties';
 import CourseRoute from './pages/courses';
 import MarkRoute from './pages/marks';
 import ErrorRoute from './errors';
+import StatisticRoute from './pages/statistics';
 
 function Router() {
 	return (
@@ -24,6 +25,7 @@ function Router() {
 			<SpecialtyRoute />
 			<CourseRoute />
 			<MarkRoute />
+			<StatisticRoute />
 			<ErrorRoute />
 		</React.Fragment>
 	);
