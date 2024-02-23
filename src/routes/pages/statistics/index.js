@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import {
 	CourseStats,
+	CourseStatsDoc,
 	CourseStatsList,
 	SpecialtyStats,
 	SpecialtyStatsList,
@@ -33,6 +34,14 @@ function StatisticRoute() {
 				element={
 					<Protected restrict={['admin']}>
 						<CourseStats />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/statistics/course-stats/doc/:courseID"
+				element={
+					<Protected restrict={['admin']}>
+						<CourseStatsDoc />
 					</Protected>
 				}
 			/>
