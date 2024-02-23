@@ -123,7 +123,11 @@ function TableCourseStats({
 									</Link>
 								</td>
 								<td>
-									<Link to={`/statistics/course-stats/summary/${row._id}`}>
+									<Link
+										to={`/statistics/course-stats/doc/${row._id}`}
+										target="_blank"
+										// download={true}
+									>
 										<FaArrowDown className="edit" />
 									</Link>
 								</td>
