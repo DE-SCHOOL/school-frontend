@@ -85,6 +85,26 @@
 		}
 	}
 }
-.statistics {
-	// border: 1px solid red;
+.doc-stats {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+
+	.text {
+		font-size: 1.8rem;
+	}
+}
+
+.container-stats {
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 2rem;
+	padding: 2rem;
+	border: 0.5rem dashed $color-primary;
+
+	.v-download {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
 }

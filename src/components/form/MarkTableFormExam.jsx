@@ -7,6 +7,8 @@ import { getMarkSheetsPerCoursePerStudents } from '../../store/marks/markSlice';
 import Failure from './../signal/Failure';
 import Loader from '../loaders/Loader';
 import { updateStudentsMark } from '../../store/marks/markSlice';
+import SchoolHeader from '../social/SchoolHeader';
+import { schoolHeaderProp } from '../../utilities/appData';
 
 function MarkTableFormExam({ students, length, semester }) {
 	//length is to help getMarkSheetsPerCoursePerStudents everytime this component is involved in any render
@@ -70,6 +72,7 @@ function MarkTableFormExam({ students, length, semester }) {
 				className="table-form mg-top"
 				onSubmit={handleSubmitMarks}
 			>
+				<SchoolHeader school={schoolHeaderProp} />
 				<table className="marks mg-top">
 					<thead>
 						<tr>
