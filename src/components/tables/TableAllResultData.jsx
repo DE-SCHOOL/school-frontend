@@ -16,22 +16,33 @@ function TableAllResultData({ student, styles = '' }) {
 	const marksInfo = useSelector((state) => state.marks.studentsCoursesMarks);
 	const load = useSelector((state) => state.courses);
 
-	// console.log(marksInfo);
 
 	useEffect(() => {
 		//Get the students whose results are to be displayed
-		if (students.length !== 0) {
-			const academicYear = '2023/2024';
-			const searchData = {
-				academicYear,
-				students,
-				semester,
-			};
-			dispatch(getAllStudentMarkSheetAllCourses(searchData));
-		}
+		// if (students.length !== 0) {
+		const academicYear = '2023/2024';
+		const searchData = {
+			academicYear,
+			students,
+			semester,
+		};
+		dispatch(getAllStudentMarkSheetAllCourses(searchData));
+		// }
 
 		//eslint-disable-next-line
 	}, [students?.length]);
+
+	//If no student is found
+	if (students?.length === 0) {
+		return (
+			<h1
+				style={{ textAlign: 'center' }}
+				className="mg-top-lg mg-bt-lg result-info no-position"
+			>
+				Student With Above Search Not Found!!
+			</h1>
+		);
+	}
 	return (
 		<React.Fragment>
 			{marksInfo?.map((studResults, index) => {

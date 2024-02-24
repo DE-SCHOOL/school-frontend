@@ -2,6 +2,8 @@ import React from 'react';
 import { getDateFromDateObject } from '../../utilities/getDate';
 import { semester } from '../../utilities/periodInfo';
 
+import { lmuLogo } from './../../assets/logos';
+
 function StudentInfo({ student, styles = '' }) {
 	return (
 		<div className={`student-detail-results ${styles}`}>
@@ -26,6 +28,7 @@ function StudentInfo({ student, styles = '' }) {
 						<span className="value">: {student?.specialty?.name}</span>
 					</div>
 				</div>
+				<img src={lmuLogo} alt="" className="school-logo" />
 				<div className="section">
 					<div>
 						<span className="prop">Date and Place of birth</span>

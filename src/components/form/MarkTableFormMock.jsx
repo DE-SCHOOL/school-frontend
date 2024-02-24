@@ -65,6 +65,11 @@ function MarkTableFormMock({ students, length, semester }) {
 	const handleDownloadDoc = () => {
 		window.print();
 	};
+
+	//return nothing if student sheet doesn't exist yet
+	if (marks?.markSheet?.length === 0) {
+		return;
+	}
 	return (
 		<div className="table-form">
 			<form

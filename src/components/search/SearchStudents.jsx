@@ -47,7 +47,8 @@ function SearchStudents({ styles, type = '', form }) {
 
 		//clean the data
 		for (let x in searchData) {
-			if (searchData[x] === '') delete searchData[x];
+			if (searchData[x] === '' || searchData[x] === undefined)
+				delete searchData[x];
 		}
 
 		dispatch(getStudentsPerSearch(searchData));
