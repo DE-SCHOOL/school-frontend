@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import TablePrint from '../../../components/tables/TablePrint';
 import SearchStudents from '../../../components/search/SearchStudents';
 import { getStudentsExam } from '../../../store/exams/examSlice';
 
@@ -12,11 +11,11 @@ import Failure from '../../../components/signal/Failure';
 function StudentResultAll() {
 	//Defining the dispatch function, and the useSelector to get students data
 	const dispatch = useDispatch();
-	const students = useSelector((state) => state.exams.students);
+	// const students = useSelector((state) => state.exams.students);
 	const load = useSelector((state) => state.marks);
 	const [scroll, setScroll] = useState(0);
 
-	// console.log(students);
+	// console.log(students, students.length);
 	//useEffect to dispatch student data after initial render
 	useEffect(() => {
 		dispatch(getStudentsExam());
@@ -39,7 +38,7 @@ function StudentResultAll() {
 			/>
 
 			<section className="students">
-				<TableAllResultData styles='no-position' />
+				<TableAllResultData styles="no-position" />
 			</section>
 			<Button styles={scroll} />
 			{load.isLoading && <Loader />}
