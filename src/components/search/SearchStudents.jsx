@@ -35,6 +35,7 @@ function SearchStudents({ styles, type = '', form }) {
 	//search students from db
 	const handleSearch = (e) => {
 		e.preventDefault();
+		LEVEL = '';
 
 		//collecting search data
 		const searchData = {
