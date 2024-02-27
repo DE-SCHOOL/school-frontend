@@ -16,18 +16,26 @@ function TableAllResultData({ student, styles = '' }) {
 	const marksInfo = useSelector((state) => state.marks.studentsCoursesMarks);
 	const load = useSelector((state) => state.courses);
 
-
 	useEffect(() => {
 		//Get the students whose results are to be displayed
-		// if (students.length !== 0) {
+
 		const academicYear = '2023/2024';
+
+		//get student IDs
+		let studIDs = [];
+		students.map((student) => {
+			studIDs.push(student._id);
+			return student;
+		});
+
+		//search data
 		const searchData = {
 			academicYear,
-			students,
+			students: studIDs,
 			semester,
 		};
+		console.log(students);
 		dispatch(getAllStudentMarkSheetAllCourses(searchData));
-		// }
 
 		//eslint-disable-next-line
 	}, [students?.length]);
@@ -58,10 +66,10 @@ function TableAllResultData({ student, styles = '' }) {
 							<StudentInfo
 								student={studResults[0]?.student}
 								styles="no-position"
-								key={index}
+								identify={index}
 							/>
-							<div className={`result-info ${styles} mg-bt`}>
-								<table className="results mg-top" key={index}>
+							<div className={`result-info ${styles} mg-bt`} key={index}>
+								<table className="results mg-top">
 									<thead>
 										<tr>
 											<th>Course Code</th>
@@ -161,6 +169,7 @@ function TableAllResultData({ student, styles = '' }) {
 						<h1
 							style={{ textAlign: 'center' }}
 							className="mg-top-lg mg-bt-lg result-info no-position"
+							key={index}
 						>
 							Student Not Available Anymore, was dismissed
 						</h1>
