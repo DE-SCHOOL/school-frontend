@@ -21,14 +21,14 @@ function TableAllResultData({ student, styles = '' }) {
 
 		const academicYear = '2023/2024';
 
-		//get student IDs
+		//getting the student IDs
 		let studIDs = [];
 		students.map((student) => {
 			studIDs.push(student._id);
 			return student;
 		});
 
-		//search data
+		//searching  data
 		const searchData = {
 			academicYear,
 			students: studIDs,
