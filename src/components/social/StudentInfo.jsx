@@ -4,9 +4,9 @@ import { semester } from '../../utilities/periodInfo';
 
 import { lmuLogo } from './../../assets/logos';
 
-function StudentInfo({ student, styles = '' }) {
+function StudentInfo({ student, styles = '', identify = '' }) {
 	return (
-		<div className={`student-detail-results ${styles}`}>
+		<div className={`student-detail-results ${styles}`} key={identify}>
 			<div className="stud-info">
 				<div className="section">
 					<div>
