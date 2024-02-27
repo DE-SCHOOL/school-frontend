@@ -34,7 +34,7 @@ function TableAllResultData({ student, styles = '' }) {
 			students: studIDs,
 			semester,
 		};
-		// console.log(students);
+		console.log(students);
 		dispatch(getAllStudentMarkSheetAllCourses(searchData));
 
 		//eslint-disable-next-line
