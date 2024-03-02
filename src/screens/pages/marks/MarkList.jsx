@@ -21,7 +21,7 @@ const courseHeader = {
 	credits: 'Credit Value',
 };
 
-function MyCourses() {
+function MarkList() {
 	//Defining the dispatch function, and the useSelector to get students data
 	const dispatch = useDispatch();
 	const courses = useSelector((state) => state.courses.courses.data);
@@ -92,7 +92,7 @@ function MyCourses() {
 	);
 }
 
-export default MyCourses;
+export default MarkList;
 
 // import React, { useEffect, useState } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
