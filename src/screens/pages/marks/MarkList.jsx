@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { myCourses } from '../../../store/courses/courseSlice';
+import { getCourses } from '../../../store/courses/courseSlice';
 import {
 	Layout,
 	SectionIntro,
@@ -24,7 +24,7 @@ const courseHeader = {
 function MyCourses() {
 	//Defining the dispatch function, and the useSelector to get students data
 	const dispatch = useDispatch();
-	const courses = useSelector((state) => state.courses.myCourses.data);
+	const courses = useSelector((state) => state.courses.courses.data);
 
 	//saving the student data in a useState
 	const [coursesState, setCoursesState] = useState([]);
@@ -33,9 +33,9 @@ function MyCourses() {
 	const [numPages, setNumPages] = useState(5);
 
 	//useEffect to dispatch student data after initial render
-	const teacherID = JSON.parse(localStorage.getItem('loggedIn'))._id;
+	// const teacherID = JSON.parse(localStorage.getItem('loggedIn'))._id;
 	useEffect(() => {
-		dispatch(myCourses({ teacherID }));
+		dispatch(getCourses());
 		// eslint-disable-next-line
 	}, [dispatch]);
 
@@ -49,7 +49,7 @@ function MyCourses() {
 			<SearchCategory
 				styles={'mg-top-md mg-bt-md'}
 				dropDown="course"
-				data={courses?.courses}
+				data={courses}
 				setData={setCoursesState}
 			/>
 			{/* )} */}
@@ -65,13 +65,11 @@ function MyCourses() {
 				<PaggingNumSelect setItemsPerPage={setNumPages} />
 
 				{/* Show student table information only if students data has loaded */}
-				{courses !== undefined && courses?.courses?.length !== 0 && (
+				{courses !== undefined && courses?.length !== 0 && (
 					<TableCourses
 						styles="mg-top"
 						// parse student data, or student searched data in case a search was performed
-						tableData={
-							coursesState.length !== 0 ? coursesState : courses.courses
-						}
+						tableData={coursesState.length !== 0 ? coursesState : courses}
 						header={courseHeader}
 						paggingNum={numPages}
 						tableType="course-marks"
@@ -85,9 +83,7 @@ function MyCourses() {
 						paggingNum={numPages}
 						// parse student data length, or student searched data length in case a search was performed
 						totalData={
-							coursesState.length !== 0
-								? coursesState.length
-								: courses.courses.length
+							coursesState.length !== 0 ? coursesState.length : courses.length
 						}
 					/>
 				)}
