@@ -60,6 +60,9 @@ table {
 				}
 
 				&:last-child {
+					div.action-special {
+						justify-content: center;
+					}
 					div.actions {
 						display: flex;
 						// justify-content: center;
