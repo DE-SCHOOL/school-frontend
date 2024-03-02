@@ -6,12 +6,14 @@ import { getCourse } from '../../../store/courses/courseSlice';
 import { getStudentsPerCourseOffering } from '../../../store/students/studentSlice';
 import { getMarkSheetsPerCoursePerStudents } from '../../../store/marks/markSlice';
 import { TableCourseMarks } from '../../../components/tables';
+import Failure from '../../../components/signal/Failure';
+import Loader from '../../../components/loaders/Loader';
 
 function CourseMarkList() {
 	const course = useSelector((state) => state.courses.course);
 	const students = useSelector((state) => state.students.students);
 	const markSheet = useSelector((state) => state.marks.markSheet);
-	// const marks = useSelector((state) => state.marks);
+	const marks = useSelector((state) => state.marks);
 	const dispatch = useDispatch();
 
 	const params = useParams();
@@ -51,6 +53,11 @@ function CourseMarkList() {
 					semester={course?.semester}
 				/>
 			</section>
+			{marks.error === true && marks.errorMessage && (
+				<Failure message={marks.errorMessage} />
+			)}
+			{/* {marks.error === false && setStaffData(defaultInfo)} */}
+			{marks.isLoading && <Loader />}
 		</Layout>
 	);
 }
