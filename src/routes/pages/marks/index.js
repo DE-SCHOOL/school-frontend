@@ -18,6 +18,7 @@ import * as RIGHTS from './../../../utilities/restrict';
 import StudentMarks from '../../../screens/pages/exam center/StudentsMarks';
 import StudentResult from '../../../screens/pages/exam center/StudentResult';
 import { StudentResultAll } from '../../../screens/pages/exam center';
+import CourseMarkList from '../../../screens/pages/marks/CourseMarkList';
 function MarkRoute() {
 	return (
 		<Routes>
@@ -50,6 +51,14 @@ function MarkRoute() {
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
 						<MarksAddMock />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/marks/course/:courseID"
+				element={
+					<Protected restrict={['admin']}>
+						<CourseMarkList />
 					</Protected>
 				}
 			/>

@@ -173,7 +173,7 @@ function TableStudent({
 									<td>
 										<div className="actions results">
 											<Link to={`/exam center/student-marks/${row._id}`}>
-												<BsEyeFill />
+												<BsEyeFill className="view" />
 											</Link>
 										</div>
 									</td>

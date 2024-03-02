@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaRightLeft } from 'react-icons/fa6';
 import { useDispatch } from 'react-redux';
-import { BsFillPenFill, BsFillTrash3Fill } from 'react-icons/bs';
+import { BsEyeFill, BsFillPenFill, BsFillTrash3Fill } from 'react-icons/bs';
 import { setCurData } from '../../store/cur page/curPageSlice';
 import { useSelector } from 'react-redux';
 
@@ -139,13 +139,22 @@ function TableCourses({
 										})}
 									</span>
 								</td>
-								{tableType !== 'all' && (
+								{tableType === 'personal' && (
 									<td>
 										<div className="actions">
 											<Link to={`/marks/${row._id}/ca/add`}>
 												<button className="marks-action button-main caps">
 													CA
 												</button>
+											</Link>
+										</div>
+									</td>
+								)}
+								{tableType === 'course-marks' && (
+									<td>
+										<div className="actions action-special">
+											<Link to={`/marks/course/${row._id}`}>
+												<BsEyeFill className="view" />
 											</Link>
 										</div>
 									</td>
