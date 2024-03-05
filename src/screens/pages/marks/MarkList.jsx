@@ -9,6 +9,8 @@ import {
 import { PaggingNumSelect, Paggination } from './../../../components/pagging/';
 import SearchCategory from '../../../components/search/SearchCategory';
 import { TableCourses } from '../../../components/tables/';
+import Failure from '../../../components/signal/Failure';
+import Loader from '../../../components/loaders/Loader';
 
 const courseHeader = {
 	id: 'Code',
@@ -25,6 +27,7 @@ function MarkList() {
 	//Defining the dispatch function, and the useSelector to get students data
 	const dispatch = useDispatch();
 	const courses = useSelector((state) => state.courses.courses.data);
+	const course = useSelector((state) => state.courses);
 
 	//saving the student data in a useState
 	const [coursesState, setCoursesState] = useState([]);
@@ -88,6 +91,11 @@ function MarkList() {
 					/>
 				)}
 			</section>
+			{course.error === true && course.errorMessage && (
+				<Failure message={course.errorMessage} />
+			)}
+			{/* {course.error === false && setStaffData(defaultInfo)} */}
+			{course.isLoading && <Loader />}
 		</Layout>
 	);
 }
