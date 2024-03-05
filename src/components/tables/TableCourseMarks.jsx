@@ -8,6 +8,7 @@ import Failure from './../signal/Failure';
 import Loader from '../loaders/Loader';
 import SchoolHeader from '../social/SchoolHeader';
 import { schoolHeaderProp } from '../../utilities/appData';
+import { decideCourseGrade } from '../../utilities/decideCourseGrade';
 
 function TableCourseMarks({ students, length, semester }) {
 	//length is to help getMarkSheetsPerCoursePerStudents everytime this component is involved in any render
@@ -50,6 +51,7 @@ function TableCourseMarks({ students, length, semester }) {
 						<th>CA ( / 30)</th>
 						<th>EXAM ( / 70)</th>
 						<th>Total ( / 100)</th>
+						<th>Grade</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -68,6 +70,12 @@ function TableCourseMarks({ students, length, semester }) {
 										{semester === 's1'
 											? sheet?.s1Exam + sheet?.s1CA
 											: sheet?.s2Exam + sheet?.s2CA}
+									</td>
+									<td>
+										{' '}
+										{semester === 's1'
+											? decideCourseGrade(sheet?.s1Exam + sheet?.s1CA)
+											: decideCourseGrade(sheet?.s2Exam + sheet?.s2CA)}
 									</td>
 								</tr>
 							);
