@@ -18,7 +18,7 @@ function StudentInfo({ student, styles = '', identify = '' }) {
 						<span className="value">: {student?.matricule}</span>
 					</div>
 					<div>
-						<span className="prop">Program</span>
+						<span className="prop">Faculty</span>
 						<span className="value">
 							: {student?.specialty?.department?.program?.name}
 						</span>
