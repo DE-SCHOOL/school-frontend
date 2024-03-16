@@ -14,7 +14,6 @@ function CourseStats() {
 	const course = useSelector((state) => state.courses.course);
 	const courseStats = useSelector((state) => state.courses.courseStats);
 
-	console.log(load, courseStats);
 	useEffect(() => {
 		dispatch(getCourse({ id: params.courseID }));
 		dispatch(
@@ -103,6 +102,14 @@ function CourseStats() {
 					<div className="heading primary-light">Number of Cs</div>
 					<div className="text primary-light">
 						{courseStats !== undefined ? courseStats?.totalCs : 0}
+					</div>
+				</div>
+				<div className="stat-block danger">
+					<div className="heading danger">
+						Number of Ds<sup>+</sup>
+					</div>
+					<div className="text danger">
+						{courseStats !== undefined ? courseStats?.totalDplus : 0}
 					</div>
 				</div>
 				<div className="stat-block danger">
