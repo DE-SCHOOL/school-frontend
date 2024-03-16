@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCourses } from '../../../store/courses/courseSlice';
-import { Layout, SectionIntro } from '../../../components/layout';
+import {
+	Layout,
+	SectionIntro,
+	SectionStatsIntro,
+} from '../../../components/layout';
 import { PaggingNumSelect, Paggination } from '../../../components/pagging';
 import SearchCategory from '../../../components/search/SearchCategory';
 import { TableCourseStats } from '../../../components/tables';
@@ -53,6 +57,7 @@ function CourseStats() {
 			/>
 			{/* )} */}
 			<section className="teachers">
+				<SectionStatsIntro />
 				{/* Select the number of items to be shown on a page */}
 				<PaggingNumSelect setItemsPerPage={setNumPages} />
 

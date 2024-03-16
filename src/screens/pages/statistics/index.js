@@ -3,3 +3,4 @@ export { default as CourseStats } from './CourseStats';
 export { default as CourseStatsDoc } from './CourseStatsDoc';
 export { default as SpecialtyStatsList } from './SpecialtyStatsList';
 export { default as SpecialtyStats } from './SpecialtyStats';
+export { default as AllCourseStats } from './AllCourseStats';

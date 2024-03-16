@@ -9,7 +9,9 @@ export const decideCourseGrade = (CourseMark) => {
 		return 'C+';
 	} else if (CourseMark >= 50 && CourseMark < 55) {
 		return 'C';
-	} else if (CourseMark >= 40 && CourseMark < 50) {
+	} else if (CourseMark >= 45 && CourseMark < 50) {
+		return 'D+';
+	} else if (CourseMark >= 40 && CourseMark < 45) {
 		return 'D';
 	} else if (CourseMark < 40) {
 		return 'F';

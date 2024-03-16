@@ -9,6 +9,7 @@ const initialState = {
 	course: [],
 	myCourses: [],
 	courseStats: undefined,
+	allCourseStats: undefined,
 };
 
 export const getCourses = createAsyncThunk(
@@ -104,6 +105,25 @@ export const getCourseStats = createAsyncThunk(
 			const res = await apiRequest('post', `/api/v1/course/statistics/${id}`, {
 				semester,
 				academicYear,
+			});
+			// console.log(res.data, 'COURSE');
+			return res.data;
+		} catch (err) {
+			const error = err?.response?.data?.message || 'Something went wrong';
+			// console.log(err);
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+
+export const getAllCourseStats = createAsyncThunk(
+	'course/getAllCourseStats',
+	async ({ semester, academicYear, courseIDs }, thunkAPI) => {
+		try {
+			const res = await apiRequest('post', `/api/v1/course/statistics`, {
+				semester,
+				academicYear,
+				courseIDs,
 			});
 			// console.log(res.data, 'COURSE');
 			return res.data;
@@ -265,6 +285,20 @@ const courseSlice = createSlice({
 				state.isLoading = false;
 			})
 			.addCase(getCourseStats.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error;
+			})
+			.addCase(getAllCourseStats.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(getAllCourseStats.fulfilled, (state, action) => {
+				state.allCourseStats = action.payload.data;
+				state.courses = {};
+				state.errorMessage = null;
+				state.isLoading = false;
+			})
+			.addCase(getAllCourseStats.rejected, (state, action) => {
 				state.error = true;
 				state.isLoading = false;
 				state.errorMessage = action.payload?.error;

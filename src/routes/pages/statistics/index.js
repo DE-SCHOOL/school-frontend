@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import {
+	AllCourseStats,
 	CourseStats,
 	CourseStatsDoc,
 	CourseStatsList,
@@ -50,6 +51,14 @@ function StatisticRoute() {
 				element={
 					<Protected restrict={['admin']}>
 						<SpecialtyStats />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/all/statistics"
+				element={
+					<Protected restrict={['admin']}>
+						<AllCourseStats />
 					</Protected>
 				}
 			/>
