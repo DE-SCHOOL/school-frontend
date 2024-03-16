@@ -39,7 +39,7 @@ function AllCourseStats() {
 				academicYear: '2023/2024',
 				courseIDs,
 			};
-			console.log(dbOpt);
+			// console.log(dbOpt);
 			dispatch(getAllCourseStats(dbOpt));
 		}
 		//eslint-disable-next-line
