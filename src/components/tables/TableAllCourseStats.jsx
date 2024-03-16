@@ -9,7 +9,7 @@ import { schoolHeaderProp } from '../../utilities/appData';
 
 function TableAllCourseStats({ coursesStats }) {
 	//length is to help getMarkSheetsPerCoursePerStudents everytime this component is involved in any render
-	console.log(coursesStats);
+	// console.log(coursesStats);
 	let marks = useSelector((state) => state.marks);
 
 	const handleDownloadDoc = () => {
