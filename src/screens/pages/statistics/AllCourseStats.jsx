@@ -1,0 +1,76 @@
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import SearchStudents from '../../../components/search/SearchStudents';
+import { getStudentsExam } from '../../../store/exams/examSlice';
+
+import Loader from '../../../components/loaders/Loader';
+import Button from '../../../components/buttons/Button';
+import { TableAllCourseStats } from '../../../components/tables';
+import Failure from '../../../components/signal/Failure';
+import {
+	getAllCourseStats,
+	getCourses,
+} from '../../../store/courses/courseSlice';
+import { semester } from '../../../utilities/periodInfo';
+
+function AllCourseStats() {
+	//Defining the dispatch function, and the useSelector to get students data
+	const dispatch = useDispatch();
+	const courses = useSelector((state) => state.courses.courses);
+	const coursesStats = useSelector((state) => state.courses.allCourseStats);
+	const load = useSelector((state) => state.courses);
+	const [scroll, setScroll] = useState(0);
+
+	useEffect(() => {
+		dispatch(getCourses());
+	}, [dispatch]);
+
+	//useEffect to dispatch student data after initial render
+	useEffect(() => {
+		let courseIDs = [];
+		if (courses?.data?.length > 0) {
+			courses.data?.map((course) => {
+				courseIDs.push(course._id);
+				return course;
+			});
+
+			const dbOpt = {
+				semester: semester(),
+				academicYear: '2023/2024',
+				courseIDs,
+			};
+			console.log(dbOpt);
+			dispatch(getAllCourseStats(dbOpt));
+		}
+		//eslint-disable-next-line
+	}, [dispatch, courses?.data?.length]);
+
+	window.onscroll = () => {
+		if (window.scrollY > 200) {
+			setScroll(1);
+		} else {
+			setScroll(0);
+		}
+	};
+
+	return (
+		<div className="stud-print">
+			<section className="students">
+				{coursesStats !== undefined && (
+					<TableAllCourseStats
+						coursesStats={coursesStats}
+						styles="no-position"
+					/>
+				)}
+			</section>
+			<Button styles={scroll} />
+			{load.isLoading && <Loader />}
+			{load.error === true && load.errorMessage && (
+				<Failure message={load.errorMessage} />
+			)}
+			{/* {load.error === false && setStaffData(defaultInfo)} */}
+		</div>
+	);
+}
+
+export default AllCourseStats;
