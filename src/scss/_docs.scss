@@ -27,6 +27,18 @@
 		left: 0px;
 		width: 100%;
 	}
+	.table-form-modified {
+		table {
+			top: 19rem;
+		}
+
+		h1.title {
+			top: 16rem;
+			left: 50%;
+			position: absolute;
+			transform: translateX(-50%);
+		}
+	}
 	.table-form {
 		width: 100%;
 
