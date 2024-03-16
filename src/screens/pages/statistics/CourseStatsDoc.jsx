@@ -89,6 +89,11 @@ function CourseStats() {
 					</div>
 
 					<div className="text danger">
+						Number of D<sup>+</sup>s:{' '}
+						{courseStats !== undefined ? courseStats?.totalDplus : 0}
+					</div> 
+
+					<div className="text danger">
 						Number of Ds: {courseStats !== undefined ? courseStats?.totalDs : 0}
 					</div>
 
@@ -102,7 +107,7 @@ function CourseStats() {
 					</div>
 
 					<div className="text danger">
-						Number of Marks between 41 and 45;{' '}
+						Number of Marks between 41 and 45:{' '}
 						{courseStats !== undefined ? courseStats?.numMarksBtw41and45 : 0}
 					</div>
 
