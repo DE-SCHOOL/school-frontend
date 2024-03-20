@@ -6,6 +6,7 @@ import Failure from './../signal/Failure';
 import Loader from '../loaders/Loader';
 import SchoolHeader from '../social/SchoolHeader';
 import { schoolHeaderProp } from '../../utilities/appData';
+import SearchCourses from '../search/SearchCourses';
 
 function TableAllCourseStats({ coursesStats }) {
 	//length is to help getMarkSheetsPerCoursePerStudents everytime this component is involved in any render
@@ -19,9 +20,11 @@ function TableAllCourseStats({ coursesStats }) {
 	return (
 		<div className="table-form table-form-modified">
 			<SchoolHeader school={schoolHeaderProp} />
-			<h1 className="title" style={{ textAlign: 'center' }}>
+			{/* <h1 className="title" style={{ textAlign: 'center' }}>
 				All Course Statistics
-			</h1>
+			</h1> */}
+			<br /><br />
+			<SearchCourses form="COURSE STATISTICS" type="print" />
 
 			<table className="marks mg-top">
 				<thead>
