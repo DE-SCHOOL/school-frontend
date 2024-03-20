@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import SearchStudents from '../../../components/search/SearchStudents';
-import { getStudentsExam } from '../../../store/exams/examSlice';
 
 import Loader from '../../../components/loaders/Loader';
 import Button from '../../../components/buttons/Button';
@@ -56,6 +54,7 @@ function AllCourseStats() {
 	return (
 		<div className="stud-print">
 			<section className="students">
+				
 				{coursesStats !== undefined && (
 					<TableAllCourseStats
 						coursesStats={coursesStats}

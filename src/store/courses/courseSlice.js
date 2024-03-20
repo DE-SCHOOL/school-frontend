@@ -83,6 +83,24 @@ export const myCourses = createAsyncThunk(
 	}
 );
 
+export const getCoursesBySearch = createAsyncThunk(
+	'course/getCoursesBySearch',
+	async (searchData, thunkAPI) => {
+		try {
+			const res = await apiRequest(
+				'post',
+				`/api/v1/course/search-courses`,
+				searchData
+			);
+
+			return res.data;
+		} catch (err) {
+			const error = err?.response?.data?.message || 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+
 export const getCourse = createAsyncThunk(
 	'course/getCourse',
 	async ({ id }, thunkAPI) => {
@@ -229,6 +247,20 @@ const courseSlice = createSlice({
 				state.isLoading = false;
 			})
 			.addCase(getCourses.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error;
+			})
+			.addCase(getCoursesBySearch.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(getCoursesBySearch.fulfilled, (state, action) => {
+				state.courses = action.payload;
+				state.course = {};
+				state.errorMessage = null;
+				state.isLoading = false;
+			})
+			.addCase(getCoursesBySearch.rejected, (state, action) => {
 				state.error = true;
 				state.isLoading = false;
 				state.errorMessage = action.payload?.error;
