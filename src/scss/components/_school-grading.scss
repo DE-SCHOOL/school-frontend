@@ -6,6 +6,7 @@
 	align-items: flex-start;
 	margin-bottom: 2rem;
 	.other-info {
+		align-self: center;
 		display: flex;
 		margin-top: 2rem;
 		.info {
@@ -20,7 +21,7 @@
 		}
 	}
 	.registrar {
-		margin-top: 8rem;
+		margin-top: 15rem;
 		align-self: center;
 		span {
 			font-size: 2.5rem;
