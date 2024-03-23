@@ -12,34 +12,34 @@ export const schoolHeaderProp = {
 export const gradeAndRange = [
 	{
 		grade: 'A',
-		range: '80.00 - 100.00',
+		range: '80 - 100',
 	},
 	{
 		grade: 'B+',
-		range: '70.00 - 79.99',
+		range: '70 - 79',
 	},
 	{
 		grade: 'B',
-		range: '60.00 - 69.99',
+		range: '60 - 69',
 	},
 	{
 		grade: 'C+',
-		range: '55.00 - 59.99',
+		range: '55 - 59',
 	},
 	{
 		grade: 'C',
-		range: '50.00 - 54.99',
+		range: '50 - 54',
 	},
 	{
 		grade: 'D+',
-		range: '45.00 - 49.99',
+		range: '45 - 49',
 	},
 	{
 		grade: 'D',
-		range: '40.00 - 44.99',
+		range: '40 - 44',
 	},
 	{
 		grade: 'F',
-		range: '0.00 - 39.99',
+		range: '0 - 39',
 	},
 ];
