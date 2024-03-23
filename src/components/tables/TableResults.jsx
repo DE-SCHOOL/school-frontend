@@ -8,6 +8,7 @@ import { getCoursesPerSpecialtyPerLevel } from '../../store/courses/courseSlice'
 import Failure from '../signal/Failure';
 
 import * as periodInfo from './../../utilities/periodInfo';
+import SchoolGrading from '../social/SchoolGrading';
 
 function TableResults({ student, styles = '' }) {
 	const dispatch = useDispatch();
@@ -132,6 +133,7 @@ function TableResults({ student, styles = '' }) {
 					<tbody></tbody>
 				</table>
 			</div>
+			<SchoolGrading />
 			{load.isLoading && <Loader />}
 			{load.error === true && load.errorMessage && (
 				<Failure message={load.errorMessage} />
