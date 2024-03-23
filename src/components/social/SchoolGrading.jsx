@@ -10,9 +10,11 @@ function SchoolGrading() {
 			<table className="results-total mg-top">
 				<thead>
 					<tr>
-						<th colSpan={2}>Grade System</th>
+						<th colSpan={4}>Grade System</th>
 					</tr>
 					<tr>
+						<th>Grade</th>
+						<th>Mark</th>
 						<th>Grade</th>
 						<th>Mark</th>
 					</tr>
@@ -22,15 +24,17 @@ function SchoolGrading() {
 						return (
 							<>
 								<tr key={index}>
-									<td>{gradeSystem.grade}</td>
-									<td>{gradeSystem.range}</td>
+									<td>{gradeSystem.grade1}</td>
+									<td>{gradeSystem.range1}</td>
+									<td>{gradeSystem.grade2}</td>
+									<td>{gradeSystem.range2}</td>
 								</tr>
 							</>
 						);
 					})}
 					<tr>
-						<td colSpan={2}>
-							<b>Cummulative Graded Point Average is on a Scale of 4</b>
+						<td colSpan={4}>
+							<b>Cummulative Graded Point Average(GPA) is on a Scale of 4</b>
 						</td>
 					</tr>
 				</tbody>
