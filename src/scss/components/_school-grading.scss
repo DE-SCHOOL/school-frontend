@@ -2,20 +2,14 @@
 
 .school-grading {
 	gap: 2rem;
+	flex-direction: column !important;
+	align-items: flex-start;
+	margin-bottom: 2rem;
 	.other-info {
 		display: flex;
-		flex-direction: column;
-		align-self: self-end;
-
-		p {
-			b {
-				color: $color-primary;
-			}
-		}
-
+		margin-top: 2rem;
 		.info {
 			display: flex;
-			flex-direction: column;
 			gap: 1rem;
 
 			b,
@@ -24,14 +18,27 @@
 				color: $color-primary;
 			}
 		}
-		.registrar {
-			margin-top: 3rem;
-			span {
-				font-size: 3.8rem;
-			}
+	}
+	.registrar {
+		margin-top: 8rem;
+		align-self: center;
+		span {
+			font-size: 2.5rem;
+			font-weight: bolder;
 		}
 	}
 	table {
 		table-layout: fixed !important;
+		width: 18% !important;
+
+		tr {
+			td,
+			th {
+				font-size: 1rem !important;
+				b {
+					color: $color-primary;
+				}
+			}
+		}
 	}
 }
