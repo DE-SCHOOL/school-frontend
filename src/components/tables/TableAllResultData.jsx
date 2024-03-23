@@ -6,6 +6,7 @@ import { getAllStudentMarkSheetAllCourses } from '../../store/marks/markSlice';
 import Loader from '../loaders/Loader';
 import StudentInfo from '../social/StudentInfo';
 import * as periodInfo from '../../utilities/periodInfo';
+import SchoolGrading from '../social/SchoolGrading';
 
 function TableAllResultData({ student, styles = '' }) {
 	let semester = periodInfo.semester();
@@ -160,6 +161,7 @@ function TableAllResultData({ student, styles = '' }) {
 										<tbody></tbody>
 									</table>
 								</div>
+								<SchoolGrading />
 								{load.isLoading && <Loader />}
 							</div>
 						</React.Fragment>
