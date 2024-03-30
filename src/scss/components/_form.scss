@@ -22,10 +22,10 @@ form#department {
 		display: flex;
 		gap: 2rem;
 		flex-wrap: wrap;
+		align-items: flex-end;
 
 		&-item {
 			width: 30%;
-			// border: 1px solid red;
 			input,
 			select {
 				padding: 1.5rem 1rem;
