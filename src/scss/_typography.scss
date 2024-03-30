@@ -11,8 +11,7 @@
 	cursor: pointer;
 	text-transform: capitalize;
 	font-family: $font-styles;
-
-	&-small {
+	span span &-small {
 		padding: 1rem 1rem;
 	}
 
@@ -166,4 +165,10 @@
 }
 .edit {
 	color: $color-success;
+}
+
+.center {
+	text-align: center;
+	color: $color-primary;
+	text-transform: capitalize;
 }
