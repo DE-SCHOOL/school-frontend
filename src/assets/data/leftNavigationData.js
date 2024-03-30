@@ -1,6 +1,6 @@
 import * as BootstrapIcon from 'react-icons/bs';
 import { GiTeacher } from 'react-icons/gi';
-import { SiCoursera, SiStatuspage } from 'react-icons/si';
+import { SiCoursera } from 'react-icons/si';
 import { RiMoneyDollarBoxFill } from 'react-icons/ri';
 import {
 	MdHolidayVillage,
@@ -10,6 +10,8 @@ import {
 import { BiTable } from 'react-icons/bi';
 import { IoLibrarySharp, IoSettings } from 'react-icons/io5';
 import { FaBloggerB, FaHotel, FaSchool } from 'react-icons/fa';
+import { FaHandsHoldingChild } from 'react-icons/fa6';
+import { FcStatistics } from 'react-icons/fc';
 // ['lecturer', 'secreteriat', 'hod', 'director', 'admin']
 const data = [
 	{
@@ -229,18 +231,13 @@ const data = [
 			},
 			{
 				item: 'statistics',
-				icon: <SiStatuspage />,
+				icon: <FcStatistics />,
 				itemList: [
 					{
 						name: 'course stats',
 						link: 'course-stats',
 						roles: ['admin'],
 					},
-					// {
-					// 	name: 'specialty stats',
-					// 	link: 'specialty-stats',
-					// 	roles: ['admin'],
-					// },
 				],
 			},
 		],
@@ -248,6 +245,17 @@ const data = [
 	{
 		menu: 'management',
 		items: [
+			{
+				item: 'human resource',
+				icon: <FaHandsHoldingChild />,
+				itemList: [
+					{
+						name: 'review staff',
+						link: 'review-staff',
+						roles: ['admin'],
+					},
+				],
+			},
 			{
 				item: 'accounts',
 				icon: <RiMoneyDollarBoxFill />,

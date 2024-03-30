@@ -11,3 +11,4 @@ export { default as TableMarks } from './TableMarks';
 export { default as TableResults } from './TableResults';
 export { default as TableAllResultData } from './TableAllResultData';
 export { default as TableAllCourseStats } from './TableAllCourseStats';
+export { default as TableStaffReview } from './TableStaffReview';

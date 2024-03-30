@@ -1,0 +1,40 @@
+@use './../variables' as *;
+
+.plain-text {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+	flex-wrap: wrap;
+
+	.text-link {
+		text-decoration: none;
+		color: darken($color-grey, 35%);
+		margin: 2rem 0rem;
+
+		span.text {
+			text-transform: capitalize;
+			padding: 1.5rem;
+			background-color: $color-grey-light;
+			border-radius: 0.5rem;
+			text-align: center;
+
+			&:hover {
+				background-color: darken($color-grey-light, 10%);
+			}
+		}
+
+		@media only screen and (max-width: 480px) {
+			span.text {
+				width: 70vw;
+				display: inline-block;
+			}
+		}
+	}
+
+	@media (max-width: 480px) {
+		.text-link {
+			margin: 0;
+		}
+	}
+}

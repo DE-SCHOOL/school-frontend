@@ -1,7 +1,7 @@
 @use './../variables' as *;
 
 .signal {
-	position: absolute;
+	position: fixed;
 	right: 0rem;
 	border-radius: 1rem;
 	padding: 1rem;
