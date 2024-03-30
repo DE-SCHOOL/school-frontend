@@ -16,3 +16,4 @@ export { default as MarkTableFormCA } from './MarkTableFormCA';
 export { default as MarkTableFormExam } from './MarkTableFormExam';
 export { default as MarkTableFormPreMock } from './MarkTableFormPreMock';
 export { default as MarkTableFormMock } from './MarkTableFormMock';
+export { default as StaffReviewForm } from './StaffReviewForm';
