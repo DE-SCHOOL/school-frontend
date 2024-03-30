@@ -12,6 +12,7 @@ import CourseRoute from './pages/courses';
 import MarkRoute from './pages/marks';
 import ErrorRoute from './errors';
 import StatisticRoute from './pages/statistics';
+import HumanResourceRoute from './pages/human resource';
 
 function Router() {
 	return (
@@ -26,6 +27,7 @@ function Router() {
 			<CourseRoute />
 			<MarkRoute />
 			<StatisticRoute />
+			<HumanResourceRoute />
 			<ErrorRoute />
 		</React.Fragment>
 	);
