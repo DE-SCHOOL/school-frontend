@@ -61,7 +61,7 @@ function StaffReviewForm() {
 		<div className="staff-review">
 			<a href={'/human resource/review-staff'}>
 				{/**To force reload of application */}
-				<h3 className="center">View Lecturers</h3>s
+				<h3 className="center">View Lecturers</h3>
 			</a>
 			<h3 className="center">
 				<span>Lecturer: </span>
@@ -123,6 +123,10 @@ function StaffReviewForm() {
 			{review.success === true && <Success />}
 			{/* {review.error === false && setStaffData(defaultInfo)} */}
 			{review.isLoading && <Loader />}
+			{questions.error === true && questions.errorMessage && (
+				<Failure message={questions.errorMessage} />
+			)}
+			{questions.isLoading && <Loader />}
 		</div>
 	);
 }
