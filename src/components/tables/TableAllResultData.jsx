@@ -52,6 +52,7 @@ function TableAllResultData({ student, styles = '' }) {
 			</h1>
 		);
 	}
+	console.log(marksInfo);
 	return (
 		<React.Fragment>
 			{marksInfo?.map((studResults, index) => {
@@ -78,8 +79,16 @@ function TableAllResultData({ student, styles = '' }) {
 											<th>Status</th>
 											<th>Credit Value</th>
 											<th>Credit Earned</th>
-											<th>CA / 30</th>
-											<th>Exam / 70</th>
+											{!(
+												studResults[0]?.student?.specialty?.name !==
+													'Software Engineering - SBT' &&
+												studResults[0]?.student?.level === 300
+											) && <th>CA / 30</th>}
+											{!(
+												studResults[0]?.student?.specialty?.name !==
+													'Software Engineering - SBT' &&
+												studResults[0]?.student?.level === 300
+											) && <th>Exam / 70</th>}
 											<th>Total / 100</th>
 											<th>Grade Point</th>
 											<th>Weighted points</th>
@@ -108,8 +117,24 @@ function TableAllResultData({ student, styles = '' }) {
 														<td>
 															{studResult[`${semester}CreditEarned`].toFixed(2)}
 														</td>
-														<td>{studResult[`${semester}CA`].toFixed(2)}</td>
-														<td>{studResult[`${semester}Exam`].toFixed(2)}</td>
+														{!(
+															studResults[0]?.student?.specialty?.name !==
+																'Software Engineering - SBT' &&
+															studResults[0]?.student?.level === 300
+														) && (
+															<td>{studResult[`${semester}CA`].toFixed(2)}</td>
+														)}
+														{!(
+															studResults[0]?.student?.specialty?.name !==
+																'Software Engineering - SBT' &&
+															studResults[0]?.student?.level === 300
+														) && (
+															<td>
+																{studResult[`${semester}Exam`].toFixed(2)}
+															</td>
+														)}
+														{/* <td>{studResult[`${semester}CA`].toFixed(2)}</td>
+														<td>{studResult[`${semester}Exam`].toFixed(2)}</td> */}
 														<td>{studResult[`${semester}Total`].toFixed(2)}</td>
 														<td>
 															{studResult[`${semester}GradePoint`].toFixed(2)}
