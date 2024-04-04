@@ -9,10 +9,10 @@ import {
 } from 'react-icons/md';
 import { BiTable } from 'react-icons/bi';
 import { IoLibrarySharp, IoSettings } from 'react-icons/io5';
-import { FaBloggerB, FaHotel, FaSchool } from 'react-icons/fa';
+import { FaBloggerB, FaHotel, FaPoll, FaSchool } from 'react-icons/fa';
 import { FaHandsHoldingChild } from 'react-icons/fa6';
 import { FcStatistics } from 'react-icons/fc';
-// ['lecturer', 'secreteriat', 'hod', 'director', 'admin']
+
 const data = [
 	{
 		menu: 'main',
@@ -253,6 +253,22 @@ const data = [
 						name: 'review staff',
 						link: 'review-staff',
 						roles: ['admin'],
+					},
+				],
+			},
+			{
+				item: 'poll',
+				icon: <FaPoll />,
+				itemList: [
+					{
+						name: 'poll list',
+						link: 'list',
+						roles: ['secreteriat', 'hod', 'director', 'admin'],
+					},
+					{
+						name: 'poll add',
+						link: 'add',
+						roles: ['secreteriat', 'hod', 'director', 'admin'],
 					},
 				],
 			},
