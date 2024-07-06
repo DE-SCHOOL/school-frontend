@@ -59,14 +59,14 @@ function StudentRoute() {
 					</Protected>
 				}
 			/>
-			{/* <Route
+			<Route
 				path="/landmark/student-registration"
 				element={
 					// <Protected restrict={RIGHTS.TO_ALL_OFFICE_STAFF}>
 					<StudentRegister />
 					// </Protected>
 				}
-			/> */}
+			/>
 		</Routes>
 	);
 }
