@@ -100,6 +100,8 @@ function SearchCourses({ styles, type = '', form }) {
 					<option value="200">Level 200</option>
 					<option value="300">Level 300</option>
 					<option value="400">Level 400</option>
+					<option value="601">Level 600 I</option>
+					<option value="602">Level 600 II</option>
 				</select>
 
 				<select name="specialty" ref={spty}>
