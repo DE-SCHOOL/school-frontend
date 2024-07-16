@@ -30,7 +30,7 @@ function MyCourses() {
 	const [coursesState, setCoursesState] = useState([]);
 
 	//Setting the default number of entries a user can see on the interface.
-	const [numPages, setNumPages] = useState(5);
+	const [numPages, setNumPages] = useState(25);
 
 	//useEffect to dispatch student data after initial render
 	const teacherID = JSON.parse(localStorage.getItem('loggedIn'))._id;
