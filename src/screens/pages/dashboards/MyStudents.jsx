@@ -31,7 +31,7 @@ function MyStudentList() {
 	const [studentsState, setStudentsState] = useState(students);
 
 	//Setting the default number of entries a user can see on the interface.
-	const [numPages, setNumPages] = useState(5);
+	const [numPages, setNumPages] = useState(25);
 
 	const ID = JSON.parse(localStorage.getItem('loggedIn'))._id;
 	//useEffect to dispatch student data after initial render
