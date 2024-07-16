@@ -26,14 +26,17 @@ function AllCourseStats() {
 	//useEffect to dispatch student data after initial render
 	useEffect(() => {
 		let courseIDs = [];
+		const SEMESTER = semester();
 		if (courses?.data?.length > 0) {
 			courses.data?.map((course) => {
-				courseIDs.push(course._id);
+				if (course.semester === SEMESTER) {
+					courseIDs.push(course._id);
+				}
 				return course;
 			});
 
 			const dbOpt = {
-				semester: semester(),
+				semester: SEMESTER,
 				academicYear: '2023/2024',
 				courseIDs,
 			};
@@ -54,7 +57,6 @@ function AllCourseStats() {
 	return (
 		<div className="stud-print">
 			<section className="students">
-				
 				{coursesStats !== undefined && (
 					<TableAllCourseStats
 						coursesStats={coursesStats}
