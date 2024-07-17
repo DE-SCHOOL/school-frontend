@@ -1,5 +1,5 @@
 export const schoolHeaderProp = {
-	name: 'Landmark Metropolitan University',
+	name: 'Landmark Metropolitan University Institute',
 	box: 'P.O Box 318, Buea',
 	region: 'South West Region, Cameroon',
 	tel: '673034195 / 670836477 / 672339570',
