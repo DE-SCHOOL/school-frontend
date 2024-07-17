@@ -6,7 +6,12 @@ import { Link, useLocation } from 'react-router-dom';
 //Styled in the layout sass file in components stying
 
 //Sections name, download button, refresh button and Add button
-function SectionResultIntro({ title, styles }) {
+function SectionResultIntro({
+	title,
+	styles,
+	link = '/all/results',
+	text = 'Download All Results',
+}) {
 	const loc = useLocation();
 	const handleRefresh = () => {
 		window.location = loc.pathname;
@@ -19,11 +24,11 @@ function SectionResultIntro({ title, styles }) {
 				<button className="button-main button-main-small">
 					<FaArrowDown />
 					<Link
-						to={'/all/results'}
+						to={link}
 						target="_blank"
 						style={{ textDecoration: 'none', color: 'inherit' }}
 					>
-						<span className="text">Download All Results</span>
+						<span className="text">{text}</span>
 					</Link>
 				</button>
 				<button

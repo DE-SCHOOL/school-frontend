@@ -227,6 +227,11 @@ const data = [
 						link: 'student-marks',
 						roles: ['director', 'admin'],
 					},
+					{
+						name: 'student resit',
+						link: 'student-resit',
+						roles: ['director', 'admin']
+					}
 				],
 			},
 			{
@@ -261,13 +266,13 @@ const data = [
 				icon: <FaPoll />,
 				itemList: [
 					{
-						name: 'poll list',
-						link: 'list',
+						name: 'poll add',
+						link: 'add',
 						roles: ['secreteriat', 'hod', 'director', 'admin'],
 					},
 					{
-						name: 'poll add',
-						link: 'add',
+						name: 'poll list',
+						link: 'list',
 						roles: ['secreteriat', 'hod', 'director', 'admin'],
 					},
 				],
