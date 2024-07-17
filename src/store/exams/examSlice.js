@@ -42,7 +42,11 @@ export const getStudentResit = createAsyncThunk(
 
 				return val;
 			});
-			return resitData;
+			const sortedData = resitData.sort((a, b) => {
+				if (a.course > b.course) return 1;
+				return -1;
+			});
+			return sortedData;
 		} catch (err) {
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
