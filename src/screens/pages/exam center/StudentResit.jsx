@@ -29,7 +29,7 @@ function StudentResit() {
 	const exams = useSelector((state) => state.exams);
 
 	//saving the student data in a useState
-	const [studentsState, setStudentsState] = useState(students);
+	const [studentsState] = useState(students);
 
 	//Setting the default number of entries a user can see on the interface.
 	const [numPages, setNumPages] = useState(25);
@@ -49,7 +49,7 @@ function StudentResit() {
 				<SectionResultIntro
 					title="Students"
 					styles="mg-bt mg-top"
-					link=""
+					link="/exam center/all-resit"
 					text="Download All Resits"
 				/>
 
