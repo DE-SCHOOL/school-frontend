@@ -19,6 +19,7 @@ import StudentMarks from '../../../screens/pages/exam center/StudentsMarks';
 import StudentResult from '../../../screens/pages/exam center/StudentResult';
 import { StudentResultAll } from '../../../screens/pages/exam center';
 import CourseMarkList from '../../../screens/pages/marks/CourseMarkList';
+import StudentResit from '../../../screens/pages/exam center/StudentResit';
 function MarkRoute() {
 	return (
 		<Routes>
@@ -67,6 +68,14 @@ function MarkRoute() {
 				element={
 					<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
 						<MarkList />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/exam center/student-resit"
+				element={
+					<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
+						<StudentResit />
 					</Protected>
 				}
 			/>
