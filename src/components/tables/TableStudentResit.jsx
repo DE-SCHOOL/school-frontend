@@ -1,13 +1,9 @@
 //importing react components
 import React, { useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { FaRightLeft } from 'react-icons/fa6';
-import { BsEyeFill, BsFillPenFill, BsFillTrash3Fill } from 'react-icons/bs';
-import { useSelector, useDispatch } from 'react-redux';
-import { setDeleteEntity } from '../../store/ui-state/ui-stateSlice';
 
 //importing utility functions
-import { getDateFromDateObject } from '../../utilities/getDate';
 import { sortArrayObject } from '../../utilities/sortingInfo';
 
 //Styled in the table sass file of the component styles
@@ -27,8 +23,6 @@ function TableStudentResit({
 	//Declaring set params
 	const [searchParams] = useSearchParams();
 	const curPage = searchParams.get('curPage');
-	const user = useSelector((state) => state.auth.user);
-	const dispatch = useDispatch();
 
 	//Defining function to complete sorting
 	if (tableData.length === studentData.length) {
