@@ -85,7 +85,7 @@ function TableAllResit({ tableData }) {
 								{DATA_CONST?.map((student, index) => {
 									count = count + 1;
 
-									if (data.course === student.course)
+									if (data.course_code === student.course_code)
 										return (
 											<tr key={student.matricule + student.course_code + index}>
 												<td style={{ textAlign: 'center' }}>
