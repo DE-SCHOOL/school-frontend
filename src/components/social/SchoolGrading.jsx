@@ -5,6 +5,7 @@ function SchoolGrading() {
 	return (
 		<div className="total-gpa school-grading">
 			<div className="registrar">
+				<span>Nfor Frederick, PhD</span>
 				<span>REGISTRAR</span>
 			</div>
 			<table className="results-total mg-top">
