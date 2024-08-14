@@ -10,7 +10,7 @@ import {
 import { BiTable } from 'react-icons/bi';
 import { IoLibrarySharp, IoSettings } from 'react-icons/io5';
 import { FaBloggerB, FaHotel, FaPoll, FaSchool } from 'react-icons/fa';
-import { FaHandsHoldingChild } from 'react-icons/fa6';
+import { FaHandsHoldingChild, FaY } from 'react-icons/fa6';
 import { FcStatistics } from 'react-icons/fc';
 
 const data = [
@@ -230,8 +230,8 @@ const data = [
 					{
 						name: 'student resit',
 						link: 'student-resit',
-						roles: ['director', 'admin']
-					}
+						roles: ['director', 'admin'],
+					},
 				],
 			},
 			{
@@ -241,6 +241,17 @@ const data = [
 					{
 						name: 'course stats',
 						link: 'course-stats',
+						roles: ['admin'],
+					},
+				],
+			},
+			{
+				item: 'academic year',
+				icon: <FaY />,
+				itemList: [
+					{
+						name: 'add year',
+						link: 'add-year',
 						roles: ['admin'],
 					},
 				],
