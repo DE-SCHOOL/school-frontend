@@ -15,6 +15,8 @@ import examReducer from './exams/examSlice';
 import uiStateReducer from './ui-state/ui-stateSlice';
 import questionReducer from './question/questionSlice';
 import reviewReducer from './reviews/reviewSlice';
+import questionCategoryReducer from './question category/questionCategorySlice';
+import academicYearReducer from './academic year/academicYearSlice';
 
 //CREATING THE VARIOUS REDUCERS
 const store = configureStore({
@@ -33,6 +35,8 @@ const store = configureStore({
 		uiState: uiStateReducer,
 		questions: questionReducer,
 		reviews: reviewReducer,
+		questionCategory: questionCategoryReducer,
+		years: academicYearReducer,
 	},
 });
 
