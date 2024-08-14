@@ -14,6 +14,7 @@ import ErrorRoute from './errors';
 import StatisticRoute from './pages/statistics';
 import HumanResourceRoute from './pages/human resource';
 import PollRoute from './pages/polls';
+import AcademicYear from './pages/academic year';
 
 function Router() {
 	return (
@@ -29,6 +30,7 @@ function Router() {
 			<MarkRoute />
 			<StatisticRoute />
 			<HumanResourceRoute />
+			<AcademicYear />
 			<PollRoute />
 			<ErrorRoute />
 		</React.Fragment>
