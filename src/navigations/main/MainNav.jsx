@@ -4,7 +4,6 @@ import {
 	FaBars,
 	FaSistrix,
 	FaRegBell,
-	FaY,
 	FaS,
 	Fa1,
 	Fa2,
@@ -23,11 +22,22 @@ import { loggedIn } from '../../store/auth/authSlice';
 import { toggleLeftNav } from '../../store/ui-state/ui-stateSlice';
 
 import * as periodInfo from './../../utilities/periodInfo';
+import {
+	getAcademicYears,
+	getCurrentYear,
+	updateAcademicYears,
+} from '../../store/academic year/academicYearSlice';
 
 function MainNav() {
 	const [showSemester, setShowSemester] = useState(false);
+	const [showYears, setShowYears] = useState(false);
 	let sem = periodInfo.semester();
 	const navigate = useNavigate();
+	const academicYears = useSelector((state) => state.years.academicYears);
+	const currentYear = academicYears
+		? academicYears.filter((year) => year.isCurrent)[0]
+		: [];
+	// console.log(academicYears);
 
 	const handleSetSemester = (semester) => {
 		setShowSemester((prev) => !prev);
@@ -39,6 +49,15 @@ function MainNav() {
 			`${window.location.pathname + window.location?.search || ''}`
 		);
 	};
+
+	const handleSetYear = (id) => {
+		dispatch(updateAcademicYears({ id }));
+		setShowYears((prev) => !prev);
+		window.location.assign(
+			`${window.location.pathname + window.location?.search || ''}`
+		);
+	};
+
 	const authUser = useSelector((state) => state.auth);
 	// console.log(authUser);
 	const dispatch = useDispatch();
@@ -46,6 +65,8 @@ function MainNav() {
 	//dispatch to check if user is logged in
 	useEffect(() => {
 		dispatch(loggedIn());
+		dispatch(getAcademicYears());
+		dispatch(getCurrentYear());
 	}, [dispatch]);
 
 	//if user is not logged in or user data got deleted from local storage
@@ -104,9 +125,30 @@ function MainNav() {
 						</li>
 					</div>
 				</span>
-				<span className="main-nav__year rounded">
-					<FaY className="icons" />
-				</span>
+				{authUser.user.role === 'admin' && (
+					<span className="main-nav__year">
+						<span
+							className="iconss"
+							onClick={() => setShowYears((prev) => !prev)}
+						>
+							Y: {currentYear?.schoolYear}
+						</span>
+						<div className={`year ${showYears === false ? 'toggle' : ''}`}>
+							{academicYears?.length > 0 &&
+								academicYears?.map((years) => {
+									return (
+										<li
+											key={years._id}
+											onClick={() => handleSetYear(years._id)}
+										>
+											Y: {years.schoolYear}
+										</li>
+									);
+								})}
+						</div>
+					</span>
+				)}
+
 				<span className="main-nav__settings rounded">
 					<FiSettings className="icons" />
 				</span>
