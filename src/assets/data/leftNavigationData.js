@@ -1,5 +1,5 @@
 import * as BootstrapIcon from 'react-icons/bs';
-import { GiTeacher } from 'react-icons/gi';
+import { GiTeacher, GiUpgrade } from 'react-icons/gi';
 import { SiCoursera } from 'react-icons/si';
 import { RiMoneyDollarBoxFill } from 'react-icons/ri';
 import {
@@ -252,6 +252,17 @@ const data = [
 					{
 						name: 'add year',
 						link: 'add-year',
+						roles: ['admin'],
+					},
+				],
+			},
+			{
+				item: 'promotion',
+				icon: <GiUpgrade />,
+				itemList: [
+					{
+						name: 'promote students',
+						link: 'promote-students',
 						roles: ['admin'],
 					},
 				],
