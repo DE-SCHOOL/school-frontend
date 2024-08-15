@@ -3,11 +3,79 @@ import { apiRequest } from '../APIs/apiRequest';
 
 const initialState = {
 	academicYears: [],
+	students: [],
+	nextYearStudents: [],
+	student: {},
 	isLoading: false,
 	error: false,
 	errorMessage: null,
 	currentYear: null,
 };
+
+export const createStudentAcademicYearBulk = createAsyncThunk(
+	'academicYear/insertStudentAcademicYearBulk',
+	async (data, thunkAPI) => {
+		try {
+			const res = await apiRequest(
+				'post',
+				'/api/v1/student-academic-year/bulk-insert',
+				data
+			);
+			return res.data;
+		} catch (err) {
+			const error = err?.response?.data?.message || 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+
+export const getStudentPerAcademicYear = createAsyncThunk(
+	'academicYear/getStudentPerAcademicYear',
+	async (academicYear, thunkAPI) => {
+		try {
+			const res = await apiRequest(
+				'get',
+				`/api/v1/student-academic-year/${academicYear._id}`
+			);
+			return res.data;
+		} catch (err) {
+			const error = err?.response?.data?.message || 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+
+export const getStudentPerAcademicYearNextStudents = createAsyncThunk(
+	'academicYear/getStudentPerAcademicYearNextStudents',
+	async (academicYear, thunkAPI) => {
+		try {
+			const res = await apiRequest(
+				'get',
+				`/api/v1/student-academic-year/${academicYear._id}`
+			);
+			return res.data;
+		} catch (err) {
+			const error = err?.response?.data?.message || 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+export const promoteStudents = createAsyncThunk(
+	'academicYear/promoteStudent',
+	async (data, thunkAPI) => {
+		try {
+			const res = await apiRequest(
+				'post',
+				`/api/v1/student-academic-year/${data._id}/promote-student`,
+				data
+			);
+			return res.data;
+		} catch (err) {
+			const error = err?.response?.data?.message || 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
 
 export const createSchoolYear = createAsyncThunk(
 	'academicYear/create',
@@ -118,6 +186,70 @@ const AcademicYearSlice = createSlice({
 				state.error = true;
 				state.errorMessage = action.payload?.error;
 				state.isLoading = false;
+			})
+			.addCase(createStudentAcademicYearBulk.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(createStudentAcademicYearBulk.fulfilled, (state, action) => {
+				// state.currentYear = action.payload.data;
+				state.errorMessage = null;
+				state.isLoading = false;
+			})
+			.addCase(createStudentAcademicYearBulk.rejected, (state, action) => {
+				state.error = true;
+				state.errorMessage = action.payload?.error;
+				state.isLoading = false;
+			})
+			.addCase(getStudentPerAcademicYear.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(getStudentPerAcademicYear.fulfilled, (state, action) => {
+				state.students = action.payload.data;
+				state.errorMessage = null;
+				state.isLoading = false;
+			})
+			.addCase(getStudentPerAcademicYear.rejected, (state, action) => {
+				state.error = true;
+				state.errorMessage = action.payload?.error;
+				state.isLoading = false;
+			})
+			.addCase(
+				getStudentPerAcademicYearNextStudents.pending,
+				(state, action) => {
+					state.isLoading = true;
+				}
+			)
+			.addCase(
+				getStudentPerAcademicYearNextStudents.fulfilled,
+				(state, action) => {
+					const studentIDs = action.payload.data.map((stud) => stud._id);
+					console.log(studentIDs, studentIDs.length);
+					state.nextYearStudents = studentIDs;
+					state.errorMessage = null;
+					state.isLoading = false;
+				}
+			)
+			.addCase(
+				getStudentPerAcademicYearNextStudents.rejected,
+				(state, action) => {
+					state.error = true;
+					state.errorMessage = action.payload?.error;
+					state.isLoading = false;
+				}
+			)
+			.addCase(promoteStudents.fulfilled, (state, action) => {
+				state.nextYearStudents = [];
+				state.students = action.payload.data;
+				state.errorMessage = null;
+				state.isLoading = false;
+			})
+			.addCase(promoteStudents.rejected, (state, action) => {
+				state.error = true;
+				state.errorMessage = action.payload?.error;
+				state.isLoading = false;
+			})
+			.addCase(promoteStudents.pending, (state, action) => {
+				state.isLoading = true;
 			});
 	},
 });
