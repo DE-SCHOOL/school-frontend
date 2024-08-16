@@ -14,7 +14,6 @@ function LeftNavSectionItem({ icon, list }) {
 	const [isItemOpen, setIsItemOpen] = useState(false);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	console.log(list);
 
 	const actor = useSelector((state) => state.auth.user);
 	return (
