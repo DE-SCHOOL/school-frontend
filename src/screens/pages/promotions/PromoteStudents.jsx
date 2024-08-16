@@ -11,11 +11,13 @@ import DeleteModal from '../../../components/mod/DeleteModal';
 import Loader from './../../../components/loaders/Loader';
 import {
 	createStudentAcademicYearBulk,
-	getCurrentYear,
 	getStudentPerAcademicYear,
+	getStudentPerAcademicYearNextStudents,
+	promoteStudentsBulk,
 } from '../../../store/academic year/academicYearSlice';
 import Failure from '../../../components/signal/Failure';
 import TableStudentsPromote from '../../../components/tables/TableStudentsPromote';
+import { determineNextAcademicYear } from '../../../utilities/determineNextAcademicYear';
 
 const studentHeader = {
 	id: 'ID',
@@ -30,12 +32,18 @@ const studentHeader = {
 };
 
 function PromoteStudents() {
+	//students who were not inserted into specific academic year -- assuming the student slice still selects students directly from the student table and the students on that table are not in a particular academic year
+	const studOld = useSelector((state) => state.students.students);
+
 	//Defining the dispatch function, and the useSelector to get students data
 	const dispatch = useDispatch();
 	const students = useSelector((state) => state.years.students);
 	const uiState = useSelector((state) => state.uiState.deleteOpt);
 	const isLoading = useSelector((state) => state.years.isLoading);
+	const studNextYear = useSelector((state) => state.years.nextYearStudents);
 	const year = useSelector((state) => state.years);
+	const [studentsToPromote, setStudentsToPromote] = useState([]);
+	const [showPromote, setShowPromote] = useState(false);
 
 	//saving the student data in a useState
 	const [studentsState, setStudentsState] = useState(students);
@@ -51,13 +59,68 @@ function PromoteStudents() {
 		// dispatch(getCurrentYear());
 	}, [dispatch, year.currentYear?._id]);
 
-	const createBulk = () => {
-		const studentIDs = students.map((stud) => stud._id);
+	const createBulk = async () => {
+		const studentIDs = studOld.map((stud) => stud._id);
 		const toYearID = year.currentYear._id;
 
-		console.log(studentIDs, toYearID);
-		// dispatch(createStudentAcademicYearBulk({ studentIDs, toYearID }));
+		// console.log(studentIDs, toYearID);
+		await dispatch(createStudentAcademicYearBulk({ studentIDs, toYearID }));
+		await dispatch(getStudentPerAcademicYear(year.currentYear));
 	};
+
+	const handlePromoteStudentBulk = async () => {
+		let finalPromoStudents = [];
+		let nextYear = determineNextAcademicYear(
+			year.currentYear?.schoolYear,
+			year.academicYears
+		);
+
+		studentsToPromote.map((student) => {
+			if (!studNextYear.includes(student.studentID)) {
+				finalPromoStudents.push(student);
+			}
+		});
+
+		if (finalPromoStudents.length === 0)
+			return alert('All Selected Students Are Already Promoted!');
+		if (finalPromoStudents.length > 0) setShowPromote(true);
+
+		await dispatch(
+			promoteStudentsBulk({
+				students: finalPromoStudents,
+				_id: year.currentYear?._id,
+			})
+		);
+		await dispatch(
+			getStudentPerAcademicYearNextStudents({ _id: nextYear?._id })
+		);
+
+		setStudentsToPromote([]);
+	};
+
+	useEffect(() => {
+		if (year.currentYear?.schoolYear !== undefined) {
+			let finalPromoStudents = [];
+			studentsToPromote.map((student) => {
+				if (!studNextYear.includes(student.studentID)) {
+					finalPromoStudents.push(student);
+				}
+			});
+
+			let nextYear = determineNextAcademicYear(
+				year.currentYear?.schoolYear,
+				year.academicYears
+			);
+
+			// console.log(nextYear);
+			const shouldPromote =
+				finalPromoStudents.length + studentsToPromote.length > 0 &&
+				nextYear?._id !== undefined;
+			console.log(studentsToPromote);
+
+			setShowPromote(shouldPromote);
+		}
+	}, [studentsToPromote.length, year.currentYear?.schoolYear]);
 
 	return (
 		<Layout>
@@ -78,8 +141,10 @@ function PromoteStudents() {
 				<SectionMainIntro
 					title={`Students: Academic Year ${year.currentYear?.schoolYear}`}
 					styles="mg-bt mg-top"
-					promotion={true}
+					promotion={showPromote ? true : ''}
+					pendingPromotion={showPromote === false}
 					ftn={createBulk}
+					promoteBulkFtn={handlePromoteStudentBulk}
 				/>
 
 				{/* Select the number of items to be shown on a page */}
@@ -93,6 +158,8 @@ function PromoteStudents() {
 						tableData={studentsState.length !== 0 ? studentsState : students}
 						header={studentHeader}
 						paggingNum={numPages}
+						studentsToPromote={studentsToPromote}
+						setStudentsToPromote={setStudentsToPromote}
 					/>
 				)}
 
