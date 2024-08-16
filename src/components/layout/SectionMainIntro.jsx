@@ -11,7 +11,15 @@ import { Link } from 'react-router-dom';
 //Styled in the layout sass file in components stying
 
 //Sections name, download button, refresh button and Add button
-function SectionMainIntro({ title, styles, link, promotion = false, ftn }) {
+function SectionMainIntro({
+	title,
+	styles,
+	link,
+	promotion = false,
+	pendingPromotion = false,
+	ftn = () => {},
+	promoteBulkFtn = () => {},
+}) {
 	const loc = useLocation();
 	const handleRefresh = () => {
 		window.location = loc.pathname;
@@ -20,7 +28,7 @@ function SectionMainIntro({ title, styles, link, promotion = false, ftn }) {
 	return (
 		<div className={`section-main-intro ${styles ? styles : ''}`}>
 			<h2 className="header-secondary">{title}</h2>
-			{promotion === false && (
+			{promotion === false && pendingPromotion === false && (
 				<div className="actions">
 					<button className="button-main button-main-small">
 						<FaArrowDown />
@@ -40,13 +48,47 @@ function SectionMainIntro({ title, styles, link, promotion = false, ftn }) {
 					</button>
 				</div>
 			)}
-			{promotion === true && (
+			{promotion === true && pendingPromotion === false && (
 				<div className="actions">
-					<button className="button-main button-main-small" onClick={ftn}>
+					<button
+						className="button-main button-main-small"
+						onClick={promoteBulkFtn}
+					>
 						<GiUpgrade />
 						<span className="text">Promote All</span>
 					</button>
 
+					<button
+						className="button-main button-main-small"
+						onClick={handleRefresh}
+					>
+						<BsRepeat />
+					</button>
+				</div>
+			)}
+			{promotion === '' && pendingPromotion === true && (
+				<div className="actions">
+					<button
+						className="button-main button-main-small"
+						onClick={handleRefresh}
+					>
+						<BsRepeat />
+					</button>
+				</div>
+			)}
+			{pendingPromotion && promotion && (
+				<div className="actions">
+					<button
+						className="button-main button-main-small"
+						onClick={() =>
+							alert(
+								'Create a New Academic Year to be able to Promote the current year Students'
+							)
+						}
+					>
+						<GiUpgrade />
+						<span className="text">Pending</span>
+					</button>
 					<button
 						className="button-main button-main-small"
 						onClick={handleRefresh}
