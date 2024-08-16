@@ -29,6 +29,24 @@ export const createStudentAcademicYearBulk = createAsyncThunk(
 	}
 );
 
+export const promoteStudentsBulk = createAsyncThunk(
+	'academicYear/promoteStudentsBulk',
+	async (data, thunkAPI) => {
+		try {
+			const { students, _id } = data;
+			const res = await apiRequest(
+				'post',
+				`/api/v1/student-academic-year/${_id}/bulk-promote`,
+				{ students }
+			);
+			return res.data;
+		} catch (err) {
+			const error = err?.response?.data?.message || 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+
 export const getStudentPerAcademicYear = createAsyncThunk(
 	'academicYear/getStudentPerAcademicYear',
 	async (academicYear, thunkAPI) => {
@@ -223,7 +241,6 @@ const AcademicYearSlice = createSlice({
 				getStudentPerAcademicYearNextStudents.fulfilled,
 				(state, action) => {
 					const studentIDs = action.payload.data.map((stud) => stud._id);
-					console.log(studentIDs, studentIDs.length);
 					state.nextYearStudents = studentIDs;
 					state.errorMessage = null;
 					state.isLoading = false;
@@ -249,6 +266,20 @@ const AcademicYearSlice = createSlice({
 				state.isLoading = false;
 			})
 			.addCase(promoteStudents.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(promoteStudentsBulk.fulfilled, (state, action) => {
+				state.nextYearStudents = [];
+				state.students = action.payload.data;
+				state.errorMessage = null;
+				state.isLoading = false;
+			})
+			.addCase(promoteStudentsBulk.rejected, (state, action) => {
+				state.error = true;
+				state.errorMessage = action.payload?.error;
+				state.isLoading = false;
+			})
+			.addCase(promoteStudentsBulk.pending, (state, action) => {
 				state.isLoading = true;
 			});
 	},
