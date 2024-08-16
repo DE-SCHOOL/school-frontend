@@ -12,6 +12,7 @@ import {
 	promoteStudents,
 } from '../../store/academic year/academicYearSlice';
 import { detectNewClassOnPromotion } from '../../utilities/detectNewClassOnPromotion';
+import { determineNextAcademicYear } from '../../utilities/determineNextAcademicYear';
 
 //Styled in the table sass file of the component styles
 let DATA_CONST;
@@ -22,11 +23,14 @@ function TableStudentsPromote({
 	header,
 	paggingNum,
 	tableType = '',
+	studentsToPromote,
+	setStudentsToPromote,
 }) {
 	//declaring state variables
 	const [isSortedBy, setIsSortedBy] = useState('');
 	const [studentData, setStudentData] = useState(tableData);
 	const [nextYearID, setNextYearID] = useState('');
+	const [allIsChecked, setAllIsChecked] = useState(false);
 
 	//Declaring set params
 	const [searchParams] = useSearchParams();
@@ -54,24 +58,14 @@ function TableStudentsPromote({
 
 	useEffect(() => {
 		if (year?.schoolYear) {
-			const currentYear = year.schoolYear.split('/');
-			let nextYear = [];
-			nextYear[0] = Number(currentYear[0]) + 1;
-			nextYear[1] = Number(currentYear[1]) + 1;
-
-			nextYear = nextYear.join('/');
-
-			nextYear = allSchoolYears.filter(
-				(years) => years.schoolYear === nextYear
+			let nextYear = determineNextAcademicYear(
+				year?.schoolYear,
+				allSchoolYears
 			);
+			setNextYearID(nextYear?._id);
 
-			setNextYearID(nextYear[0]?._id);
-			console.log(nextYear[0]?._id);
-
-			if (nextYear[0]?._id !== undefined)
-				dispatch(
-					getStudentPerAcademicYearNextStudents({ _id: nextYear[0]?._id })
-				);
+			if (nextYear?._id !== undefined)
+				dispatch(getStudentPerAcademicYearNextStudents({ _id: nextYear?._id }));
 		}
 	}, [dispatch, year?.schoolYear]);
 
@@ -85,11 +79,61 @@ function TableStudentsPromote({
 		await dispatch(getStudentPerAcademicYearNextStudents({ _id: nextYearID }));
 	}
 
+	function handleCheckBox(target, data) {
+		let tempPromote = [];
+		studentsToPromote.map((student) => {
+			if (student?.studentID !== data.studentID) tempPromote.push(student);
+		});
+
+		if (target.checked) {
+			tempPromote.push(data);
+		}
+		setStudentsToPromote(tempPromote);
+
+		isChecked(data.studentID);
+	}
+	// console.log(studentsToPromote);
+
+	function handleCheckAll(target) {
+		setAllIsChecked(target.checked);
+
+		if (target.checked) {
+			setStudentsToPromote(() => {
+				const students = DATA_CONST.map((student) => {
+					return {
+						studentID: student._id,
+						toYear: nextYearID,
+						newClass: detectNewClassOnPromotion(student.level),
+					};
+				});
+
+				return students;
+			});
+		} else {
+			setStudentsToPromote([]);
+		}
+	}
+
+	function isChecked(studID) {
+		const exist = studentsToPromote.filter(
+			(student) => student.studentID === studID
+		);
+		return exist.length === 1;
+	}
+
 	return (
 		<table className={`standard ${styles ? styles : ''}`}>
 			{/* Table heading */}
 			<thead>
 				<tr className="head stud">
+					<th>
+						<input
+							type="checkbox"
+							name="select"
+							id="select-all"
+							onClick={(e) => handleCheckAll(e.target)}
+						/>
+					</th>
 					<th className={`${isSortedBy === 'matricule' ? 'sorted' : ''}`}>
 						<FaRightLeft onClick={() => handleSort('matricule')} />
 						<span className="text">{header.id}</span>
@@ -145,9 +189,23 @@ function TableStudentsPromote({
 					)
 						return (
 							<tr key={index} className="course--row">
-								{/* <td>
-								<input type="checkbox" name="check-1" />
-							</td> */}
+								<td className="checkbox">
+									<input
+										type="checkbox"
+										name=""
+										id=""
+										onChange={(e) =>
+											handleCheckBox(e.target, {
+												studentID: row._id,
+												toYear: nextYearID,
+												newClass: detectNewClassOnPromotion(row.level),
+											})
+										}
+										checked={
+											isChecked(row._id) || (allIsChecked && isChecked(row._id))
+										}
+									/>
+								</td>
 								<td>
 									<span className="text">{row.matricule}</span>
 								</td>
