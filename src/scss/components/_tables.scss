@@ -33,18 +33,53 @@ table {
 				}
 			}
 			// th.students
+			& td.checkbox {
+				padding: 20px 10px !important;
+			}
 			th,
 			td {
 				text-align: left;
 				padding: 1rem 0rem;
-				// padding-left: .3rem;
-				// border: 1px solid blue;
-				// padding: 0 ;
 				text-transform: uppercase;
-				// text-transform: capitalize !important;
 				font-size: 1.4rem;
 				&:first-child {
 					padding-left: 1.5rem;
+				}
+				& .checkbox {
+					padding: 20px 10px !important;
+				}
+				& input[type='checkbox'] {
+					height: 2rem;
+					width: 2rem;
+					appearance: none; /* Disable the native styling */
+					-webkit-appearance: none; /* For better support in WebKit browsers */
+					-moz-appearance: none; /* For better support in Mozilla browsers */
+					background-color: white; /* Default background color */
+					cursor: pointer; /* Change the cursor to pointer */
+					display: inline-block;
+					position: relative;
+					border-radius: 100%;
+					border: 1px solid $color-grey !important;
+					text-align: center;
+
+					&:checked {
+						// background-color: $color-primary !important;
+						// color: $color-white;
+
+						background-color: #2d67dd; /* Background color when checked */
+					}
+
+					&:checked::after {
+						content: '';
+						position: absolute;
+						top: 45%;
+						left: 50%;
+						width: 0.6rem;
+						height: 1rem;
+						border: solid white;
+						border-width: 0 0.4rem 0.4rem 0;
+						transform: translate(-50%, -50%) rotate(45deg);
+					}
 				}
 			}
 			td {
