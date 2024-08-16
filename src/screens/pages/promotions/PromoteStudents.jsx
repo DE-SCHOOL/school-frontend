@@ -60,11 +60,16 @@ function PromoteStudents() {
 	}, [dispatch, year.currentYear?._id]);
 
 	const createBulk = async () => {
-		const studentIDs = studOld.map((stud) => stud._id);
+		const students = studOld.map((stud) => {
+			return {
+				_id: stud._id,
+				level: stud.level,
+			};
+		});
 		const toYearID = year.currentYear._id;
 
-		// console.log(studentIDs, toYearID);
-		await dispatch(createStudentAcademicYearBulk({ studentIDs, toYearID }));
+		console.log(students);
+		await dispatch(createStudentAcademicYearBulk({ students, toYearID }));
 		await dispatch(getStudentPerAcademicYear(year.currentYear));
 	};
 
@@ -116,7 +121,6 @@ function PromoteStudents() {
 			const shouldPromote =
 				finalPromoStudents.length + studentsToPromote.length > 0 &&
 				nextYear?._id !== undefined;
-			console.log(studentsToPromote);
 
 			setShowPromote(shouldPromote);
 		}
