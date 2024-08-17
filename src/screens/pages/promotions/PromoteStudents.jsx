@@ -18,6 +18,7 @@ import {
 import Failure from '../../../components/signal/Failure';
 import TableStudentsPromote from '../../../components/tables/TableStudentsPromote';
 import { determineNextAcademicYear } from '../../../utilities/determineNextAcademicYear';
+// import { getStudents } from '../../../store/students/studentSlice';
 
 const studentHeader = {
 	id: 'ID',
@@ -56,7 +57,7 @@ function PromoteStudents() {
 		if (year.currentYear?._id) {
 			dispatch(getStudentPerAcademicYear(year.currentYear));
 		}
-		// dispatch(getCurrentYear());
+		// dispatch(getStudents());
 	}, [dispatch, year.currentYear?._id]);
 
 	const createBulk = async () => {
