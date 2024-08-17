@@ -29,7 +29,7 @@ function StudentMarks() {
 	const dispatch = useDispatch();
 	const students = useSelector((state) => state.exams.students);
 	const exams = useSelector((state) => state.exams);
-
+	const academicYear = useSelector((state) => state.years.currentYear);
 	//saving the student data in a useState
 	const [studentsState, setStudentsState] = useState(students);
 
@@ -38,8 +38,9 @@ function StudentMarks() {
 
 	//useEffect to dispatch student data after initial render
 	useEffect(() => {
-		dispatch(getStudentsExam());
-	}, [dispatch]);
+		if (academicYear?._id !== undefined)
+			dispatch(getStudentsExam(academicYear?._id));
+	}, [dispatch, academicYear?._id]);
 
 	return (
 		<Layout>
