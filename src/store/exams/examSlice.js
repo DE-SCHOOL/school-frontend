@@ -12,9 +12,12 @@ const initialState = {
 
 export const getStudentsExam = createAsyncThunk(
 	'exam/getStudents',
-	async (thunkAPI) => {
+	async (academicYear, thunkAPI) => {
 		try {
-			const res = await apiRequest('get', `/api/v1/student`);
+			const res = await apiRequest(
+				'get',
+				`/api/v1/student/academic-year/${academicYear}`
+			);
 			// console.log(res.data);
 			return res.data;
 		} catch (err) {
@@ -27,9 +30,11 @@ export const getStudentsExam = createAsyncThunk(
 
 export const getStudentResit = createAsyncThunk(
 	'exam/getStudentResit',
-	async ({ semester }, thunkAPI) => {
+	async ({ semester, academicYear }, thunkAPI) => {
 		try {
-			const res = await apiRequest('get', `/api/v1/course/resit/${semester}`);
+			const res = await apiRequest('post', `/api/v1/course/resit/${semester}`, {
+				academicYear,
+			});
 			const resitData = res.data.data.map((data) => {
 				let val = {
 					matricule: data.student[0]?.matricule,
