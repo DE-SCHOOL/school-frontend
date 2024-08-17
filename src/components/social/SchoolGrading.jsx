@@ -23,14 +23,12 @@ function SchoolGrading() {
 				<tbody>
 					{gradeAndRange.map((gradeSystem, index) => {
 						return (
-							<>
-								<tr key={index}>
-									<td>{gradeSystem.grade1}</td>
-									<td>{gradeSystem.range1}</td>
-									<td>{gradeSystem.grade2}</td>
-									<td>{gradeSystem.range2}</td>
-								</tr>
-							</>
+							<tr key={index}>
+								<td>{gradeSystem.grade1}</td>
+								<td>{gradeSystem.range1}</td>
+								<td>{gradeSystem.grade2}</td>
+								<td>{gradeSystem.range2}</td>
+							</tr>
 						);
 					})}
 					<tr>
