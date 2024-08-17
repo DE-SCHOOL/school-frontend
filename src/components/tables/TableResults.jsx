@@ -15,6 +15,7 @@ function TableResults({ student, styles = '' }) {
 	const courses = useSelector((state) => state.courses.courses);
 	const marksInfo = useSelector((state) => state.marks.studentCoursesMarks);
 	const load = useSelector((state) => state.courses);
+	const academicYear = useSelector((state) => state.years.currentYear);
 	let semester = periodInfo.semester();
 	// console.log(marksInfo);
 
@@ -37,10 +38,11 @@ function TableResults({ student, styles = '' }) {
 
 		//eslint-disable-next-line
 	}, [dispatch, student?.specialty?._id]);
+	// console.log()
 
 	//Get the coursesID and find the marksinformation of a particular student
 	useEffect(() => {
-		if (courses?.length > 0) {
+		if (courses?.length > 0 && academicYear?._id !== undefined) {
 			let courseIDs = [];
 			courses.map((course) => {
 				if (course.semester === semester) {
@@ -48,16 +50,16 @@ function TableResults({ student, styles = '' }) {
 				}
 				return course;
 			});
-			const academicYear = '2023/2024';
+			// const academicYear = '2023/2024';
 			const searchData = {
-				academicYear,
+				academicYear: academicYear?.schoolYear,
 				courses: courseIDs,
 				studID: [student._id],
 			};
 			dispatch(getStudentMarkSheetAllCourses(searchData));
 		}
 		//eslint-disable-next-line
-	}, [courses?.length]);
+	}, [courses?.length, academicYear?._id]);
 	return (
 		<div className={`result-info ${styles}`}>
 			<table className="results mg-top">
