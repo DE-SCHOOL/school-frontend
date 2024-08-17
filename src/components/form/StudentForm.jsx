@@ -34,6 +34,7 @@ function StudentForm({ styles, type = '' }) {
 	const dispatch = useDispatch();
 	const specialties = useSelector((state) => state.specialty.specialties.data);
 	const studentss = useSelector((state) => state.students);
+	const year = useSelector((state) => state.years.currentYear);
 	//initialize the main hooks
 	const [studentData, setStudentData] = useState(defaultInfo);
 	const specialty = useRef();
@@ -49,7 +50,11 @@ function StudentForm({ styles, type = '' }) {
 		e.preventDefault();
 
 		dispatch(
-			addStudent({ ...studentData, specialty: specialty.current.value })
+			addStudent({
+				...studentData,
+				specialty: specialty.current.value,
+				yearID: year._id,
+			})
 		);
 		setStudentData(defaultInfo);
 	};
