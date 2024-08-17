@@ -20,29 +20,44 @@ function MarksAddMock() {
 	const markSheet = useSelector((state) => state.marks.markSheet);
 	const marks = useSelector((state) => state.marks);
 	const course = useSelector((state) => state.courses.course);
+	const academicYear = useSelector((state) => state.years.currentYear);
 	// const
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(getStudentsPerCourseOffering({ courseID: params.courseID }));
-		dispatch(getCourse({ id: params.courseID }));
-
-		//dispatch to get all marksheets per course for particular students if students already exist
-		if (students?.length !== 0) {
-			const studentIDs = [];
-			students.map((student) => {
-				studentIDs.push(student._id);
-				return student;
-			});
+		if (academicYear?._id !== undefined) {
 			dispatch(
-				getMarkSheetsPerCoursePerStudents({
-					id: params.courseID,
-					students: studentIDs,
+				getStudentsPerCourseOffering({
+					courseID: params.courseID,
+					academicYear: academicYear?._id,
 				})
 			);
+			dispatch(getCourse({ id: params.courseID }));
+
+			//dispatch to get all marksheets per course for particular students if students already exist
+			if (students?.length !== 0) {
+				const studentIDs = [];
+				students.map((student) => {
+					studentIDs.push(student._id);
+					return student;
+				});
+				dispatch(
+					getMarkSheetsPerCoursePerStudents({
+						id: params.courseID,
+						students: studentIDs,
+						academicYear: academicYear?.schoolYear,
+					})
+				);
+			}
 		}
 		//eslint-disable-next-line
-	}, [dispatch, params.courseID, students.length, markSheet?.length]);
+	}, [
+		dispatch,
+		params.courseID,
+		students.length,
+		markSheet?.length,
+		academicYear?._id,
+	]);
 
 	//Check if the markSheet available is upto the number of students offering the course
 	//Important if a student is registered after a markSheet was created
@@ -81,17 +96,21 @@ function MarksAddMock() {
 			studentIDs.push(student._id);
 			return student;
 		});
-		
-		dispatch(
-			createInitialMarkSheet({ students: studIDs, id: params.courseID })
-		);
 
+		dispatch(
+			createInitialMarkSheet({
+				students: studIDs,
+				id: params.courseID,
+				academicYear: academicYear?.schoolYear,
+			})
+		);
 
 		//Then get the whole markSheet. That is, include those which already existed before this function call
 		dispatch(
 			getMarkSheetsPerCoursePerStudents({
 				id: params.courseID,
 				students: studentIDs,
+				academicYear: academicYear?.schoolYear,
 			})
 		);
 	};
@@ -123,6 +142,7 @@ function MarksAddMock() {
 						students={students}
 						length={markSheet.length}
 						semester={course?.semester}
+						academicYear={academicYear?.schoolYear}
 					/>
 				</section>
 			)}
