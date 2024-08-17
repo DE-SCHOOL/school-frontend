@@ -13,6 +13,7 @@ function CourseStats() {
 	const load = useSelector((state) => state.courses);
 	const course = useSelector((state) => state.courses.course);
 	const courseStats = useSelector((state) => state.courses.courseStats);
+	const academicYear = useSelector((state) => state.years.currentYear);
 
 	useEffect(() => {
 		dispatch(getCourse({ id: params.courseID }));
@@ -20,7 +21,8 @@ function CourseStats() {
 			getCourseStats({
 				id: params.courseID,
 				semester: semester(),
-				academicYear: '2023/2024',
+				// academicYear: '2023/2024',
+				academicYear: academicYear?.schoolYear,
 			})
 		);
 	}, [params.courseID, dispatch]);
