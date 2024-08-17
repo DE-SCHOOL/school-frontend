@@ -11,13 +11,15 @@ function PrintList() {
 	//Defining the dispatch function, and the useSelector to get students data
 	const dispatch = useDispatch();
 	const students = useSelector((state) => state.exams.students);
+	const academicYear = useSelector((state) => state.years.currentYear);
 	const load = useSelector((state) => state.exams);
 	const [scroll, setScroll] = useState(0);
 
 	//useEffect to dispatch student data after initial render
 	useEffect(() => {
-		dispatch(getStudentsExam());
-	}, [dispatch]);
+		if (academicYear?._id !== undefined)
+			dispatch(getStudentsExam(academicYear?._id));
+	}, [dispatch, academicYear?._id]);
 
 	window.onscroll = () => {
 		if (window.scrollY > 200) {
