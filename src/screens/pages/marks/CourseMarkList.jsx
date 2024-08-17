@@ -14,30 +14,45 @@ function CourseMarkList() {
 	const students = useSelector((state) => state.students.students);
 	const markSheet = useSelector((state) => state.marks.markSheet);
 	const marks = useSelector((state) => state.marks);
+	const academicYear = useSelector((state) => state.years.currentYear);
 	const dispatch = useDispatch();
 
 	const params = useParams();
 
 	useEffect(() => {
-		dispatch(getStudentsPerCourseOffering({ courseID: params.courseID }));
-		dispatch(getCourse({ id: params.courseID }));
-
-		//dispatch to get all marksheets per course for particular students if students already exist
-		if (students?.length !== 0) {
-			const studentIDs = [];
-			students.map((student) => {
-				studentIDs.push(student._id);
-				return student;
-			});
+		if (academicYear?._id !== undefined) {
 			dispatch(
-				getMarkSheetsPerCoursePerStudents({
-					id: params.courseID,
-					students: studentIDs,
+				getStudentsPerCourseOffering({
+					courseID: params.courseID,
+					academicYear: academicYear?._id,
 				})
 			);
+			dispatch(getCourse({ id: params.courseID }));
+
+			//dispatch to get all marksheets per course for particular students if students already exist
+			if (students?.length !== 0) {
+				const studentIDs = [];
+				students.map((student) => {
+					studentIDs.push(student._id);
+					return student;
+				});
+				dispatch(
+					getMarkSheetsPerCoursePerStudents({
+						id: params.courseID,
+						students: studentIDs,
+						academicYear: academicYear?.schoolYear,
+					})
+				);
+			}
 		}
 		//eslint-disable-next-line
-	}, [dispatch, params.courseID, students.length, markSheet?.length]);
+	}, [
+		dispatch,
+		params.courseID,
+		students.length,
+		markSheet?.length,
+		academicYear?._id,
+	]);
 
 	return (
 		<Layout>
@@ -51,6 +66,7 @@ function CourseMarkList() {
 					students={students}
 					length={markSheet.length}
 					semester={course?.semester}
+					academicYear={academicYear?.schoolYear}
 				/>
 			</section>
 			{marks.error === true && marks.errorMessage && (
