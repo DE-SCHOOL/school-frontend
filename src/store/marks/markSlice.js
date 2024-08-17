@@ -10,14 +10,17 @@ const initialState = {
 	allMarkSheet: [],
 	studentCoursesMarks: [],
 	studentsCoursesMarks: [],
-
 };
 
 export const createInitialMarkSheet = createAsyncThunk(
 	'mark/createInitialMarkSheet',
-	async ({ students, id }, thunkAPI) => {
+	async ({ students, academicYear, id }, thunkAPI) => {
+		console.log(students, academicYear);
 		try {
-			const res = await apiRequest('post', `/api/v1/mark/${id}`, { students });
+			const res = await apiRequest('post', `/api/v1/mark/${id}`, {
+				students,
+				academicYear,
+			});
 			return res.data;
 		} catch (err) {
 			// const msg = getApiError();
@@ -30,12 +33,12 @@ export const createInitialMarkSheet = createAsyncThunk(
 
 export const getMarkSheetsPerCoursePerStudents = createAsyncThunk(
 	'mark/getMarkSheetsPerCoursePerStudents',
-	async ({ students, id }, thunkAPI) => {
+	async ({ students, academicYear, id }, thunkAPI) => {
 		try {
 			const res = await apiRequest(
 				'post',
 				`/api/v1/mark/course/${id}/students`,
-				{ students }
+				{ students, academicYear }
 			);
 			return res.data;
 		} catch (err) {
