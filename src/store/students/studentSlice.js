@@ -28,9 +28,12 @@ export const getStudents = createAsyncThunk(
 
 export const getStudentsPerCourseOffering = createAsyncThunk(
 	'student/getStudentsPerCourseOffering',
-	async ({ courseID }, thunkAPI) => {
+	async ({ courseID, academicYear }, thunkAPI) => {
 		try {
-			const res = await apiRequest('get', `/api/v1/student/course/${courseID}`);
+			const res = await apiRequest(
+				'get',
+				`/api/v1/student/academic-year/${academicYear}/course/${courseID}`
+			);
 			return res.data;
 		} catch (err) {
 			// const msg = getApiError();
@@ -75,27 +78,32 @@ export const addStudent = createAsyncThunk(
 			parent_tel,
 			level,
 			entry_certificate,
+			yearID,
 		},
 		thunkAPI
 	) => {
 		try {
 			// console.log(name, matricule);
-			const res = await apiRequest('post', `/api/v1/student`, {
-				name,
-				matricule,
-				specialty,
-				address,
-				gender,
-				dob,
-				pob,
-				email,
-				tel,
-				parent_name,
-				parent_email,
-				parent_tel,
-				level,
-				entry_certificate,
-			});
+			const res = await apiRequest(
+				'post',
+				`/api/v1/student/academic-year/${yearID}`,
+				{
+					name,
+					matricule,
+					specialty,
+					address,
+					gender,
+					dob,
+					pob,
+					email,
+					tel,
+					parent_name,
+					parent_email,
+					parent_tel,
+					level,
+					entry_certificate,
+				}
+			);
 			// console.log(res);
 			return res.data;
 		} catch (err) {
@@ -149,6 +157,22 @@ export const deleteStudent = createAsyncThunk(
 			let error = err.response.data?.message;
 			// console.log(err, 'message');
 			error = error ? error : 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+
+export const getAllStudentsPerAcademicYear = createAsyncThunk(
+	'academicYear/getAllStudentsPerAcademicYear',
+	async (academicYearID, thunkAPI) => {
+		try {
+			const res = await apiRequest(
+				'get',
+				`/api/v1/student-academic-year/${academicYearID}`
+			);
+			return res.data;
+		} catch (err) {
+			const error = err?.response?.data?.message || 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
 	}
@@ -256,6 +280,20 @@ const studentSlice = createSlice({
 				state.error = true;
 				state.isLoading = false;
 				state.errorMessage = action.payload?.error;
+			})
+			.addCase(getAllStudentsPerAcademicYear.rejected, (state, action) => {
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error;
+			})
+			.addCase(getAllStudentsPerAcademicYear.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(getAllStudentsPerAcademicYear.fulfilled, (state, action) => {
+				state.students = action.payload.data;
+				state.student = {};
+				state.isLoading = false;
+				state.errorMessage = null;
 			});
 	},
 });
