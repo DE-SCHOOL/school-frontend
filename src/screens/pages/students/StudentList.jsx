@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getStudents } from '../../../store/students/studentSlice';
+import { getAllStudentsPerAcademicYear } from '../../../store/students/studentSlice';
 import {
 	Layout,
 	SectionIntro,
@@ -30,6 +30,7 @@ function StudentList() {
 	const students = useSelector((state) => state.students.students);
 	const uiState = useSelector((state) => state.uiState.deleteOpt);
 	const isLoading = useSelector((state) => state.students.isLoading);
+	const year = useSelector((state) => state.years.currentYear);
 
 	//saving the student data in a useState
 	const [studentsState, setStudentsState] = useState(students);
@@ -39,8 +40,9 @@ function StudentList() {
 
 	//useEffect to dispatch student data after initial render
 	useEffect(() => {
-		dispatch(getStudents());
-	}, [dispatch]);
+		if (year?._id !== undefined)
+			dispatch(getAllStudentsPerAcademicYear(year?._id));
+	}, [dispatch, year?._id]);
 
 	return (
 		<Layout>
