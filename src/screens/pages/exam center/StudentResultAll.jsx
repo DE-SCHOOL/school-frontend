@@ -7,18 +7,26 @@ import Loader from '../../../components/loaders/Loader';
 import Button from '../../../components/buttons/Button';
 import { TableAllResultData } from '../../../components/tables';
 import Failure from '../../../components/signal/Failure';
+import { getCurrentYear } from '../../../store/academic year/academicYearSlice';
 
 function StudentResultAll() {
 	//Defining the dispatch function, and the useSelector to get students data
 	const dispatch = useDispatch();
 	// const students = useSelector((state) => state.exams.students);
 	const load = useSelector((state) => state.marks);
+	const academicYear = useSelector((state) => state.years.currentYear);
 	const [scroll, setScroll] = useState(0);
 
 	// console.log(students, students.length);
 	//useEffect to dispatch student data after initial render
 	useEffect(() => {
-		dispatch(getStudentsExam());
+		if (academicYear?._id !== undefined) {
+			dispatch(getStudentsExam(academicYear?._id));
+		}
+	}, [dispatch, academicYear?._id]);
+
+	useEffect(() => {
+		dispatch(getCurrentYear());
 	}, [dispatch]);
 
 	window.onscroll = () => {
