@@ -10,7 +10,7 @@ import { updateStudentsMark } from '../../store/marks/markSlice';
 import SchoolHeader from '../social/SchoolHeader';
 import { schoolHeaderProp } from '../../utilities/appData';
 
-function MarkTableFormCA({ students, length, semester }) {
+function MarkTableFormCA({ students, length, semester, academicYear }) {
 	//length is to help getMarkSheetsPerCoursePerStudents everytime this component is involved in any render
 
 	let marks = useSelector((state) => state.marks);
@@ -27,6 +27,7 @@ function MarkTableFormCA({ students, length, semester }) {
 			getMarkSheetsPerCoursePerStudents({
 				id: params.courseID,
 				students: studentIDs,
+				academicYear,
 			})
 		);
 		//eslint-disable-next-line
@@ -70,7 +71,7 @@ function MarkTableFormCA({ students, length, semester }) {
 	if (marks?.markSheet?.length === 0) {
 		return;
 	}
-	
+
 	return (
 		<div className="table-form">
 			<form

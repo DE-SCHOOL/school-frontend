@@ -10,7 +10,7 @@ import { updateStudentsMark } from '../../store/marks/markSlice';
 import SchoolHeader from '../social/SchoolHeader';
 import { schoolHeaderProp } from '../../utilities/appData';
 
-function MarkTableFormMock({ students, length, semester }) {
+function MarkTableFormMock({ students, length, semester, academicYear }) {
 	//length is to help getMarkSheetsPerCoursePerStudents everytime this component is involved in any render
 
 	let marks = useSelector((state) => state.marks);
@@ -27,6 +27,7 @@ function MarkTableFormMock({ students, length, semester }) {
 			getMarkSheetsPerCoursePerStudents({
 				id: params.courseID,
 				students: studentIDs,
+				academicYear,
 			})
 		);
 		//eslint-disable-next-line
@@ -52,7 +53,7 @@ function MarkTableFormMock({ students, length, semester }) {
 			studentIDs.push(sheet?.student?._id);
 			return sheet?.student?.name;
 		});
-		
+
 		dispatch(
 			updateStudentsMark({
 				id: params.courseID,
