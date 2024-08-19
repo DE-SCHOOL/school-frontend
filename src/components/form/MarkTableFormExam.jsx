@@ -9,6 +9,7 @@ import Loader from '../loaders/Loader';
 import { updateStudentsMark } from '../../store/marks/markSlice';
 import SchoolHeader from '../social/SchoolHeader';
 import { schoolHeaderProp } from '../../utilities/appData';
+import { correctStudentLevelData } from '../../utilities/correctStudentLevelData';
 
 function MarkTableFormExam({ students, length, semester, academicYear }) {
 	//length is to help getMarkSheetsPerCoursePerStudents everytime this component is involved in any render
@@ -100,13 +101,23 @@ function MarkTableFormExam({ students, length, semester, academicYear }) {
 					<tbody>
 						{semester !== undefined &&
 							marks?.markSheet?.map((sheet, index) => {
+								let studentLevel = correctStudentLevelData(
+									sheet?.student,
+									students
+								)?.level;
 								return (
 									<tr key={index}>
 										<td>{index + 1}</td>
 										<td className="stud-name">
 											{sheet?.student.name} ({sheet?.student.matricule})
 										</td>
-										<td>{sheet?.student.level}</td>
+										<td>
+											{studentLevel === 602
+												? '600 II'
+												: studentLevel === 601
+												? '600 I'
+												: studentLevel}
+										</td>
 										<td>
 											<input
 												type="number"
