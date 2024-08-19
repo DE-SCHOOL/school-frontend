@@ -13,6 +13,8 @@ import {
 } from '../../store/academic year/academicYearSlice';
 import { detectNewClassOnPromotion } from '../../utilities/detectNewClassOnPromotion';
 import { determineNextAcademicYear } from '../../utilities/determineNextAcademicYear';
+import { setDeleteEntity } from '../../store/ui-state/ui-stateSlice';
+// import { detectNewClassOnDemote } from '../../utilities/detectNewClassOnDemote';
 
 //Styled in the table sass file of the component styles
 let DATA_CONST;
@@ -50,11 +52,6 @@ function TableStudentsPromote({
 	const handleSort = (field, fieldOpt = undefined) => {
 		sortArrayObject(DATA_CONST, setStudentData, setIsSortedBy, field, fieldOpt);
 	};
-	if (tableData.length === studentData.length) {
-		DATA_CONST = studentData;
-	} else {
-		DATA_CONST = tableData;
-	}
 
 	useEffect(() => {
 		if (year?.schoolYear) {
@@ -67,6 +64,7 @@ function TableStudentsPromote({
 			if (nextYear?._id !== undefined)
 				dispatch(getStudentPerAcademicYearNextStudents({ _id: nextYear?._id }));
 		}
+		// eslint-disable-next-line
 	}, [dispatch, year?.schoolYear]);
 
 	async function promote(data) {
@@ -83,6 +81,7 @@ function TableStudentsPromote({
 		let tempPromote = [];
 		studentsToPromote.map((student) => {
 			if (student?.studentID !== data.studentID) tempPromote.push(student);
+			return student;
 		});
 
 		if (target.checked) {
@@ -243,14 +242,26 @@ function TableStudentsPromote({
 											{studNextYear.includes(row._id) ? (
 												<button
 													className={`button-main button-main-small ${
-														studNextYear.includes(row._id) && 'promoted'
+														studNextYear.includes(row._id) && 'demote'
 													}`}
+													onClick={() =>
+														dispatch(
+															setDeleteEntity({
+																deleteID: row._id,
+																type: 'promotion',
+																deleteName: row.name,
+																newClass: row.level,
+															})
+														)
+													}
 												>
-													<span className="text">Promoted</span>
+													<span className="text">Demote</span>
 												</button>
 											) : (
 												<button
-													className={`button-main button-main-small`}
+													className={`button-main button-main-small ${
+														nextYearID === undefined ? '' : 'promoted'
+													}`}
 													onClick={() =>
 														promote({
 															studentID: row._id,
