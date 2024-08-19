@@ -8,6 +8,7 @@ import Button from '../../../components/buttons/Button';
 import { TableAllResultData } from '../../../components/tables';
 import Failure from '../../../components/signal/Failure';
 import { getCurrentYear } from '../../../store/academic year/academicYearSlice';
+import { getAllStudentsPerAcademicYear } from '../../../store/students/studentSlice';
 
 function StudentResultAll() {
 	//Defining the dispatch function, and the useSelector to get students data
@@ -22,6 +23,7 @@ function StudentResultAll() {
 	useEffect(() => {
 		if (academicYear?._id !== undefined) {
 			dispatch(getStudentsExam(academicYear?._id));
+			dispatch(getAllStudentsPerAcademicYear(academicYear?._id));
 		}
 	}, [dispatch, academicYear?._id]);
 
