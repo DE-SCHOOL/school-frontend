@@ -7,12 +7,14 @@ import Loader from '../loaders/Loader';
 import StudentInfo from '../social/StudentInfo';
 import * as periodInfo from '../../utilities/periodInfo';
 import SchoolGrading from '../social/SchoolGrading';
+import { correctStudentLevelData } from '../../utilities/correctStudentLevelData';
 
 function TableAllResultData({ student, styles = '' }) {
 	let semester = periodInfo.semester();
 
 	const dispatch = useDispatch();
 	const students = useSelector((state) => state.exams.students);
+	const realStudents = useSelector((state) => state.students.students);
 	// const courses = useSelector((state) => state.courses.courses);
 	const marksInfo = useSelector((state) => state.marks.studentsCoursesMarks);
 	const load = useSelector((state) => state.courses);
@@ -63,11 +65,15 @@ function TableAllResultData({ student, styles = '' }) {
 					let TGP = 0; // Total grade points
 					let TWP = 0; // Total weighted points
 					let TCV = 0; // Total credit value
+					let studentPersonalData = correctStudentLevelData(
+						studResults[0]?.student,
+						realStudents
+					);
 					return (
 						<React.Fragment key={index}>
 							{/* {studResults.length === 0 ? <h1>Student Result Not Available yet</h1>} */}
 							<StudentInfo
-								student={studResults[0]?.student}
+								student={studentPersonalData}
 								styles="no-position"
 								identify={index}
 							/>
