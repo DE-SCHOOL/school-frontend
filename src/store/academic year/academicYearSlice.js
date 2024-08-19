@@ -147,6 +147,28 @@ export const getCurrentYear = createAsyncThunk(
 	}
 );
 
+export const deletePromotedStudent = createAsyncThunk(
+	'academicYear/deletePromotedStudent',
+	async (data, thunkAPI) => {
+		try {
+			const res = await apiRequest(
+				'delete',
+				`/api/v1/student-academic-year/${data.nextAcademicYearID}`,
+				{
+					studentID: data.studentID,
+					newClass: data.newClass,
+					currentYearID: data.currentYearID,
+				}
+			);
+			return res.data;
+		} catch (err) {
+			console.log(err, data);
+			const error = err?.response?.data?.message || 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+
 const AcademicYearSlice = createSlice({
 	name: 'academicYear',
 	initialState,
@@ -280,6 +302,20 @@ const AcademicYearSlice = createSlice({
 				state.isLoading = false;
 			})
 			.addCase(promoteStudentsBulk.pending, (state, action) => {
+				state.isLoading = true;
+			})
+			.addCase(deletePromotedStudent.fulfilled, (state, action) => {
+				// state.nextYearStudents = [];
+				state.students = action.payload.data;
+				state.errorMessage = null;
+				state.isLoading = false;
+			})
+			.addCase(deletePromotedStudent.rejected, (state, action) => {
+				state.error = true;
+				state.errorMessage = action.payload?.error;
+				state.isLoading = false;
+			})
+			.addCase(deletePromotedStudent.pending, (state, action) => {
 				state.isLoading = true;
 			});
 	},
