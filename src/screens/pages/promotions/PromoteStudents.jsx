@@ -45,6 +45,7 @@ function PromoteStudents() {
 	const year = useSelector((state) => state.years);
 	const [studentsToPromote, setStudentsToPromote] = useState([]);
 	const [showPromote, setShowPromote] = useState(false);
+	const [nextAcademicYear, setNextAcademicYear] = useState({});
 
 	//saving the student data in a useState
 	const [studentsState, setStudentsState] = useState(students);
@@ -58,6 +59,7 @@ function PromoteStudents() {
 			dispatch(getStudentPerAcademicYear(year.currentYear));
 		}
 		// dispatch(getStudents());
+		// eslint-disable-next-line
 	}, [dispatch, year.currentYear?._id]);
 
 	const createBulk = async () => {
@@ -85,6 +87,7 @@ function PromoteStudents() {
 			if (!studNextYear.includes(student.studentID)) {
 				finalPromoStudents.push(student);
 			}
+			return student;
 		});
 
 		if (finalPromoStudents.length === 0)
@@ -111,6 +114,7 @@ function PromoteStudents() {
 				if (!studNextYear.includes(student.studentID)) {
 					finalPromoStudents.push(student);
 				}
+				return student;
 			});
 
 			let nextYear = determineNextAcademicYear(
@@ -118,13 +122,14 @@ function PromoteStudents() {
 				year.academicYears
 			);
 
-			// console.log(nextYear);
+			setNextAcademicYear(nextYear);
 			const shouldPromote =
 				finalPromoStudents.length + studentsToPromote.length > 0 &&
 				nextYear?._id !== undefined;
 
 			setShowPromote(shouldPromote);
 		}
+		// eslint-disable-next-line
 	}, [studentsToPromote.length, year.currentYear?.schoolYear]);
 
 	return (
@@ -182,11 +187,13 @@ function PromoteStudents() {
 					/>
 				)}
 			</section>
-			{uiState.type === 'student' && (
+			{uiState.type === 'promotion' && nextAcademicYear._id !== undefined && (
 				<DeleteModal
 					type={uiState.type}
 					id={uiState.deleteID}
 					name={uiState.deleteName}
+					nextAcademicYear={nextAcademicYear}
+					newClass={uiState.newClass}
 				/>
 			)}
 			{year.error === true && year.errorMessage && (
