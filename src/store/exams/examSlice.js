@@ -60,9 +60,12 @@ export const getStudentResit = createAsyncThunk(
 
 export const getStudent = createAsyncThunk(
 	'exam/getStudent',
-	async ({ id }, thunkAPI) => {
+	async ({ id, academicYearID }, thunkAPI) => {
 		try {
-			const res = await apiRequest('get', `/api/v1/student/${id}`);
+			const res = await apiRequest(
+				'get',
+				`/api/v1/student/${id}/academic-year/${academicYearID}`
+			);
 			// console.log(res.data);
 			return res.data;
 		} catch (err) {
