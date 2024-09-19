@@ -84,8 +84,12 @@ function PromoteStudents() {
 		console.log(students, 'ALMOST PROMOTED');
 		console.log(stud1, 'STUD ONE');
 		console.log(stud2, 'STUD TWO');
-		await dispatch(createStudentAcademicYearBulk({ stud1, toYearID }));
-		await dispatch(createStudentAcademicYearBulk({ stud2, toYearID }));
+		await dispatch(
+			createStudentAcademicYearBulk({ students: stud1, toYearID })
+		);
+		await dispatch(
+			createStudentAcademicYearBulk({ students: stud2, toYearID })
+		);
 		await dispatch(getStudentPerAcademicYear(year.currentYear));
 	};
 
