@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-	FaBars,
-	FaSistrix,
-	FaRegBell,
-	FaS,
-	Fa1,
-	Fa2,
-} from 'react-icons/fa6';
+import { FaBars, FaSistrix, FaRegBell, FaS, Fa1, Fa2 } from 'react-icons/fa6';
 import { FiSettings } from 'react-icons/fi';
 
 import { cmrLogo } from './../../assets/logos';
@@ -50,8 +43,8 @@ function MainNav() {
 		);
 	};
 
-	const handleSetYear = (id) => {
-		dispatch(updateAcademicYears({ id }));
+	const handleSetYear = async (id) => {
+		await dispatch(updateAcademicYears({ id }));
 		setShowYears((prev) => !prev);
 		window.location.assign(
 			`${window.location.pathname + window.location?.search || ''}`
