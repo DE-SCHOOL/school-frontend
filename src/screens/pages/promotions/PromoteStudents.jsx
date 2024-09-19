@@ -19,7 +19,6 @@ import Failure from '../../../components/signal/Failure';
 import TableStudentsPromote from '../../../components/tables/TableStudentsPromote';
 import { determineNextAcademicYear } from '../../../utilities/determineNextAcademicYear';
 import { getStudents } from '../../../store/students/studentSlice';
-import Index from '../../../../../school-mobile-app/scripts/reset-project';
 
 const studentHeader = {
 	id: 'ID',
