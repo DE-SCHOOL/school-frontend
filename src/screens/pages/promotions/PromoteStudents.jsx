@@ -63,33 +63,29 @@ function PromoteStudents() {
 	}, [dispatch, year.currentYear?._id]);
 
 	const createBulk = async () => {
-		let stud1 = [];
-		let stud2 = [];
+		// let stud1 = [];
+		// let stud2 = [];
 		const students = studOld.map((stud, index) => {
 			const data = {
 				_id: stud._id,
 				level: stud.level,
 			};
 
-			if (index < 380) {
-				stud1.push(data);
-			} else {
-				stud2.push(data);
-			}
+			// if (index < 380) {
+			// 	stud1.push(data);
+			// } else {
+			// 	stud2.push(data);
+			// }
 
 			return data;
 		});
 		const toYearID = year.currentYear._id;
 
-		console.log(students, 'ALMOST PROMOTED');
-		console.log(stud1, 'STUD ONE');
-		console.log(stud2, 'STUD TWO');
-		await dispatch(
-			createStudentAcademicYearBulk({ students: stud1, toYearID })
-		);
-		await dispatch(
-			createStudentAcademicYearBulk({ students: stud2, toYearID })
-		);
+		// console.log(students, 'ALMOST PROMOTED');
+		// console.log(stud1, 'STUD ONE');
+		// console.log(stud2, 'STUD TWO');
+		await dispatch(createStudentAcademicYearBulk({ students, toYearID }));
+
 		await dispatch(getStudentPerAcademicYear(year.currentYear));
 	};
 
@@ -148,10 +144,10 @@ function PromoteStudents() {
 		}
 		// eslint-disable-next-line
 	}, [studentsToPromote.length, year.currentYear?.schoolYear]);
-	console.log(studentsState, 'StudState');
-	console.log(students, 'students');
-	console.log(studentsState, 'StudState');
-	console.log(year, 'year');
+	// console.log(studentsState, 'StudState');
+	// console.log(students, 'students');
+	// console.log(studentsState, 'StudState');
+	// console.log(year, 'year');
 	return (
 		<Layout>
 			{/* Displaying the page introduction and directory */}
