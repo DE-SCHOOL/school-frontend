@@ -68,10 +68,7 @@ function SectionMainIntro({
 			)}
 			{promotion === '' && pendingPromotion === true && (
 				<div className="actions">
-					<button
-						className="button-main button-main-small"
-						onClick={handleRefresh}
-					>
+					<button className="button-main button-main-small" onClick={ftn}>
 						<BsRepeat />
 					</button>
 				</div>
