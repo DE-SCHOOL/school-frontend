@@ -10,7 +10,7 @@ import SchoolHeader from '../social/SchoolHeader';
 import { schoolHeaderProp } from '../../utilities/appData';
 import { decideCourseGrade } from '../../utilities/decideCourseGrade';
 
-function TableCourseMarks({ students, length, semester }) {
+function TableCourseMarks({ students, length, semester, academicYear }) {
 	//length is to help getMarkSheetsPerCoursePerStudents everytime this component is involved in any render
 
 	let marks = useSelector((state) => state.marks);
@@ -27,6 +27,7 @@ function TableCourseMarks({ students, length, semester }) {
 			getMarkSheetsPerCoursePerStudents({
 				id: params.courseID,
 				students: studentIDs,
+				academicYear,
 			})
 		);
 		//eslint-disable-next-line

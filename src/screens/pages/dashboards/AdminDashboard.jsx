@@ -37,7 +37,7 @@ function AdminDashboard() {
 		dispatch(getStudents());
 		dispatch(getDepartments());
 		dispatch(getStaffs());
-	});
+	}, [dispatch]);
 	return (
 		<Layout>
 			<div className="dashboard-body">

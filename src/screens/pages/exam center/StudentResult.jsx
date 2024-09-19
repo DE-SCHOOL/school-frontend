@@ -17,13 +17,15 @@ import Failure from './../../../components/signal/Failure';
 function StudentResult() {
 	const dispatch = useDispatch();
 	const student = useSelector((stud) => stud.exams.student);
+	const year = useSelector((state) => state.years.currentYear);
 	const exams = useSelector((stud) => stud.exams);
 
 	const params = useParams();
 
 	useEffect(() => {
-		dispatch(getStudent({ id: params.studentID }));
-	}, [dispatch, params.studentID]);
+		if (year?._id !== undefined)
+			dispatch(getStudent({ id: params.studentID, academicYearID: year?._id }));
+	}, [dispatch, params.studentID, year?._id]);
 	return (
 		<Layout>
 			{student !== undefined && Object.entries(student).length !== 0 && (

@@ -7,39 +7,42 @@ import Loader from '../loaders/Loader';
 import StudentInfo from '../social/StudentInfo';
 import * as periodInfo from '../../utilities/periodInfo';
 import SchoolGrading from '../social/SchoolGrading';
+import { correctStudentLevelData } from '../../utilities/correctStudentLevelData';
 
 function TableAllResultData({ student, styles = '' }) {
 	let semester = periodInfo.semester();
 
 	const dispatch = useDispatch();
 	const students = useSelector((state) => state.exams.students);
+	const realStudents = useSelector((state) => state.students.students);
 	// const courses = useSelector((state) => state.courses.courses);
 	const marksInfo = useSelector((state) => state.marks.studentsCoursesMarks);
 	const load = useSelector((state) => state.courses);
-
+	const academicYear = useSelector((state) => state.years.currentYear);
 	useEffect(() => {
-		//Get the students whose results are to be displayed
+		if (academicYear?._id !== undefined) {
+			//Get the students whose results are to be displayed
 
-		const academicYear = '2023/2024';
+			// const academicYear = '2023/2024';
 
-		//getting the student IDs
-		let studIDs = [];
-		students.map((student) => {
-			studIDs.push(student._id);
-			return student;
-		});
+			//getting the student IDs
+			let studIDs = [];
+			students.map((student) => {
+				studIDs.push(student._id);
+				return student;
+			});
 
-		//searching  data
-		const searchData = {
-			academicYear,
-			students: studIDs,
-			semester,
-		};
-		// console.log(students);
-		dispatch(getAllStudentMarkSheetAllCourses(searchData));
+			//searching  data
+			const searchData = {
+				academicYear: academicYear?.schoolYear,
+				students: studIDs,
+				semester,
+			};
+			dispatch(getAllStudentMarkSheetAllCourses(searchData));
+		}
 
 		//eslint-disable-next-line
-	}, [students?.length]);
+	}, [students?.length, academicYear?._id]);
 
 	//If no student is found
 	if (students?.length === 0) {
@@ -52,7 +55,7 @@ function TableAllResultData({ student, styles = '' }) {
 			</h1>
 		);
 	}
-	console.log(marksInfo);
+	// console.log(students);
 	return (
 		<React.Fragment>
 			{marksInfo?.map((studResults, index) => {
@@ -62,11 +65,15 @@ function TableAllResultData({ student, styles = '' }) {
 					let TGP = 0; // Total grade points
 					let TWP = 0; // Total weighted points
 					let TCV = 0; // Total credit value
+					let studentPersonalData = correctStudentLevelData(
+						studResults[0]?.student,
+						realStudents
+					);
 					return (
-						<React.Fragment>
+						<React.Fragment key={index}>
 							{/* {studResults.length === 0 ? <h1>Student Result Not Available yet</h1>} */}
 							<StudentInfo
-								student={studResults[0]?.student}
+								student={studentPersonalData}
 								styles="no-position"
 								identify={index}
 							/>

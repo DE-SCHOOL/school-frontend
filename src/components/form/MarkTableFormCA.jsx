@@ -9,8 +9,9 @@ import Loader from '../loaders/Loader';
 import { updateStudentsMark } from '../../store/marks/markSlice';
 import SchoolHeader from '../social/SchoolHeader';
 import { schoolHeaderProp } from '../../utilities/appData';
+import { correctStudentLevelData } from '../../utilities/correctStudentLevelData';
 
-function MarkTableFormCA({ students, length, semester }) {
+function MarkTableFormCA({ students, length, semester, academicYear }) {
 	//length is to help getMarkSheetsPerCoursePerStudents everytime this component is involved in any render
 
 	let marks = useSelector((state) => state.marks);
@@ -27,6 +28,7 @@ function MarkTableFormCA({ students, length, semester }) {
 			getMarkSheetsPerCoursePerStudents({
 				id: params.courseID,
 				students: studentIDs,
+				academicYear,
 			})
 		);
 		//eslint-disable-next-line
@@ -70,7 +72,7 @@ function MarkTableFormCA({ students, length, semester }) {
 	if (marks?.markSheet?.length === 0) {
 		return;
 	}
-	
+
 	return (
 		<div className="table-form">
 			<form
@@ -100,6 +102,10 @@ function MarkTableFormCA({ students, length, semester }) {
 					<tbody>
 						{semester !== undefined &&
 							marks?.markSheet?.map((sheet, index) => {
+								let studentLevel = correctStudentLevelData(
+									sheet?.student,
+									students
+								)?.level;
 								return (
 									<tr key={index}>
 										<td>{index + 1}</td>
@@ -107,11 +113,11 @@ function MarkTableFormCA({ students, length, semester }) {
 											{sheet?.student.name} ({sheet?.student.matricule})
 										</td>
 										<td>
-											{sheet?.student.level === 602
+											{studentLevel === 602
 												? '600 II'
-												: sheet?.student.level === 601
+												: studentLevel === 601
 												? '600 I'
-												: sheet?.student.level}
+												: studentLevel}
 										</td>
 										<td>
 											<input

@@ -18,53 +18,57 @@ function LeftNavSectionItem({ icon, list }) {
 	const actor = useSelector((state) => state.auth.user);
 	return (
 		<div className="section-item">
-			<h2
-				className={`header-secondary ${isItemOpen ? 'open' : ''}`}
-				onClick={() => setIsItemOpen((prev) => !prev)}
-			>
-				<span className="icons">{icon}</span>
-
-				{/* Print a header as a link depending of whether or not it has a list */}
-				{list.itemList.length !== 0 && (
-					<span className="text">{list.item}</span>
-				)}
-				{list.itemList.length === 0 && (
-					<NavLink
-						to={`/${list.link}`}
-						className="link-head"
-						onClick={() =>
-							HandleNavEffects(list.item, dispatch, logout, navigate)
-						}
+			{list.visibleRight.includes(actor?.role) && (
+				<>
+					<h2
+						className={`header-secondary ${isItemOpen ? 'open' : ''}`}
+						onClick={() => setIsItemOpen((prev) => !prev)}
 					>
-						<span className="text">{list.item}</span>
-					</NavLink>
-				)}
+						<span className="icons">{icon}</span>
 
-				{/* Print the icons to indicate whether or not a left nav section is open */}
-				{list.itemList.length !== 0 && (
-					<span className="icons">
-						{!isItemOpen && (
-							<BootstrapIcons.BsCaretRightFill className="icon-closed" />
+						{/* Print a header as a link depending of whether or not it has a list */}
+						{list.itemList.length !== 0 && (
+							<span className="text">{list.item}</span>
 						)}
-						{isItemOpen && <BootstrapIcons.BsCaretDownFill />}
-					</span>
-				)}
-			</h2>
-			{/* Send down props for the items under the dropdown of a left nav item */}
-			<ul className={`left-list ${isItemOpen ? 'open' : ''}`}>
-				{list.itemList.length !== 0 &&
-					list.itemList.map((it, index) => {
-						// if(actor.role)
-						return (
-							<LeftNavSectionItemList
-								item={it}
-								key={index}
-								itemName={list.item}
-								actor={actor?.role}
-							/>
-						);
-					})}
-			</ul>
+						{list.itemList.length === 0 && (
+							<NavLink
+								to={`/${list.link}`}
+								className="link-head"
+								onClick={() =>
+									HandleNavEffects(list.item, dispatch, logout, navigate)
+								}
+							>
+								<span className="text">{list.item}</span>
+							</NavLink>
+						)}
+
+						{/* Print the icons to indicate whether or not a left nav section is open */}
+						{list.itemList.length !== 0 && (
+							<span className="icons">
+								{!isItemOpen && (
+									<BootstrapIcons.BsCaretRightFill className="icon-closed" />
+								)}
+								{isItemOpen && <BootstrapIcons.BsCaretDownFill />}
+							</span>
+						)}
+					</h2>
+					{/* Send down props for the items under the dropdown of a left nav item */}
+					<ul className={`left-list ${isItemOpen ? 'open' : ''}`}>
+						{list.itemList.length !== 0 &&
+							list.itemList.map((it, index) => {
+								// if(actor.role)
+								return (
+									<LeftNavSectionItemList
+										item={it}
+										key={index}
+										itemName={list.item}
+										actor={actor?.role}
+									/>
+								);
+							})}
+					</ul>
+				</>
+			)}
 		</div>
 	);
 }

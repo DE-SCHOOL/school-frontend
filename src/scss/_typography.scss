@@ -127,12 +127,33 @@
 	}
 }
 
+.flex-align {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: row;
+}
+.gap {
+	gap: 2rem;
+	&-sm {
+		gap: 3rem;
+	}
+
+	&-lg {
+		gap: 4rem;
+	}
+}
+
 .icons {
 	font-size: 2rem;
 	cursor: pointer;
 }
 
 .caps {
+	text-transform: capitalize;
+}
+
+.capitalize {
 	text-transform: capitalize;
 }
 
@@ -165,6 +186,13 @@
 }
 .edit {
 	color: $color-success;
+}
+
+.promoted {
+	background-color: $color-success !important;
+}
+.demote {
+	background-color: $color-failed !important;
 }
 
 .center {

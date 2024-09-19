@@ -6,6 +6,7 @@ const initialState = {
 		type: null,
 		deleteID: null,
 		deleteName: null,
+		newClass: null,
 	},
 };
 
@@ -20,6 +21,9 @@ const uiStateSlice = createSlice({
 			state.deleteOpt.type = action.payload.type;
 			state.deleteOpt.deleteID = action.payload.deleteID;
 			state.deleteOpt.deleteName = action.payload.deleteName;
+			if (action.payload?.newClass !== undefined) {
+				state.deleteOpt.newClass = action.payload.newClass;
+			}
 		},
 		defaultDeleteEntity(state) {
 			state.deleteOpt.type = null;

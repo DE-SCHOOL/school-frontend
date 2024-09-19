@@ -26,6 +26,7 @@ function StudentResit() {
 	//Defining the dispatch function, and the useSelector to get students data
 	const dispatch = useDispatch();
 	const students = useSelector((state) => state.exams.studentResit);
+	const academicYear = useSelector((state) => state.years.currentYear);
 	const exams = useSelector((state) => state.exams);
 
 	//saving the student data in a useState
@@ -36,8 +37,14 @@ function StudentResit() {
 
 	//useEffect to dispatch student data after initial render
 	useEffect(() => {
-		dispatch(getStudentResit({ semester: semester() }));
-	}, [dispatch]);
+		if (academicYear?._id)
+			dispatch(
+				getStudentResit({
+					semester: semester(),
+					academicYear: academicYear?.schoolYear,
+				})
+			);
+	}, [dispatch, academicYear?._id]);
 
 	return (
 		<Layout>

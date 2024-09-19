@@ -1,5 +1,5 @@
 import * as BootstrapIcon from 'react-icons/bs';
-import { GiTeacher } from 'react-icons/gi';
+import { GiTeacher, GiUpgrade } from 'react-icons/gi';
 import { SiCoursera } from 'react-icons/si';
 import { RiMoneyDollarBoxFill } from 'react-icons/ri';
 import {
@@ -10,7 +10,7 @@ import {
 import { BiTable } from 'react-icons/bi';
 import { IoLibrarySharp, IoSettings } from 'react-icons/io5';
 import { FaBloggerB, FaHotel, FaPoll, FaSchool } from 'react-icons/fa';
-import { FaHandsHoldingChild } from 'react-icons/fa6';
+import { FaHandsHoldingChild, FaY } from 'react-icons/fa6';
 import { FcStatistics } from 'react-icons/fc';
 
 const data = [
@@ -19,6 +19,7 @@ const data = [
 		items: [
 			{
 				item: 'dashboard',
+				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 				icon: <BootstrapIcon.BsFillGridFill />,
 				itemList: [
 					{
@@ -51,6 +52,7 @@ const data = [
 			},
 			{
 				item: 'students',
+				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 				icon: <BootstrapIcon.BsMortarboardFill />,
 				itemList: [
 					{
@@ -85,6 +87,7 @@ const data = [
 			},
 			{
 				item: 'teachers',
+				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 				icon: <GiTeacher />,
 				itemList: [
 					{
@@ -111,6 +114,7 @@ const data = [
 			},
 			{
 				item: 'programs',
+				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 				icon: <FaSchool />,
 				itemList: [
 					{
@@ -137,6 +141,7 @@ const data = [
 			},
 			{
 				item: 'departments',
+				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 				icon: <BootstrapIcon.BsBuildingsFill />,
 				itemList: [
 					{
@@ -163,6 +168,7 @@ const data = [
 			},
 			{
 				item: 'specialties',
+				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 				icon: <BootstrapIcon.BsFillBuildingFill />,
 				itemList: [
 					{
@@ -189,6 +195,7 @@ const data = [
 			},
 			{
 				item: 'courses',
+				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 				icon: <SiCoursera />,
 				itemList: [
 					{
@@ -215,6 +222,7 @@ const data = [
 			},
 			{
 				item: 'exam center',
+				visibleRight: ['director', 'admin'],
 				icon: <BootstrapIcon.BsFillBookmarkStarFill />,
 				itemList: [
 					{
@@ -230,17 +238,42 @@ const data = [
 					{
 						name: 'student resit',
 						link: 'student-resit',
-						roles: ['director', 'admin']
-					}
+						roles: ['director', 'admin'],
+					},
 				],
 			},
 			{
 				item: 'statistics',
+				visibleRight: ['admin'],
 				icon: <FcStatistics />,
 				itemList: [
 					{
 						name: 'course stats',
 						link: 'course-stats',
+						roles: ['admin'],
+					},
+				],
+			},
+			{
+				item: 'academic year',
+				visibleRight: ['admin'],
+				icon: <FaY />,
+				itemList: [
+					{
+						name: 'add year',
+						link: 'add-year',
+						roles: ['admin'],
+					},
+				],
+			},
+			{
+				item: 'promotion',
+				visibleRight: ['admin'],
+				icon: <GiUpgrade />,
+				itemList: [
+					{
+						name: 'promote students',
+						link: 'promote-students',
 						roles: ['admin'],
 					},
 				],
@@ -252,6 +285,7 @@ const data = [
 		items: [
 			{
 				item: 'human resource',
+				visibleRight: ['admin'],
 				icon: <FaHandsHoldingChild />,
 				itemList: [
 					{
@@ -263,6 +297,7 @@ const data = [
 			},
 			{
 				item: 'poll',
+				visibleRight: ['secreteriat', 'hod', 'director', 'admin'],
 				icon: <FaPoll />,
 				itemList: [
 					{
@@ -279,6 +314,7 @@ const data = [
 			},
 			{
 				item: 'accounts',
+				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 				icon: <RiMoneyDollarBoxFill />,
 				itemList: [
 					{
@@ -357,6 +393,7 @@ const data = [
 			},
 			{
 				item: 'holiday',
+				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 				icon: <MdHolidayVillage />,
 				link: 'holiday',
 				itemList: [],
@@ -372,6 +409,7 @@ const data = [
 			{
 				item: 'exam list',
 				link: 'exam-list',
+				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 				icon: <BootstrapIcon.BsFileTextFill />,
 				itemList: [],
 				roles: [
@@ -386,6 +424,7 @@ const data = [
 			{
 				item: 'events',
 				link: 'events',
+				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 				icon: <BootstrapIcon.BsCalendar2EventFill />,
 				itemList: [],
 				roles: [
@@ -400,6 +439,7 @@ const data = [
 			{
 				item: 'time table',
 				link: 'time-table',
+				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 				icon: <BiTable />,
 				itemList: [],
 				roles: [
@@ -414,6 +454,7 @@ const data = [
 			{
 				item: 'library',
 				link: 'library',
+				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 				icon: <IoLibrarySharp />,
 				itemList: [],
 				roles: [
@@ -427,6 +468,7 @@ const data = [
 			},
 			{
 				item: 'blog',
+				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 				icon: <FaBloggerB />,
 				itemList: [
 					{
@@ -457,6 +499,7 @@ const data = [
 			},
 			{
 				item: 'settings',
+				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 				icon: <IoSettings />,
 				link: 'settings',
 				itemList: [],
@@ -477,6 +520,7 @@ const data = [
 			{
 				item: 'hostel',
 				link: 'hostel',
+				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 				icon: <FaHotel />,
 				itemList: [],
 				roles: [
@@ -491,6 +535,7 @@ const data = [
 			{
 				item: 'transport',
 				link: 'transport',
+				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 				icon: <MdOutlineEmojiTransportation />,
 				itemList: [],
 				roles: [
@@ -505,6 +550,7 @@ const data = [
 			{
 				item: 'logout',
 				link: '',
+				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 				icon: <MdLogout />,
 				itemList: [],
 				roles: [

@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { getDateFromDateObject } from '../../utilities/getDate';
 import { semester } from '../../utilities/periodInfo';
-
+import { useSelector, useDispatch } from 'react-redux';
 import { lmuLogo } from './../../assets/logos';
+import { getCurrentYear } from '../../store/academic year/academicYearSlice';
 
 function StudentInfo({ student, styles = '', identify = '' }) {
+	const academicYear = useSelector((state) => state.years.currentYear);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(getCurrentYear());
+	}, [dispatch]);
+
 	return (
 		<div className={`student-detail-results ${styles}`} key={identify}>
 			<div className="stud-info">
@@ -56,6 +64,8 @@ function StudentInfo({ student, styles = '', identify = '' }) {
 			<h2 className="header-secondary center mg-top-lg">
 				{semester() === 's1' ? 'First Semester Results' : ''}
 				{semester() === 's2' ? 'Second Semester Results' : ''}
+				{academicYear?.schoolYear !== undefined &&
+					` for ${academicYear?.schoolYear}`}
 			</h2>
 		</div>
 	);

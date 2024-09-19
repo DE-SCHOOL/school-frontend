@@ -5,7 +5,7 @@ export const apiRequest = async (method, url, data = '', cred = true) => {
 	const tokenID = token !== undefined && token ? '/' + token.token : '';
 
 	url = `${process.env.REACT_APP_NODE_HOST_APP}` + url + `${tokenID}`;
-	console.log(url, cred);
+	// console.log(url, cred);
 	return await axios({
 		method,
 		url,
