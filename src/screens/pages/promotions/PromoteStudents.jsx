@@ -63,16 +63,29 @@ function PromoteStudents() {
 	}, [dispatch, year.currentYear?._id]);
 
 	const createBulk = async () => {
-		const students = studOld.map((stud) => {
-			return {
+		let stud1 = [];
+		let stud2 = [];
+		const students = studOld.map((stud, index) => {
+			const data = {
 				_id: stud._id,
 				level: stud.level,
 			};
+
+			if (index < 380) {
+				stud1.push(data);
+			} else {
+				stud2.push(data);
+			}
+
+			return data;
 		});
 		const toYearID = year.currentYear._id;
 
 		console.log(students, 'ALMOST PROMOTED');
-		await dispatch(createStudentAcademicYearBulk({ students, toYearID }));
+		console.log(stud1, 'STUD ONE');
+		console.log(stud2, 'STUD TWO');
+		await dispatch(createStudentAcademicYearBulk({ stud1, toYearID }));
+		await dispatch(createStudentAcademicYearBulk({ stud2, toYearID }));
 		await dispatch(getStudentPerAcademicYear(year.currentYear));
 	};
 
