@@ -18,7 +18,7 @@ import {
 import Failure from '../../../components/signal/Failure';
 import TableStudentsPromote from '../../../components/tables/TableStudentsPromote';
 import { determineNextAcademicYear } from '../../../utilities/determineNextAcademicYear';
-// import { getStudents } from '../../../store/students/studentSlice';
+import { getStudents } from '../../../store/students/studentSlice';
 
 const studentHeader = {
 	id: 'ID',
@@ -58,7 +58,7 @@ function PromoteStudents() {
 		if (year.currentYear?._id) {
 			dispatch(getStudentPerAcademicYear(year.currentYear));
 		}
-		// dispatch(getStudents());
+		dispatch(getStudents());
 		// eslint-disable-next-line
 	}, [dispatch, year.currentYear?._id]);
 
@@ -71,7 +71,7 @@ function PromoteStudents() {
 		});
 		const toYearID = year.currentYear._id;
 
-		console.log(students);
+		console.log(students, 'ALMOST PROMOTED');
 		await dispatch(createStudentAcademicYearBulk({ students, toYearID }));
 		await dispatch(getStudentPerAcademicYear(year.currentYear));
 	};
@@ -131,7 +131,10 @@ function PromoteStudents() {
 		}
 		// eslint-disable-next-line
 	}, [studentsToPromote.length, year.currentYear?.schoolYear]);
-
+	console.log(studentsState, 'StudState');
+	console.log(students, 'students');
+	console.log(studentsState, 'StudState');
+	console.log(year, 'year');
 	return (
 		<Layout>
 			{/* Displaying the page introduction and directory */}
