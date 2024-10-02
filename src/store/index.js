@@ -17,6 +17,9 @@ import questionReducer from './question/questionSlice';
 import reviewReducer from './reviews/reviewSlice';
 import questionCategoryReducer from './question category/questionCategorySlice';
 import academicYearReducer from './academic year/academicYearSlice';
+import messageReducer from './messaging/messagingSlice';
+import timetableReducer from './timetable/timetableSlice';
+import formBReducer from './form b/formBSlice';
 
 //CREATING THE VARIOUS REDUCERS
 const store = configureStore({
@@ -37,6 +40,9 @@ const store = configureStore({
 		reviews: reviewReducer,
 		questionCategory: questionCategoryReducer,
 		years: academicYearReducer,
+		groupChat: messageReducer,
+		timetable: timetableReducer,
+		formB: formBReducer,
 	},
 });
 

@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { apiRequest } from './../APIs/apiRequest';
+import { signInWithCustomToken } from 'firebase/auth';
+import { auth } from '../../firebase.config';
 
 const initialState = {
 	user: {},
@@ -23,6 +25,8 @@ export const login = createAsyncThunk(
 
 			//SET DEFAULT SEMESTER
 			localStorage.setItem('semester', JSON.stringify({ current: 's1' }));
+
+			await signInWithCustomToken(auth, res.data.data.customToken);
 
 			return res.data;
 		} catch (err) {

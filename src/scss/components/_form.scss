@@ -24,10 +24,14 @@ form#department {
 		flex-wrap: wrap;
 		align-items: flex-end;
 
+		&-item.textarea {
+			width: calc(90% + 4rem) !important;
+		}
 		&-item {
 			width: 30%;
 			input,
-			select {
+			select,
+			textarea {
 				padding: 1.5rem 1rem;
 				border-radius: 0.5rem;
 				width: 100%;
@@ -49,6 +53,11 @@ form#department {
 						border-radius: 0rem 0rem 0.4rem 0.4rem;
 					}
 				}
+			}
+			textarea {
+				// width: 100% !important;
+				resize: none;
+				box-sizing: border-box;
 			}
 			select[multiple] option:checked {
 				color: $color-white;
@@ -123,5 +132,35 @@ form#department {
 				padding: 0.5rem;
 			}
 		}
+	}
+}
+
+.timetable-file {
+	border: 4px dashed $color-primary-light;
+	width: calc(90% + 4rem) !important;
+	border-radius: 0.4rem;
+	cursor: pointer;
+	& input[type='file'] {
+		display: none;
+	}
+
+	& .file-info {
+		text-align: center;
+		background-color: $color-grey-light;
+		padding: 1rem;
+		border-radius: 0.4rem;
+		color: $color-grey;
+		margin: 0.5rem 2rem;
+	}
+}
+.form-file {
+	& .file-error {
+		color: $color-failed !important;
+		font-weight: bolder;
+		font-size: 2rem;
+	}
+
+	& .progress {
+		width: calc(90% + 5rem);
 	}
 }

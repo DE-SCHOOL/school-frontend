@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Josefin+Sans:wght@300;400&family=Kenia&family=Lato:wght@300;400;700;900&family=PT+Sans&display=swap');
+
+			html {
+				font-size: 62.5%;
+			}
+
+			body {
+				margin: 0;
+				box-sizing: border-box;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				font-family: Josefin Sans;
+				font-size: 1.6rem;
+			}
+			.stud-info {
+				align-items: center;
+				display: flex;
+				justify-content: space-between;
+			}
+			.stud-info .section {
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
+				max-width: 42%;
+			}
+
+			.stud-info img.school-logo {
+				height: 7rem;
+				width: 7rem;
+			}
+			div.prop {
+				width: fit-content !important;
+				color: 'dodgerblue';
+				font-size: 1.3rem;
+			}
+			div.value {
+				max-width: 40rem;
+				font-size: 1.3rem;
+			}
+
+			.line {
+				border-bottom: 4px solid #2d67dd !important;
+			}
+			.mg-bt {
+				margin-bottom: 2rem;
+			}
+			.mg-top {
+				margin-top: 2rem;
+			}
+
+			.center {
+				color: #2d67dd;
+				text-align: center;
+				text-transform: capitalize;
+			}
+
+			.header-secondary,
+			.header-tertiary {
+				margin: 0;
+				padding: 0;
+			}
+			.mg-top-lg {
+				margin-top: 6rem;
+			}
+			.header-secondary.center {
+				text-align: center;
+			}
+
+			table.results {
+				border-collapse: collapse;
+				text-align: center;
+			}
+			.mg-top {
+				margin-top: 2rem;
+			}
+			table {
+				width: 100%;
+			}
+			table.results thead {
+				border: 2px solid #2d67dd;
+			}
+			table.results thead tr {
+				background-color: #2d67dd;
+				color: #fff;
+			}
+			user agent stylesheet tr {
+				display: table-row;
+				vertical-align: inherit;
+				border-color: inherit;
+			}
+			table.results thead tr th {
+				border: 1px solid #fff;
+				padding: 1rem 0;
+			}
+			table.results tbody tr td {
+				border: 1px solid #2d67dd;
+				padding: 1rem 0;
+			}
+			.total-gpa {
+				align-items: center;
+				display: flex;
+				justify-content: space-between;
+			}
+			.total-gpa table.results-total {
+				border-collapse: collapse;
+				table-layout: auto !important;
+				text-align: center;
+				width: 60%;
+			}
+			.mg-top {
+				margin-top: 2rem;
+			}
+			.total-gpa table.results-total thead {
+				border: 2px solid #2d67dd;
+			}
+			.total-gpa table.results-total thead tr {
+				background-color: #2d67dd;
+				color: #fff;
+			}
+			.total-gpa table.results-total thead tr th {
+				border: 1px solid #fff;
+				padding: 1rem 0;
+			}
+			.total-gpa table.results-total tbody tr th {
+				background-color: #2d67dd;
+				border-left: 1px solid #2d67dd;
+				border-right: 1px solid #2d67dd;
+				border-color: #2d67dd #fff #2d67dd #2d67dd;
+				border-style: solid;
+				border-width: 1px 1px 1px 2px;
+				color: #fff;
+				padding: 1rem 0;
+			}
+			.total-gpa table.results-total tbody tr td {
+				border: 1px solid #2d67dd;
+				padding: 1rem 0;
+			}
+			.total-gpa table.gpa {
+				border-collapse: collapse;
+				text-align: center;
+				width: 25%;
+			}
+			.total-gpa table.gpa thead {
+				border: 2px solid #2d67dd;
+			}
+			.total-gpa table.gpa thead tr {
+				background-color: #2d67dd;
+				color: #fff;
+				font-size: 2rem;
+			}
+			.total-gpa table.gpa thead tr th:first-child {
+				border-right: 1px solid #fff;
+			}
+			.total-gpa table.gpa thead tr th {
+				padding: 3rem 0;
+			}
+			.total-gpa table.gpa thead tr th.gpa-value {
+				background-color: #f6f6f9;
+				color: #000;
+				letter-spacing: 3px;
+			}
+			.school-grading {
+				align-items: flex-start;
+				flex-direction: column !important;
+				gap: 2rem;
+				margin-bottom: 2rem;
+			}
+			.school-grading .registrar {
+				align-self: center;
+				margin-top: 15rem;
+			}
+			.school-grading .registrar span {
+				font-size: 2.5rem;
+				font-weight: bolder;
+			}
+			.school-grading table {
+				table-layout: fixed !important;
+				width: 40% !important;
+			}
+			.total-gpa table.results-total {
+				border-collapse: collapse;
+				table-layout: auto !important;
+				text-align: center;
+				width: 60%;
+			}
+			.total-gpa table.results-total thead {
+				border: 2px solid #2d67dd;
+			}
+			.total-gpa table.results-total thead tr {
+				background-color: #2d67dd;
+				color: #fff;
+			}
+			.total-gpa table.results-total thead tr th {
+				border: 1px solid #fff;
+				padding: 1rem 0;
+			}
+			.school-grading table tr td,
+			.school-grading table tr th {
+				font-size: 1rem !important;
+			}
+			.total-gpa table.results-total tbody tr td {
+				border: 1px solid #2d67dd;
+				padding: 1rem 0;
+			}
+			.school-grading table tr td,
+			.school-grading table tr th {
+				font-size: 1rem !important;
+			}
+			.school-grading table tr td b,
+			.school-grading table tr th b {
+				color: #2d67dd;
+			}
+			.school-grading .other-info {
+				align-self: center;
+				display: flex;
+				margin-top: 2rem;
+			}
+			.school-grading .other-info .info {
+				display: flex;
+				gap: 1rem;
+			}
+
+			.info {
+				margin-right: auto;
+			}
+			.school-grading .other-info .info a,
+			.school-grading .other-info .info b {
+				color: #2d67dd;
+				text-decoration: underline;
+			}
+		</style>
+		<div class="student-detail-results">
+			<div class="stud-info">
+				<div class="section">
+					<div>
+						<span class="prop">Name and surname</span
+						><span class="value">: Jefferson Clinton Youashi</span>
+					</div>
+					<div>
+						<span class="prop">Matricule</span
+						><span class="value">: LHI-24SWE007</span>
+					</div>
+					<div>
+						<span class="prop">Faculty</span
+						><span class="value"
+							>: Landmark School of Science Engineering and Technology</span
+						>
+					</div>
+					<div>
+						<span class="prop">Specialty</span
+						><span class="value">: Software Engineering - SBT</span>
+					</div>
+				</div>
+				<img
+					src="/static/media/lmu-logo.eb6a6f8277c9ceaf6a5e.png"
+					alt=""
+					class="school-logo"
+				/>
+				<div class="section">
+					<div>
+						<span class="prop">Date and Place of birth</span
+						><span class="value">: 06-01-2004 at Mankon - Bamenda</span>
+					</div>
+					<div>
+						<span class="prop">Gender</span><span class="value">: male</span>
+					</div>
+					<div>
+						<span class="prop">Department</span
+						><span class="value">: Computer Engineering</span>
+					</div>
+					<div>
+						<span class="prop">Level</span><span class="value">: 400</span>
+					</div>
+				</div>
+			</div>
+			<div class="line mg-bt mg-top"></div>
+			<h2 class="header-secondary center mg-top-lg">
+				Second Semester Results for 2023/2024
+			</h2>
+		</div>
+		<div class="result-info">
+			<table class="results mg-top">
+				<thead>
+					<tr>
+						<th>Course Code</th>
+						<th>Course Title</th>
+						<th>Status</th>
+						<th>Credit Value</th>
+						<th>Credit Earned</th>
+						<th>CA / 30</th>
+						<th>Exam / 70</th>
+						<th>Total / 100</th>
+						<th>Grade Point</th>
+						<th>Weighted points</th>
+						<th>Grade</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>SE 302</td>
+						<td>Modern Database Systems:</td>
+						<td>C</td>
+						<td>3.00</td>
+						<td>3.00</td>
+						<td>30.00</td>
+						<td>60.00</td>
+						<td>90.00</td>
+						<td>4.00</td>
+						<td>12.00</td>
+						<td>A</td>
+					</tr>
+					<tr>
+						<td>SE 304</td>
+						<td>Programming in JavaScript</td>
+						<td>C</td>
+						<td>3.00</td>
+						<td>3.00</td>
+						<td>28.00</td>
+						<td>59.00</td>
+						<td>87.00</td>
+						<td>4.00</td>
+						<td>12.00</td>
+						<td>A</td>
+					</tr>
+					<tr>
+						<td>SE402</td>
+						<td>Mobile Application Development</td>
+						<td>C</td>
+						<td>4.00</td>
+						<td>4.00</td>
+						<td>28.00</td>
+						<td>65.00</td>
+						<td>93.00</td>
+						<td>4.00</td>
+						<td>16.00</td>
+						<td>A</td>
+					</tr>
+					<tr>
+						<td>SE404</td>
+						<td>Artificial Intelligence</td>
+						<td>C</td>
+						<td>4.00</td>
+						<td>4.00</td>
+						<td>29.00</td>
+						<td>68.00</td>
+						<td>97.00</td>
+						<td>4.00</td>
+						<td>16.00</td>
+						<td>A</td>
+					</tr>
+					<tr>
+						<td>SE406</td>
+						<td>Software Security</td>
+						<td>C</td>
+						<td>4.00</td>
+						<td>4.00</td>
+						<td>23.00</td>
+						<td>68.00</td>
+						<td>91.00</td>
+						<td>4.00</td>
+						<td>16.00</td>
+						<td>A</td>
+					</tr>
+					<tr>
+						<td>SE408</td>
+						<td>Software Verification and Validation</td>
+						<td>C</td>
+						<td>4.00</td>
+						<td>4.00</td>
+						<td>30.00</td>
+						<td>65.00</td>
+						<td>95.00</td>
+						<td>4.00</td>
+						<td>16.00</td>
+						<td>A</td>
+					</tr>
+					<tr>
+						<td>SE410</td>
+						<td>Software Qualitv and Assurance</td>
+						<td>C</td>
+						<td>4.00</td>
+						<td>4.00</td>
+						<td>30.00</td>
+						<td>60.00</td>
+						<td>90.00</td>
+						<td>4.00</td>
+						<td>16.00</td>
+						<td>A</td>
+					</tr>
+					<tr>
+						<td>ENG412</td>
+						<td>B.Tech Project</td>
+						<td>C</td>
+						<td>8.00</td>
+						<td>8.00</td>
+						<td>23.00</td>
+						<td>59.00</td>
+						<td>82.00</td>
+						<td>4.00</td>
+						<td>32.00</td>
+						<td>A</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="total-gpa">
+				<table class="results-total mg-top">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Credit Value</th>
+							<th>Credit Earned</th>
+							<th>Grade Point</th>
+							<th>Weighted Points</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th rowspan="2">Total</th>
+							<td>34.00</td>
+							<td>34.00</td>
+							<td>32.00</td>
+							<td>136.00</td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="gpa mg-top">
+					<thead>
+						<tr>
+							<th>GPA</th>
+							<th class="gpa-value">4.00</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+			<div class="total-gpa school-grading">
+				<div class="registrar">
+					<span>Nfor Frederick, PhD</span> <br /><span>REGISTRAR</span>
+				</div>
+				<table class="results-total mg-top">
+					<thead>
+						<tr>
+							<th colspan="4">Grade System</th>
+						</tr>
+						<tr>
+							<th>Grade</th>
+							<th>Mark</th>
+							<th>Grade</th>
+							<th>Mark</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>A</td>
+							<td>80 - 100</td>
+							<td>C</td>
+							<td>50 - 54</td>
+						</tr>
+						<tr>
+							<td>B+</td>
+							<td>70 - 79</td>
+							<td>D+</td>
+							<td>45 - 49</td>
+						</tr>
+						<tr>
+							<td>B</td>
+							<td>60 - 69</td>
+							<td>D</td>
+							<td>40 - 44</td>
+						</tr>
+						<tr>
+							<td>C+</td>
+							<td>55 - 59</td>
+							<td>F</td>
+							<td>0 - 39</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<b>Cummulative Graded Point Average(GPA) is on a Scale of 4</b>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="other-info">
+					<div class="info">
+						<span
+							>Tel:<b
+								>(+237)<a href="tel:+237673034195">673034195</a> /<a
+									href="tel:+237670836477"
+									>670836477</a
+								>
+								/<a href="tel:+237672339570">672339570</a></b
+							></span
+						>
+						//<span
+							>Email:
+							<b
+								><a href="mailto:lucbuea@gmail.com">lucbuea@gmail.com</a></b
+							></span
+						>
+						//<span
+							>Website:
+							<b><a href="https://www.landmark.cm">www.landmark.cm</a></b></span
+						>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

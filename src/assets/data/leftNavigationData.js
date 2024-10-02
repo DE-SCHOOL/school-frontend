@@ -10,7 +10,7 @@ import {
 import { BiTable } from 'react-icons/bi';
 import { IoLibrarySharp, IoSettings } from 'react-icons/io5';
 import { FaBloggerB, FaHotel, FaPoll, FaSchool } from 'react-icons/fa';
-import { FaHandsHoldingChild, FaY } from 'react-icons/fa6';
+import { FaHandsHoldingChild, FaMessage, FaY } from 'react-icons/fa6';
 import { FcStatistics } from 'react-icons/fc';
 
 const data = [
@@ -284,6 +284,64 @@ const data = [
 		menu: 'management',
 		items: [
 			{
+				item: 'communication',
+				visibleRight: ['admin', 'hod', 'director'],
+				icon: <FaMessage />,
+				itemList: [
+					{
+						name: 'add group',
+						link: 'add-group',
+						roles: ['admin', 'hod', 'director'],
+					},
+					{
+						name: 'group list',
+						link: 'group-list',
+						roles: ['admin', 'hod', 'director'],
+					},
+					{
+						name: 'messaging',
+						link: 'group-messaging',
+						roles: ['admin', 'hod', 'director'],
+					},
+				],
+			},
+			{
+				item: 'time table',
+				link: 'time-table',
+				visibleRight: ['hod', 'director', 'admin', 'secreteriat'],
+				icon: <BiTable />,
+				itemList: [
+					{
+						name: 'upload timetable',
+						link: 'upload-timetable',
+						roles: ['hod', 'director', 'admin'],
+					},
+					{
+						name: 'timetable list',
+						link: 'timetable-list',
+						roles: ['hod', 'director', 'admin', 'secreteriat'],
+					},
+				],
+			},
+			{
+				item: "form bs",
+				link: 'form-bs',
+				visibleRight: ['hod', 'director', 'admin', 'secreteriat'],
+				icon: <BiTable />,
+				itemList: [
+					{
+						name: "upload form b's",
+						link: 'upload-form-bs',
+						roles: ['hod', 'director', 'admin'],
+					},
+					{
+						name: "form b's list",
+						link: 'formb-list',
+						roles: ['hod', 'director', 'admin', 'secreteriat'],
+					},
+				],
+			},
+			{
 				item: 'human resource',
 				visibleRight: ['admin'],
 				icon: <FaHandsHoldingChild />,
@@ -426,21 +484,6 @@ const data = [
 				link: 'events',
 				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 				icon: <BootstrapIcon.BsCalendar2EventFill />,
-				itemList: [],
-				roles: [
-					'student',
-					'lecturer',
-					'secreteriat',
-					'hod',
-					'director',
-					'admin',
-				],
-			},
-			{
-				item: 'time table',
-				link: 'time-table',
-				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
-				icon: <BiTable />,
 				itemList: [],
 				roles: [
 					'student',

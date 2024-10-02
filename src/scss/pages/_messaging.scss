@@ -1,0 +1,258 @@
+@use './../variables' as *;
+
+.messaging {
+	// border: 5px solid blue;
+	overflow-x: hidden;
+
+	& .message-ui {
+		display: flex;
+		flex-direction: row;
+		height: calc(100vh - 6.7rem);
+		background-color: #fdfdfd;
+
+		& .group-names {
+			height: calc(100vh - 6.7rem);
+			width: 25%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			position: relative;
+			z-index: 1;
+			overflow: auto;
+			border-right: 1px solid rgba($color-grey, 0.5);
+			background-color: $color-white;
+			&::-webkit-scrollbar {
+				width: 0.5rem;
+			}
+			&::-webkit-scrollbar-thumb {
+				background-color: rgba($color-grey, 0.4);
+				border-radius: 1rem;
+			}
+
+			& .form-search {
+				padding: 1rem 0;
+				border-bottom: 0.1rem solid rgba($color-grey, 0.5);
+				width: 100%;
+				justify-content: center;
+				display: flex;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background-color: $color-white;
+				& .search-bar {
+					width: 90%;
+					// background-color: dodgerblue;
+					border: 3px solid $color-grey-dark;
+					display: flex;
+					align-items: center;
+					gap: 1rem;
+					padding: 1rem;
+					border-radius: 10rem;
+
+					#search {
+						padding: 1rem 0rem;
+						flex: 1;
+						outline: none;
+						border: none;
+						font-size: 1.8rem;
+						font-family: $font-styles;
+						background-color: transparent;
+					}
+
+					& .icon-search {
+						font-size: 1.5rem;
+						font-size: 3rem;
+						color: $color-grey-dark;
+					}
+				}
+			}
+			& .group-contacts {
+				height: calc(100vh - 7rem);
+				overflow: auto;
+				padding-top: 9rem;
+				&::-webkit-scrollbar {
+					width: 0.5rem;
+				}
+				&::-webkit-scrollbar-thumb {
+					background-color: rgba($color-grey, 0.4);
+					border-radius: 1rem;
+				}
+				& .contact {
+					display: flex;
+					gap: 1rem;
+					padding: 0.8rem;
+					& .group-name {
+						font-weight: bolder;
+						font-size: 1.8rem;
+					}
+					img {
+						height: 7rem;
+						width: 7rem;
+						border-radius: 100%;
+					}
+					.contact-info {
+						flex: 1;
+						display: flex;
+						flex-direction: column;
+						gap: 0.7rem;
+						padding: 0.8rem 0rem;
+					}
+					.time {
+						align-self: flex-end;
+					}
+
+					&:hover {
+						background-color: #fff6f6;
+						cursor: pointer;
+						transition: all 1s;
+					}
+				}
+			}
+		}
+		& .message-section {
+			width: 75%;
+			// background-color: green;
+			display: flex;
+			flex-direction: column;
+			position: relative;
+			padding: 1.5rem;
+			padding-right: 0;
+			overflow-y: auto;
+
+			& .header-container {
+				background-color: $color-white;
+				border-bottom: 1px solid rgba($color-grey, 0.5);
+				position: absolute;
+				width: 100%;
+				top: 0rem;
+				right: 0;
+				padding: 1.2rem;
+			}
+			& .header {
+				display: flex;
+				gap: 0.5rem;
+				width: 99%;
+				padding-left: 2rem;
+
+				& img {
+					height: 5rem;
+					width: 5rem;
+					border-radius: 100%;
+				}
+				& .group-info {
+					display: flex;
+					flex-direction: column;
+					gap: 0.5rem;
+					justify-content: center;
+					padding: 0.8rem;
+
+					& .name {
+						font-weight: bolder;
+						font-size: 2rem;
+					}
+					& .creator {
+						font-size: 1.1;
+					}
+				}
+			}
+			& .message-form {
+				background: linear-gradient(
+					to right bottom,
+					dodgerblue,
+					$color-primary-light,
+					$color-primary
+				);
+				padding: 1rem;
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				width: 100%;
+				// z-index: 100;
+
+				& form.form {
+					display: flex;
+					gap: 2rem;
+					align-items: center;
+
+					& textarea#message {
+						padding: 1rem;
+						flex: 1;
+						resize: none;
+						outline: none;
+						border: none;
+						background-color: transparent;
+						font-family: $font-styles;
+						font-size: 2rem;
+						padding-left: 2rem;
+						color: $color-grey-light;
+					}
+
+					& button.button-send {
+						height: 6rem;
+						width: 6rem;
+						border-radius: 100%;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						border: none;
+						outline: none;
+						cursor: pointer;
+
+						svg {
+							font-size: 2.5rem;
+						}
+					}
+				}
+			}
+
+			& .all-messages {
+				height: calc(100vh - 6.7rem - 12rem);
+				margin-bottom: 9rem;
+				display: flex;
+				flex-direction: column;
+				gap: 0.8rem;
+				margin-top: 7rem;
+				overflow: auto;
+				padding-right: 1.5rem;
+
+				&::-webkit-scrollbar {
+					width: 0.5rem;
+				}
+				&::-webkit-scrollbar-thumb {
+					background-color: rgba($color-grey, 0.4);
+					border-radius: 1rem;
+				}
+
+				& .message {
+					max-width: 80%;
+					padding: 0.8rem;
+					border-radius: 1.4rem 1.4rem 1.4rem 0rem;
+					display: flex;
+					flex-direction: column;
+					align-self: flex-start;
+					border: 3px solid rgba($color-grey, 0.2);
+					background-color: $color-white;
+					& .name {
+						font-weight: bolder;
+						margin-bottom: 0.4rem;
+					}
+
+					& .time {
+						align-self: flex-end;
+					}
+				}
+				& .me {
+					align-self: flex-end;
+					border-radius: 1.4rem 1.4rem 0rem 1.4rem;
+					background: linear-gradient(
+						to bottom right,
+						dodgerblue,
+						$color-primary-light
+					);
+					color: $color-grey-light;
+					border: none;
+				}
+			}
+		}
+	}
+}

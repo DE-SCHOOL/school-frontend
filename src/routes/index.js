@@ -16,6 +16,9 @@ import HumanResourceRoute from './pages/human resource';
 import PollRoute from './pages/polls';
 import AcademicYear from './pages/academic year';
 import Promotions from './pages/promotions';
+import MessagingRoute from './pages/messaging';
+import TimetableRoute from './pages/timetable';
+import FormBRoute from './pages/form B';
 
 function Router() {
 	return (
@@ -34,6 +37,9 @@ function Router() {
 			<AcademicYear />
 			<PollRoute />
 			<Promotions />
+			<MessagingRoute />
+			<TimetableRoute />
+			<FormBRoute />
 			<ErrorRoute />
 		</React.Fragment>
 	);
