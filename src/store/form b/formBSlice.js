@@ -43,7 +43,7 @@ const formBSlice = createSlice({
 			state.errorMessage = action.payload;
 			state.error = true;
 			state.isLoadingFormBs = false;
-      state.uploadSuccess = false;
+			state.uploadSuccess = false;
 		},
 		createFormBCreated: (state) => {
 			state.isUploading = false;
@@ -63,7 +63,7 @@ const formBSlice = createSlice({
 			state.errorMessage = action.payload;
 			state.error = true;
 			state.isLoadingFormBs = false;
-      state.uploadSuccess = false;
+			state.uploadSuccess = false;
 		},
 		getFormBsPending: (state) => {
 			state.isLoadingFormBs = true;
@@ -75,7 +75,7 @@ const formBSlice = createSlice({
 			state.isLoadingFormBs = false;
 			state.error = true;
 			state.errorMessage = action.payload;
-      state.uploadSuccess = false;
+			state.uploadSuccess = false;
 		},
 		deleteFormBSuccess: (state) => {
 			state.isLoadingFormBs = false;
@@ -107,7 +107,7 @@ export const uploadFile = (data) => async (dispatch) => {
 
 	const fileRef = ref(
 		formBRef,
-		`${data.specialtyName}_${data.level}_${data.schoolYear
+		`${data.name}_${data.specialtyName}_${data.level}_${data.schoolYear
 			.split('/')
 			.join('-')}.pdf`
 	);

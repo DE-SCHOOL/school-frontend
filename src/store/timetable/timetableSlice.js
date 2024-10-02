@@ -107,7 +107,7 @@ export const uploadFile = (data) => async (dispatch) => {
 
 	const fileRef = ref(
 		timetableRef,
-		`${data.specialtyName}_${data.level}_${data.semester}_${data.schoolYear
+		`${data.name}_${data.specialtyName}_${data.level}_${data.semester}_${data.schoolYear
 			.split('/')
 			.join('-')}.pdf`
 	);
