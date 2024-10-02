@@ -1,5 +1,9 @@
 @use './../../scss/variables' as *;
 
+.main-nav.main-nav__only {
+	width: calc(100%) !important;
+	margin-left: 0rem !important;
+}
 .main-nav {
 	display: flex;
 	align-items: center;
