@@ -20,8 +20,9 @@ import {
 	getCurrentYear,
 	updateAcademicYears,
 } from '../../store/academic year/academicYearSlice';
+import { FaHome } from 'react-icons/fa';
 
-function MainNav() {
+function MainNav({ styleClass = '' }) {
 	const [showSemester, setShowSemester] = useState(false);
 	const [showYears, setShowYears] = useState(false);
 	let sem = periodInfo.semester();
@@ -65,8 +66,13 @@ function MainNav() {
 	//if user is not logged in or user data got deleted from local storage
 	if (!authUser.isLoggedIn || !authUser.user) return navigate('/auth/signin');
 	return (
-		<nav className="main-nav">
+		<nav className={`main-nav ${styleClass}`}>
 			<div className="main-nav__left">
+				{styleClass !== '' && (
+					<button className="button-main" onClick={() => navigate('/')}>
+						<FaHome className="main-nav__responsive" />
+					</button>
+				)}
 				<button
 					className="button-main"
 					onClick={() => dispatch(toggleLeftNav())}
