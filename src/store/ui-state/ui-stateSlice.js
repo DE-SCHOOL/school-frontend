@@ -24,6 +24,9 @@ const uiStateSlice = createSlice({
 			if (action.payload?.newClass !== undefined) {
 				state.deleteOpt.newClass = action.payload.newClass;
 			}
+			if (action.payload?.fileUrl !== undefined) {
+				state.deleteOpt.fileUrl = action.payload.fileUrl;
+			}
 		},
 		defaultDeleteEntity(state) {
 			state.deleteOpt.type = null;
