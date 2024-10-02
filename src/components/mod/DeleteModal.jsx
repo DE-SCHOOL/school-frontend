@@ -12,6 +12,12 @@ import {
 	deletePromotedStudent,
 	getStudentPerAcademicYearNextStudents,
 } from '../../store/academic year/academicYearSlice';
+import { deleteGroup } from '../../store/messaging/messagingSlice';
+import {
+	deleteTimetable,
+	getAllTimetables,
+} from '../../store/timetable/timetableSlice';
+import { deleteFormB, getAllFormBs } from '../../store/form b/formBSlice';
 
 function DeleteModal({
 	name,
@@ -19,6 +25,7 @@ function DeleteModal({
 	type,
 	nextAcademicYear = '',
 	newClass = null,
+	fileUrl = '',
 }) {
 	const [modalText, setModalText] = useState('');
 	const year = useSelector((state) => state.years.currentYear);
@@ -85,6 +92,14 @@ function DeleteModal({
 			await dispatch(
 				getStudentPerAcademicYearNextStudents({ _id: nextAcademicYear?._id })
 			);
+		} else if (type === 'group') {
+			dispatch(deleteGroup(id));
+		} else if (type === 'timetable') {
+			await dispatch(deleteTimetable({ id, fileUrl }));
+			await dispatch(getAllTimetables());
+		} else if (type === 'formb') {
+			await dispatch(deleteFormB({ id, fileUrl }));
+			await dispatch(getAllFormBs());
 		}
 
 		handleRemoveModal();
