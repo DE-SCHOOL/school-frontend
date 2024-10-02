@@ -10,7 +10,7 @@ import { getDepartments } from './../../store/departments/departmentSlice';
 import { getPrograms } from '../../store/program/programSlice';
 
 //Styled in the search sass component file
-function SearchCategory({ styles, dropDown, data, setData }) {
+function SearchCategory({ styles, dropDown, data, setData, isGroup = false }) {
 	//create dispatch to dispatch actions and useSelect for getting out information
 	const dispatch = useDispatch();
 	const dropDownData = useSelector((state) => {
@@ -114,7 +114,7 @@ function SearchCategory({ styles, dropDown, data, setData }) {
 					<option value="602">Level 600 II</option>
 				</select>
 			)}
-			{dropDown === 'specialty' && (
+			{dropDown === 'specialty' && isGroup === false && (
 				<select name="specialty" ref={dropDn}>
 					<option value="">Search by specialty</option>
 
