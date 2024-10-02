@@ -12,3 +12,6 @@ export { default as TableResults } from './TableResults';
 export { default as TableAllResultData } from './TableAllResultData';
 export { default as TableAllCourseStats } from './TableAllCourseStats';
 export { default as TableStaffReview } from './TableStaffReview';
+// export { default as TableQuestions } from './TableQuestions';
+export { default as TableTimetable } from './TableTimetable';
+export { default as TableFormB } from './TableFormB';
