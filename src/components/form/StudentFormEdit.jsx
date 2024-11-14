@@ -27,6 +27,7 @@ function StudentFormEdit({ styles }) {
 	const specialties = useSelector((state) => state.specialty.specialties.data);
 	const studentss = useSelector((state) => state.students);
 	const student = useSelector((state) => state.students.student);
+	const year = useSelector((state) => state.years.currentYear);
 
 	let dob = `${new Date(student?.dob).getFullYear()}-${
 		new Date(student?.dob).getMonth() + 1 < 10
@@ -61,8 +62,10 @@ function StudentFormEdit({ styles }) {
 	//Get all specialties after initial render
 	useEffect(() => {
 		dispatch(getSpecialties());
-		dispatch(getStudent({ id: param.id }));
-	}, [dispatch, param.id]);
+		if (year?._id !== undefined) {
+			dispatch(getStudent({ id: param.id, academicYearID: year?._id }));
+		}
+	}, [dispatch, param.id, year?._id]);
 
 	//Execute this function when you click submit, to add a student
 	const modifyStudent = (e) => {
