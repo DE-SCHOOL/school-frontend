@@ -132,10 +132,12 @@ export const getStaffStudents = createAsyncThunk(
 
 export const getStudent = createAsyncThunk(
 	'student/getStudent',
-	async ({ id }, thunkAPI) => {
+	async ({ id, academicYearID }, thunkAPI) => {
 		try {
-			const res = await apiRequest('get', `/api/v1/student/${id}`);
-			// console.log(res.data, 111111);
+			const res = await apiRequest(
+				'get',
+				`/api/v1/student/${id}/academic-year/${academicYearID}`
+			);
 			return res.data;
 		} catch (err) {
 			let error = err.response.data?.message;
