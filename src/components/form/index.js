@@ -17,8 +17,8 @@ export { default as MarkTableFormExam } from './MarkTableFormExam';
 export { default as MarkTableFormPreMock } from './MarkTableFormPreMock';
 export { default as MarkTableFormMock } from './MarkTableFormMock';
 export { default as StaffReviewForm } from './StaffReviewForm';
-// export { default as PollForm } from './PollForm';
-// export { default as PollFormEdit } from './PollFormEdit';
+export { default as PollForm } from './PollForm';
+export { default as PollFormEdit } from './PollFormEdit';
 // export { default as AcademicYearForm } from './AcademicYearForm';
 
 export { default as GroupForm } from './GroupForm';
