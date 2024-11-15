@@ -19,7 +19,7 @@ import Loader from './../../../components/loaders/Loader';
 
 //initializing table header information
 const departmentHeader = {
-	name: 'Name',
+	name: 'Specialty',
 	department: 'Department',
 };
 
