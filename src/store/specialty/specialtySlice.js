@@ -55,11 +55,12 @@ export const getSpecialtyCourses = createAsyncThunk(
 
 export const createSpecialties = createAsyncThunk(
 	'specialty/createSpecialties',
-	async ({ name, department }, thunkAPI) => {
+	async ({ name, department, level }, thunkAPI) => {
 		try {
 			const res = await apiRequest('post', `/api/v1/specialty`, {
 				name,
 				department,
+				level,
 			});
 			// console.log(res.data);
 			return res.data;
@@ -73,11 +74,12 @@ export const createSpecialties = createAsyncThunk(
 
 export const editSpecialty = createAsyncThunk(
 	'specialty/edit',
-	async ({ name, department, id }, thunkAPI) => {
+	async ({ name, department, level, id }, thunkAPI) => {
 		try {
 			const res = await apiRequest('patch', `/api/v1/specialty/${id}`, {
 				name,
 				department,
+				level,
 			});
 			// console.log(res.data);
 			return res.data;
