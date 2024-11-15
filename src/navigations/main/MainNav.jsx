@@ -29,7 +29,7 @@ function MainNav({ styleClass = '' }) {
 	const navigate = useNavigate();
 	const academicYears = useSelector((state) => state.years.academicYears);
 	const currentYear = academicYears
-		? academicYears.filter((year) => year.isCurrent)[0]
+		? academicYears?.filter((year) => year.isCurrent)[0]
 		: [];
 	// console.log(academicYears);
 
