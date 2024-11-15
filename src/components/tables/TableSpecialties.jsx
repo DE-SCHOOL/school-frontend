@@ -10,6 +10,7 @@ import { useSearchParams } from 'react-router-dom';
 
 //Utility functions
 import { sortArrayObject } from '../../utilities/sortingInfo';
+import { returnClassString } from '../../utilities/getClassString';
 
 let DATA_CONST;
 function TableSpecialties({ styles, tableData, header, paggingNum }) {
@@ -42,6 +43,10 @@ function TableSpecialties({ styles, tableData, header, paggingNum }) {
 					{/* <th>
 						<input type="checkbox" name="check" id="check-all" />
 					</th> */}
+					<th className={`${isSortedBy === 'level' ? 'sorted' : ''}`}>
+						<FaRightLeft onClick={() => handleSort('level')} />
+						<span className="text">Class</span>
+					</th>
 					<th className={`${isSortedBy === 'name' ? 'sorted' : ''}`}>
 						<FaRightLeft onClick={() => handleSort('name')} />
 						<span className="text">{header.name}</span>
@@ -66,6 +71,9 @@ function TableSpecialties({ styles, tableData, header, paggingNum }) {
 								{/* <td>
 								<input type="checkbox" name="check-1" />
 							</td> */}
+								<td>
+									<span className="text">{returnClassString(row.level)}</span>
+								</td>
 								<td>
 									<span className="text">{row.name}</span>
 								</td>
