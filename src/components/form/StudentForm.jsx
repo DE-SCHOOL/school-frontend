@@ -13,7 +13,7 @@ import Loader from '../loaders/Loader';
 
 //initialize default information
 const defaultInfo = {
-	level: '200',
+	level: '100',
 	gender: 'male',
 	matricule: '',
 	name: '',
@@ -26,7 +26,6 @@ const defaultInfo = {
 	parent_name: '',
 	parent_email: '',
 	parent_tel: '',
-	entry_certificate: '',
 };
 
 function StudentForm({ styles, type = '' }) {
@@ -158,13 +157,12 @@ function StudentForm({ styles, type = '' }) {
 				</div>
 				<div className="form-item">
 					<span className="desc">
-						Email <em>*</em>
+						Email (optional)
 					</span>
 					<input
 						type="email"
 						placeholder="Enter email"
 						name="email"
-						required
 						value={studentData.email}
 						onChange={(e) =>
 							setStudentData((prev) => {
@@ -176,12 +174,11 @@ function StudentForm({ styles, type = '' }) {
 				</div>
 				<div className="form-item">
 					<span className="desc">
-						Student Tel <em>*</em>
+						Student Tel (optional)
 					</span>
 					<input
 						type="number"
 						placeholder="Enter student tel"
-						required
 						name="student-tel"
 						value={studentData.tel}
 						onChange={(e) =>
@@ -211,12 +208,11 @@ function StudentForm({ styles, type = '' }) {
 				</div>
 				<div className="form-item">
 					<span className="desc">
-						Parent email <em>*</em>
+						Parent email (optional)
 					</span>
 					<input
 						type="email"
 						placeholder="Enter parent email"
-						required
 						name="parent-email"
 						value={studentData.parent_email}
 						onChange={(e) =>
@@ -246,23 +242,6 @@ function StudentForm({ styles, type = '' }) {
 				</div>
 				<div className="form-item">
 					<span className="desc">
-						Highest education level <em>*</em>
-					</span>
-					<input
-						type="text"
-						placeholder="Enter highest education level"
-						required
-						name="entry-level"
-						value={studentData.entry_certificate}
-						onChange={(e) =>
-							setStudentData((prev) => {
-								return { ...prev, entry_certificate: e.target.value };
-							})
-						}
-					/>
-				</div>
-				<div className="form-item">
-					<span className="desc">
 						Gender <em>*</em>
 					</span>
 					<select
@@ -280,22 +259,26 @@ function StudentForm({ styles, type = '' }) {
 				</div>
 				<div className="form-item">
 					<span className="desc">
-						Level <em>*</em>
+						Class <em>*</em>
 					</span>
 					<select
 						name="level"
 						id=""
 						onChange={(e) =>
 							setStudentData((prev) => {
-								return { ...prev, level: e.target.value };
+								return { ...prev, level: Number(e.target.value) };
 							})
 						}
+						required
 					>
-						<option value="200">200</option>
-						<option value="300">300</option>
-						<option value="400">400</option>
-						<option value="601">600 I</option>
-						<option value="602">600 II</option>
+						<option value="">Select class</option>
+						<option value="100">Form 1</option>
+						<option value="200">Form 2</option>
+						<option value="300">Form 3</option>
+						<option value="400">Form 4</option>
+						<option value="500">Form 5</option>
+						<option value="601">Lower sixth</option>
+						<option value="602">Upper sixth</option>
 					</select>
 				</div>
 				<div className="form-item">
