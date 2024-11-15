@@ -5,9 +5,9 @@ import { SpecialtyForm } from '../../../components/form';
 function SpecialtyAdd() {
 	return (
 		<Layout>
-			<SectionIntro title="Add Specialties" main="Specialty" sub="add" />
+			<SectionIntro title="Add Class Specialties" main="Specialty" sub="add" />
 			<section className="students mg-top">
-				<h2 className="header-secondary">Specialty Information</h2>
+				<h2 className="header-secondary">Class Specialty Information</h2>
 				<SpecialtyForm styles="mg-top-md" />
 			</section>
 		</Layout>
