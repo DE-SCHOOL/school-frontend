@@ -53,7 +53,7 @@ function StudentForm({ styles, type = '' }) {
 			addStudent({
 				...studentData,
 				specialty: specialty.current.value,
-				yearID: year._id,
+				yearID: year?._id,
 			})
 		);
 		setStudentData(defaultInfo);
