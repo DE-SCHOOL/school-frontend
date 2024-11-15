@@ -12,6 +12,7 @@ import { createSpecialties } from '../../store/specialty/specialtySlice';
 const defaultInfo = {
 	name: '',
 	department: '',
+	level: '',
 };
 
 function SpecialtyForm({ styles }) {
@@ -21,7 +22,7 @@ function SpecialtyForm({ styles }) {
 		(state) => state.departments.departments.data
 	);
 	const specialty = useSelector((state) => state.specialty);
-	console.log(specialty);
+	// console.log(specialty);
 	//initialize the main hooks
 	const [specialtyData, setSpecialtyData] = useState(defaultInfo);
 	const department = useRef();
@@ -35,7 +36,6 @@ function SpecialtyForm({ styles }) {
 	const createSpecialty = (e) => {
 		e.preventDefault();
 
-		console.log(department.current.value);
 		dispatch(
 			createSpecialties({
 				...specialtyData,
@@ -92,6 +92,31 @@ function SpecialtyForm({ styles }) {
 								</option>
 							);
 						})}
+					</select>
+				</div>
+				<div className="form-item">
+					<span className="desc">
+						Class <em>*</em>
+					</span>
+					<select
+						name="level"
+						id=""
+						value={specialtyData.level}
+						onChange={(e) =>
+							setSpecialtyData((prev) => {
+								return { ...prev, level: Number(e.target.value) };
+							})
+						}
+						required
+					>
+						<option value="">Select class</option>
+						<option value="100">Form 1</option>
+						<option value="200">Form 2</option>
+						<option value="300">Form 3</option>
+						<option value="400">Form 4</option>
+						<option value="500">Form 5</option>
+						<option value="601">Lower sixth</option>
+						<option value="602">Upper sixth</option>
 					</select>
 				</div>
 			</div>

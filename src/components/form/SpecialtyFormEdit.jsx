@@ -25,6 +25,7 @@ function SpecialtyFormEdit({ styles }) {
 	const param = useParams();
 	const department = useRef();
 	const name = useRef();
+	const level = useRef();
 
 	//Get all departments after initial render
 	useEffect(() => {
@@ -40,6 +41,7 @@ function SpecialtyFormEdit({ styles }) {
 			editSpecialty({
 				department: department.current.value,
 				name: name.current.value,
+				level: level.current.value,
 				id: param.id,
 			})
 		);
@@ -83,6 +85,55 @@ function SpecialtyFormEdit({ styles }) {
 								</option>
 							);
 						})}
+					</select>
+				</div>
+				<div className="form-item">
+					<span className="desc">
+						Class <em>*</em>
+					</span>
+					<select name="level" id="" ref={level} required>
+						<option
+							value="100"
+							selected={specialty?.level === 100 ? true : false}
+						>
+							Form 1
+						</option>
+						<option
+							value="200"
+							selected={specialty?.level === 200 ? true : false}
+						>
+							Form 2
+						</option>
+						<option
+							value="300"
+							selected={specialty?.level === 300 ? true : false}
+						>
+							Form 3
+						</option>
+						<option
+							value="400"
+							selected={specialty?.level === 400 ? true : false}
+						>
+							Form 4
+						</option>
+						<option
+							value="500"
+							selected={specialty?.level === 500 ? true : false}
+						>
+							Form 5
+						</option>
+						<option
+							value="601"
+							selected={specialty?.level === 601 ? true : false}
+						>
+							Lower sixth
+						</option>
+						<option
+							value="602"
+							selected={specialty?.level === 602 ? true : false}
+						>
+							Upper sixth
+						</option>
 					</select>
 				</div>
 			</div>
