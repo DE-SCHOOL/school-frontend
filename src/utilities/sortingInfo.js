@@ -11,7 +11,7 @@ export const sortArrayObject = (
 	field,
 	fieldOpt
 ) => {
-	console.log(data);
+	// console.log(data);
 	const tempData = data.map((dt) => dt);
 
 	if (field && fieldOpt) {
