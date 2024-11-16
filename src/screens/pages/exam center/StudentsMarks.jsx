@@ -11,6 +11,7 @@ import Failure from './../../../components/signal/Failure';
 import { PaggingNumSelect, Paggination } from '../../../components/pagging';
 import SearchStudents from '../../../components/search/SearchStudents';
 import { TableStudents } from '../../../components/tables';
+import SectionNotFound from '../../../components/layout/SectionNotFound';
 
 const studentHeader = {
 	id: 'ID',
@@ -94,6 +95,9 @@ function StudentMarks() {
 				{/* {exams.error === false && setStaffData(defaultInfo)} */}
 				{exams.isLoading && <Loader />}
 			</section>
+			{students.length !== undefined && exams.isLoading === false && (
+				<SectionNotFound text={'No marks yet'} />
+			)}
 		</Layout>
 	);
 }

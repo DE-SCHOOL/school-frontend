@@ -12,6 +12,7 @@ import { TableTimetable } from '../../../components/tables/';
 import DeleteModal from '../../../components/mod/DeleteModal';
 import Loader from './../../../components/loaders/Loader';
 import { getAllTimetables } from '../../../store/timetable/timetableSlice';
+import SectionNotFound from '../../../components/layout/SectionNotFound';
 
 const timetableHeader = {
 	name: 'name',
@@ -94,6 +95,9 @@ function TimetableList() {
 					/>
 				)}
 			</section>
+			{timetables.length === 0 && isLoading === false && (
+				<SectionNotFound text={'No registered timetable(s)'} />
+			)}
 			{uiState.type === 'timetable' && (
 				<DeleteModal
 					type={uiState.type}
