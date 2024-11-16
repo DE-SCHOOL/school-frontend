@@ -17,7 +17,7 @@ import SectionNotFound from '../../../components/layout/SectionNotFound';
 const courseHeader = {
 	id: 'Code',
 	name: 'Name',
-	levels: 'Level (s)',
+	levels: 'Classes',
 	semester: 'Semester',
 	status: 'Status',
 	acts: 'actions',
