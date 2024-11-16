@@ -28,7 +28,9 @@ function MainNav({ styleClass = '' }) {
 	let sem = periodInfo.semester();
 	const navigate = useNavigate();
 	const academicYears = useSelector((state) => state.years.academicYears);
-	const currentYear = academicYears
+	const currentYear = academicYears?._id
+		? [academicYears]
+		: academicYears?.length > 0
 		? academicYears?.filter((year) => year.isCurrent)[0]
 		: [];
 	// console.log(academicYears);
