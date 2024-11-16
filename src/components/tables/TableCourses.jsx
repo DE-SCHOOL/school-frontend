@@ -169,7 +169,7 @@ function TableCourses({
 								{tableType === 'all' && (
 									<td>
 										<div className="actions btn-list">
-											<Link to={`/marks/${row._id}/ca/add`}>
+											<Link to={`/marks/${row._id}/exam/add`}>
 												<button className="marks-action button-main caps">
 													{returnSequence(semester())}
 												</button>
