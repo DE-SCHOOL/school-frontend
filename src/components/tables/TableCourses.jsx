@@ -13,6 +13,9 @@ import { useSearchParams, Link } from 'react-router-dom';
 //Utility functions
 import { sortArrayObject } from '../../utilities/sortingInfo';
 import { setDeleteEntity } from '../../store/ui-state/ui-stateSlice';
+import { returnClassString } from '../../utilities/getClassString';
+import { returnSequence } from '../../utilities/returnSequence';
+import { semester } from '../../utilities/periodInfo';
 
 let DATA_CONST;
 function TableCourses({
@@ -115,7 +118,11 @@ function TableCourses({
 									<span className="text">{row.name}</span>
 								</td>
 								<td>
-									<span className="text">{row.levels?.join(', ')}</span>
+									<span className="text">
+										{row.levels
+											?.map((level) => returnClassString(level))
+											.join(', ')}
+									</span>
 								</td>
 								<td>
 									<span className="text">{row.semester}</span>
@@ -164,18 +171,10 @@ function TableCourses({
 										<div className="actions btn-list">
 											<Link to={`/marks/${row._id}/ca/add`}>
 												<button className="marks-action button-main caps">
-													CA
+													{returnSequence(semester())}
 												</button>
 											</Link>
-											<Link
-												to={`/marks/${row._id}/exam/add`}
-												className="mg-left"
-											>
-												<button className="marks-action button-main caps">
-													EXAM
-												</button>
-											</Link>
-											{row.levels?.join(' ').indexOf('300') !== -1 && (
+											{/* {row.levels?.join(' ').indexOf('300') !== -1 && (
 												<Link
 													to={`/marks/${row._id}/pre-mock/add`}
 													className="mg-left"
@@ -194,7 +193,7 @@ function TableCourses({
 														Mock
 													</button>
 												</Link>
-											)}
+											)} */}
 										</div>
 									</td>
 								)}
