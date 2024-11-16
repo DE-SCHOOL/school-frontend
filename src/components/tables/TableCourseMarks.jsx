@@ -9,6 +9,7 @@ import Loader from '../loaders/Loader';
 import SchoolHeader from '../social/SchoolHeader';
 import { schoolHeaderProp } from '../../utilities/appData';
 import { decideCourseGrade } from '../../utilities/decideCourseGrade';
+import SectionNotFound from '../layout/SectionNotFound';
 
 function TableCourseMarks({ students, length, semester, academicYear }) {
 	//length is to help getMarkSheetsPerCoursePerStudents everytime this component is involved in any render
@@ -38,7 +39,7 @@ function TableCourseMarks({ students, length, semester, academicYear }) {
 
 	//return nothing if student sheet doesn't exist yet
 	if (marks?.markSheet?.length === 0) {
-		return;
+		return <SectionNotFound text={'No marks yet.'} />;
 	}
 	return (
 		<div className="table-form">
