@@ -13,6 +13,7 @@ import Loader from '../../../components/loaders/Loader';
 import { Layout, SectionIntro } from '../../../components/layout';
 import { MarkTableFormExam } from './../../../components/form';
 import { getCourse } from '../../../store/courses/courseSlice';
+import SectionNotFound from '../../../components/layout/SectionNotFound';
 
 function MarksAddExam() {
 	const params = useParams();
@@ -134,7 +135,7 @@ function MarksAddExam() {
 			)}
 			{students?.length === 0 && (
 				<div className="mg-top">
-					<span>No student(s) offering this course yet</span>
+					<SectionNotFound text="No student(s) offering this course yet" />
 				</div>
 			)}
 			{markSheet?.length === students?.length && (
