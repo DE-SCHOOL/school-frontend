@@ -25,6 +25,7 @@ export const login = createAsyncThunk(
 
 			//SET DEFAULT SEMESTER
 			localStorage.setItem('semester', JSON.stringify({ current: 's1' }));
+			localStorage.setItem('term', JSON.stringify({ current: 't1' }));
 
 			await signInWithCustomToken(auth, res.data.data.customToken);
 
