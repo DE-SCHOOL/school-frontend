@@ -111,7 +111,8 @@
 		width: 4rem;
 		cursor: pointer;
 
-		.semester {
+		.semester,
+		.term {
 			background-color: $color-white;
 			width: 10rem;
 			display: flex;
@@ -120,7 +121,7 @@
 			justify-content: center;
 			position: absolute;
 			top: 2.15rem;
-			left: 22%;
+			left: 31%;
 			transform: translateX(-50%);
 			gap: 0rem !important;
 			border: 1px solid rgba($color-grey, 0.3);
@@ -135,6 +136,10 @@
 				}
 			}
 		}
+		.term {
+			top: 5.2rem;
+			left: 22%;
+		}
 		.year {
 			background-color: $color-white;
 			width: 15rem;
@@ -144,7 +149,7 @@
 			justify-content: center;
 			position: absolute;
 			top: 5.15rem;
-			left: 42%;
+			left: 51%;
 			transform: translateX(-50%);
 			gap: 0rem !important;
 			border: 1px solid rgba($color-grey, 0.3);
