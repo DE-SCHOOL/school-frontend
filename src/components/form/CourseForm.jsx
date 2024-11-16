@@ -29,7 +29,7 @@ function CourseForm({ styles }) {
 	const [courseData, setCourseData] = useState(defaultInfo);
 	const specialty = useRef();
 	const levels = useRef();
-	const semester = useRef();
+	// const semester = useRef();
 	const status = useRef();
 	const credits = useRef();
 
@@ -46,14 +46,10 @@ function CourseForm({ styles }) {
 		const options1 = specialty.current.selectedOptions;
 		const specialties = Array.from(options1).map((option) => option.value);
 
-		//Get all the selected level as an array
-		const options2 = levels.current.selectedOptions;
-		const allLevels = Array.from(options2).map((option) => option.value);
-
 		//Courses object
 		const values = {
-			levels: allLevels,
-			semester: semester.current.value,
+			levels: [levels.current.value],
+			// semester: semester.current.value,
 			credit_value: credits.current.value,
 			status: status.current.value,
 			name: courseData.name,
@@ -98,22 +94,16 @@ function CourseForm({ styles }) {
 				</div>
 				<div className="form-item">
 					<span className="desc">
-						levels <em>*</em>
+						Classes <em>*</em>
 					</span>
-					<select
-						name="levels"
-						id=""
-						ref={levels}
-						multiple
-						size="3"
-						required
-						title="use the CTRL key to select multiple options"
-					>
-						<option value="200">200</option>
-						<option value="300">300</option>
-						<option value="400">400</option>
-						<option value="601">600 I</option>
-						<option value="602">600 II</option>
+					<select name="levels" id="" ref={levels} required>
+						<option value="100">Form 1</option>
+						<option value="200">Form 2</option>
+						<option value="300">Form 3</option>
+						<option value="400">Form 4</option>
+						<option value="500">Form 5</option>
+						<option value="601">Lower sixth</option>
+						<option value="602">Upper sixth</option>
 					</select>
 				</div>
 				<div className="form-item">
@@ -121,14 +111,14 @@ function CourseForm({ styles }) {
 						Credit Value <em>*</em>
 					</span>
 					<select name="credit" id="" ref={credits}>
-						{Array.from({ length: 20 }).map((_, index) => (
+						{Array.from({ length: 10 }).map((_, index) => (
 							<option value={`${index + 1}`} key={index}>
 								{index + 1}
 							</option>
 						))}
 					</select>
 				</div>
-				<div className="form-item">
+				{/* <div className="form-item">
 					<span className="desc">
 						Semester <em>*</em>
 					</span>
@@ -146,7 +136,7 @@ function CourseForm({ styles }) {
 						<option value="s1">First Semester</option>
 						<option value="s2">Second Semester</option>
 					</select>
-				</div>
+				</div> */}
 				<div className="form-item">
 					<span className="desc">
 						Specialty <em>*</em>
@@ -156,7 +146,7 @@ function CourseForm({ styles }) {
 						id=""
 						ref={specialty}
 						multiple
-						size="3"
+						size="6"
 						required
 						title="use the CTRL key to select multiple options"
 					>
