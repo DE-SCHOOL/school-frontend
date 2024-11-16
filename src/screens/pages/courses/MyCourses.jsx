@@ -9,6 +9,7 @@ import {
 import { PaggingNumSelect, Paggination } from './../../../components/pagging/';
 import SearchCategory from '../../../components/search/SearchCategory';
 import { TableCourses } from '../../../components/tables/';
+import SectionNotFound from '../../../components/layout/SectionNotFound';
 
 const courseHeader = {
 	id: 'Code',
@@ -79,7 +80,7 @@ function MyCourses() {
 				)}
 
 				{/* Show student table information only if students data has loaded */}
-				{courses !== undefined && (
+				{courses !== undefined && courses?.courses?.length !== 0 && (
 					<Paggination
 						styles="mg-top"
 						paggingNum={numPages}
@@ -92,6 +93,9 @@ function MyCourses() {
 					/>
 				)}
 			</section>
+			{courses !== undefined && courses?.courses?.length === 0 && (
+				<SectionNotFound text={'No courses assigned to you.'} />
+			)}
 		</Layout>
 	);
 }
