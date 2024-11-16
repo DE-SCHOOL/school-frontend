@@ -1,6 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaBars, FaSistrix, FaRegBell, FaS, Fa1, Fa2 } from 'react-icons/fa6';
+import {
+	FaBars,
+	FaSistrix,
+	FaRegBell,
+	FaS,
+	Fa1,
+	Fa2,
+	Fa3,
+	Fa4,
+	Fa5,
+	Fa6,
+	FaT,
+} from 'react-icons/fa6';
 import { FiSettings } from 'react-icons/fi';
 
 import { cmrLogo } from './../../assets/logos';
@@ -24,8 +36,10 @@ import { FaHome } from 'react-icons/fa';
 
 function MainNav({ styleClass = '' }) {
 	const [showSemester, setShowSemester] = useState(false);
+	const [showTerm, setShowTerm] = useState(false);
 	const [showYears, setShowYears] = useState(false);
 	let sem = periodInfo.semester();
+	let term = periodInfo.academicTerm();
 	const navigate = useNavigate();
 	const academicYears = useSelector((state) => state.years.academicYears);
 	const isLoadingYear = useSelector((state) => state.years.isLoading);
@@ -42,6 +56,17 @@ function MainNav({ styleClass = '' }) {
 		let curSemester = { current: semester };
 
 		localStorage.setItem('semester', JSON.stringify(curSemester));
+		window.location.assign(
+			`${window.location.pathname + window.location?.search || ''}`
+		);
+	};
+
+	const handleSetTerm = (term) => {
+		setShowTerm((prev) => !prev);
+
+		let curTerm = { current: term };
+
+		localStorage.setItem('term', JSON.stringify(curTerm));
 		window.location.assign(
 			`${window.location.pathname + window.location?.search || ''}`
 		);
@@ -108,6 +133,28 @@ function MainNav({ styleClass = '' }) {
 					<FaRegBell className="icons" />
 				</span>
 				<span className="main-nav__semester rounded">
+					<span className="iconss" onClick={() => setShowTerm((prev) => !prev)}>
+						<FaT className="svg" />
+						{term === 't1' && <Fa1 className="svg" />}
+						{term === 't2' && <Fa2 className="svg" />}
+						{term === 't3' && <Fa3 className="svg" />}
+					</span>
+					<div className={`term ${showTerm === false ? 'toggle' : ''}`}>
+						<li onClick={() => handleSetTerm('t1')}>
+							<FaT className="svg" />
+							<Fa1 className="svg" />
+						</li>
+						<li onClick={() => handleSetTerm('t2')}>
+							<FaT className="svg" />
+							<Fa2 className="svg" />
+						</li>
+						<li onClick={() => handleSetTerm('t3')}>
+							<FaT className="svg" />
+							<Fa3 className="svg" />
+						</li>
+					</div>
+				</span>
+				<span className="main-nav__semester rounded">
 					<span
 						className="iconss"
 						onClick={() => setShowSemester((prev) => !prev)}
@@ -115,6 +162,10 @@ function MainNav({ styleClass = '' }) {
 						<FaS className="svg" />
 						{sem === 's1' && <Fa1 className="svg" />}
 						{sem === 's2' && <Fa2 className="svg" />}
+						{sem === 's3' && <Fa3 className="svg" />}
+						{sem === 's4' && <Fa4 className="svg" />}
+						{sem === 's5' && <Fa5 className="svg" />}
+						{sem === 's6' && <Fa6 className="svg" />}
 					</span>
 					<div className={`semester ${showSemester === false ? 'toggle' : ''}`}>
 						<li onClick={() => handleSetSemester('s1')}>
@@ -124,6 +175,22 @@ function MainNav({ styleClass = '' }) {
 						<li onClick={() => handleSetSemester('s2')}>
 							<FaS className="svg" />
 							<Fa2 className="svg" />
+						</li>
+						<li onClick={() => handleSetSemester('s3')}>
+							<FaS className="svg" />
+							<Fa3 className="svg" />
+						</li>
+						<li onClick={() => handleSetSemester('s4')}>
+							<FaS className="svg" />
+							<Fa4 className="svg" />
+						</li>
+						<li onClick={() => handleSetSemester('s5')}>
+							<FaS className="svg" />
+							<Fa5 className="svg" />
+						</li>
+						<li onClick={() => handleSetSemester('s6')}>
+							<FaS className="svg" />
+							<Fa6 className="svg" />
 						</li>
 					</div>
 				</span>
