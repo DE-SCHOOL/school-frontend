@@ -11,6 +11,7 @@ import Failure from './../../../components/signal/Failure';
 import { PaggingNumSelect, Paggination } from '../../../components/pagging';
 import TableStudentResit from '../../../components/tables/TableStudentResit';
 import { semester } from '../../../utilities/periodInfo';
+import SectionNotFound from '../../../components/layout/SectionNotFound';
 
 const studentHeader = {
 	id: 'ID',
@@ -51,7 +52,7 @@ function StudentResit() {
 			{/* Displaying the page introduction and directory */}
 			<SectionIntro title="Total Marks" main="Student" sub="Resit" />
 
-			<section className="students">
+			<section className="students mg-top-lg">
 				{/* Section About, Download, Add, and Refresh */}
 				<SectionResultIntro
 					title="Students"
@@ -96,6 +97,9 @@ function StudentResit() {
 				{/* {exams.error === false && setStaffData(defaultInfo)} */}
 				{exams.isLoading && <Loader />}
 			</section>
+			{students?.length === 0 && exams.isLoading === false && (
+				<SectionNotFound text={'No students yet'} />
+			)}
 		</Layout>
 	);
 }

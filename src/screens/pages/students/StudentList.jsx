@@ -11,6 +11,7 @@ import SearchCategory from '../../../components/search/SearchCategory';
 import { TableStudents } from '../../../components/tables/';
 import DeleteModal from '../../../components/mod/DeleteModal';
 import Loader from './../../../components/loaders/Loader';
+import SectionNotFound from '../../../components/layout/SectionNotFound';
 
 const studentHeader = {
 	id: 'ID',
@@ -94,6 +95,9 @@ function StudentList() {
 					/>
 				)}
 			</section>
+			{students.length === 0 && isLoading === false && (
+				<SectionNotFound text={'No registered student(s)'} />
+			)}
 			{uiState.type === 'student' && (
 				<DeleteModal
 					type={uiState.type}

@@ -12,6 +12,7 @@ import { TablePrograms } from '../../../components/tables/';
 
 import DeleteModal from '../../../components/mod/DeleteModal';
 import Loader from './../../../components/loaders/Loader';
+import SectionNotFound from '../../../components/layout/SectionNotFound';
 
 const courseHeader = {
 	name: 'Name',
@@ -63,7 +64,7 @@ function ProgramList() {
 				<PaggingNumSelect setItemsPerPage={setNumPages} />
 
 				{/* Show student table information only if students data has loaded */}
-				{programs !== undefined && (
+				{programs !== undefined && programs?.length !== 0 && (
 					<TablePrograms
 						styles="mg-top"
 						// parse student data, or student searched data in case a search was performed
@@ -74,7 +75,7 @@ function ProgramList() {
 				)}
 
 				{/* Show student table information only if students data has loaded */}
-				{programs !== undefined && (
+				{programs !== undefined && programs?.length !== 0 && (
 					<Paggination
 						styles="mg-top"
 						paggingNum={numPages}
@@ -87,6 +88,9 @@ function ProgramList() {
 					/>
 				)}
 			</section>
+			{programs?.length === 0 && isLoading === false && (
+				<SectionNotFound text={'No programs yet'} />
+			)}
 			{uiState.type === 'program' && (
 				<DeleteModal
 					type={uiState.type}

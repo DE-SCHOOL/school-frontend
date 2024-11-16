@@ -11,6 +11,7 @@ import SearchCategory from '../../../components/search/SearchCategory';
 import { TableCourses } from '../../../components/tables/';
 import Failure from '../../../components/signal/Failure';
 import Loader from '../../../components/loaders/Loader';
+import SectionNotFound from '../../../components/layout/SectionNotFound';
 
 const courseHeader = {
 	id: 'Code',
@@ -80,7 +81,7 @@ function MarkList() {
 				)}
 
 				{/* Show student table information only if students data has loaded */}
-				{courses !== undefined && (
+				{courses !== undefined && courses?.length !== 0 && (
 					<Paggination
 						styles="mg-top"
 						paggingNum={numPages}
@@ -91,6 +92,9 @@ function MarkList() {
 					/>
 				)}
 			</section>
+			{courses !== undefined && course.isLoading === false && (
+				<SectionNotFound text={'No marks yet'} />
+			)}
 			{course.error === true && course.errorMessage && (
 				<Failure message={course.errorMessage} />
 			)}
