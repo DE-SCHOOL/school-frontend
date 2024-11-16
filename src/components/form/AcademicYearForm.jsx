@@ -29,14 +29,14 @@ function AcademicYearForm({ styles }) {
 	}, [dispatch]);
 
 	//Execute this function when you click submit, to add academic year;
-	const createAcademicYear = (e) => {
+	const createAcademicYear = async (e) => {
 		e.preventDefault();
 		const data = {
 			academicYear: yearData.current.value,
 		};
 
-		dispatch(createSchoolYear(data));
-    dispatch(getAcademicYears());
+		await dispatch(createSchoolYear(data));
+    await dispatch(getAcademicYears());
 	};
 	return (
 		<form
