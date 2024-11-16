@@ -28,8 +28,9 @@ function MainNav({ styleClass = '' }) {
 	let sem = periodInfo.semester();
 	const navigate = useNavigate();
 	const academicYears = useSelector((state) => state.years.academicYears);
+	const isLoadingYear = useSelector((state) => state.years.isLoading);
 	const currentYear = academicYears?._id
-		? [academicYears]
+		? [academicYears].filter((year) => year.isCurrent)[0]
 		: academicYears?.length > 0
 		? academicYears?.filter((year) => year.isCurrent)[0]
 		: [];
@@ -132,7 +133,7 @@ function MainNav({ styleClass = '' }) {
 							className="iconss"
 							onClick={() => setShowYears((prev) => !prev)}
 						>
-							Y: {currentYear?.schoolYear}
+							Y: {currentYear?.schoolYear} {isLoadingYear && 'loading...'}
 						</span>
 						<div className={`year ${showYears === false ? 'toggle' : ''}`}>
 							{academicYears?.length > 0 &&
