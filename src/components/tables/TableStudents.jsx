@@ -9,6 +9,7 @@ import { setDeleteEntity } from '../../store/ui-state/ui-stateSlice';
 //importing utility functions
 import { getDateFromDateObject } from '../../utilities/getDate';
 import { sortArrayObject } from '../../utilities/sortingInfo';
+import { returnClassString } from '../../utilities/getClassString';
 
 //Styled in the table sass file of the component styles
 let DATA_CONST;
@@ -124,7 +125,7 @@ function TableStudent({
 									<span className="text name">{row.name}</span>
 								</td>
 								<td>
-									<span className="text">Level {row.level}</span>
+									<span className="text"> {returnClassString(row.level)}</span>
 								</td>
 								<td>
 									<span className="text">{getDateFromDateObject(row.dob)}</span>
