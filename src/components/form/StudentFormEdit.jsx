@@ -52,12 +52,8 @@ function StudentFormEdit({ styles }) {
 	const parent_email = useRef();
 	const parent_name = useRef();
 	const parent_tel = useRef();
-	const entry_certificate = useRef();
 	const level = useRef();
 	const gender = useRef();
-
-	console.log(dob);
-	console.log(dobN);
 
 	//Get all specialties after initial render
 	useEffect(() => {
@@ -84,7 +80,6 @@ function StudentFormEdit({ styles }) {
 			parent_name: parent_name.current.value,
 			parent_email: parent_email.current.value,
 			parent_tel: parent_tel.current.value,
-			entry_certificate: entry_certificate.current.value,
 			level: level.current.value,
 			gender: gender.current.value,
 		};
@@ -176,27 +171,21 @@ function StudentFormEdit({ styles }) {
 					/>
 				</div>
 				<div className="form-item">
-					<span className="desc">
-						Email <em>*</em>
-					</span>
+					<span className="desc">Email (optional)</span>
 					<input
 						type="email"
 						placeholder="Enter email"
 						name="email"
-						required
 						defaultValue={student?.email}
 						autoComplete="email"
 						ref={email}
 					/>
 				</div>
 				<div className="form-item">
-					<span className="desc">
-						Student Tel <em>*</em>
-					</span>
+					<span className="desc">Student Tel (optional)</span>
 					<input
 						type="number"
 						placeholder="Enter student tel"
-						required
 						name="student-tel"
 						defaultValue={student?.tel}
 						autoComplete="first-name"
@@ -217,13 +206,10 @@ function StudentFormEdit({ styles }) {
 					/>
 				</div>
 				<div className="form-item">
-					<span className="desc">
-						Parent email <em>*</em>
-					</span>
+					<span className="desc">Parent email (optional)</span>
 					<input
 						type="email"
 						placeholder="Enter parent email"
-						required
 						name="parent-email"
 						defaultValue={student?.parent_email}
 						ref={parent_email}
@@ -241,19 +227,6 @@ function StudentFormEdit({ styles }) {
 						defaultValue={student?.parent_tel}
 						autoComplete="parent tel"
 						ref={parent_tel}
-					/>
-				</div>
-				<div className="form-item">
-					<span className="desc">
-						Highest education level <em>*</em>
-					</span>
-					<input
-						type="text"
-						placeholder="Enter highest education level"
-						required
-						name="entry-level"
-						defaultValue={student?.entry_certificate}
-						ref={entry_certificate}
 					/>
 				</div>
 				<div className="form-item">
@@ -286,47 +259,50 @@ function StudentFormEdit({ styles }) {
 				</div>
 				<div className="form-item">
 					<span className="desc">
-						Level <em>*</em>
+						Class <em>*</em>
 					</span>
-					<select
-						name="level"
-						id=""
-						onChange={(e) =>
-							setStudentData((prev) => {
-								return { ...prev, level: e.target.value };
-							})
-						}
-						ref={level}
-					>
+					<select name="level" id="" ref={level} required>
+						<option
+							value="100"
+							selected={student?.level === 100 ? true : false}
+						>
+							Form 1
+						</option>
 						<option
 							value="200"
 							selected={student?.level === 200 ? true : false}
 						>
-							200
+							Form 2
 						</option>
 						<option
 							value="300"
 							selected={student?.level === 300 ? true : false}
 						>
-							300
+							Form 3
 						</option>
 						<option
 							value="400"
 							selected={student?.level === 400 ? true : false}
 						>
-							400
+							Form 4
+						</option>
+						<option
+							value="500"
+							selected={student?.level === 500 ? true : false}
+						>
+							Form 5
 						</option>
 						<option
 							value="601"
 							selected={student?.level === 601 ? true : false}
 						>
-							600 I
+							Lower sixth
 						</option>
 						<option
 							value="602"
 							selected={student?.level === 602 ? true : false}
 						>
-							600 II
+							Upper sixth
 						</option>
 					</select>
 				</div>
