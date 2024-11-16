@@ -22,7 +22,7 @@ form#department {
 		display: flex;
 		gap: 2rem;
 		flex-wrap: wrap;
-		align-items: flex-end;
+		// align-items: flex-end;
 
 		&-item.textarea {
 			width: calc(90% + 4rem) !important;
