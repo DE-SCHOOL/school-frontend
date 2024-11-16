@@ -95,7 +95,7 @@ function StudentMarks() {
 				{/* {exams.error === false && setStaffData(defaultInfo)} */}
 				{exams.isLoading && <Loader />}
 			</section>
-			{students.length !== undefined && exams.isLoading === false && (
+			{students.length === 0 && exams.isLoading === false && (
 				<SectionNotFound text={'No marks yet'} />
 			)}
 		</Layout>

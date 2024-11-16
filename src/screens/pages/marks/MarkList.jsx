@@ -92,9 +92,9 @@ function MarkList() {
 					/>
 				)}
 			</section>
-			{courses !== undefined && course.isLoading === false && (
-				<SectionNotFound text={'No marks yet'} />
-			)}
+			{courses !== undefined &&
+				course.isLoading === false &&
+				courses?.length === 0 && <SectionNotFound text={'No marks yet'} />}
 			{course.error === true && course.errorMessage && (
 				<Failure message={course.errorMessage} />
 			)}
