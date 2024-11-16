@@ -10,6 +10,8 @@ import { updateStudentsMark } from '../../store/marks/markSlice';
 import SchoolHeader from '../social/SchoolHeader';
 import { schoolHeaderProp } from '../../utilities/appData';
 import { correctStudentLevelData } from '../../utilities/correctStudentLevelData';
+import { returnSequence } from '../../utilities/returnSequence';
+import { returnClassString } from '../../utilities/getClassString';
 
 function MarkTableFormExam({ students, length, semester, academicYear }) {
 	//length is to help getMarkSheetsPerCoursePerStudents everytime this component is involved in any render
@@ -72,6 +74,7 @@ function MarkTableFormExam({ students, length, semester, academicYear }) {
 	if (marks?.markSheet?.length === 0) {
 		return;
 	}
+	console.log(marks, semester);
 	return (
 		<div className="table-form">
 			<form
@@ -85,15 +88,35 @@ function MarkTableFormExam({ students, length, semester, academicYear }) {
 						<tr>
 							<th>SN</th>
 							<th>Name (Matricule)</th>
-							<th>Level</th>
+							<th>Class</th>
 							{semester === 's1' && (
 								<th>
-									1<sup>st</sup> Semester Exam
+									1<sup>st</sup> Sequence Exam
 								</th>
 							)}
 							{semester === 's2' && (
 								<th>
-									2<sup>nd</sup> Semester Exam
+									2<sup>nd</sup> Sequence Exam
+								</th>
+							)}
+							{semester === 's3' && (
+								<th>
+									3<sup>rd</sup> Sequence Exam
+								</th>
+							)}
+							{semester === 's4' && (
+								<th>
+									4<sup>th</sup> Sequence Exam
+								</th>
+							)}
+							{semester === 's5' && (
+								<th>
+									5<sup>th</sup> Sequence Exam
+								</th>
+							)}
+							{semester === 's6' && (
+								<th>
+									6<sup>th</sup> Sequence Exam
 								</th>
 							)}
 						</tr>
@@ -111,23 +134,15 @@ function MarkTableFormExam({ students, length, semester, academicYear }) {
 										<td className="stud-name">
 											{sheet?.student.name} ({sheet?.student.matricule})
 										</td>
-										<td>
-											{studentLevel === 602
-												? '600 II'
-												: studentLevel === 601
-												? '600 I'
-												: studentLevel}
-										</td>
+										<td>{returnClassString(studentLevel)}</td>
 										<td>
 											<input
 												type="number"
 												// required
 												name={sheet?.student._id}
-												defaultValue={
-													semester === 's1' ? sheet?.s1Exam : sheet?.s2Exam
-												}
+												defaultValue={sheet[`${semester}Exam`]}
 												autoComplete={`${sheet?.student._id}`}
-												max={70}
+												max={20}
 												min={0}
 											/>
 										</td>
