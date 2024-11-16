@@ -96,12 +96,14 @@ function SearchCourses({ styles, type = '', form }) {
 					/>
 				)}
 				<select name="level" ref={level}>
-					<option value="">Search by Level</option>
-					<option value="200">Level 200</option>
-					<option value="300">Level 300</option>
-					<option value="400">Level 400</option>
-					<option value="601">Level 600 I</option>
-					<option value="602">Level 600 II</option>
+					<option value="">Search by class</option>
+					<option value="100">Form 1</option>
+					<option value="200">Form 2</option>
+					<option value="300">Form 3</option>
+					<option value="400">Form 4</option>
+					<option value="500">Form 5</option>
+					<option value="601">Lower sixth</option>
+					<option value="602">Upper sixth</option>
 				</select>
 
 				<select name="specialty" ref={spty}>
