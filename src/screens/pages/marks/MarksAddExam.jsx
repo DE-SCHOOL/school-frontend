@@ -14,6 +14,7 @@ import { Layout, SectionIntro } from '../../../components/layout';
 import { MarkTableFormExam } from './../../../components/form';
 import { getCourse } from '../../../store/courses/courseSlice';
 import SectionNotFound from '../../../components/layout/SectionNotFound';
+import { semester } from '../../../utilities/periodInfo';
 
 function MarksAddExam() {
 	const params = useParams();
@@ -143,7 +144,7 @@ function MarksAddExam() {
 					<MarkTableFormExam
 						students={students}
 						length={markSheet.length}
-						semester={course?.semester}
+						semester={semester()}
 						academicYear={academicYear?.schoolYear}
 					/>
 				</section>
