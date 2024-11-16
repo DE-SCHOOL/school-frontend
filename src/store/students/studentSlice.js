@@ -45,12 +45,16 @@ export const getStudentsPerCourseOffering = createAsyncThunk(
 
 export const editStudent = createAsyncThunk(
 	'student/editStudent',
-	async ({ reqData, id }, thunkAPI) => {
+	async ({ reqData, id, yearID }, thunkAPI) => {
 		try {
 			// console.log(name, matricule);
-			const res = await apiRequest('patch', `/api/v1/student/${id}`, {
-				...reqData,
-			});
+			const res = await apiRequest(
+				'patch',
+				`/api/v1/student/${id}/academic-year/${yearID}`,
+				{
+					...reqData,
+				}
+			);
 			// console.log(res);
 			return res.data;
 		} catch (err) {
