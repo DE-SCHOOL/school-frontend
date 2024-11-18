@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { getDateFromDateObject } from '../../utilities/getDate';
-import { semester } from '../../utilities/periodInfo';
+import { academicTerm } from '../../utilities/periodInfo';
 import { useSelector, useDispatch } from 'react-redux';
 import { lmuLogo } from './../../assets/logos';
 import { getCurrentYear } from '../../store/academic year/academicYearSlice';
+import { returnClassString } from '../../utilities/getClassString';
 
 function StudentInfo({ student, styles = '', identify = '' }) {
 	const academicYear = useSelector((state) => state.years.currentYear);
@@ -12,10 +13,42 @@ function StudentInfo({ student, styles = '', identify = '' }) {
 	useEffect(() => {
 		dispatch(getCurrentYear());
 	}, [dispatch]);
-
 	return (
 		<div className={`student-detail-results ${styles}`} key={identify}>
 			<div className="stud-info">
+				<div className="section">
+					<div className="">
+						<h3>Republiqe du Cameroon</h3>
+						<h5>PAIX • TRAVAIL • PATRIE</h5>
+					</div>
+					<div className="">
+						<h4>Ministere Des Enseignements Secondaire</h4>
+						<h5>Delegation Regionale Du Sud-ouest</h5>
+						<h5>Delegation Departmental De La Fako</h5>
+					</div>
+					<div className="">
+						<h2>Lycee Bilingue De Mile 17</h2>
+						<span>B.P: 222 Buea • Tel: 233 44 44 44</span>
+					</div>
+				</div>
+				<img src={lmuLogo} alt="" className="school-logo" />
+				<div className="section">
+					<div className="">
+						<h3>Republic of Cameroon</h3>
+						<h5>PEACE • WORK • FATHERLAND</h5>
+					</div>
+					<div className="">
+						<h4>Ministry of Secondary Education</h4>
+						<h5>Regional Delegation of the South West</h5>
+						<h5>Divisional Delegation of Fako</h5>
+					</div>
+					<div className="">
+						<h2>GBHS Mile 17</h2>
+						<span>PO BOX: 222 Buea • Phone: 233 44 44 44</span>
+					</div>
+				</div>
+			</div>
+			{/* <div className="stud-info mg-top">
 				<div className="section">
 					<div>
 						<span className="prop">Name and surname</span>
@@ -59,14 +92,38 @@ function StudentInfo({ student, styles = '', identify = '' }) {
 						<span className="value">: {student?.level}</span>
 					</div>
 				</div>
-			</div>
+			</div> */}
 			<div className="line mg-bt mg-top"></div>
-			<h2 className="header-secondary center mg-top-lg">
-				{semester() === 's1' ? 'First Semester Results' : ''}
-				{semester() === 's2' ? 'Second Semester Results' : ''}
-				{academicYear?.schoolYear !== undefined &&
-					` for ${academicYear?.schoolYear}`}
+			<h5 className="center">
+				ANNE SCOLAIRE / ACADEMIC YEAR {academicYear?.schoolYear}
+			</h5>
+			<h2 className="header-secondary center mg-top-lg report-title">
+				{academicTerm() === 't1' ? 'First Term' : ''}
+				{academicTerm() === 't2' ? 'Second Term' : ''}
+				{academicTerm() === 't3' ? 'Third Term' : ''} Report Card
 			</h2>
+			<table className="results mg-top">
+				<tbody>
+					<tr>
+						<td className="title title-border">full names</td>
+						<td>{student.name}</td>
+						<td className="title title-border">class</td>
+						<td>{returnClassString(student.level)}</td>
+					</tr>
+					<tr>
+						<td className="title title-border">registration number</td>
+						<td>f1280373</td>
+						<td className="title title-border">specialty</td>
+						<td>{student.specialty.name}</td>
+					</tr>
+					<tr>
+						<td className="title">date of birth</td>
+						<td>{getDateFromDateObject(student.dob)}</td>
+						<td className="title">gender</td>
+						<td>{student.gender}</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	);
 }
