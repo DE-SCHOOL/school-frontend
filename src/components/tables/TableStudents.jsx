@@ -73,10 +73,10 @@ function TableStudent({
 						<FaRightLeft onClick={() => handleSort('parent_name')} />
 						<span className="text">{header.parent}</span>
 					</th> */}
-					<th className={`${isSortedBy === 'tel' ? 'sorted' : ''}`}>
+					{/* <th className={`${isSortedBy === 'tel' ? 'sorted' : ''}`}>
 						<FaRightLeft onClick={() => handleSort('tel')} />
 						<span className="text">{header.tel}</span>
-					</th>
+					</th> */}
 					<th className={`${isSortedBy === 'specialty' ? 'sorted' : ''}`}>
 						<FaRightLeft onClick={() => handleSort('specialty', 'name')} />
 						<span className="text">{header.specialty}</span>
@@ -133,9 +133,9 @@ function TableStudent({
 								{/* <td>
 									<span className="text">{row.parent_name}</span>
 								</td> */}
-								<td>
+								{/* <td>
 									<span className="text">{row.tel}</span>
-								</td>
+								</td> */}
 								<td>
 									<span className="text">{row.specialty?.name}</span>
 								</td>
@@ -173,8 +173,20 @@ function TableStudent({
 								{tableType === 'results' && (
 									<td>
 										<div className="actions results">
-											<Link to={`/exam center/student-marks/${row._id}`}>
-												<BsEyeFill className="view" />
+											<Link
+												to={`/exam center/sequence/student-marks/${row._id}`}
+											>
+												<button className="marks-action button-main caps">
+													Sequence
+												</button>
+											</Link>
+											<Link
+												to={`/exam center/term/student-marks/${row._id}`}
+												className="mg-left-lg"
+											>
+												<button className="marks-action button-main caps">
+													Term
+												</button>
 											</Link>
 										</div>
 									</td>
