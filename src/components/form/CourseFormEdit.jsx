@@ -72,7 +72,7 @@ function CourseForm({ styles }) {
 			<div className="form">
 				<div className="form-item">
 					<span className="desc">
-						Course name <em>*</em>
+						Subject name <em>*</em>
 					</span>
 					<input
 						type="text"
@@ -193,7 +193,7 @@ function CourseForm({ styles }) {
 				</div>
 				<div className="form-item">
 					<span className="desc">
-						Course code <em>*</em>
+						Subject code <em>*</em>
 					</span>
 					<input
 						type="text"
