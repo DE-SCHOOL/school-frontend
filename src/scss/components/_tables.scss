@@ -179,6 +179,13 @@ table {
 			}
 		}
 	}
+	&.student-results {
+		table-layout: fixed;
+		& td,
+		th {
+			text-transform: uppercase;
+		}
+	}
 }
 .total-gpa {
 	display: flex;
