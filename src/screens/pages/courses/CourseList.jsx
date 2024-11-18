@@ -46,7 +46,7 @@ function CourseList() {
 	return (
 		<Layout>
 			{/* Displaying the page introduction and directory */}
-			<SectionIntro title="Courses" main="Course" sub="List" />
+			<SectionIntro title="Subjects" main="Subject" sub="List" />
 
 			{/* Displaying search filter only if student data has fully loaded */}
 			{/* {courses?.length !== 0 && ( */}
@@ -60,7 +60,7 @@ function CourseList() {
 			<section className="teachers">
 				{/* Section About, Download, Add, and Refresh */}
 				<SectionMainIntro
-					title="Courses"
+					title="Subjects"
 					styles="mg-bt mg-top"
 					link={'/courses/add'}
 				/>
