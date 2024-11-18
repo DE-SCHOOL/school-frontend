@@ -8,7 +8,8 @@ import { getCoursesPerSpecialtyPerLevel } from '../../store/courses/courseSlice'
 import Failure from '../signal/Failure';
 
 import * as periodInfo from './../../utilities/periodInfo';
-import SchoolGrading from '../social/SchoolGrading';
+import { getSequencePerTerm } from '../../utilities/getSequencePerTerm';
+import { getGradeRemark } from '../../utilities/getGradeRemark';
 
 function TableResults({ student, styles = '' }) {
 	const dispatch = useDispatch();
@@ -16,14 +17,6 @@ function TableResults({ student, styles = '' }) {
 	const marksInfo = useSelector((state) => state.marks.studentCoursesMarks);
 	const load = useSelector((state) => state.courses);
 	const academicYear = useSelector((state) => state.years.currentYear);
-	let semester = periodInfo.semester();
-	// console.log(marksInfo);
-
-	// const resultInfo  = {};
-	let TCE = 0; // Total credit earned
-	let TGP = 0; // Total grade points
-	let TWP = 0; // Total weighted points
-	let TCV = 0; // Total credit value
 
 	useEffect(() => {
 		//get courses per specialty (all courses a student in a particular specialty does)
@@ -45,9 +38,7 @@ function TableResults({ student, styles = '' }) {
 		if (courses?.length > 0 && academicYear?._id !== undefined) {
 			let courseIDs = [];
 			courses.map((course) => {
-				if (course.semester === semester) {
-					courseIDs.push(course._id);
-				}
+				courseIDs.push(course._id);
 				return course;
 			});
 			// const academicYear = '2023/2024';
@@ -60,82 +51,123 @@ function TableResults({ student, styles = '' }) {
 		}
 		//eslint-disable-next-line
 	}, [courses?.length, academicYear?._id]);
+
+	const sequence = getSequencePerTerm(periodInfo.academicTerm());
 	return (
 		<div className={`result-info ${styles}`}>
 			<table className="results mg-top">
 				<thead>
 					<tr>
-						<th>Course Code</th>
-						<th>Course Title</th>
-						<th>Status</th>
-						<th>Credit Value</th>
-						<th>Credit Earned</th>
-						<th>CA / 30</th>
-						<th>Exam / 70</th>
-						<th>Total / 100</th>
-						<th>Grade Point</th>
-						<th>Weighted points</th>
-						<th>Grade</th>
+						<th>Subjects</th>
+						<th>Eval1</th>
+						<th>Eval2</th>
+						<th>AV / 20</th>
+						<th>Coef</th>
+						<th>Av * Coef</th>
+						<th>Position</th>
+						<th>Remark</th>
 					</tr>
 				</thead>
 				<tbody>
+					<tr>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+					</tr>
+					<tr>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+					</tr>
+					<tr>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+					</tr>
+					<tr>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+						<td>10</td>
+					</tr>
 					{marksInfo?.map((markInfo) => {
-						TCE += markInfo[`${semester}CreditEarned`];
-						TGP += markInfo[`${semester}GradePoint`];
-						TWP += markInfo[`${semester}WeightedPoints`];
-						TCV += markInfo.course.credit_value;
+						console.log(
+							sequence.eval1,
+							markInfo.course[`s4Exam`],
+							markInfo.course
+						);
 						return (
 							<tr key={markInfo._id}>
-								<td>{markInfo.course.code}</td>
+								{/* <td>{markInfo.course}</td> */}
 								<td>{markInfo.course.name}</td>
-								<td>{markInfo.course.status === 'compulsory' ? 'C' : 'E'}</td>
-								<td>{markInfo.course.credit_value.toFixed(2)}</td>
-								<td>{markInfo[`${semester}CreditEarned`].toFixed(2)}</td>
-								<td>{markInfo[`${semester}CA`].toFixed(2)}</td>
-								<td>{markInfo[`${semester}Exam`].toFixed(2)}</td>
-								<td>{markInfo[`${semester}Total`].toFixed(2)}</td>
-								<td>{markInfo[`${semester}GradePoint`].toFixed(2)}</td>
-								<td>{markInfo[`${semester}WeightedPoints`].toFixed(2)}</td>
-								<td>{markInfo[`${semester}Grade`]}</td>
+								<td>{markInfo[`${sequence.eval1}Exam`]}</td>
+								<td>{markInfo[`${sequence.eval2}Exam`]}</td>
+								<td>{markInfo[`${periodInfo.academicTerm()}Total`]}</td>
+								<td>{markInfo.course.credit_value}</td>
+								<td>
+									{markInfo.course.credit_value *
+										markInfo[`${periodInfo.academicTerm()}Total`]}
+								</td>
+								<td>0.0</td>
+								<td>
+									{getGradeRemark(
+										markInfo[`${periodInfo.academicTerm()}Total`]
+									)}
+								</td>
 							</tr>
 						);
 					})}
 				</tbody>
 			</table>
-			<div className="total-gpa">
-				<table className="results-total mg-top">
-					<thead>
-						<tr>
-							<th></th>
-							<th>Credit Value</th>
-							<th>Credit Earned</th>
-							<th>Grade Point</th>
-							<th>Weighted Points</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th rowSpan={2}>Total</th>
-							<td>{TCV.toFixed(2)}</td>
-							<td>{TCE.toFixed(2)}</td>
-							<td>{TGP.toFixed(2)}</td>
-							<td>{TWP.toFixed(2)}</td>
-						</tr>
-					</tbody>
-				</table>
-				<table className="gpa mg-top">
-					<thead>
-						<tr>
-							<th>GPA</th>
-							<th className="gpa-value">
-								{Number(TWP / (TCV || 1)).toFixed(2)}
-							</th>
-						</tr>
-					</thead>
-					<tbody></tbody>
-				</table>
-			</div>
-			<SchoolGrading />
+			<div className="total-gpa"></div>
+			<table className="results student-results mg-top border">
+				<thead>
+					<tr>
+						<th colSpan={2}>Student's Results</th>
+						<th colSpan={2}>The Principal</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Average</td>
+						<td>18.69</td>
+					</tr>
+					<tr>
+						<td>Position</td>
+						<td>2 / 58</td>
+					</tr>
+					<tr>
+						<td>Total Marks</td>
+						<td>850.86 / 1000</td>
+					</tr>
+					<tr>
+						<td>Total Coefficient</td>
+						<td>60</td>
+					</tr>
+					<tr>
+						<td colSpan={2}>Very Good</td>
+					</tr>
+				</tbody>
+			</table>
 			{load.isLoading && <Loader />}
 			{load.error === true && load.errorMessage && (
 				<Failure message={load.errorMessage} />
