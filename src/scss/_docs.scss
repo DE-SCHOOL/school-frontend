@@ -51,7 +51,7 @@
 	}
 	.result-info {
 		position: absolute;
-		top: 15rem;
+		top: 50rem;
 		left: 0px;
 		width: 100%;
 		font-size: 1.3rem !important;
@@ -79,6 +79,12 @@
 		top: 0rem;
 		left: 0px;
 		width: 100%;
+
+		.results {
+			& td {
+				text-transform: uppercase;
+			}
+		}
 	}
 
 	.stud-info {
