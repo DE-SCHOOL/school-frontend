@@ -44,6 +44,10 @@
 	}
 	&-left {
 		margin-left: 0.5rem;
+
+		&-lg {
+			margin-left: 4rem;
+		}
 	}
 }
 
@@ -199,4 +203,22 @@
 	text-align: center;
 	color: $color-primary;
 	text-transform: capitalize;
+}
+.report-title {
+	border: 3px solid $color-primary;
+	padding: 1rem;
+	border-radius: 1rem;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	text-transform: uppercase;
+}
+
+.border {
+	border: 3px solid $color-primary;
+}
+
+.flex-gap {
+	display: flex;
+	gap: 2rem;
 }
