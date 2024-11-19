@@ -6,8 +6,14 @@ import { getAllStudentMarkSheetAllCourses } from '../../store/marks/markSlice';
 import Loader from '../loaders/Loader';
 import StudentInfo from '../social/StudentInfo';
 import * as periodInfo from '../../utilities/periodInfo';
-import SchoolGrading from '../social/SchoolGrading';
 import { correctStudentLevelData } from '../../utilities/correctStudentLevelData';
+import { getSequencePerTerm } from '../../utilities/getSequencePerTerm';
+import { getGradeRemark } from '../../utilities/getGradeRemark';
+import {
+	calculateStudentAverages,
+	rankStudentResults,
+	rankStudents,
+} from '../../utilities/resultFunctions';
 
 function TableAllResultData({ student, styles = '' }) {
 	let semester = periodInfo.semester();
@@ -55,20 +61,33 @@ function TableAllResultData({ student, styles = '' }) {
 			</h1>
 		);
 	}
-	// console.log(students);
+	const sequence = getSequencePerTerm(periodInfo.academicTerm());
+	let marksInfoNew = [];
+	let studentAverages = [];
+	let studentRanking = [];
+	if (marksInfo.length > 0) {
+		const data = JSON.parse(JSON.stringify([...marksInfo]));
+		marksInfoNew = rankStudentResults(data);
+		studentAverages = calculateStudentAverages(data);
+		studentRanking = rankStudents(
+			studentAverages,
+			`${periodInfo.academicTerm()}TotalAverage`
+		);
+	}
+
 	return (
 		<React.Fragment>
-			{marksInfo?.map((studResults, index) => {
+			{marksInfoNew?.map((studResults, index) => {
 				if (studResults.length !== 0) {
-					// const resultInfo  = {};
-					let TCE = 0; // Total credit earned
-					let TGP = 0; // Total grade points
-					let TWP = 0; // Total weighted points
-					let TCV = 0; // Total credit value
 					let studentPersonalData = correctStudentLevelData(
 						studResults[0]?.student,
 						realStudents
 					);
+					const studentResult = studentRanking.filter(
+						(student) => student.studentId === studentPersonalData?._id
+					)[0];
+					let TOTAL_MARKS = 0;
+					let TOTAL_COEF = 0;
 					return (
 						<React.Fragment key={index}>
 							{/* {studResults.length === 0 ? <h1>Student Result Not Available yet</h1>} */}
@@ -80,7 +99,7 @@ function TableAllResultData({ student, styles = '' }) {
 							<div className={`result-info ${styles} mg-bt`} key={index}>
 								<table className="results mg-top">
 									<thead>
-										<tr>
+										{/* <tr>
 											<th>Course Code</th>
 											<th>Course Title</th>
 											<th>Status</th>
@@ -100,58 +119,102 @@ function TableAllResultData({ student, styles = '' }) {
 											<th>Grade Point</th>
 											<th>Weighted points</th>
 											<th>Grade</th>
+										</tr> */}
+										<tr>
+											<th>Subjects</th>
+											<th>Eval1</th>
+											<th>Eval2</th>
+											<th>AV / 20</th>
+											<th>Coef</th>
+											<th>Av * Coef</th>
+											<th>Position</th>
+											<th>Class Avg</th>
+											<th>Remark</th>
 										</tr>
 									</thead>
 									<tbody>
 										{studResults?.map((studResult) => {
+											TOTAL_MARKS +=
+												studResult.course.credit_value *
+												studResult[`${periodInfo.academicTerm()}Total`];
+											TOTAL_COEF += studResult.course.credit_value;
 											if (studResult.course) {
-												TCE += studResult[`${semester}CreditEarned`];
-												TGP += studResult[`${semester}GradePoint`];
-												TWP += studResult[`${semester}WeightedPoints`];
-												TCV += studResult.course?.credit_value || 0;
 												return (
+													// <tr key={studResult._id}>
+													// 	<td>{studResult.course?.code}</td>
+													// 	<td>{studResult.course?.name}</td>
+													// 	<td>
+													// 		{studResult.course?.status === 'compulsory'
+													// 			? 'C'
+													// 			: 'E'}
+													// 	</td>
+													// 	<td>
+													// 		{studResult.course?.credit_value.toFixed(2)}
+													// 	</td>
+													// 	<td>
+													// 		{studResult[`${semester}CreditEarned`].toFixed(2)}
+													// 	</td>
+													// 	{!(
+													// 		studResults[0]?.student?.specialty?.name !==
+													// 			'Software Engineering - SBT' &&
+													// 		studResults[0]?.student?.level === 300
+													// 	) && (
+													// 		<td>{studResult[`${semester}CA`].toFixed(2)}</td>
+													// 	)}
+													// 	{!(
+													// 		studResults[0]?.student?.specialty?.name !==
+													// 			'Software Engineering - SBT' &&
+													// 		studResults[0]?.student?.level === 300
+													// 	) && (
+													// 		<td>
+													// 			{studResult[`${semester}Exam`].toFixed(2)}
+													// 		</td>
+													// 	)}
+													// 	{/* <td>{studResult[`${semester}CA`].toFixed(2)}</td>
+													// 	<td>{studResult[`${semester}Exam`].toFixed(2)}</td> */}
+													// 	<td>{studResult[`${semester}Total`].toFixed(2)}</td>
+													// 	<td>
+													// 		{studResult[`${semester}GradePoint`].toFixed(2)}
+													// 	</td>
+													// 	<td>
+													// 		{studResult[`${semester}WeightedPoints`].toFixed(
+													// 			2
+													// 		)}
+													// 	</td>
+													// 	<td>{studResult[`${semester}Grade`]}</td>
+													// </tr>
 													<tr key={studResult._id}>
-														<td>{studResult.course?.code}</td>
-														<td>{studResult.course?.name}</td>
+														{/* <td>{markInfo.course}</td> */}
+														<td>{studResult.course.name}</td>
+														<td>{studResult[`${sequence.eval1}Exam`]}</td>
+														<td>{studResult[`${sequence.eval2}Exam`]}</td>
 														<td>
-															{studResult.course?.status === 'compulsory'
-																? 'C'
-																: 'E'}
+															{studResult[`${periodInfo.academicTerm()}Total`]}
+														</td>
+														<td>{studResult.course.credit_value}</td>
+														<td>
+															{studResult.course.credit_value *
+																studResult[`${periodInfo.academicTerm()}Total`]}
 														</td>
 														<td>
-															{studResult.course?.credit_value.toFixed(2)}
+															{
+																studResult[
+																	`${periodInfo.academicTerm()}TotalRank`
+																]
+															}
 														</td>
 														<td>
-															{studResult[`${semester}CreditEarned`].toFixed(2)}
-														</td>
-														{!(
-															studResults[0]?.student?.specialty?.name !==
-																'Software Engineering - SBT' &&
-															studResults[0]?.student?.level === 300
-														) && (
-															<td>{studResult[`${semester}CA`].toFixed(2)}</td>
-														)}
-														{!(
-															studResults[0]?.student?.specialty?.name !==
-																'Software Engineering - SBT' &&
-															studResults[0]?.student?.level === 300
-														) && (
-															<td>
-																{studResult[`${semester}Exam`].toFixed(2)}
-															</td>
-														)}
-														{/* <td>{studResult[`${semester}CA`].toFixed(2)}</td>
-														<td>{studResult[`${semester}Exam`].toFixed(2)}</td> */}
-														<td>{studResult[`${semester}Total`].toFixed(2)}</td>
-														<td>
-															{studResult[`${semester}GradePoint`].toFixed(2)}
+															{
+																studResult[
+																	`${periodInfo.academicTerm()}TotalClassAverage`
+																]
+															}
 														</td>
 														<td>
-															{studResult[`${semester}WeightedPoints`].toFixed(
-																2
+															{getGradeRemark(
+																studResult[`${periodInfo.academicTerm()}Total`]
 															)}
 														</td>
-														<td>{studResult[`${semester}Grade`]}</td>
 													</tr>
 												);
 											} else {
@@ -160,7 +223,7 @@ function TableAllResultData({ student, styles = '' }) {
 										})}
 									</tbody>
 								</table>
-								<div className="total-gpa">
+								{/* <div className="total-gpa">
 									<table className="results-total mg-top">
 										<thead>
 											<tr>
@@ -192,8 +255,43 @@ function TableAllResultData({ student, styles = '' }) {
 										</thead>
 										<tbody></tbody>
 									</table>
-								</div>
-								<SchoolGrading />
+								</div> */}
+								<table className="results student-results mg-top border">
+									<thead>
+										<tr>
+											<th colSpan={2}>Student's Results</th>
+											<th colSpan={2}>The Principal</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Average</td>
+											<td>{studentResult.totalAverage}</td>
+										</tr>
+										<tr>
+											<td>Position</td>
+											<td>
+												{studentResult.rank} / {studentRanking.length}
+											</td>
+										</tr>
+										<tr>
+											<td>Total Marks</td>
+											<td>
+												{TOTAL_MARKS} /{20 * TOTAL_COEF}
+											</td>
+										</tr>
+										<tr>
+											<td>Total Coefficient</td>
+											<td>{TOTAL_COEF}</td>
+										</tr>
+										<tr>
+											<td colSpan={2}>
+												{getGradeRemark(studentResult.totalAverage)}
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								{/* <SchoolGrading /> */}
 								{load.isLoading && <Loader />}
 							</div>
 						</React.Fragment>
