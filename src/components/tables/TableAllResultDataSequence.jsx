@@ -7,7 +7,6 @@ import Loader from '../loaders/Loader';
 import StudentInfo from '../social/StudentInfo';
 import * as periodInfo from '../../utilities/periodInfo';
 import { correctStudentLevelData } from '../../utilities/correctStudentLevelData';
-import { getSequencePerTerm } from '../../utilities/getSequencePerTerm';
 import { getGradeRemark } from '../../utilities/getGradeRemark';
 import {
 	calculateStudentAverages,
