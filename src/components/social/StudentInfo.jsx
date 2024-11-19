@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { getDateFromDateObject } from '../../utilities/getDate';
-import { academicTerm } from '../../utilities/periodInfo';
+import { academicTerm, semester } from '../../utilities/periodInfo';
 import { useSelector, useDispatch } from 'react-redux';
 import { lmuLogo } from './../../assets/logos';
 import { getCurrentYear } from '../../store/academic year/academicYearSlice';
 import { returnClassString } from '../../utilities/getClassString';
 
-function StudentInfo({ student, styles = '', identify = '' }) {
+function StudentInfo({ student, styles = '', identify = '', isTerm = true }) {
 	const academicYear = useSelector((state) => state.years.currentYear);
 	const dispatch = useDispatch();
 
@@ -97,11 +97,23 @@ function StudentInfo({ student, styles = '', identify = '' }) {
 			<h5 className="center">
 				ANNE SCOLAIRE / ACADEMIC YEAR {academicYear?.schoolYear}
 			</h5>
-			<h2 className="header-secondary center mg-top-lg report-title">
-				{academicTerm() === 't1' ? 'First Term' : ''}
-				{academicTerm() === 't2' ? 'Second Term' : ''}
-				{academicTerm() === 't3' ? 'Third Term' : ''} Report Card
-			</h2>
+			{isTerm && (
+				<h2 className="header-secondary center mg-top-lg report-title">
+					{academicTerm() === 't1' ? 'First Term' : ''}
+					{academicTerm() === 't2' ? 'Second Term' : ''}
+					{academicTerm() === 't3' ? 'Third Term' : ''} Report Card
+				</h2>
+			)}
+			{isTerm === false && (
+				<h2 className="header-secondary center mg-top-lg report-title">
+					{semester() === 's1' ? 'First Sequence' : ''}
+					{semester() === 's2' ? 'Second Sequence' : ''}
+					{semester() === 's3' ? 'Third Sequence' : ''}
+					{semester() === 's4' ? 'Fourth Sequence' : ''}
+					{semester() === 's5' ? 'Fifth Sequence' : ''}
+					{semester() === 's6' ? 'Sixth Sequence' : ''} Report Card
+				</h2>
+			)}
 			<table className="results mg-top">
 				<tbody>
 					<tr>
