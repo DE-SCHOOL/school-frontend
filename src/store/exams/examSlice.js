@@ -115,7 +115,7 @@ const examSlice = createSlice({
 			.addCase(getStudentsPerSearch.fulfilled, (state, action) => {
 				// console.log(action.payload.data);
 				state.students = action.payload.data;
-				state.student = {};
+				// state.student = {};
 				state.errorMessage = null;
 				state.isLoading = false;
 			})
