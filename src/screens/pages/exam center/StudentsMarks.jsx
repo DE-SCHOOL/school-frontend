@@ -57,7 +57,11 @@ function StudentMarks() {
 			/>
 			<section className="students">
 				{/* Section About, Download, Add, and Refresh */}
-				<SectionResultIntro title="Students" styles="mg-bt mg-top" />
+				<SectionResultIntro
+					title="Students"
+					styles="mg-bt mg-top"
+					type="results"
+				/>
 
 				{/* Select the number of items to be shown on a page */}
 				<PaggingNumSelect setItemsPerPage={setNumPages} />
