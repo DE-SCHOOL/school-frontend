@@ -16,10 +16,11 @@ import Protected from '../../../components/auth/Protected';
 // importing different rights
 import * as RIGHTS from './../../../utilities/restrict';
 import StudentMarks from '../../../screens/pages/exam center/StudentsMarks';
-import StudentResult from '../../../screens/pages/exam center/StudentResult';
 import {
 	StudentResultAllSequence,
 	StudentResultAllTerm,
+	StudentResultSequence,
+	StudentResultTerm,
 } from '../../../screens/pages/exam center';
 import CourseMarkList from '../../../screens/pages/marks/CourseMarkList';
 import StudentResit from '../../../screens/pages/exam center/StudentResit';
@@ -103,7 +104,15 @@ function MarkRoute() {
 				path="/exam center/term/student-marks/:studentID"
 				element={
 					<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
-						<StudentResult />
+						<StudentResultTerm />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/exam center/sequence/student-marks/:studentID"
+				element={
+					<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
+						<StudentResultSequence />
 					</Protected>
 				}
 			/>
