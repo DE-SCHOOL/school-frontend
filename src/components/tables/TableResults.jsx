@@ -1,120 +1,68 @@
 //react libraries and react
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 // import { getCoursesPerSpecialty } from '../../store/courses/courseSlice';
-import { getStudentMarkSheetAllCourses } from '../../store/marks/markSlice';
 import Loader from '../loaders/Loader';
-import { getCoursesPerSpecialtyPerLevel } from '../../store/courses/courseSlice';
 import Failure from '../signal/Failure';
 
 import * as periodInfo from './../../utilities/periodInfo';
 import { getSequencePerTerm } from '../../utilities/getSequencePerTerm';
 import { getGradeRemark } from '../../utilities/getGradeRemark';
+import {
+	calculateStudentAverages,
+	rankStudentResults,
+	rankStudents,
+} from '../../utilities/resultFunctions';
+import { returnSequence } from '../../utilities/returnSequence';
 
 function TableResults({ student, styles = '' }) {
-	const dispatch = useDispatch();
-	const courses = useSelector((state) => state.courses.courses);
-	const marksInfo = useSelector((state) => state.marks.studentCoursesMarks);
+	const marksInfo = useSelector((state) => state.marks.studentsCoursesMarks);
 	const load = useSelector((state) => state.courses);
-	const academicYear = useSelector((state) => state.years.currentYear);
 
-	useEffect(() => {
-		//get courses per specialty (all courses a student in a particular specialty does)
-		dispatch(
-			getCoursesPerSpecialtyPerLevel({
-				id: student?.specialty?._id,
-				level: student?.level,
-			})
+	let marksInfoNew = [];
+	let studentAverages = [];
+	let studentRanking = [];
+	if (marksInfo.length > 0) {
+		const data = JSON.parse(JSON.stringify([...marksInfo]));
+		marksInfoNew = rankStudentResults(data);
+		studentAverages = calculateStudentAverages(data);
+		studentRanking = rankStudents(
+			studentAverages,
+			`${periodInfo.academicTerm()}TotalAverage`
 		);
-		//s1, semester is set manually here.
-		//Get all courses that fall under the student's specialty depending on the student's current level
+	}
 
-		//eslint-disable-next-line
-	}, [dispatch, student?.specialty?._id]);
-	// console.log()
-
-	//Get the coursesID and find the marksinformation of a particular student
-	useEffect(() => {
-		if (courses?.length > 0 && academicYear?._id !== undefined) {
-			let courseIDs = [];
-			courses.map((course) => {
-				courseIDs.push(course._id);
-				return course;
-			});
-			// const academicYear = '2023/2024';
-			const searchData = {
-				academicYear: academicYear?.schoolYear,
-				courses: courseIDs,
-				studID: [student._id],
-			};
-			dispatch(getStudentMarkSheetAllCourses(searchData));
-		}
-		//eslint-disable-next-line
-	}, [courses?.length, academicYear?._id]);
+	const studentResult =
+		marksInfoNew.flat().filter((el) => el.student?._id === student._id) || [];
+	const studentRank = studentRanking.filter(
+		(el) => el.studentId === student._id
+	);
 
 	const sequence = getSequencePerTerm(periodInfo.academicTerm());
+	let TOTAL_MARKS = 0;
+	let TOTAL_COEF = 0;
 	return (
 		<div className={`result-info ${styles}`}>
 			<table className="results mg-top">
 				<thead>
 					<tr>
 						<th>Subjects</th>
-						<th>Eval1</th>
-						<th>Eval2</th>
+						<th>{returnSequence(sequence.eval1)}</th>
+						<th>{returnSequence(sequence.eval2)}</th>
 						<th>AV / 20</th>
 						<th>Coef</th>
 						<th>Av * Coef</th>
 						<th>Position</th>
+						<th>Class Avg</th>
 						<th>Remark</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-					</tr>
-					<tr>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-						<td>10</td>
-					</tr>
-					{marksInfo?.map((markInfo) => {
-						console.log(
-							sequence.eval1,
-							markInfo.course[`s4Exam`],
-							markInfo.course
-						);
+					{studentResult?.map((markInfo) => {
+						TOTAL_MARKS +=
+							markInfo.course.credit_value *
+							markInfo[`${periodInfo.academicTerm()}Total`];
+						TOTAL_COEF += markInfo.course.credit_value;
 						return (
 							<tr key={markInfo._id}>
 								{/* <td>{markInfo.course}</td> */}
@@ -127,7 +75,10 @@ function TableResults({ student, styles = '' }) {
 									{markInfo.course.credit_value *
 										markInfo[`${periodInfo.academicTerm()}Total`]}
 								</td>
-								<td>0.0</td>
+								<td>{markInfo[`${periodInfo.academicTerm()}TotalRank`]}</td>
+								<td>
+									{markInfo[`${periodInfo.academicTerm()}TotalClassAverage`]}
+								</td>
 								<td>
 									{getGradeRemark(
 										markInfo[`${periodInfo.academicTerm()}Total`]
@@ -149,22 +100,38 @@ function TableResults({ student, styles = '' }) {
 				<tbody>
 					<tr>
 						<td>Average</td>
-						<td>18.69</td>
+						<td>
+							{studentRanking.length > 0 && (
+								<span>{studentRank[0].totalAverage}</span>
+							)}
+						</td>
 					</tr>
 					<tr>
 						<td>Position</td>
-						<td>2 / 58</td>
+						<td>
+							{studentRanking.length > 0 && (
+								<span>
+									{studentRank[0].rank} / {studentRanking.length}
+								</span>
+							)}
+						</td>
 					</tr>
 					<tr>
 						<td>Total Marks</td>
-						<td>850.86 / 1000</td>
+						<td>
+							{TOTAL_MARKS} /{20 * TOTAL_COEF}
+						</td>
 					</tr>
 					<tr>
 						<td>Total Coefficient</td>
-						<td>60</td>
+						<td>{TOTAL_COEF}</td>
 					</tr>
 					<tr>
-						<td colSpan={2}>Very Good</td>
+						<td colSpan={2}>
+							{studentRanking.length > 0 && (
+								<span>{getGradeRemark(studentRank[0].totalAverage)}</span>
+							)}
+						</td>
 					</tr>
 				</tbody>
 			</table>
