@@ -9,8 +9,9 @@ import { Link, useLocation } from 'react-router-dom';
 function SectionResultIntro({
 	title,
 	styles,
-	link = '/all/results',
-	text = 'Download All Results',
+	link = '/all/results/term',
+	text = 'Term Results',
+	type = 'normal',
 }) {
 	const loc = useLocation();
 	const handleRefresh = () => {
@@ -31,6 +32,18 @@ function SectionResultIntro({
 						<span className="text">{text}</span>
 					</Link>
 				</button>
+				{type === 'results' && (
+					<button className="button-main button-main-small">
+						<FaArrowDown />
+						<Link
+							to={'/all/results/sequence'}
+							target="_blank"
+							style={{ textDecoration: 'none', color: 'inherit' }}
+						>
+							<span className="text">Sequence Results</span>
+						</Link>
+					</button>
+				)}
 				<button
 					className="button-main button-main-small"
 					onClick={handleRefresh}
