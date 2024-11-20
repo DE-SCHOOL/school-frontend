@@ -142,6 +142,10 @@ export const rankStudents = (data, averageKey) => {
 			studentId: student._id,
 			studentName: student.name,
 			totalAverage,
+			level: student.level,
+			matricule: student.matricule,
+			specialty: student.specialty?.name,
+			gender: student.gender
 		};
 	});
 
