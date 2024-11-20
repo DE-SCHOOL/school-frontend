@@ -48,7 +48,7 @@ export const sortArrayObject = (
 		});
 	}
 
-	console.log(tempData);
+	// console.log(tempData);
 	setData(tempData);
 	setSortedBy(field);
 };
