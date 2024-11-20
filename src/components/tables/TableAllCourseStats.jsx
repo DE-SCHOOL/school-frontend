@@ -71,7 +71,21 @@ function TableAllCourseStats({ coursesStats }) {
 		});
 	}
 
-	console.log(neededCourses, 'JASIO JASIO');
+	let maxminCourse = [];
+	let passed = 0;
+	let failed = 0;
+	coursesStats.map((course) => {
+		if (course.percentFailed >= failed) {
+			maxminCourse[0] = course;
+			failed = course.percentFailed;
+		}
+
+		if (course.percentPassed >= passed) {
+			maxminCourse[1] = course;
+			passed = course.percentPassed;
+		}
+		return course;
+	});
 
 	return (
 		<div className="table-form table-form-modified">
@@ -83,7 +97,7 @@ function TableAllCourseStats({ coursesStats }) {
 			<br />
 			<SearchCourses form="COURSE STATISTICS" type="print" />
 
-			<table className="marks mg-top">
+			<table className="marks marks-statistics mg-top">
 				<thead>
 					<tr>
 						<th>SN</th>
@@ -106,6 +120,64 @@ function TableAllCourseStats({ coursesStats }) {
 				</thead>
 				<tbody>
 					{coursesStats?.map((courseStat, index) => {
+						const courseAverage = neededCourses.filter(
+							(item) => item.course?._id === courseStat.courseInfo?._id
+						);
+						return (
+							<tr key={index}>
+								<td>{index + 1}</td>
+								<td style={{ textAlign: 'left' }}>
+									{courseStat.courseInfo?.name}
+								</td>
+								<td>{courseStat.courseInfo?.code}</td>
+								<td>{courseStat.courseInfo?.credit_value}</td>
+								<td>{courseStat.totalOffering}</td>
+								<td>{courseStat.totalSat}</td>
+								<td>
+									{courseAverage.length > 0
+										? courseAverage[0][`${academicTerm()}TotalClassAverage`]
+										: '-'}
+								</td>
+								<td>{courseStat.percentPassed}%</td>
+								<td>{courseStat.percentFailed}%</td>
+								<td>{courseStat.totalAs}</td>
+								<td>{courseStat.totalBplus}</td>
+								<td>{courseStat.totalBs}</td>
+								<td>{courseStat.totalCplus}</td>
+								<td>{courseStat.totalCs}</td>
+								<td>{courseStat.totalDs}</td>
+								<td>{courseStat.totalEs}</td>
+							</tr>
+						);
+					})}
+				</tbody>
+			</table>
+			<h2 className="title center mg-top-lg">
+				Worst and Best Performing Courses
+			</h2>
+			<table className="marks mg-top">
+				<thead>
+					<tr>
+						<th>SN</th>
+						<th>Subject</th>
+						<th>CC</th>
+						<th>Coef</th>
+						<th>No Reg</th>
+						<th>No Exam</th>
+						<th>Average</th>
+						<th>% Passed</th>
+						<th>% Failed</th>
+						<th>18+</th>
+						<th>16+</th>
+						<th>14+</th>
+						<th>11+</th>
+						<th>10+</th>
+						<th>8+</th>
+						<th>8-</th>
+					</tr>
+				</thead>
+				<tbody>
+					{maxminCourse?.map((courseStat, index) => {
 						const courseAverage = neededCourses.filter(
 							(item) => item.course?._id === courseStat.courseInfo?._id
 						);
