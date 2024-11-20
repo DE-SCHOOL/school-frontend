@@ -10,7 +10,7 @@ import { updateStudentsMark } from '../../store/marks/markSlice';
 import SchoolHeader from '../social/SchoolHeader';
 import { schoolHeaderProp } from '../../utilities/appData';
 import { correctStudentLevelData } from '../../utilities/correctStudentLevelData';
-import { returnSequence } from '../../utilities/returnSequence';
+
 import { returnClassString } from '../../utilities/getClassString';
 
 function MarkTableFormExam({ students, length, semester, academicYear }) {
