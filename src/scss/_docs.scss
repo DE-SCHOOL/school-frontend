@@ -33,12 +33,18 @@
 		width: 100%;
 	}
 	.table-form-modified {
-		table {
-			top: 40rem;
+		table.marks-statistics {
+			top: 60rem;
 		}
 
 		h1.title {
-			top: 16rem;
+			top: 36rem;
+			left: 50%;
+			position: absolute;
+			transform: translateX(-50%);
+		}
+		h2.title {
+			top: 32rem;
 			left: 50%;
 			position: absolute;
 			transform: translateX(-50%);

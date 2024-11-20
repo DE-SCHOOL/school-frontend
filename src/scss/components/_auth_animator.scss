@@ -6,16 +6,17 @@
   border: 100%;
   display: flex;
   align-items: center;
+  margin-left: 4rem;
 
   & .first{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #1a58d6;
+    background-color: rgba($color-primary, 0.5);
     height: 75rem;
     width: 75rem;
     border-radius: 100%;
-    box-shadow: 1rem 1rem 5rem #5580d6;
+    box-shadow: 1rem 1rem 5rem #440d40;
     animation-name: first;
     animation-duration: 10s;
     animation-delay: 2s;
@@ -46,7 +47,7 @@
     height: 35rem;
     width: 35rem;
     border-radius: 100%;
-    box-shadow: 1rem 1rem 5rem #034bdc;
+    box-shadow: 1rem 1rem 5rem #a203dc;
     animation-name: bigger;
     animation-duration: 10s;
     animation-delay: 2s;
@@ -58,7 +59,7 @@
     height: 15rem;
     width: 15rem;
     border-radius: 100%;
-    box-shadow: 1rem 1rem 5rem #034bdc;
+    box-shadow: 1rem 1rem 5rem #ca03dc;
     animation-name: big;
     animation-duration: 10s;
     animation-delay: 2s;
