@@ -11,13 +11,44 @@ function SectionIntro({ title, main, sub }) {
 			<h1 className="header-primary">{title}</h1>
 			<h2 className="header-secondary">
 				<span className="main sem">
-					{sem === 's1' ? 'First' : 'Second'}{' '}
-					{academicYear?._id !== undefined &&
-						` Semester ${academicYear?.schoolYear}`}
+					{sem === 's1' && (
+						<span>
+							1<sup>st</sup> Sequence Exam
+						</span>
+					)}
+					{sem === 's2' && (
+						<span>
+							2<sup>nd</sup> Sequence Exam
+						</span>
+					)}
+					{sem === 's3' && (
+						<span>
+							3<sup>rd</sup> Sequence Exam
+						</span>
+					)}
+					{sem === 's4' && (
+						<span>
+							4<sup>th</sup> Sequence Exam
+						</span>
+					)}
+					{sem === 's5' && (
+						<span>
+							5<sup>th</sup> Sequence Exam
+						</span>
+					)}
+					{sem === 's6' && (
+						<span>
+							6<sup>th</sup> Sequence Exam
+						</span>
+					)}{' '}
+					{academicYear?._id !== undefined && `${academicYear?.schoolYear}`}{' '}
+					{main}
 				</span>
-				<span className="main">{main}</span>
-				<span> / </span>
-				<span className="sub">{sub}</span>
+				<span className="main-sub-title">
+					<span className="main">{main}</span>
+					<span> / </span>
+					<span className="sub">{sub}</span>
+				</span>
 			</h2>
 		</div>
 	);
