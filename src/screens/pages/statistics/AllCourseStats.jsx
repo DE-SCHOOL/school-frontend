@@ -9,7 +9,12 @@ import {
 	getAllCourseStats,
 	getCourses,
 } from '../../../store/courses/courseSlice';
-import { semester } from '../../../utilities/periodInfo';
+import { academicTerm } from '../../../utilities/periodInfo';
+import {
+	getAcademicYears,
+	getCurrentYear,
+} from '../../../store/academic year/academicYearSlice';
+import { getStudentsExam } from '../../../store/exams/examSlice';
 
 function AllCourseStats() {
 	//Defining the dispatch function, and the useSelector to get students data
@@ -18,33 +23,39 @@ function AllCourseStats() {
 	const coursesStats = useSelector((state) => state.courses.allCourseStats);
 	const load = useSelector((state) => state.courses);
 	const [scroll, setScroll] = useState(0);
+	const year = useSelector((state) => state.years);
 
+	console.log(year, year.currentYear?.schoolYear);
 	useEffect(() => {
 		dispatch(getCourses());
+		dispatch(getCurrentYear());
 	}, [dispatch]);
 
 	//useEffect to dispatch student data after initial render
 	useEffect(() => {
 		let courseIDs = [];
-		const SEMESTER = semester();
-		if (courses?.data?.length > 0) {
+		const TERM = academicTerm();
+		if (
+			courses?.data?.length > 0 &&
+			year.currentYear?.schoolYear !== undefined
+		) {
 			courses.data?.map((course) => {
-				if (course.semester === SEMESTER) {
-					courseIDs.push(course._id);
-				}
+				courseIDs.push(course._id);
+
 				return course;
 			});
 
 			const dbOpt = {
-				semester: SEMESTER,
-				academicYear: '2023/2024',
+				semester: TERM,
+				academicYear: year.currentYear?.schoolYear,
 				courseIDs,
 			};
-			// console.log(dbOpt);
+			console.log(dbOpt, 111111111111111111111);
 			dispatch(getAllCourseStats(dbOpt));
+			dispatch(getStudentsExam(year.currentYear?._id));
 		}
 		//eslint-disable-next-line
-	}, [dispatch, courses?.data?.length]);
+	}, [dispatch, courses?.data?.length, year]);
 
 	window.onscroll = () => {
 		if (window.scrollY > 200) {
@@ -53,6 +64,8 @@ function AllCourseStats() {
 			setScroll(0);
 		}
 	};
+
+	console.log(coursesStats);
 
 	return (
 		<div className="stud-print">
