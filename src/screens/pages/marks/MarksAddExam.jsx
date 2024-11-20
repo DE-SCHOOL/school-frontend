@@ -121,7 +121,7 @@ function MarksAddExam() {
 		<Layout>
 			<SectionIntro
 				title="Add Marks"
-				main={course?.length !== 0 ? `${course?.name}(${course?.code})` : ''}
+				main={course?.length !== 0 ? `${course?.name} (${course?.code})` : ''}
 				sub="Marks"
 			/>
 			{markSheet?.length !== students?.length && (
