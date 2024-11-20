@@ -25,7 +25,7 @@ function CourseStats() {
 				academicYear: academicYear?.schoolYear,
 			})
 		);
-	}, [params.courseID, dispatch]);
+	}, [params.courseID, dispatch, academicYear?.schoolYear]);
 	return (
 		<Layout>
 			<SectionIntro
