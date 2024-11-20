@@ -8,6 +8,7 @@ import { getSpecialties } from '../../store/specialty/specialtySlice';
 import { getDepartments } from './../../store/departments/departmentSlice';
 import { getPrograms } from '../../store/program/programSlice';
 import { getStudentsPerSearch } from '../../store/exams/examSlice';
+import { returnClassString } from '../../utilities/getClassString';
 
 let TITLE = `ALL STUDENTS`;
 let LEVEL = '';
@@ -56,7 +57,7 @@ function SearchStudents({ styles, type = '', form }) {
 
 		if (level.current?.value !== '') {
 			TITLE = `${form}: `;
-			LEVEL = ' - Level ' + level.current?.value;
+			LEVEL = ' ' + returnClassString(Number(level.current?.value));
 		}
 
 		if (pgm.current.value !== '') {
@@ -96,7 +97,7 @@ function SearchStudents({ styles, type = '', form }) {
 					/>
 				)}
 				<select name="level" ref={level}>
-				<option value="">Search by class</option>
+					<option value="">Search by class</option>
 					<option value="100">Form 1</option>
 					<option value="200">Form 2</option>
 					<option value="300">Form 3</option>
