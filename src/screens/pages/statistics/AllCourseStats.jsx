@@ -11,7 +11,6 @@ import {
 } from '../../../store/courses/courseSlice';
 import { academicTerm } from '../../../utilities/periodInfo';
 import {
-	getAcademicYears,
 	getCurrentYear,
 } from '../../../store/academic year/academicYearSlice';
 import { getStudentsExam } from '../../../store/exams/examSlice';
@@ -64,8 +63,6 @@ function AllCourseStats() {
 			setScroll(0);
 		}
 	};
-
-	console.log(coursesStats);
 
 	return (
 		<div className="stud-print">
