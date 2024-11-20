@@ -18,85 +18,58 @@ function StudentInfo({ student, styles = '', identify = '', isTerm = true }) {
 			<div className="stud-info">
 				<div className="section">
 					<div className="">
-						<h3>Republiqe du Cameroon</h3>
-						<h5>PAIX • TRAVAIL • PATRIE</h5>
-					</div>
-					<div className="">
-						<h4>Ministere Des Enseignements Secondaire</h4>
-						<h5>Delegation Regionale Du Sud-ouest</h5>
-						<h5>Delegation Departmental De La Fako</h5>
-					</div>
-					<div className="">
-						<h2>Lycee Bilingue De Mile 17</h2>
-						<span>B.P: 222 Buea • Tel: 233 44 44 44</span>
-					</div>
-				</div>
-				<img src={lmuLogo} alt="" className="school-logo" />
-				<div className="section">
-					<div className="">
-						<h3>Republic of Cameroon</h3>
-						<h5>PEACE • WORK • FATHERLAND</h5>
+						<h4>Republic of Cameroon</h4>
+						<h4>PEACE • WORK • FATHERLAND</h4>
 					</div>
 					<div className="">
 						<h4>Ministry of Secondary Education</h4>
-						<h5>Regional Delegation of the South West</h5>
-						<h5>Divisional Delegation of Fako</h5>
+						<h4>
+							REGIONAL DELEGATION OF SECONDARY EDUCATION FOR THE SOUTH WEST
+						</h4>
+						<h4>DIVISIONAL DELEGATION OF SECONDARY EDUCATION FOR FAKO</h4>
 					</div>
 					<div className="">
-						<h2>GBHS Mile 17</h2>
-						<span>PO BOX: 222 Buea • Phone: 233 44 44 44</span>
-					</div>
-				</div>
-			</div>
-			{/* <div className="stud-info mg-top">
-				<div className="section">
-					<div>
-						<span className="prop">Name and surname</span>
-						<span className="value">: {student?.name}</span>
-					</div>
-					<div>
-						<span className="prop">Matricule</span>
-						<span className="value">: {student?.matricule}</span>
-					</div>
-					<div>
-						<span className="prop">Faculty</span>
-						<span className="value">
-							: {student?.specialty?.department?.program?.name}
+						<h4>GOVERNMENT TEACHERS TRAINING COLLEGE</h4>
+						<h5>GTTC BUEA</h5>
+						<span>
+							PO BOX: 222 Buea •{' '}
+							<a href="#nothing" style={{ textTransform: 'lowercase' }}>
+								www.gttcbuea.com
+							</a>
 						</span>
-					</div>
-					<div>
-						<span className="prop">Specialty</span>
-						<span className="value">: {student?.specialty?.name}</span>
 					</div>
 				</div>
 				<img src={lmuLogo} alt="" className="school-logo" />
 				<div className="section">
-					<div>
-						<span className="prop">Date and Place of birth</span>
-						<span className="value">
-							: {getDateFromDateObject(student?.dob)} at {student?.pob}
+					<div className="">
+						<h4>Republiqe du Cameroon</h4>
+						<h4>PAIX • TRAVAIL • PATRIE</h4>
+					</div>
+					<div className="">
+						<h4>Ministere Des Enseignements Secondaire</h4>
+						<h4>
+							DELEGATION REGIONALE DES ENSEIGNEMENTS SECONDAIRES DU SUD- OUEST
+						</h4>
+						<h4>
+							DELEGATION DEPARTMENTALE DES ENSEIGNEMENTS SECONDAIRES DE FAKO
+						</h4>
+					</div>
+					<div className="">
+						<h4>ECOLE NORMALE D’INSTITUTEURS DE L’ENSEIGNEMENT GÉNÉRAL</h4>
+						<h5>(ENIEG) DE BUÉA</h5>
+						<span>
+							B.P: 222 Buea • {'  '}
+							<a href="#nothing" style={{ textTransform: 'lowercase' }}>
+								info@gttcbuea.com
+							</a>
 						</span>
-					</div>
-					<div>
-						<span className="prop">Gender</span>
-						<span className="value">: {student?.gender}</span>
-					</div>
-					<div>
-						<span className="prop">Department</span>
-						<span className="value">
-							: {student?.specialty?.department?.name}
-						</span>
-					</div>
-					<div>
-						<span className="prop">Level</span>
-						<span className="value">: {student?.level}</span>
 					</div>
 				</div>
-			</div> */}
+			</div>
 			<div className="line mg-bt mg-top"></div>
-			<h5 className="center">
+			<h4 className="center">
 				ANNE SCOLAIRE / ACADEMIC YEAR {academicYear?.schoolYear}
-			</h5>
+			</h4>
 			{isTerm && (
 				<h2 className="header-secondary center mg-top-lg report-title">
 					{academicTerm() === 't1' ? 'First Term' : ''}
