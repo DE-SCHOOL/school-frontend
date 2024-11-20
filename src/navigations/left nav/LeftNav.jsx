@@ -16,7 +16,7 @@ function LeftNav() {
 		>
 			<header className="header-logo">
 				<img src={lmuLogo} alt="Landmark Logo" className="logo-pic rounded" />
-				<span className="logo">lmui</span>
+				<span className="logo">gttc buea</span>
 			</header>
 			<br />
 			<br />
