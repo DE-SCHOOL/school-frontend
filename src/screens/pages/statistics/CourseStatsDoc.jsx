@@ -5,10 +5,11 @@ import SchoolHeader from '../../../components/social/SchoolHeader';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCourse, getCourseStats } from '../../../store/courses/courseSlice';
 import Loader from '../../../components/loaders/Loader';
-import { semester } from '../../../utilities/periodInfo';
+import { academicTerm } from '../../../utilities/periodInfo';
 
 import { schoolHeaderProp } from '../../../utilities/appData';
 import { FaArrowDown } from 'react-icons/fa';
+import { getCurrentYear } from '../../../store/academic year/academicYearSlice';
 
 function CourseStats() {
 	const params = useParams();
@@ -16,17 +17,21 @@ function CourseStats() {
 	const load = useSelector((state) => state.courses);
 	const course = useSelector((state) => state.courses.course);
 	const courseStats = useSelector((state) => state.courses.courseStats);
+	const academicYear = useSelector((state) => state.years.currentYear);
 
 	useEffect(() => {
-		dispatch(getCourse({ id: params.courseID }));
-		dispatch(
-			getCourseStats({
-				id: params.courseID,
-				semester: semester(),
-				academicYear: '2023/2024',
-			})
-		);
-	}, [params.courseID, dispatch]);
+		dispatch(getCurrentYear());
+		if (academicYear?.schoolYear) {
+			dispatch(getCourse({ id: params.courseID }));
+			dispatch(
+				getCourseStats({
+					id: params.courseID,
+					term: academicTerm(),
+					academicYear: academicYear?.schoolYear,
+				})
+			);
+		}
+	}, [params.courseID, dispatch, academicYear?.schoolYear]);
 	return (
 		<React.Fragment>
 			{/* School header */}
@@ -67,53 +72,38 @@ function CourseStats() {
 					</div>
 
 					<div className="text primary-dark">
-						Number of As: {courseStats !== undefined ? courseStats?.totalAs : 0}
+						Number of 18 - 20:{' '}
+						{courseStats !== undefined ? courseStats?.totalAs : 0}
 					</div>
 
 					<div className="text primary-dark">
-						Number of Bs<sup>+</sup>:{' '}
+						Number of 16 - 17.9:{' '}
 						{courseStats !== undefined ? courseStats?.totalBplus : 0}
 					</div>
 
 					<div className="text primary">
-						Number of Bs: {courseStats !== undefined ? courseStats?.totalBs : 0}
+						Number of 14 - 15.9:{' '}
+						{courseStats !== undefined ? courseStats?.totalBs : 0}
 					</div>
 
 					<div className="text primary-light">
-						Number of Cs<sup>+</sup>:{' '}
+						Number of 11 - 13.9:{' '}
 						{courseStats !== undefined ? courseStats?.totalCplus : 0}
 					</div>
 
 					<div className="text primary-light">
-						Number of Cs: {courseStats !== undefined ? courseStats?.totalCs : 0}
+						Number of 10 - 10.9:{' '}
+						{courseStats !== undefined ? courseStats?.totalCs : 0}
 					</div>
 
 					<div className="text danger">
-						Number of D<sup>+</sup>s:{' '}
-						{courseStats !== undefined ? courseStats?.totalDplus : 0}
-					</div> 
-
-					<div className="text danger">
-						Number of Ds: {courseStats !== undefined ? courseStats?.totalDs : 0}
+						Number of 8 - 9.9:{' '}
+						{courseStats !== undefined ? courseStats?.totalDs : 0}
 					</div>
 
 					<div className="text danger">
-						Number of Fs: {courseStats !== undefined ? courseStats?.totalFs : 0}
-					</div>
-
-					<div className="text danger">
-						Number of Marks less than 40:{' '}
-						{courseStats !== undefined ? courseStats?.numMarksLess40 : 0}
-					</div>
-
-					<div className="text danger">
-						Number of Marks between 41 and 45:{' '}
-						{courseStats !== undefined ? courseStats?.numMarksBtw41and45 : 0}
-					</div>
-
-					<div className="text danger">
-						Number of Marks between 46 and 49:{' '}
-						{courseStats !== undefined ? courseStats?.numMarksBtw46and49 : 0}
+						Number of 0 - 8:{' '}
+						{courseStats !== undefined ? courseStats?.totalEs : 0}
 					</div>
 
 					<p className="v-download mg-top">
