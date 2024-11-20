@@ -118,11 +118,10 @@ export const getCourse = createAsyncThunk(
 
 export const getCourseStats = createAsyncThunk(
 	'course/getCourseStats',
-	async ({ id, semester, academicYear }, thunkAPI) => {
+	async ({ id, academicYear, term }, thunkAPI) => {
 		try {
 			const res = await apiRequest('post', `/api/v1/course/statistics/${id}`, {
-				semester,
-				academicYear,
+				academicYear, term,
 			});
 			// console.log(res.data, 'COURSE');
 			return res.data;
