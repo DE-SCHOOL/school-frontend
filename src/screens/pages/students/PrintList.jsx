@@ -6,6 +6,7 @@ import { getStudentsExam } from '../../../store/exams/examSlice';
 
 import Loader from '../../../components/loaders/Loader';
 import Button from '../../../components/buttons/Button';
+import SectionNotFound from '../../../components/layout/SectionNotFound';
 
 function PrintList() {
 	//Defining the dispatch function, and the useSelector to get students data
@@ -43,6 +44,9 @@ function PrintList() {
 					<TablePrint styles="mg-top" tableData={students} />
 				)}
 			</section>
+			{students?.length === 0 && load.isLoading === false && (
+				<SectionNotFound text={'No Student match the search above!'} />
+			)}
 			<Button styles={scroll} />
 			{load.isLoading && <Loader />}
 		</div>
