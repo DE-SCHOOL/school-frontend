@@ -5,7 +5,7 @@ import { Layout, SectionIntro } from '../../../components/layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCourse, getCourseStats } from '../../../store/courses/courseSlice';
 import Loader from '../../../components/loaders/Loader';
-import { semester } from '../../../utilities/periodInfo';
+import { academicTerm } from '../../../utilities/periodInfo';
 
 function CourseStats() {
 	const params = useParams();
@@ -20,8 +20,7 @@ function CourseStats() {
 		dispatch(
 			getCourseStats({
 				id: params.courseID,
-				semester: semester(),
-				// academicYear: '2023/2024',
+				term: academicTerm(),
 				academicYear: academicYear?.schoolYear,
 			})
 		);
@@ -73,81 +72,45 @@ function CourseStats() {
 					</div>
 				</div>
 				<div className="stat-block primary-dark">
-					<div className="heading primary-dark">Number of As</div>
+					<div className="heading primary-dark">Number of 18 - 20</div>
 					<div className="text primary-dark">
 						{courseStats !== undefined ? courseStats?.totalAs : 0}
 					</div>
 				</div>
 				<div className="stat-block primary-dark">
-					<div className="heading primary-dark">
-						Number of Bs<sup>+</sup>
-					</div>
+					<div className="heading primary-dark">Number of 16 - 17.9</div>
 					<div className="text primary-dark">
 						{courseStats !== undefined ? courseStats?.totalBplus : 0}
 					</div>
 				</div>
 				<div className="stat-block primary">
-					<div className="heading primary">Number of Bs</div>
+					<div className="heading primary">Number of 14 - 15.9 </div>
 					<div className="text primary">
 						{courseStats !== undefined ? courseStats?.totalBs : 0}
 					</div>
 				</div>
 				<div className="stat-block primary-light">
-					<div className="heading primary-light">
-						Number of Cs<sup>+</sup>
-					</div>
+					<div className="heading primary-light">Number of 11 - 13.9</div>
 					<div className="text primary-light">
 						{courseStats !== undefined ? courseStats?.totalCplus : 0}
 					</div>
 				</div>
 				<div className="stat-block primary-light">
-					<div className="heading primary-light">Number of Cs</div>
+					<div className="heading primary-light">Number of 10 - 10.9</div>
 					<div className="text primary-light">
 						{courseStats !== undefined ? courseStats?.totalCs : 0}
 					</div>
 				</div>
 				<div className="stat-block danger">
-					<div className="heading danger">
-						Number of Ds<sup>+</sup>
-					</div>
-					<div className="text danger">
-						{courseStats !== undefined ? courseStats?.totalDplus : 0}
-					</div>
-				</div>
-				<div className="stat-block danger">
-					<div className="heading danger">Number of Ds</div>
+					<div className="heading danger">Number of 8 - 9.9</div>
 					<div className="text danger">
 						{courseStats !== undefined ? courseStats?.totalDs : 0}
 					</div>
 				</div>
 				<div className="stat-block danger">
-					<div className="heading danger">Number of Fs</div>
+					<div className="heading danger">Number of 0 - 8</div>
 					<div className="text danger">
-						{courseStats !== undefined ? courseStats?.totalFs : 0}
-					</div>
-				</div>
-
-				<div className="stat-block danger">
-					<div className="heading danger">Number of Marks less than 40</div>
-					<div className="text danger">
-						{courseStats !== undefined ? courseStats?.numMarksLess40 : 0}
-					</div>
-				</div>
-
-				<div className="stat-block danger">
-					<div className="heading danger">
-						Number of Marks between 41 and 45
-					</div>
-					<div className="text danger">
-						{courseStats !== undefined ? courseStats?.numMarksBtw41and45 : 0}
-					</div>
-				</div>
-				<div className="stat-block danger">
-					<div className="heading danger">
-						Number of Marks between 46 and 49
-					</div>
-					<div className="text danger">
-						{courseStats !== undefined ? courseStats?.numMarksBtw46and49 : 0}
+						{courseStats !== undefined ? courseStats?.totalEs : 0}
 					</div>
 				</div>
 			</section>
