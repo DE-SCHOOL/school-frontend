@@ -252,6 +252,12 @@ const data = [
 						link: 'course-stats',
 						roles: ['admin'],
 					},
+					{
+						name: 'student stats',
+						link: 'student-stats',
+						roles: ['admin'],
+						target: true,
+					},
 				],
 			},
 			{
@@ -324,7 +330,7 @@ const data = [
 				],
 			},
 			{
-				item: "form bs",
+				item: 'form bs',
 				link: 'form-bs',
 				visibleRight: ['hod', 'director', 'admin', 'secreteriat'],
 				icon: <BiTable />,
