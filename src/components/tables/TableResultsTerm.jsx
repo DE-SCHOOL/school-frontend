@@ -90,7 +90,7 @@ function TableResults({ student, styles = '' }) {
 				</tbody>
 			</table>
 			<div className="total-gpa"></div>
-			<table className="results student-results mg-top border">
+			<table className="results student-results border">
 				<thead>
 					<tr>
 						<th colSpan={2}>Student's Results</th>

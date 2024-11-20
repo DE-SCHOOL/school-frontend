@@ -6,7 +6,6 @@ import Loader from '../loaders/Loader';
 import Failure from '../signal/Failure';
 
 import * as periodInfo from './../../utilities/periodInfo';
-import { getSequencePerTerm } from '../../utilities/getSequencePerTerm';
 import { getGradeRemark } from '../../utilities/getGradeRemark';
 import {
 	calculateStudentAverages,
@@ -75,7 +74,7 @@ function TableResultsSequence({ student, styles = '' }) {
 				</tbody>
 			</table>
 			<div className="total-gpa"></div>
-			<table className="results student-results mg-top border">
+			<table className="results student-results border">
 				<thead>
 					<tr>
 						<th colSpan={2}>Student's Results</th>
