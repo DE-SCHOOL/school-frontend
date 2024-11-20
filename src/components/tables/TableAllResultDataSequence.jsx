@@ -137,7 +137,7 @@ function TableAllResultDataSequence({ student, styles = '' }) {
 										})}
 									</tbody>
 								</table>
-								<table className="results student-results mg-top border">
+								<table className="results student-results border">
 									<thead>
 										<tr>
 											<th colSpan={2}>Student's Results</th>
