@@ -10,6 +10,7 @@ import {
 	SpecialtyStatsList,
 } from '../../../screens/pages/statistics';
 import Protected from '../../../components/auth/Protected';
+import StudentStatistics from '../../../screens/pages/statistics/StudentStatistics';
 
 function StatisticRoute() {
 	return (
@@ -51,6 +52,14 @@ function StatisticRoute() {
 				element={
 					<Protected restrict={['admin']}>
 						<SpecialtyStats />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/statistics/student-stats"
+				element={
+					<Protected restrict={['admin']}>
+						<StudentStatistics />
 					</Protected>
 				}
 			/>
