@@ -200,7 +200,7 @@ function TableCourses({
 								{tableType === 'all' && (
 									<td style={{ textAlign: 'center' }}>
 										<div className="actions">
-											<Link to={`/courses/edit/${row._id}`}>
+											<Link to={`/subjects/edit/${row._id}`}>
 												<BsFillPenFill className="edit" />
 											</Link>
 											{user.role === 'admin' && (
