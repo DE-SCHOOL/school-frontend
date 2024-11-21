@@ -103,36 +103,6 @@ export const calculateStudentAverages = (data) => {
 	});
 };
 
-// export const rankStudents = (data, rankingKey) => {
-// 	// Initialize a list to store students' total averages
-// 	const rankings = data.map((studentData) => {
-// 		// Extract the student ID and name (assuming all course entries are for the same student)
-// 		const studentId = studentData[0].student._id;
-// 		const studentName = studentData[0].student.name;
-
-// 		// Calculate the total average for the given rankingKey across all courses
-// 		const totalAverage = studentData.reduce((sum, course) => {
-// 			return sum + (course[rankingKey] || 0);
-// 		}, 0);
-
-// 		return {
-// 			studentId,
-// 			studentName,
-// 			totalAverage,
-// 		};
-// 	});
-
-// 	// Sort the students by total average in descending order
-// 	rankings.sort((a, b) => b.totalAverage - a.totalAverage);
-
-// 	// Assign ranks
-// 	rankings.forEach((student, index) => {
-// 		student.rank = index + 1;
-// 	});
-
-// 	return rankings;
-// };
-
 export const rankStudents = (data, averageKey) => {
 	// Extract and rank students based on the given average key
 	const rankings = data.map((studentCourses) => {
@@ -145,7 +115,7 @@ export const rankStudents = (data, averageKey) => {
 			level: student.level,
 			matricule: student.matricule,
 			specialty: student.specialty?.name,
-			gender: student.gender
+			gender: student.gender,
 		};
 	});
 
@@ -159,3 +129,148 @@ export const rankStudents = (data, averageKey) => {
 
 	return rankings;
 };
+
+// export function calculateAverages(data) {
+// 	// Step 1: Calculate class averages for each course
+// 	const coursesWithClassAverages = data.map(studentCourses => {
+// 			return studentCourses.map(course => {
+// 					const yearTotalSum = studentCourses.reduce((sum, c) => sum + (c.yearTotal || 0), 0);
+// 					const classAverage = yearTotalSum / studentCourses.length;
+// 					return {
+// 							...course,
+// 							classAverage // Add the class average of yearTotal for this course
+// 					};
+// 			});
+// 	});
+
+// 	// Step 2: Calculate each student's overall average using yearTotal
+// 	const studentAverages = coursesWithClassAverages.map(studentCourses => {
+// 			const { student } = studentCourses[0]; // Student info is the same across all courses
+// 			const totalYearTotal = studentCourses.reduce((sum, course) => sum + (course.yearTotal || 0), 0);
+// 			const overallAverage = totalYearTotal / studentCourses.length;
+// 			return {
+// 					studentId: student._id,
+// 					studentName: student.name,
+// 					overallAverage
+// 			};
+// 	});
+
+// 	return { coursesWithClassAverages, studentAverages };
+// }
+
+export function calculateYearlyCourseAverages(data) {
+	// Step 1: Calculate class averages for each course
+	const courseAverages = {};
+
+	// Flatten the data to process courses across all students
+	const allCourses = data.flat();
+
+	allCourses.forEach((course) => {
+		const courseId = course.course._id;
+
+		if (!courseAverages[courseId]) {
+			courseAverages[courseId] = {
+				courseName: course.course.name,
+				creditValue: course.course.credit_value,
+				yearTotalSum: 0,
+				studentCount: 0,
+			};
+		}
+
+		courseAverages[courseId].yearTotalSum += course.yearTotal || 0;
+		courseAverages[courseId].studentCount += 1;
+	});
+
+	// Calculate class average for each course
+	Object.keys(courseAverages).forEach((courseId) => {
+		const course = courseAverages[courseId];
+		course.classAverage = course.yearTotalSum / course.studentCount;
+	});
+
+	// Step 2: Calculate each student's weighted average using course credit values
+	const studentAverages = data.map((studentCourses) => {
+		const student = studentCourses[0].student; // Student info is the same for all their courses
+		let totalWeightedSum = 0;
+		let totalCredits = 0;
+
+		studentCourses.forEach((course) => {
+			const creditValue = course.course.credit_value || 1; // Default to 1 if credit_value is missing
+			totalWeightedSum += (course.yearTotal || 0) * creditValue;
+			totalCredits += creditValue;
+		});
+
+		return {
+			studentId: student._id,
+			studentName: student.name,
+			overallAverage: totalWeightedSum / totalCredits,
+		};
+	});
+
+	return { courseAverages, studentAverages };
+}
+
+export function calculateStudentYearlyCourseRank(data) {
+	const courseRanks = {};
+
+	// Step 1: Flatten data and group by course ID
+	const allCourses = data.flat();
+
+	allCourses.forEach((course) => {
+		const courseId = course.course._id;
+		if (!courseRanks[courseId]) {
+			courseRanks[courseId] = [];
+		}
+
+		courseRanks[courseId].push({
+			studentId: course.student._id,
+			studentName: course.student.name,
+			yearTotal: course.yearTotal || 0,
+		});
+	});
+
+	// Step 2: Sort scores and assign ranks
+	Object.keys(courseRanks).forEach((courseId) => {
+		const students = courseRanks[courseId];
+
+		// Sort by yearTotal in descending order
+		students.sort((a, b) => b.yearTotal - a.yearTotal);
+
+		// Assign ranks (handle ties)
+		let rank = 1;
+		for (let i = 0; i < students.length; i++) {
+			if (i > 0 && students[i].yearTotal < students[i - 1].yearTotal) {
+				rank = i + 1; // Increment rank only if the score is different
+			}
+			students[i].rank = rank;
+		}
+	});
+
+	// Step 3: Map ranks back to the original data
+	data.forEach((studentCourses) => {
+		studentCourses.forEach((course) => {
+			const courseId = course.course._id;
+			const studentRankData = courseRanks[courseId].find(
+				(student) => student.studentId === course.student._id
+			);
+			course.rank = studentRankData.rank; // Add rank to the course data
+		});
+	});
+
+	return data;
+}
+
+export function calculateStudentsFinalYearlyRank(students) {
+	// Sort by overallAverage in descending order
+	students.sort((a, b) => b.overallAverage - a.overallAverage);
+
+	// Assign ranks (handle ties)
+	let rank = 1;
+	for (let i = 0; i < students.length; i++) {
+		if (i > 0 && students[i].overallAverage < students[i - 1].overallAverage) {
+			rank = i + 1; // Increment rank only if the score is different
+		}
+		students[i].rank = rank;
+	}
+
+	return students;
+}
