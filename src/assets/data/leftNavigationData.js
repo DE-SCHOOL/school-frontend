@@ -231,8 +231,8 @@ const data = [
 						roles: ['director', 'admin'],
 					},
 					{
-						name: 'student marks',
-						link: 'student-marks',
+						name: 'student results',
+						link: 'student-results',
 						roles: ['director', 'admin'],
 					},
 					{

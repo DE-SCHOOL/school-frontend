@@ -174,14 +174,14 @@ function TableStudent({
 									<td>
 										<div className="actions results">
 											<Link
-												to={`/exam center/sequence/student-marks/${row._id}`}
+												to={`/exam center/sequence/student-results/${row._id}`}
 											>
 												<button className="marks-action button-main caps">
 													Sequence
 												</button>
 											</Link>
 											<Link
-												to={`/exam center/term/student-marks/${row._id}`}
+												to={`/exam center/term/student-results/${row._id}`}
 												className="mg-left-lg"
 											>
 												<button className="marks-action button-main caps">
