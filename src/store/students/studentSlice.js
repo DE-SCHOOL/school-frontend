@@ -296,7 +296,10 @@ const studentSlice = createSlice({
 				state.isLoading = true;
 			})
 			.addCase(getAllStudentsPerAcademicYear.fulfilled, (state, action) => {
-				state.students = action.payload.data;
+				const students = action.payload.data.filter(
+					(student) => student?._id !== undefined
+				);
+				state.students = students;
 				state.student = {};
 				state.isLoading = false;
 				state.errorMessage = null;
