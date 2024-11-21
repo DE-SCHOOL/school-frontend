@@ -6,6 +6,7 @@ import {
 	MdHolidayVillage,
 	MdOutlineEmojiTransportation,
 	MdLogout,
+	MdSubject,
 } from 'react-icons/md';
 import { BiTable } from 'react-icons/bi';
 import { IoLibrarySharp, IoSettings } from 'react-icons/io5';
@@ -194,17 +195,17 @@ const data = [
 				],
 			},
 			{
-				item: 'courses',
+				item: 'subjects',
 				visibleRight: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
-				icon: <SiCoursera />,
+				icon: <MdSubject />,
 				itemList: [
 					{
-						name: 'course list',
+						name: 'subject list',
 						link: 'list',
 						roles: ['hod', 'director', 'admin'],
 					},
 					{
-						name: 'course add',
+						name: 'subject add',
 						link: 'add',
 						roles: ['hod', 'director', 'admin'],
 					},
@@ -214,8 +215,8 @@ const data = [
 					// 	roles: ['hod', 'director', 'admin'],
 					// },
 					{
-						name: 'my courses',
-						link: 'my-courses',
+						name: 'my subject',
+						link: 'my-subject',
 						roles: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 					},
 				],
