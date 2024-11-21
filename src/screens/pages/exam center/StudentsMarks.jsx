@@ -46,7 +46,7 @@ function StudentMarks() {
 	return (
 		<Layout>
 			{/* Displaying the page introduction and directory */}
-			<SectionIntro title="All Marks" main="Student" sub="Marks" />
+			<SectionIntro title="All Results" main="Student" sub="Results" />
 
 			{/* Displaying search filter only if student data has fully loaded */}
 			<SearchStudents
