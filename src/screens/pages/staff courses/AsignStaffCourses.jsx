@@ -9,9 +9,9 @@ function AsignStaffCourses() {
 	const load = useSelector((state) => state.dashboard);
 	return (
 		<Layout>
-			<SectionIntro title="Assign courses" main="course" sub="assign" />
+			<SectionIntro title="Assign subjects" main="subject" sub="assign" />
 			<section className="students mg-top">
-				<h2 className="header-secondary">Assigning courses</h2>
+				<h2 className="header-secondary">Assigning subjects</h2>
 				<StaffCourseForm styles="mg-top-md" />
 			</section>
 			{load.error === true && load.errorMessage !== '' && (

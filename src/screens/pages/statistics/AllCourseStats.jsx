@@ -10,6 +10,7 @@ import {
 	getCourses,
 } from '../../../store/courses/courseSlice';
 import { semester } from '../../../utilities/periodInfo';
+import SectionNotFound from '../../../components/layout/SectionNotFound';
 
 function AllCourseStats() {
 	//Defining the dispatch function, and the useSelector to get students data
@@ -57,13 +58,18 @@ function AllCourseStats() {
 	return (
 		<div className="stud-print">
 			<section className="students">
-				{coursesStats !== undefined && (
+				{coursesStats !== undefined && coursesStats?.length !== 0 && (
 					<TableAllCourseStats
 						coursesStats={coursesStats}
 						styles="no-position"
 					/>
 				)}
 			</section>
+			{coursesStats?.length === 0 &&
+				coursesStats !== undefined &&
+				load.isLoading === false && (
+					<SectionNotFound text={'No subject statistics yet'} />
+				)}
 			<Button styles={scroll} />
 			{load.isLoading && <Loader />}
 			{load.error === true && load.errorMessage && (
