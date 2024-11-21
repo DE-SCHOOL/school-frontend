@@ -8,6 +8,7 @@ import StudentInfo from '../social/StudentInfo';
 import * as periodInfo from '../../utilities/periodInfo';
 import SchoolGrading from '../social/SchoolGrading';
 import { correctStudentLevelData } from '../../utilities/correctStudentLevelData';
+import SectionNotFound from '../layout/SectionNotFound';
 
 function TableAllResultData({ student, styles = '' }) {
 	let semester = periodInfo.semester();
@@ -38,6 +39,7 @@ function TableAllResultData({ student, styles = '' }) {
 				students: studIDs,
 				semester,
 			};
+			console.log(searchData);
 			dispatch(getAllStudentMarkSheetAllCourses(searchData));
 		}
 
@@ -46,16 +48,8 @@ function TableAllResultData({ student, styles = '' }) {
 
 	//If no student is found
 	if (students?.length === 0) {
-		return (
-			<h1
-				style={{ textAlign: 'center' }}
-				className="mg-top-lg mg-bt-lg result-info no-position"
-			>
-				Student With Above Search Not Found!!
-			</h1>
-		);
+		return <SectionNotFound text={'No registered student(s)'} />;
 	}
-	// console.log(students);
 	return (
 		<React.Fragment>
 			{marksInfo?.map((studResults, index) => {
@@ -199,15 +193,7 @@ function TableAllResultData({ student, styles = '' }) {
 						</React.Fragment>
 					);
 				} else {
-					return (
-						<h1
-							style={{ textAlign: 'center' }}
-							className="mg-top-lg mg-bt-lg result-info no-position"
-							key={index}
-						>
-							Student Not Available Anymore, was dismissed
-						</h1>
-					);
+					return null;
 				}
 			})}
 			{/* <StudentInfo student={student} styles="no-position" key={student.id} /> */}
