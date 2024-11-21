@@ -33,16 +33,28 @@ function SectionResultIntro({
 					</Link>
 				</button>
 				{type === 'results' && (
-					<button className="button-main button-main-small">
-						<FaArrowDown />
-						<Link
-							to={'/all/results/sequence'}
-							target="_blank"
-							style={{ textDecoration: 'none', color: 'inherit' }}
-						>
-							<span className="text">Sequence Results</span>
-						</Link>
-					</button>
+					<>
+						<button className="button-main button-main-small">
+							<FaArrowDown />
+							<Link
+								to={'/all/results/sequence'}
+								target="_blank"
+								style={{ textDecoration: 'none', color: 'inherit' }}
+							>
+								<span className="text">Sequence Results</span>
+							</Link>
+						</button>
+						<button className="button-main button-main-small">
+							<FaArrowDown />
+							<Link
+								to={'/all/results/year'}
+								target="_blank"
+								style={{ textDecoration: 'none', color: 'inherit' }}
+							>
+								<span className="text">All Year Results</span>
+							</Link>
+						</button>
+					</>
 				)}
 				<button
 					className="button-main button-main-small"
