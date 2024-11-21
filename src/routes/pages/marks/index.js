@@ -15,12 +15,13 @@ import Protected from '../../../components/auth/Protected';
 
 // importing different rights
 import * as RIGHTS from './../../../utilities/restrict';
-import StudentMarks from '../../../screens/pages/exam center/StudentsMarks';
 import {
 	StudentResultAllSequence,
 	StudentResultAllTerm,
 	StudentResultSequence,
 	StudentResultTerm,
+	StudentsResults,
+	StudentsResultsYear,
 } from '../../../screens/pages/exam center';
 import CourseMarkList from '../../../screens/pages/marks/CourseMarkList';
 import StudentResit from '../../../screens/pages/exam center/StudentResit';
@@ -96,7 +97,7 @@ function MarkRoute() {
 				path="/exam center/student-results"
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
-						<StudentMarks />
+						<StudentsResults />
 					</Protected>
 				}
 			/>
@@ -129,6 +130,14 @@ function MarkRoute() {
 				element={
 					<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
 						<StudentResultAllSequence />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/all/results/year"
+				element={
+					<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
+						<StudentsResultsYear />
 					</Protected>
 				}
 			/>
