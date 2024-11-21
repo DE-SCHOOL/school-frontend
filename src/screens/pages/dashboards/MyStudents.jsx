@@ -9,6 +9,7 @@ import {
 import { PaggingNumSelect, Paggination } from './../../../components/pagging/';
 import SearchCategory from '../../../components/search/SearchCategory';
 import { TableStudents } from '../../../components/tables/';
+import SectionNotFound from '../../../components/layout/SectionNotFound';
 
 const studentHeader = {
 	id: 'ID',
@@ -54,7 +55,7 @@ function MyStudentList() {
 					setData={setStudentsState}
 				/>
 			)}
-			<section className="students">
+			<section className="students mg-top-lg">
 				{/* Section About, Download, Add, and Refresh */}
 				<SectionMainIntro
 					title="Students"
@@ -90,6 +91,9 @@ function MyStudentList() {
 					/>
 				)}
 			</section>
+			{students.length === 0 && (
+				<SectionNotFound text={'No students attending my subjects yet'} />
+			)}
 		</Layout>
 	);
 }

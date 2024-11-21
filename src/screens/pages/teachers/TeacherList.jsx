@@ -16,6 +16,7 @@ import { TableStaff } from '../../../components/tables/';
 
 import Loader from './../../../components/loaders/Loader';
 import DeleteModal from '../../../components/mod/DeleteModal';
+import SectionNotFound from '../../../components/layout/SectionNotFound';
 
 //initializing table header information
 const staffHeader = {
@@ -63,7 +64,7 @@ function TeacherList() {
 					link={'/teachers/add'}
 				/>
 				{<PaggingNumSelect setItemsPerPage={setNumPages} />}
-				{staffs !== undefined && (
+				{staffs !== undefined && staffs?.length !== 0 && (
 					<TableStaff
 						styles="mg-top"
 						tableData={staffsState.length !== 0 ? staffsState : staffs}
@@ -73,7 +74,7 @@ function TeacherList() {
 				)}
 
 				{/* Display paggination page only if staffs have been searched from db */}
-				{staffs !== undefined && (
+				{staffs !== undefined && staffs?.length !== 0 && (
 					<Paggination
 						styles="mg-top"
 						paggingNum={numPages}
@@ -92,6 +93,9 @@ function TeacherList() {
 				)}
 				{isLoading && <Loader />}
 			</section>
+			{staffs?.length === 0 && staffs !== undefined && isLoading === false && (
+				<SectionNotFound text={'No registered teacher(s)'} />
+			)}
 		</Layout>
 	);
 }
