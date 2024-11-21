@@ -89,7 +89,7 @@ function MarkRoute() {
 				}
 			/>
 			<Route
-				path="/exam center/student-marks"
+				path="/exam center/student-results"
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
 						<StudentMarks />
@@ -97,7 +97,7 @@ function MarkRoute() {
 				}
 			/>
 			<Route
-				path="/exam center/student-marks/:studentID"
+				path="/exam center/student-results/:studentID"
 				element={
 					<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
 						<StudentResult />
