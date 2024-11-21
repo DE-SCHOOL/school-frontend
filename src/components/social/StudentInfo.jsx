@@ -70,7 +70,12 @@ function StudentInfo({ student, styles = '', identify = '', isTerm = true }) {
 			<h4 className="center">
 				ANNE SCOLAIRE / ACADEMIC YEAR {academicYear?.schoolYear}
 			</h4>
-			{isTerm && (
+			{isTerm === null && (
+				<h2 className="header-secondary center mg-top-lg report-title">
+					Academic Transcript
+				</h2>
+			)}
+			{isTerm === true && (
 				<h2 className="header-secondary center mg-top-lg report-title">
 					{academicTerm() === 't1' ? 'First Term' : ''}
 					{academicTerm() === 't2' ? 'Second Term' : ''}
