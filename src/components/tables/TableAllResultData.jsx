@@ -39,7 +39,6 @@ function TableAllResultData({ student, styles = '' }) {
 				students: studIDs,
 				semester,
 			};
-			console.log(searchData);
 			dispatch(getAllStudentMarkSheetAllCourses(searchData));
 		}
 
@@ -47,8 +46,12 @@ function TableAllResultData({ student, styles = '' }) {
 	}, [students?.length, academicYear?._id]);
 
 	//If no student is found
-	if (students?.length === 0) {
-		return <SectionNotFound text={'No registered student(s)'} />;
+	if (
+		students?.length === 0 ||
+		marksInfo?.length === 0
+		// marksInfo?.flat()?.length === 0
+	) {
+		return <SectionNotFound text={'No students found!'} />;
 	}
 	return (
 		<React.Fragment>
