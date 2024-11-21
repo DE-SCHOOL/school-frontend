@@ -18,3 +18,4 @@ export { default as TableQuestions } from './TableQuestions';
 export { default as TableTimetable } from './TableTimetable';
 export { default as TableFormB } from './TableFormB';
 export { default as TableStudentsStatistics } from './TableStudentsStatistics';
+export { default as TableAllResultDataYear } from './TableAllResultDataYear';
