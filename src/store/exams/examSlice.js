@@ -82,7 +82,7 @@ export const getStudentsPerSearch = createAsyncThunk(
 		try {
 			const res = await apiRequest(
 				'post',
-				`/api/v1/student/search`,
+				`/api/v1/student/search/${searchData.academicYearID}`,
 				searchData
 			);
 			// console.log(res.data);
