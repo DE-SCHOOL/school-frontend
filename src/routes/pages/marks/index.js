@@ -18,10 +18,12 @@ import * as RIGHTS from './../../../utilities/restrict';
 import StudentMarks from '../../../screens/pages/exam center/StudentsMarks';
 import StudentResult from '../../../screens/pages/exam center/StudentResult';
 // import { StudentResultAll } from '../../../screens/pages/exam center';
+// import { StudentResultAll } from '../../../screens/pages/exam center';
 import CourseMarkList from '../../../screens/pages/marks/CourseMarkList';
 import StudentResit from '../../../screens/pages/exam center/StudentResit';
 import AllResit from '../../../screens/pages/exam center/AllResit';
 import StudentResultAll from './../../../screens/pages/exam center/StudentResultAll';
+import StudentResultAll from '../../../screens/pages/exam center/StudentResultAll';
 function MarkRoute() {
 	return (
 		<Routes>
