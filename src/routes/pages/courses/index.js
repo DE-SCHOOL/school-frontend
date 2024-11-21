@@ -19,7 +19,7 @@ function CourseRoute() {
 	return (
 		<Routes>
 			<Route
-				path="/courses/add"
+				path="/subjects/add"
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
 						<CourseAdd />
@@ -27,7 +27,7 @@ function CourseRoute() {
 				}
 			/>
 			<Route
-				path="/courses/list"
+				path="/subjects/list"
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
 						<CourseList />
@@ -35,7 +35,7 @@ function CourseRoute() {
 				}
 			/>
 			<Route
-				path="/courses/my-courses"
+				path="/subjects/my-subjects"
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_STAFF}>
 						<MyCourses />
@@ -43,7 +43,7 @@ function CourseRoute() {
 				}
 			/>
 			<Route
-				path="/courses/edit/:id"
+				path="/subjects/edit/:id"
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
 						<CourseEdit />
