@@ -216,7 +216,7 @@ const data = [
 					// },
 					{
 						name: 'my subject',
-						link: 'my-subject',
+						link: 'my-subjects',
 						roles: ['lecturer', 'secreteriat', 'hod', 'director', 'admin'],
 					},
 				],
