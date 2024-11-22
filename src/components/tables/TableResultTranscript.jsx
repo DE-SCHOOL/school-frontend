@@ -20,7 +20,7 @@ function TableResultTranscript({ student, styles = '' }) {
 	const marksInfoII = useSelector((state) => state.marks.studentCoursesMarksII);
 	const load = useSelector((state) => state.courses);
 	const academicYear = useSelector((state) => state.years.currentYear);
-	let semester = periodInfo.semester();
+	// let semester = periodInfo.semester();
 	// console.log(marksInfo);
 
 	// const resultInfo  = {};
@@ -79,6 +79,7 @@ function TableResultTranscript({ student, styles = '' }) {
 		}
 		//eslint-disable-next-line
 	}, [courses?.length, academicYear?._id]);
+	console.log();
 	return (
 		<div className={`result-info result-info-transcript ${styles}`}>
 			<table className="results mg-top">
@@ -230,6 +231,22 @@ function TableResultTranscript({ student, styles = '' }) {
 					</thead>
 					<tbody></tbody>
 				</table>
+			</div>
+			<div className="cummulative-gpa">
+				<div className="item">
+					<div className="title">Overall Credit Earned</div>
+					<div className="value">{Number(TCVII) + Number(TCV)}</div>
+				</div>
+				<div className="item">
+					<div className="title">Cummulative GPA</div>
+					<div className="value">
+						{(
+							(Number(TWPII / (TCVII || 1)) + Number(TWP / (TCV || 1))).toFixed(
+								2
+							) / 2
+						)?.toFixed(2)}
+					</div>
+				</div>
 			</div>
 			<SchoolGrading />
 			{load.isLoading && <Loader />}

@@ -242,3 +242,32 @@ table {
 		}
 	}
 }
+
+.cummulative-gpa {
+	border: 2.5px solid $color-primary;
+	font-weight: bolder;
+	margin-top: 2rem;
+
+	& .item {
+		display: flex;
+		align-items: center;
+
+		& .title {
+			background-color: $color-primary;
+			color: $color-white;
+			// font-size: 2.5rem;
+			padding: 1.5rem;
+			width: 20rem;
+		}
+		
+		& .value {
+			flex: 1;
+			font-size: 1.7rem;
+			padding: 1rem;
+			text-align: right;
+		}
+		&:not(:last-child) {
+			border-bottom: 1px solid $color-primary;
+		}
+	}
+}
