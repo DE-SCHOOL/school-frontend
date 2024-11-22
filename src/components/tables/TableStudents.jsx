@@ -9,6 +9,7 @@ import { setDeleteEntity } from '../../store/ui-state/ui-stateSlice';
 //importing utility functions
 import { getDateFromDateObject } from '../../utilities/getDate';
 import { sortArrayObject } from '../../utilities/sortingInfo';
+import { semester } from '../../utilities/periodInfo';
 
 //Styled in the table sass file of the component styles
 let DATA_CONST;
@@ -80,14 +81,16 @@ function TableStudent({
 						<FaRightLeft onClick={() => handleSort('specialty', 'name')} />
 						<span className="text">{header.specialty}</span>
 					</th>
-					<th className={`${isSortedBy === 'address' ? 'sorted' : ''}`}>
-						<FaRightLeft onClick={() => handleSort('address')} />
-						<span className="text">{header.address}</span>
-					</th>
 					{tableType !== 'results' && (
-						<th>
-							<span className="text">{header.acts}</span>
-						</th>
+						<>
+							<th className={`${isSortedBy === 'address' ? 'sorted' : ''}`}>
+								<FaRightLeft onClick={() => handleSort('address')} />
+								<span className="text">{header.address}</span>
+							</th>
+							<th>
+								<span className="text">{header.acts}</span>
+							</th>
+						</>
 					)}
 					{tableType === 'results' && (
 						<th>
@@ -138,42 +141,54 @@ function TableStudent({
 								<td>
 									<span className="text">{row.specialty?.name}</span>
 								</td>
-								<td>
-									<span className="text">{row.address}</span>
-								</td>
 								{tableType !== 'results' && (
-									<td>
-										<div className="actions">
-											<Link to={`/students/view/${row._id}`}>
-												<BsEyeFill className="view" />
-											</Link>
-											<Link to={`/students/edit/${row._id}`}>
-												<BsFillPenFill className="edit" />
-											</Link>
-											{user.role === 'admin' && (
-												<Link
-													to="#"
-													onClick={() =>
-														dispatch(
-															setDeleteEntity({
-																deleteID: row._id,
-																type: 'student',
-																deleteName: row.name,
-															})
-														)
-													}
-												>
-													<BsFillTrash3Fill className="delete" />
+									<>
+										<td>
+											<span className="text">{row.address}</span>
+										</td>
+										<td>
+											<div className="actions">
+												<Link to={`/students/view/${row._id}`}>
+													<BsEyeFill className="view" />
 												</Link>
-											)}
-										</div>
-									</td>
+												<Link to={`/students/edit/${row._id}`}>
+													<BsFillPenFill className="edit" />
+												</Link>
+												{user.role === 'admin' && (
+													<Link
+														to="#"
+														onClick={() =>
+															dispatch(
+																setDeleteEntity({
+																	deleteID: row._id,
+																	type: 'student',
+																	deleteName: row.name,
+																})
+															)
+														}
+													>
+														<BsFillTrash3Fill className="delete" />
+													</Link>
+												)}
+											</div>
+										</td>
+									</>
 								)}
 								{tableType === 'results' && (
 									<td>
 										<div className="actions results">
 											<Link to={`/exam center/student-results/${row._id}`}>
-												<BsEyeFill className="view" />
+												<button className="marks-action button-main caps">
+													{semester() === 's1' ? 'Semester_I' : 'Semester_II'}
+												</button>
+											</Link>
+											<Link
+												to={`/exam center/student-results/${row._id}/transcript`}
+												className="mg-left-lg"
+											>
+												<button className="marks-action button-main caps">
+													Transcript
+												</button>
 											</Link>
 										</div>
 									</td>
