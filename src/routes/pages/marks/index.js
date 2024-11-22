@@ -15,16 +15,16 @@ import Protected from '../../../components/auth/Protected';
 
 // importing different rights
 import * as RIGHTS from './../../../utilities/restrict';
-import {
-	StudentResultAllSequence,
-	StudentResultAllTerm,
-	StudentResultSequence,
-	StudentResultTerm,
-	StudentsResults,
-	StudentsResultsYear,
-} from '../../../screens/pages/exam center';
+
+import StudentResultAllSequence from '../../../screens/pages/exam center/StudentResultAllSequence';
+import StudentResultAllTerm from '../../../screens/pages/exam center/StudentResultAllTerm';
+import StudentResultSequence from '../../../screens/pages/exam center/StudentResultSequence';
+import StudentResultTerm from '../../../screens/pages/exam center/StudentResultTerm';
+import StudentsResults from '../../../screens/pages/exam center/StudentsResults';
+import StudentsResultsYear from '../../../screens/pages/exam center/StudentsResultsYear';
 import CourseMarkList from '../../../screens/pages/marks/CourseMarkList';
 import StudentResit from '../../../screens/pages/exam center/StudentResit';
+
 import AllResit from '../../../screens/pages/exam center/AllResit';
 function MarkRoute() {
 	return (
