@@ -61,7 +61,12 @@ function DeleteModal({
 	const handleDeleteEntity = async () => {
 		// alert('I would do the deletion');
 		if (type === 'student') {
-			dispatch(deleteStudent({ id }));
+			if (year?._id !== undefined)
+				dispatch(deleteStudent({ id, academicYearID: year._id }));
+			else
+				alert(
+					"Student must be deleted from an academic year, switch to an academic year where you'll want to delete this student"
+				);
 		} else if (type === 'staff') {
 			dispatch(deleteStaff({ id }));
 		} else if (type === 'specialty') {

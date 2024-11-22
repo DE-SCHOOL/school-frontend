@@ -11,6 +11,7 @@ import Protected from '../../../components/auth/Protected';
 import * as RIGHTS from './../../../utilities/restrict';
 import PollAdd from '../../../screens/pages/polls/PollAdd';
 import PollList from '../../../screens/pages/polls/PollList';
+import { PollEdit } from '../../../screens/pages/polls';
 function ProgramRoute() {
 	return (
 		<Routes>
@@ -34,7 +35,7 @@ function ProgramRoute() {
 				path="/poll/edit/:id"
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_OFFICE_STAFF}>
-						<ProgramEdit />
+						<PollEdit />
 					</Protected>
 				}
 			/>

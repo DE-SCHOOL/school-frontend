@@ -89,7 +89,7 @@ function StudentFormEdit({ styles }) {
 			gender: gender.current.value,
 		};
 		console.log(reqData);
-		dispatch(editStudent({ reqData, id: param.id }));
+		dispatch(editStudent({ reqData, id: param.id, yearID: year?._id }));
 	};
 	return (
 		<form

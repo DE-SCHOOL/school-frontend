@@ -8,12 +8,14 @@ import { getSpecialties } from '../../store/specialty/specialtySlice';
 import { getDepartments } from './../../store/departments/departmentSlice';
 import { getPrograms } from '../../store/program/programSlice';
 import { getStudentsPerSearch } from '../../store/exams/examSlice';
+import { getCurrentYear } from '../../store/academic year/academicYearSlice';
 
 let TITLE = `ALL STUDENTS`;
 let LEVEL = '';
 function SearchStudents({ styles, type = '', form }) {
 	//create dispatch to dispatch actions and useSelect for getting out information
 	const dispatch = useDispatch();
+	const year = useSelector((state) => state.years.currentYear);
 	const dropDownData = useSelector((state) => {
 		const specialty =
 			state.specialty.specialties.length !== 0 ? state.specialty : null;
@@ -44,6 +46,7 @@ function SearchStudents({ styles, type = '', form }) {
 			program: pgm.current?.value,
 			name: name.current?.value,
 			level: level.current?.value,
+			academicYearID: year?._id,
 		};
 
 		//clean the data
@@ -69,12 +72,15 @@ function SearchStudents({ styles, type = '', form }) {
 	};
 	//Get all specialties after initial render
 	useEffect(() => {
-		dispatch(getSpecialties());
-		dispatch(getDepartments());
-		dispatch(getPrograms());
+		dispatch(getCurrentYear());
+		if (year?._id !== undefined) {
+			dispatch(getSpecialties());
+			dispatch(getDepartments());
+			dispatch(getPrograms());
+		}
 
 		// eslint-disable-next-line
-	}, [dispatch]);
+	}, [dispatch, year?._id]);
 
 	const handlePrint = () => {
 		window.print();

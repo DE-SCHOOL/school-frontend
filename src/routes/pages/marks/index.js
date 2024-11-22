@@ -17,10 +17,12 @@ import Protected from '../../../components/auth/Protected';
 import * as RIGHTS from './../../../utilities/restrict';
 import StudentMarks from '../../../screens/pages/exam center/StudentsMarks';
 import StudentResult from '../../../screens/pages/exam center/StudentResult';
-import { StudentResultAll } from '../../../screens/pages/exam center';
 import CourseMarkList from '../../../screens/pages/marks/CourseMarkList';
 import StudentResit from '../../../screens/pages/exam center/StudentResit';
 import AllResit from '../../../screens/pages/exam center/AllResit';
+import StudentResultAll from './../../../screens/pages/exam center/StudentResultAll';
+import { StudentAcademicTranscript } from '../../../screens/pages/exam center';
+import StudentTranscript from '../../../screens/pages/exam center/StudentTranscript';
 function MarkRoute() {
 	return (
 		<Routes>
@@ -89,7 +91,7 @@ function MarkRoute() {
 				}
 			/>
 			<Route
-				path="/exam center/student-marks"
+				path="/exam center/student-results"
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
 						<StudentMarks />
@@ -97,10 +99,18 @@ function MarkRoute() {
 				}
 			/>
 			<Route
-				path="/exam center/student-marks/:studentID"
+				path="/exam center/student-results/:studentID"
 				element={
 					<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
 						<StudentResult />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/exam center/student-results/:studentID/transcript"
+				element={
+					<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
+						<StudentTranscript />
 					</Protected>
 				}
 			/>
@@ -109,6 +119,14 @@ function MarkRoute() {
 				element={
 					<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
 						<StudentResultAll />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/all/academic-transcript"
+				element={
+					<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
+						<StudentAcademicTranscript />
 					</Protected>
 				}
 			/>

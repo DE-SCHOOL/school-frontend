@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { lmuLogo } from './../../assets/logos';
 import { getCurrentYear } from '../../store/academic year/academicYearSlice';
 
-function StudentInfo({ student, styles = '', identify = '' }) {
+function StudentInfo({ student, styles = '', identify = '', type = null }) {
 	const academicYear = useSelector((state) => state.years.currentYear);
 	const dispatch = useDispatch();
 
@@ -61,12 +61,24 @@ function StudentInfo({ student, styles = '', identify = '' }) {
 				</div>
 			</div>
 			<div className="line mg-bt mg-top"></div>
-			<h2 className="header-secondary center mg-top-lg">
-				{semester() === 's1' ? 'First Semester Results' : ''}
-				{semester() === 's2' ? 'Second Semester Results' : ''}
-				{academicYear?.schoolYear !== undefined &&
-					` for ${academicYear?.schoolYear}`}
-			</h2>
+			{type === null && (
+				<h2 className="header-secondary center mg-top-lg">
+					{semester() === 's1' ? 'First Semester Results' : ''}
+					{semester() === 's2' ? 'Second Semester Results' : ''}
+					{academicYear?.schoolYear !== undefined &&
+						` for ${academicYear?.schoolYear}`}
+				</h2>
+			)}
+			{type === 'transcript' && (
+				<>
+					<h1 className="header-primary transcript-header center mg-top-lg border">
+						Academic Transcript
+					</h1>
+					<h2 className="header-secondary center mg-top-lg">
+						First Semester Results
+					</h2>
+				</>
+			)}
 		</div>
 	);
 }

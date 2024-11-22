@@ -11,6 +11,7 @@ function SectionResultIntro({
 	styles,
 	link = '/all/results',
 	text = 'Download All Results',
+	type = null,
 }) {
 	const loc = useLocation();
 	const handleRefresh = () => {
@@ -21,6 +22,18 @@ function SectionResultIntro({
 		<div className={`section-main-intro ${styles ? styles : ''}`}>
 			<h2 className="header-secondary">{title}</h2>
 			<div className="actions">
+				{type === 'university' && (
+					<button className="button-main button-main-small">
+						<FaArrowDown />
+						<Link
+							to={'/all/academic-transcript'}
+							target="_blank"
+							style={{ textDecoration: 'none', color: 'inherit' }}
+						>
+							<span className="text">Academic Transcript</span>
+						</Link>
+					</button>
+				)}
 				<button className="button-main button-main-small">
 					<FaArrowDown />
 					<Link

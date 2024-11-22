@@ -49,11 +49,17 @@ function StudentForm({ styles, type = '' }) {
 	const registerStudent = (e) => {
 		e.preventDefault();
 
+		if (year?._id === undefined) {
+			alert(
+				'Create academic years first. \n1. Check the navigation panel\n2. Select Academic year\n3. Choose create year and create the academic year'
+			);
+			return;
+		}
 		dispatch(
 			addStudent({
 				...studentData,
 				specialty: specialty.current.value,
-				yearID: year._id,
+				yearID: year?._id,
 			})
 		);
 		setStudentData(defaultInfo);

@@ -231,8 +231,8 @@ const data = [
 						roles: ['director', 'admin'],
 					},
 					{
-						name: 'student marks',
-						link: 'student-marks',
+						name: 'student results',
+						link: 'student-results',
 						roles: ['director', 'admin'],
 					},
 					{
@@ -324,7 +324,7 @@ const data = [
 				],
 			},
 			{
-				item: "form bs",
+				item: 'form bs',
 				link: 'form-bs',
 				visibleRight: ['hod', 'director', 'admin', 'secreteriat'],
 				icon: <BiTable />,

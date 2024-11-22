@@ -11,6 +11,7 @@ import Failure from './../../../components/signal/Failure';
 import { PaggingNumSelect, Paggination } from '../../../components/pagging';
 import SearchStudents from '../../../components/search/SearchStudents';
 import { TableStudents } from '../../../components/tables';
+import SectionNotFound from '../../../components/layout/SectionNotFound';
 
 const studentHeader = {
 	id: 'ID',
@@ -45,7 +46,7 @@ function StudentMarks() {
 	return (
 		<Layout>
 			{/* Displaying the page introduction and directory */}
-			<SectionIntro title="All Marks" main="Student" sub="Marks" />
+			<SectionIntro title="All Results" main="Student" sub="Results" />
 
 			{/* Displaying search filter only if student data has fully loaded */}
 			<SearchStudents
@@ -56,7 +57,7 @@ function StudentMarks() {
 			/>
 			<section className="students">
 				{/* Section About, Download, Add, and Refresh */}
-				<SectionResultIntro title="Students" styles="mg-bt mg-top" />
+				<SectionResultIntro title="Students" styles="mg-bt mg-top" type={'university'} />
 
 				{/* Select the number of items to be shown on a page */}
 				<PaggingNumSelect setItemsPerPage={setNumPages} />
@@ -94,6 +95,9 @@ function StudentMarks() {
 				{/* {exams.error === false && setStaffData(defaultInfo)} */}
 				{exams.isLoading && <Loader />}
 			</section>
+			{students.length === 0 && exams.isLoading === false && (
+				<SectionNotFound text={'No marks yet'} />
+			)}
 		</Layout>
 	);
 }

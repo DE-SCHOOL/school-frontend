@@ -1,0 +1,21 @@
+@use './../variables' as *;
+
+.not-found {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 2rem;
+	background-color: $color-white;
+	padding: 2rem;
+
+	& img {
+		width: 40rem;
+	}
+
+	& span {
+		font-size: 4rem;
+		font-weight: bolder;
+		color: $color-primary-dark;
+	}
+}

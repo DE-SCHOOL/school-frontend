@@ -45,12 +45,16 @@ export const getStudentsPerCourseOffering = createAsyncThunk(
 
 export const editStudent = createAsyncThunk(
 	'student/editStudent',
-	async ({ reqData, id }, thunkAPI) => {
+	async ({ reqData, id, yearID }, thunkAPI) => {
 		try {
 			// console.log(name, matricule);
-			const res = await apiRequest('patch', `/api/v1/student/${id}`, {
-				...reqData,
-			});
+			const res = await apiRequest(
+				'patch',
+				`/api/v1/student/${id}/academic-year/${yearID}`,
+				{
+					...reqData,
+				}
+			);
 			// console.log(res);
 			return res.data;
 		} catch (err) {
@@ -150,9 +154,12 @@ export const getStudent = createAsyncThunk(
 
 export const deleteStudent = createAsyncThunk(
 	'student/deleteStudent',
-	async ({ id }, thunkAPI) => {
+	async ({ id, academicYearID }, thunkAPI) => {
 		try {
-			const res = await apiRequest('delete', `/api/v1/student/${id}`);
+			const res = await apiRequest(
+				'delete',
+				`/api/v1/student/${id}/academic-year/${academicYearID}`
+			);
 			// console.log(res.data, 111111);
 			return res.data;
 		} catch (err) {
@@ -211,7 +218,10 @@ const studentSlice = createSlice({
 				state.isLoading = true;
 			})
 			.addCase(deleteStudent.fulfilled, (state, action) => {
-				state.students = action.payload.data;
+				const students = action.payload.data.filter(
+					(student) => student?._id !== undefined
+				);
+				state.students = students;
 				state.student = {};
 				state.isLoading = false;
 				state.errorMessage = null;
@@ -292,7 +302,10 @@ const studentSlice = createSlice({
 				state.isLoading = true;
 			})
 			.addCase(getAllStudentsPerAcademicYear.fulfilled, (state, action) => {
-				state.students = action.payload.data;
+				const students = action.payload.data.filter(
+					(student) => student?._id !== undefined
+				);
+				state.students = students;
 				state.student = {};
 				state.isLoading = false;
 				state.errorMessage = null;

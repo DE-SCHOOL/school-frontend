@@ -16,6 +16,7 @@ import { TableDepartment } from '../../../components/tables/';
 
 import DeleteModal from '../../../components/mod/DeleteModal';
 import Loader from './../../../components/loaders/Loader';
+import SectionNotFound from '../../../components/layout/SectionNotFound';
 
 //initializing table header information
 const departmentHeader = {
@@ -59,7 +60,7 @@ function DepartmentList() {
 					link={'/departments/add'}
 				/>
 				{<PaggingNumSelect setItemsPerPage={setNumPages} />}
-				{departments !== undefined && (
+				{departments !== undefined && departments?.length !== 0 && (
 					<TableDepartment
 						styles="mg-top"
 						tableData={
@@ -71,7 +72,7 @@ function DepartmentList() {
 				)}
 
 				{/* Display paggination page only if staffs have been searched from db */}
-				{departments !== undefined && (
+				{departments !== undefined && departments?.length !== 0 && (
 					<Paggination
 						styles="mg-top"
 						paggingNum={numPages}
@@ -84,6 +85,9 @@ function DepartmentList() {
 					/>
 				)}
 			</section>
+			{departments?.length === 0 && isLoading === false && (
+				<SectionNotFound text={'No departments yet'} />
+			)}
 			{uiState.type === 'department' && (
 				<DeleteModal
 					type={uiState.type}

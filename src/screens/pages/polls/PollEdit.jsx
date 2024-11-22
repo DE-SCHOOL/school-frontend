@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Layout, SectionIntro } from '../../../components/layout';
-import { PollForm } from '../../../components/form';
+import { PollFormEdit } from '../../../components/form';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 
-function PollAdd() {
+function PollEdit() {
 	const [questionCount, setQuestionCount] = useState(1);
 	return (
 		<Layout>
@@ -28,10 +28,10 @@ function PollAdd() {
 						</button>
 					</div>
 				</div>
-				<PollForm styles="mg-top-md" choiceCount={questionCount} />
+				<PollFormEdit styles="mg-top-md" choiceCount={questionCount} />
 			</section>
 		</Layout>
 	);
 }
 
-export default PollAdd;
+export default PollEdit;

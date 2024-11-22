@@ -16,6 +16,7 @@ import { TableSpecialties } from '../../../components/tables/';
 
 import DeleteModal from '../../../components/mod/DeleteModal';
 import Loader from './../../../components/loaders/Loader';
+import SectionNotFound from '../../../components/layout/SectionNotFound';
 
 //initializing table header information
 const departmentHeader = {
@@ -55,7 +56,7 @@ function SpecialtyList() {
 					link={'/specialties/add'}
 				/>
 				{<PaggingNumSelect setItemsPerPage={setNumPages} />}
-				{specialties !== undefined && (
+				{specialties !== undefined && specialties?.length !== 0 && (
 					<TableSpecialties
 						styles="mg-top"
 						tableData={
@@ -67,7 +68,7 @@ function SpecialtyList() {
 				)}
 
 				{/* Display paggination page only if staffs have been searched from db */}
-				{specialties !== undefined && (
+				{specialties !== undefined && specialties?.length !== 0 && (
 					<Paggination
 						styles="mg-top"
 						paggingNum={numPages}
@@ -80,6 +81,9 @@ function SpecialtyList() {
 					/>
 				)}
 			</section>
+			{specialties?.length === 0 && isLoading === false && (
+				<SectionNotFound text={'No specialties yet'} />
+			)}
 			{uiState.type === 'specialty' && (
 				<DeleteModal
 					type={uiState.type}

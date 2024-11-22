@@ -12,6 +12,7 @@ import { TableCourseStats } from '../../../components/tables';
 
 import DeleteModal from '../../../components/mod/DeleteModal';
 import Loader from '../../../components/loaders/Loader';
+import SectionNotFound from '../../../components/layout/SectionNotFound';
 
 const courseHeader = {
 	id: 'Code',
@@ -57,12 +58,12 @@ function CourseStats() {
 			/>
 			{/* )} */}
 			<section className="teachers">
-				<SectionStatsIntro />
+				<SectionStatsIntro title={'Course Statistics'} styles={'mg-bt'} />
 				{/* Select the number of items to be shown on a page */}
 				<PaggingNumSelect setItemsPerPage={setNumPages} />
 
 				{/* Show student table information only if students data has loaded */}
-				{courses !== undefined && (
+				{courses !== undefined && courses?.length !== 0 && (
 					<TableCourseStats
 						styles="mg-top"
 						// parse student data, or student searched data in case a search was performed
@@ -73,7 +74,7 @@ function CourseStats() {
 				)}
 
 				{/* Show student table information only if students data has loaded */}
-				{courses !== undefined && (
+				{courses !== undefined && courses?.length !== 0 && (
 					<Paggination
 						styles="mg-top"
 						paggingNum={numPages}
@@ -84,6 +85,9 @@ function CourseStats() {
 					/>
 				)}
 			</section>
+			{courses?.length === 0 && isLoading === false && (
+				<SectionNotFound text={'No statistics yet'} />
+			)}
 			{uiState.type === 'course' && (
 				<DeleteModal
 					type={uiState.type}

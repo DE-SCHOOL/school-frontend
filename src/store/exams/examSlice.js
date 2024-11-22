@@ -82,7 +82,7 @@ export const getStudentsPerSearch = createAsyncThunk(
 		try {
 			const res = await apiRequest(
 				'post',
-				`/api/v1/student/search`,
+				`/api/v1/student/search/${searchData.academicYearID}`,
 				searchData
 			);
 			// console.log(res.data);
@@ -99,7 +99,10 @@ const examSlice = createSlice({
 	extraReducers: (builder) => {
 		builder
 			.addCase(getStudentsExam.fulfilled, (state, action) => {
-				state.students = action.payload.data;
+				const students = action.payload.data.filter(
+					(student) => student?._id !== undefined
+				);
+				state.students = students;
 				state.student = {};
 				state.errorMessage = null;
 				state.isLoading = false;
@@ -113,8 +116,10 @@ const examSlice = createSlice({
 				state.errorMessage = action.payload?.error;
 			})
 			.addCase(getStudentsPerSearch.fulfilled, (state, action) => {
-				// console.log(action.payload.data);
-				state.students = action.payload.data;
+				const students = action.payload.data.filter(
+					(student) => student?._id !== undefined
+				);
+				state.students = students;
 				state.student = {};
 				state.errorMessage = null;
 				state.isLoading = false;

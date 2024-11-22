@@ -58,12 +58,22 @@
 		page-break-after: always;
 
 		.gpa {
-			background-color: red;
+			// background-color: red;
 			thead {
 				tr {
 					font-size: 1.5rem !important;
 				}
 			}
+		}
+	}
+	.result-info-no__break {
+		page-break-after: avoid;
+	}
+	.result-info-transcript {
+		top: 24rem;
+
+		& h2 {
+			font-size: 2.2rem;
 		}
 	}
 	.print-student-title {

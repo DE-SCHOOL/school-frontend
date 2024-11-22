@@ -15,6 +15,7 @@ import profile14 from './profile14.jpeg';
 import profile_default from './default.png';
 import avatar from './avatar.jpg';
 import profilebg from './profilebg.jpg';
+import notFound from './not-found.png';
 
 export {
 	profile1,
@@ -33,5 +34,6 @@ export {
 	profile14,
 	profile_default,
 	avatar,
-	profilebg
+	profilebg,
+	notFound,
 };

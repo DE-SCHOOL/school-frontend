@@ -14,6 +14,7 @@ import { PaggingNumSelect, Paggination } from './../../../components/pagging/';
 import { TableStaffCourse } from '../../../components/tables/';
 import Failure from '../../../components/signal/Failure';
 import Loader from '../../../components/loaders/Loader';
+import SectionNotFound from '../../../components/layout/SectionNotFound';
 
 //initializing table header information
 const staffCourseHeader = {
@@ -39,7 +40,7 @@ function StaffCourseList() {
 	}, [dispatch]);
 	return (
 		<Layout>
-			<SectionIntro title="Assigned Courses" main="Staff" sub="Course" />
+			<SectionIntro title="Assigned Subjects" main="Staff" sub="Subject" />
 			<section className="teachers mg-top-lg">
 				<SectionMainIntro
 					title="Specialties"
@@ -47,7 +48,7 @@ function StaffCourseList() {
 					link={'/dashboard/course-assign'}
 				/>
 				{<PaggingNumSelect setItemsPerPage={setNumPages} />}
-				{staffCourse !== undefined && (
+				{staffCourse !== undefined && staffCourse?.length !== 0 && (
 					<TableStaffCourse
 						styles="mg-top"
 						tableData={
@@ -59,7 +60,7 @@ function StaffCourseList() {
 				)}
 
 				{/* Display paggination page only if staffs have been searched from db */}
-				{staffCourse !== undefined && (
+				{staffCourse !== undefined && staffCourse?.length !== 0 &&(
 					<Paggination
 						styles="mg-top"
 						paggingNum={numPages}
@@ -72,6 +73,11 @@ function StaffCourseList() {
 					/>
 				)}
 			</section>
+			{staffCourse?.length === 0 &&
+				staffCourse !== undefined &&
+				load.isLoading === false && (
+					<SectionNotFound text={'No teacher assigned a subject yet'} />
+				)}
 			{load.error === true && load.errorMessage !== '' && (
 				<Failure message={load.errorMessage} />
 			)}
