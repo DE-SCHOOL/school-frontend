@@ -200,3 +200,12 @@
 	color: $color-primary;
 	text-transform: capitalize;
 }
+
+.transcript-header {
+	border: 3.5px solid $color-primary;
+	padding: 0.8rem;
+	width: 75%;
+	margin: 3rem auto;
+	border-radius: 0.5rem;
+	text-transform: uppercase;
+}
