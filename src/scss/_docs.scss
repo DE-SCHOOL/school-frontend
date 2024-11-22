@@ -66,6 +66,9 @@
 			}
 		}
 	}
+	.result-info-no__break {
+		page-break-after: avoid;
+	}
 	.print-student-title {
 		page-break-after: always !important;
 	}
