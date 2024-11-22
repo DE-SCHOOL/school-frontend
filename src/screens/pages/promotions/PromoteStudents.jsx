@@ -165,7 +165,9 @@ function PromoteStudents() {
 			<section className="students mg-top-md">
 				{/* Section About, Download, Add, and Refresh */}
 				<SectionMainIntro
-					title={`Students: Academic Year ${year.currentYear?.schoolYear}`}
+					title={`Students: Academic Year ${
+						year.currentYear?.schoolYear || ''
+					}`}
 					styles="mg-bt mg-top"
 					promotion={showPromote ? true : ''}
 					pendingPromotion={showPromote === false}
