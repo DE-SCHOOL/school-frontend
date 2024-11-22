@@ -8,10 +8,13 @@ import Failure from './../signal/Failure';
 import Loader from '../loaders/Loader';
 import SchoolHeader from '../social/SchoolHeader';
 import { schoolHeaderProp } from '../../utilities/appData';
-import { decideCourseGrade } from '../../utilities/decideCourseGrade';
+// import { decideCourseGrade } from '../../utilities/decideCourseGrade';
 import SectionNotFound from '../layout/SectionNotFound';
+import { returnClassString } from '../../utilities/getClassString';
+import { semester } from '../../utilities/periodInfo';
+import { getGradeRemark } from '../../utilities/getGradeRemark';
 
-function TableCourseMarks({ students, length, semester, academicYear }) {
+function TableCourseMarks({ students, length, academicYear }) {
 	//length is to help getMarkSheetsPerCoursePerStudents everytime this component is involved in any render
 
 	let marks = useSelector((state) => state.marks);
@@ -41,6 +44,9 @@ function TableCourseMarks({ students, length, semester, academicYear }) {
 	if (marks?.markSheet?.length === 0) {
 		return <SectionNotFound text={'No marks yet.'} />;
 	}
+
+	const sequence = semester();
+	// console.log(marks, sequence);
 	return (
 		<div className="table-form">
 			<SchoolHeader school={schoolHeaderProp} />
@@ -50,10 +56,8 @@ function TableCourseMarks({ students, length, semester, academicYear }) {
 						<th>SN</th>
 						<th>Name (Matricule)</th>
 						<th>Level</th>
-						<th>CA ( / 30)</th>
-						<th>EXAM ( / 70)</th>
-						<th>Total ( / 100)</th>
-						<th>Grade</th>
+						<th>EXAM ( / 20)</th>
+						<th>Remark</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -65,20 +69,9 @@ function TableCourseMarks({ students, length, semester, academicYear }) {
 									<td className="stud-name">
 										{sheet?.student.name} ({sheet?.student.matricule})
 									</td>
-									<td>{sheet?.student.level}</td>
-									<td>{semester === 's1' ? sheet?.s1CA : sheet?.s2CA}</td>
-									<td>{semester === 's1' ? sheet?.s1Exam : sheet?.s2Exam}</td>
-									<td>
-										{semester === 's1'
-											? sheet?.s1Exam + sheet?.s1CA
-											: sheet?.s2Exam + sheet?.s2CA}
-									</td>
-									<td>
-										{' '}
-										{semester === 's1'
-											? decideCourseGrade(sheet?.s1Exam + sheet?.s1CA)
-											: decideCourseGrade(sheet?.s2Exam + sheet?.s2CA)}
-									</td>
+									<td>{returnClassString(sheet?.student.level)}</td>
+									<td>{sheet[`${sequence}Exam`]}</td>
+									<td>{getGradeRemark(sheet[`${sequence}Exam`])}</td>
 								</tr>
 							);
 						})}
