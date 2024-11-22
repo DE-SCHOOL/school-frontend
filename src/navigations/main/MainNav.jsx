@@ -204,11 +204,9 @@ function MainNav({ styleClass = '' }) {
 								? 'loading...'
 								: `Y: ${
 										currentYear?.schoolYear === undefined ||
-										currentYear?.length === 0 ? (
-											''
-										) : (
-											<span>currentYear.schoolYear</span>
-										)
+										currentYear?.length === 0
+											? ''
+											: `${currentYear?.schoolYear}`
 								  }`}
 						</span>
 						<div className={`year ${showYears === false ? 'toggle' : ''}`}>
