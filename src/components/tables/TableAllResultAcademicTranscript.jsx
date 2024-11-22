@@ -128,7 +128,9 @@ function TableAllResultAcademicTranscript({ student, styles = '' }) {
 													return (
 														<tr key={studResult.course?.code}>
 															<td>{studResult.course?.code}</td>
-															<td>{studResult.course?.name}</td>
+															<td className="caps-upper">
+																{studResult.course?.name}
+															</td>
 															<td>
 																{studResult.course?.status === 'compulsory'
 																	? 'C'
@@ -236,7 +238,9 @@ function TableAllResultAcademicTranscript({ student, styles = '' }) {
 													TCVII += studResult.course?.credit_value || 0;
 													return (
 														<tr key={studResult._id}>
-															<td>{studResult.course?.code}</td>
+															<td className="caps-upper">
+																{studResult.course?.code}
+															</td>
 															<td>{studResult.course?.name}</td>
 															<td>
 																{studResult.course?.status === 'compulsory'

@@ -10,7 +10,7 @@ import Loader from '../loaders/Loader';
 import { getCoursesPerSpecialtyPerLevel } from '../../store/courses/courseSlice';
 import Failure from '../signal/Failure';
 
-import * as periodInfo from './../../utilities/periodInfo';
+// import * as periodInfo from './../../utilities/periodInfo';
 import SchoolGrading from '../social/SchoolGrading';
 
 function TableResultTranscript({ student, styles = '' }) {
@@ -107,7 +107,7 @@ function TableResultTranscript({ student, styles = '' }) {
 						return (
 							<tr key={markInfo._id}>
 								<td>{markInfo.course.code}</td>
-								<td>{markInfo.course.name}</td>
+								<td className="caps-upper">{markInfo.course.name}</td>
 								<td>{markInfo.course.status === 'compulsory' ? 'C' : 'E'}</td>
 								<td>{markInfo.course.credit_value.toFixed(2)}</td>
 								<td>{markInfo[`s1CreditEarned`].toFixed(2)}</td>
@@ -184,7 +184,7 @@ function TableResultTranscript({ student, styles = '' }) {
 						return (
 							<tr key={markInfo._id}>
 								<td>{markInfo.course.code}</td>
-								<td>{markInfo.course.name}</td>
+								<td className="caps-upper">{markInfo.course.name}</td>
 								<td>{markInfo.course.status === 'compulsory' ? 'C' : 'E'}</td>
 								<td>{markInfo.course.credit_value.toFixed(2)}</td>
 								<td>{markInfo[`s2CreditEarned`].toFixed(2)}</td>
