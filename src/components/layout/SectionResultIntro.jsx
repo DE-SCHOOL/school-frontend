@@ -26,7 +26,7 @@ function SectionResultIntro({
 					<button className="button-main button-main-small">
 						<FaArrowDown />
 						<Link
-							to={link}
+							to={'/all/academic-transcript'}
 							target="_blank"
 							style={{ textDecoration: 'none', color: 'inherit' }}
 						>
