@@ -72,7 +72,11 @@ function StudentInfo({ student, styles = '', identify = '', type = null }) {
 			{type === 'transcript' && (
 				<>
 					<h1 className="header-primary transcript-header center mg-top-lg border">
-						Academic Result Slip
+						{student.level !== 400
+							? 'Academic Transcript'
+							: 'Academic Result Slip'}
+						{academicYear?.schoolYear !== undefined &&
+							` for ${academicYear?.schoolYear}`}
 					</h1>
 					<h2 className="header-secondary center mg-top-lg">
 						First Semester Results
