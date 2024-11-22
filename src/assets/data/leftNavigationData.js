@@ -1,6 +1,6 @@
 import * as BootstrapIcon from 'react-icons/bs';
 import { GiTeacher, GiUpgrade } from 'react-icons/gi';
-import { SiCoursera } from 'react-icons/si';
+// import { SiCoursera } from 'react-icons/si';
 import { RiMoneyDollarBoxFill } from 'react-icons/ri';
 import {
 	MdHolidayVillage,

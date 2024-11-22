@@ -7,13 +7,9 @@ import Loader from '../loaders/Loader';
 import SchoolHeader from '../social/SchoolHeader';
 import { schoolHeaderProp } from '../../utilities/appData';
 import SearchCourses from '../search/SearchCourses';
-import { getSequencePerTerm } from '../../utilities/getSequencePerTerm';
+// import { getSequencePerTerm } from '../../utilities/getSequencePerTerm';
 import { academicTerm } from '../../utilities/periodInfo';
-import {
-	calculateStudentAverages,
-	rankStudentResults,
-	rankStudents,
-} from '../../utilities/resultFunctions';
+import { calculateStudentAverages } from '../../utilities/resultFunctions';
 import { getAllStudentMarkSheetAllCourses } from '../../store/marks/markSlice';
 
 function TableAllCourseStats({ coursesStats }) {
@@ -45,19 +41,19 @@ function TableAllCourseStats({ coursesStats }) {
 		}
 	}, [academicYear?._id, academicYear?.schoolYear, dispatch, students]);
 
-	const sequence = getSequencePerTerm(academicTerm());
-	let marksInfoNew = [];
+	// const sequence = getSequencePerTerm(academicTerm());
+	// let marksInfoNew = [];
 	let studentAverages = [];
-	let studentRanking = [];
+	// let studentRanking = [];
 	let neededCourses = [];
 	if (marksInfo.length > 0) {
 		const data = JSON.parse(JSON.stringify([...marksInfo]));
-		marksInfoNew = rankStudentResults(data);
+		// marksInfoNew = rankStudentResults(data);
 		studentAverages = calculateStudentAverages(data);
-		studentRanking = rankStudents(
-			studentAverages,
-			`${academicTerm()}TotalAverage`
-		);
+		// studentRanking = rankStudents(
+		// 	studentAverages,
+		// 	`${academicTerm()}TotalAverage`
+		// );
 
 		let extractedCourses = [];
 
