@@ -35,8 +35,13 @@ function StudentResultTerm() {
 
 	useEffect(() => {
 		if (student !== undefined && Object.entries(student).length !== 0)
-			dispatch(getStudentsPerSearch({ specialty: student.specialty?._id }));
-	}, [student, dispatch]);
+			dispatch(
+				getStudentsPerSearch({
+					specialty: student.specialty?._id,
+					academicYearID: year?._id,
+				})
+			);
+	}, [student, dispatch, year?._id]);
 
 	useEffect(() => {
 		if (year?._id !== undefined) {
