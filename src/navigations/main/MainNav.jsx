@@ -200,7 +200,16 @@ function MainNav({ styleClass = '' }) {
 							className="iconss"
 							onClick={() => setShowYears((prev) => !prev)}
 						>
-							{isLoadingYear ? 'loading...' : `Y: ${currentYear?.schoolYear}`}
+							{isLoadingYear
+								? 'loading...'
+								: `Y: ${
+										currentYear?.schoolYear === undefined ||
+										currentYear?.length === 0 ? (
+											''
+										) : (
+											<span>currentYear.schoolYear</span>
+										)
+								  }`}
 						</span>
 						<div className={`year ${showYears === false ? 'toggle' : ''}`}>
 							{academicYears?.length > 0 &&
