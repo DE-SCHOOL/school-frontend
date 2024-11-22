@@ -65,7 +65,6 @@ function CourseMarkList() {
 				<TableCourseMarks
 					students={students}
 					length={markSheet.length}
-					semester={course?.semester}
 					academicYear={academicYear?.schoolYear}
 				/>
 			</section>
