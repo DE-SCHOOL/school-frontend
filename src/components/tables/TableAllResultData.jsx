@@ -51,7 +51,7 @@ function TableAllResultData({ student, styles = '' }) {
 		marksInfo?.length === 0
 		// marksInfo?.flat()?.length === 0
 	) {
-		return <SectionNotFound text={'No students found!'} />;
+		return <SectionNotFound text={'No student results found!'} />;
 	}
 	return (
 		<React.Fragment>
