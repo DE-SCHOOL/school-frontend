@@ -77,7 +77,7 @@ export const calculateStudentAverages = (data) => {
 
 	// Process each student's data
 	return data.map((studentRecords) => {
-		const student = studentRecords[0].student; // All records in a group belong to the same student
+		// const student = studentRecords[0].student; // All records in a group belong to the same student
 		const averages = {};
 
 		// Calculate weighted averages for all relevant fields
