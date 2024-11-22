@@ -21,6 +21,7 @@ import CourseMarkList from '../../../screens/pages/marks/CourseMarkList';
 import StudentResit from '../../../screens/pages/exam center/StudentResit';
 import AllResit from '../../../screens/pages/exam center/AllResit';
 import StudentResultAll from './../../../screens/pages/exam center/StudentResultAll';
+import { StudentAcademicTranscript } from '../../../screens/pages/exam center';
 function MarkRoute() {
 	return (
 		<Routes>
@@ -109,6 +110,14 @@ function MarkRoute() {
 				element={
 					<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
 						<StudentResultAll />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/all/academic-transcript"
+				element={
+					<Protected restrict={RIGHTS.TO_MAIN_ADMIN}>
+						<StudentAcademicTranscript />
 					</Protected>
 				}
 			/>
