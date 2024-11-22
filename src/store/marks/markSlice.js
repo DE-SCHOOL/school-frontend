@@ -10,6 +10,7 @@ const initialState = {
 	allMarkSheet: [],
 	studentCoursesMarks: [],
 	studentsCoursesMarks: [],
+	studentsCoursesMarksII: [],
 };
 
 export const createInitialMarkSheet = createAsyncThunk(
@@ -65,11 +66,12 @@ export const getAllStudentsMarkSheet = createAsyncThunk(
 
 export const updateStudentsMark = createAsyncThunk(
 	'mark/updateStudentsMark',
-	async ({ markType, id, marks, students }, thunkAPI) => {
+	async ({ markType, id, marks, students, academicYear }, thunkAPI) => {
 		try {
 			const res = await apiRequest('patch', `/api/v1/mark/${id}/${markType}`, {
 				students,
 				marks,
+				academicYear,
 			});
 			return res.data;
 		} catch (err) {
@@ -101,6 +103,24 @@ export const getStudentMarkSheetAllCourses = createAsyncThunk(
 
 export const getAllStudentMarkSheetAllCourses = createAsyncThunk(
 	'mark/getAllStudentMarkSheetAllCourses',
+	async (searchData, thunkAPI) => {
+		try {
+			const res = await apiRequest(
+				'post',
+				`/api/v1/mark/all/student/courses`,
+				searchData
+			);
+			return res.data;
+		} catch (err) {
+			let error = err.response.data?.message;
+			error = error ? error : 'Something went wrong';
+			return thunkAPI.rejectWithValue({ error });
+		}
+	}
+);
+
+export const getAllStudentMarkSheetAllCoursesII = createAsyncThunk(
+	'mark/getAllStudentMarkSheetAllCoursesII',
 	async (searchData, thunkAPI) => {
 		try {
 			const res = await apiRequest(
@@ -199,7 +219,23 @@ const markSlice = createSlice({
 				state.studentsCoursesMarks = action.payload.data;
 				state.isLoading = false;
 				state.errorMessage = null;
-			});
+			})
+			.addCase(getAllStudentMarkSheetAllCoursesII.rejected, (state, action) => {
+				// state.error = true;
+				// state.isLoading = false;
+				// state.errorMessage = action.payload?.error;
+			})
+			.addCase(getAllStudentMarkSheetAllCoursesII.pending, (state, action) => {
+				// state.isLoading = true;
+			})
+			.addCase(
+				getAllStudentMarkSheetAllCoursesII.fulfilled,
+				(state, action) => {
+					state.studentsCoursesMarksII = action.payload.data;
+					state.isLoading = false;
+					state.errorMessage = null;
+				}
+			);
 	},
 });
 
