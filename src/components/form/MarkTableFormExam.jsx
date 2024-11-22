@@ -63,6 +63,7 @@ function MarkTableFormExam({ students, length, semester, academicYear }) {
 				marks: studentsMark, //array of students marks
 				students: studentIDs, //array of students id
 				markType: `${semester}Exam`, //semester definition
+				academicYear
 			})
 		);
 	};
