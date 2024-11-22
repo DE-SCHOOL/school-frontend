@@ -55,7 +55,7 @@ function TableCourseMarks({ students, length, academicYear }) {
 					<tr>
 						<th>SN</th>
 						<th>Name (Matricule)</th>
-						<th>Level</th>
+						<th>Class</th>
 						<th>EXAM ( / 20)</th>
 						<th>Remark</th>
 					</tr>
