@@ -306,6 +306,23 @@ function TableAllResultAcademicTranscript({ student, styles = '' }) {
 											<tbody></tbody>
 										</table>
 									</div>
+									<div className="cummulative-gpa">
+										<div className="item">
+											<div className="title">Overall Credit Earned</div>
+											<div className="value">{Number(TCVII) + Number(TCV)}</div>
+										</div>
+										<div className="item">
+											<div className="title">Cummulative GPA</div>
+											<div className="value">
+												{(
+													(
+														Number(TWPII / (TCVII || 1)) +
+														Number(TWP / (TCV || 1))
+													).toFixed(2) / 2
+												)?.toFixed(2)}
+											</div>
+										</div>
+									</div>
 									<SchoolGrading />
 									{load.isLoading && <Loader />}
 								</div>
