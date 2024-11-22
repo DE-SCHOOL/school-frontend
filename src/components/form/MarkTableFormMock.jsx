@@ -61,6 +61,7 @@ function MarkTableFormMock({ students, length, semester, academicYear }) {
 				marks: studentsMark, //array of students marks
 				students: studentIDs, //array of students id
 				markType: `mock`, //semester definition
+				academicYear
 			})
 		);
 	};
