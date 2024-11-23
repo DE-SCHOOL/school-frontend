@@ -200,3 +200,7 @@
 	color: $color-primary;
 	text-transform: capitalize;
 }
+
+.main-table-container {
+	overflow-x: scroll !important;
+}
