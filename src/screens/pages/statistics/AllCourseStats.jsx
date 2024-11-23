@@ -59,10 +59,12 @@ function AllCourseStats() {
 		<div className="stud-print">
 			<section className="students">
 				{coursesStats !== undefined && coursesStats?.length !== 0 && (
-					<TableAllCourseStats
-						coursesStats={coursesStats}
-						styles="no-position"
-					/>
+					<div className="main-table-container">
+						<TableAllCourseStats
+							coursesStats={coursesStats}
+							styles="no-position"
+						/>
+					</div>
 				)}
 			</section>
 			{coursesStats?.length === 0 &&

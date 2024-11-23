@@ -49,18 +49,20 @@ function StaffCourseList() {
 				/>
 				{<PaggingNumSelect setItemsPerPage={setNumPages} />}
 				{staffCourse !== undefined && staffCourse?.length !== 0 && (
-					<TableStaffCourse
-						styles="mg-top"
-						tableData={
-							staffCourseState.length !== 0 ? staffCourseState : staffCourse
-						}
-						header={staffCourseHeader}
-						paggingNum={Number(numPages)}
-					/>
+					<div className="main-table-container">
+						<TableStaffCourse
+							styles="mg-top"
+							tableData={
+								staffCourseState.length !== 0 ? staffCourseState : staffCourse
+							}
+							header={staffCourseHeader}
+							paggingNum={Number(numPages)}
+						/>
+					</div>
 				)}
 
 				{/* Display paggination page only if staffs have been searched from db */}
-				{staffCourse !== undefined && staffCourse?.length !== 0 &&(
+				{staffCourse !== undefined && staffCourse?.length !== 0 && (
 					<Paggination
 						styles="mg-top"
 						paggingNum={numPages}

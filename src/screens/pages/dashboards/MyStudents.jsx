@@ -68,13 +68,15 @@ function MyStudentList() {
 
 				{/* Show student table information only if students data has loaded */}
 				{students.length !== 0 && (
-					<TableStudents
-						styles="mg-top"
-						// parse student data, or student searched data in case a search was performed
-						tableData={studentsState.length !== 0 ? studentsState : students}
-						header={studentHeader}
-						paggingNum={numPages}
-					/>
+					<div className="main-table-container">
+						<TableStudents
+							styles="mg-top"
+							// parse student data, or student searched data in case a search was performed
+							tableData={studentsState.length !== 0 ? studentsState : students}
+							header={studentHeader}
+							paggingNum={numPages}
+						/>
+					</div>
 				)}
 
 				{/* Show student table information only if students data has loaded */}

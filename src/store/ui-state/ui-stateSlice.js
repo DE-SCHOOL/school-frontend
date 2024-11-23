@@ -17,6 +17,12 @@ const uiStateSlice = createSlice({
 		toggleLeftNav(state) {
 			state.leftNavResponsive = !state.leftNavResponsive;
 		},
+		removeLeftNav(state) {
+			state.leftNavResponsive = true;
+		},
+		showLeftNav(state) {
+			state.leftNavResponsive = false;
+		},
 		setDeleteEntity(state, action) {
 			state.deleteOpt.type = action.payload.type;
 			state.deleteOpt.deleteID = action.payload.deleteID;
@@ -36,8 +42,13 @@ const uiStateSlice = createSlice({
 	},
 });
 
-export const { toggleLeftNav, setDeleteEntity, defaultDeleteEntity } =
-	uiStateSlice.actions;
+export const {
+	toggleLeftNav,
+	setDeleteEntity,
+	defaultDeleteEntity,
+	removeLeftNav,
+	showLeftNav,
+} = uiStateSlice.actions;
 const { reducer } = uiStateSlice;
 
 export default reducer;

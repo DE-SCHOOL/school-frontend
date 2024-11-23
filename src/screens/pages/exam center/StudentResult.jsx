@@ -33,7 +33,9 @@ function StudentResult() {
 			)}
 
 			{student !== undefined && Object.entries(student).length !== 0 && (
-				<TableResults student={student} />
+				<div className="main-table-container">
+					<TableResults student={student} />
+				</div>
 			)}
 			<span
 				className="button-main button-main-medium no-display"

@@ -139,12 +139,14 @@ function MarksAddCA() {
 			)}
 			{markSheet?.length === students?.length && (
 				<section className="marks mg-top">
-					<MarkTableFormCA
-						students={students}
-						length={markSheet.length}
-						semester={course?.semester}
-						academicYear={academicYear?.schoolYear}
-					/>
+					<div className="main-table-container">
+						<MarkTableFormCA
+							students={students}
+							length={markSheet.length}
+							semester={course?.semester}
+							academicYear={academicYear?.schoolYear}
+						/>
+					</div>
 				</section>
 			)}
 			{marks.error === true && marks.errorMessage && (

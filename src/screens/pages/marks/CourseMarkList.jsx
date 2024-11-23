@@ -62,12 +62,14 @@ function CourseMarkList() {
 				sub="Marks"
 			/>
 			<section className="marks mg-top">
-				<TableCourseMarks
-					students={students}
-					length={markSheet.length}
-					semester={course?.semester}
-					academicYear={academicYear?.schoolYear}
-				/>
+				<div className="main-table-container">
+					<TableCourseMarks
+						students={students}
+						length={markSheet.length}
+						semester={course?.semester}
+						academicYear={academicYear?.schoolYear}
+					/>
+				</div>
 			</section>
 			{marks.error === true && marks.errorMessage && (
 				<Failure message={marks.errorMessage} />
