@@ -201,6 +201,8 @@
 	text-transform: capitalize;
 }
 
-.main-table-container {
-	overflow-x: scroll !important;
+@media only screen and (max-width: 1020px) {
+	.main-table-container {
+		overflow-x: scroll !important;
+	}
 }
