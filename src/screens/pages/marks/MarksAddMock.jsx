@@ -139,12 +139,14 @@ function MarksAddMock() {
 			)}
 			{markSheet?.length === students?.length && (
 				<section className="marks mg-top">
-					<MarkTableFormMock
-						students={students}
-						length={markSheet.length}
-						semester={course?.semester}
-						academicYear={academicYear?.schoolYear}
-					/>
+					<div className="main-table-container">
+						<MarkTableFormMock
+							students={students}
+							length={markSheet.length}
+							semester={course?.semester}
+							academicYear={academicYear?.schoolYear}
+						/>
+					</div>
 				</section>
 			)}
 			{marks.error === true && marks.errorMessage && (

@@ -61,14 +61,16 @@ function DepartmentList() {
 				/>
 				{<PaggingNumSelect setItemsPerPage={setNumPages} />}
 				{departments !== undefined && departments?.length !== 0 && (
-					<TableDepartment
-						styles="mg-top"
-						tableData={
-							departmentState.length !== 0 ? departmentState : departments
-						}
-						header={departmentHeader}
-						paggingNum={Number(numPages)}
-					/>
+					<div className="main-table-container">
+						<TableDepartment
+							styles="mg-top"
+							tableData={
+								departmentState.length !== 0 ? departmentState : departments
+							}
+							header={departmentHeader}
+							paggingNum={Number(numPages)}
+						/>
+					</div>
 				)}
 
 				{/* Display paggination page only if staffs have been searched from db */}

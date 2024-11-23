@@ -65,12 +65,14 @@ function TeacherList() {
 				/>
 				{<PaggingNumSelect setItemsPerPage={setNumPages} />}
 				{staffs !== undefined && staffs?.length !== 0 && (
-					<TableStaff
-						styles="mg-top"
-						tableData={staffsState.length !== 0 ? staffsState : staffs}
-						header={staffHeader}
-						paggingNum={Number(numPages)}
-					/>
+					<div className="main-table-container">
+						<TableStaff
+							styles="mg-top"
+							tableData={staffsState.length !== 0 ? staffsState : staffs}
+							header={staffHeader}
+							paggingNum={Number(numPages)}
+						/>
+					</div>
 				)}
 
 				{/* Display paggination page only if staffs have been searched from db */}

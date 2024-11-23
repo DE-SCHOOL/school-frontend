@@ -164,3 +164,35 @@
 		}
 	}
 }
+
+@media only screen and (max-width: 500px) {
+	.main-nav {
+		transform: translateX(-3rem);
+		flex-direction: row-reverse;
+		z-index: 1000;
+		&__right,
+		&__left {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
+		&__right {
+			margin-right: 0.5rem;
+		}
+		&__res {
+			display: none;
+		}
+
+		&__semester,
+		&__year {
+			.semester {
+				top: 2.15rem;
+				left: 6%;
+			}
+			.year {
+				top: 5.15rem;
+				left: 62%;
+			}
+		}
+	}
+}

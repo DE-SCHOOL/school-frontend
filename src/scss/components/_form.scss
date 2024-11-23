@@ -93,6 +93,7 @@ form#department {
 		border-collapse: collapse;
 		table-layout: auto;
 		width: fit-contents;
+		min-width: 900px;
 		thead {
 			background-color: $color-primary;
 			color: $color-white;
