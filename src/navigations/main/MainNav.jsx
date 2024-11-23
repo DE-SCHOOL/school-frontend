@@ -12,7 +12,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import './../styles/main.scss';
 import { loggedIn } from '../../store/auth/authSlice';
 
-import { toggleLeftNav } from '../../store/ui-state/ui-stateSlice';
+import {
+	removeLeftNav,
+	showLeftNav,
+	toggleLeftNav,
+} from '../../store/ui-state/ui-stateSlice';
 
 import * as periodInfo from './../../utilities/periodInfo';
 import {
@@ -20,7 +24,7 @@ import {
 	getCurrentYear,
 	updateAcademicYears,
 } from '../../store/academic year/academicYearSlice';
-import { FaHome } from 'react-icons/fa';
+import { FaHome, FaTimes } from 'react-icons/fa';
 
 function MainNav({ styleClass = '' }) {
 	const [showSemester, setShowSemester] = useState(false);
@@ -56,6 +60,7 @@ function MainNav({ styleClass = '' }) {
 	};
 
 	const authUser = useSelector((state) => state.auth);
+	const stateUi = useSelector((state) => state.uiState.leftNavResponsive);
 	// console.log(authUser);
 	const dispatch = useDispatch();
 
@@ -65,6 +70,20 @@ function MainNav({ styleClass = '' }) {
 		dispatch(getAcademicYears());
 		dispatch(getCurrentYear());
 	}, [dispatch]);
+
+	window.onresize = function (e) {
+		if (window.innerWidth >= 1100 && window.innerWidth <= 1110) {
+			dispatch(removeLeftNav());
+		} else if (window.innerWidth > 1110 && window.innerWidth <= 1120) {
+			dispatch(showLeftNav());
+		}
+	};
+
+	window.onload = function (e) {
+		if (window.innerWidth <= 500) {
+			dispatch(removeLeftNav());
+		}
+	};
 
 	//if user is not logged in or user data got deleted from local storage
 	if (!authUser.isLoggedIn || !authUser.user) return navigate('/auth/signin');
@@ -80,11 +99,15 @@ function MainNav({ styleClass = '' }) {
 					className="button-main"
 					onClick={() => dispatch(toggleLeftNav())}
 				>
-					<FaBars className="main-nav__responsive" />
+					{stateUi ? (
+						<FaBars className="main-nav__responsive" />
+					) : (
+						<FaTimes className="main-nav__responsive" />
+					)}
 				</button>
 				<form
 					action=""
-					className="main-nav__form rounded__small"
+					className="main-nav__form rounded__small main-nav__res"
 					name="general-search"
 				>
 					<FaSistrix className="main-nav__form-search icons" />
@@ -97,14 +120,14 @@ function MainNav({ styleClass = '' }) {
 				</form>
 			</div>
 			<div className="main-nav__right">
-				<span className="main-nav__logo rounded">
+				<span className="main-nav__logo rounded main-nav__res">
 					<img
 						src={cmrLogo}
 						alt="Country logo"
 						className="image-pic__mini rounded"
 					/>
 				</span>
-				<span className="main-nav__notification rounded">
+				<span className="main-nav__notification rounded main-nav__res">
 					<FaRegBell className="icons" />
 				</span>
 				<span className="main-nav__semester rounded">
@@ -151,10 +174,10 @@ function MainNav({ styleClass = '' }) {
 					</span>
 				)}
 
-				<span className="main-nav__settings rounded">
+				<span className="main-nav__settings rounded main-nav__res">
 					<FiSettings className="icons" />
 				</span>
-				<div className="main-nav__profile">
+				<div className="main-nav__profile main-nav__res">
 					<div className="main-nav__profile-pic rounded">
 						<img
 							src={profile3}
