@@ -65,13 +65,15 @@ function ProgramList() {
 
 				{/* Show student table information only if students data has loaded */}
 				{programs !== undefined && programs?.length !== 0 && (
-					<TablePrograms
-						styles="mg-top"
-						// parse student data, or student searched data in case a search was performed
-						tableData={programsState.length !== 0 ? programsState : programs}
-						header={courseHeader}
-						paggingNum={numPages}
-					/>
+					<div className="main-table-container">
+						<TablePrograms
+							styles="mg-top"
+							// parse student data, or student searched data in case a search was performed
+							tableData={programsState.length !== 0 ? programsState : programs}
+							header={courseHeader}
+							paggingNum={numPages}
+						/>
+					</div>
 				)}
 
 				{/* Show student table information only if students data has loaded */}

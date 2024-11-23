@@ -67,13 +67,15 @@ function FormBList() {
 
 				{/* Show student table information only if students data has loaded */}
 				{formBs.length !== 0 && (
-					<TableFormB
-						styles="mg-top"
-						// parse student data, or student searched data in case a search was performed
-						tableData={formBData.length !== 0 ? formBData : formBs}
-						header={timetableHeader}
-						paggingNum={numPages}
-					/>
+					<div className="main-table-container">
+						<TableFormB
+							styles="mg-top"
+							// parse student data, or student searched data in case a search was performed
+							tableData={formBData.length !== 0 ? formBData : formBs}
+							header={timetableHeader}
+							paggingNum={numPages}
+						/>
+					</div>
 				)}
 
 				{/* Show student table information only if formBs data has loaded */}

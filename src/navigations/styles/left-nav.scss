@@ -126,3 +126,11 @@
 		}
 	}
 }
+
+@media only screen and (max-width: 500px) {
+	.left-nav {
+		transition: 0.5s all;
+		width: 100%;
+		z-index: 500;
+	}
+}

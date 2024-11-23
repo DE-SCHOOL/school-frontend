@@ -1,12 +1,11 @@
 @use './../variables' as *;
 
-.auth-animate{
-  height: 100vh;
-  width: 100vw;
-  border: 100%;
-  display: flex;
-  align-items: center;
-  margin-left: 4rem;
+.auth-animate {
+	height: 100vh;
+	width: 100vw;
+	border: 100%;
+	display: flex;
+	align-items: center;
 
   & .first{
     display: flex;
@@ -66,183 +65,186 @@
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
 
-
-    & .image{
-      background-color: $color-white;
-      height: 98%;
-      width: 98%;
-      border-radius: 100%;
-    }
-  }
+		& .image {
+			background-color: $color-white;
+			height: 98%;
+			width: 98%;
+			border-radius: 100%;
+		}
+	}
 }
-  
+@media only screen and (max-width: 500px) {
+	.auth-animate {
+		display: none;
+	}
+}
+
 @keyframes big {
-  10%{
-    height: 16rem;
-    width: 16rem;
-  }
-  20%{
-    height: 17rem;
-    width: 17rem;
-  }
-  30%{
-    height: 18rem;
-    width: 18rem;
-  }
-  40%{
-    height: 19rem;
-       width: 19rem;
-  }
-  50%{
-    height: 20rem;
-       width: 20rem;
-  }
-  60%{
-    height: 19rem;
-       width: 19rem;
-  }
-  70%{
-    height: 18rem;
-       width: 18rem;
-  }
-  80%{
-    height: 17rem;
-       width: 17rem;
-  }
-  90%{
-    height: 16rem;
-       width: 16rem;
-  }
-  100%{
-    height: 15rem;
-       width: 15rem;
-  }
+	10% {
+		height: 16rem;
+		width: 16rem;
+	}
+	20% {
+		height: 17rem;
+		width: 17rem;
+	}
+	30% {
+		height: 18rem;
+		width: 18rem;
+	}
+	40% {
+		height: 19rem;
+		width: 19rem;
+	}
+	50% {
+		height: 20rem;
+		width: 20rem;
+	}
+	60% {
+		height: 19rem;
+		width: 19rem;
+	}
+	70% {
+		height: 18rem;
+		width: 18rem;
+	}
+	80% {
+		height: 17rem;
+		width: 17rem;
+	}
+	90% {
+		height: 16rem;
+		width: 16rem;
+	}
+	100% {
+		height: 15rem;
+		width: 15rem;
+	}
 }
 @keyframes bigger {
-    10%{
-    height: 36rem;
-    width: 36rem;
-  }
-  20%{
-    height: 37rem;
-    width: 37rem;
-  }
-  30%{
-    height: 38rem;
-    width: 38rem;
-  }
-  40%{
-    height: 39rem;
-       width: 39rem;
-  }
-  50%{
-    height: 40rem;
-       width: 40rem;
-  }
-  60%{
-    height: 39rem;
-       width: 39rem;
-  }
-  70%{
-    height: 38rem;
-       width: 38rem;
-  }
-  80%{
-    height: 37rem;
-       width: 37rem;
-  }
-  90%{
-    height: 36rem;
-       width: 36rem;
-  }
-  100%{
-    height: 35rem;
-       width: 35rem;
-  }
+	10% {
+		height: 36rem;
+		width: 36rem;
+	}
+	20% {
+		height: 37rem;
+		width: 37rem;
+	}
+	30% {
+		height: 38rem;
+		width: 38rem;
+	}
+	40% {
+		height: 39rem;
+		width: 39rem;
+	}
+	50% {
+		height: 40rem;
+		width: 40rem;
+	}
+	60% {
+		height: 39rem;
+		width: 39rem;
+	}
+	70% {
+		height: 38rem;
+		width: 38rem;
+	}
+	80% {
+		height: 37rem;
+		width: 37rem;
+	}
+	90% {
+		height: 36rem;
+		width: 36rem;
+	}
+	100% {
+		height: 35rem;
+		width: 35rem;
+	}
 }
-@keyframes biggest{
-    10%{
-    height: 56rem;
-    width: 56rem;
-  }
-  20%{
-    height: 57rem;
-    width: 57rem;
-  }
-  30%{
-    height: 58rem;
-    width: 58rem;
-  }
-  40%{
-    height: 59rem;
-       width: 59rem;
-  }
-  50%{
-    height: 60rem;
-       width: 60rem;
-  }
-  60%{
-    height: 59rem;
-       width: 59rem;
-  }
-  70%{
-    height: 58rem;
-       width: 58rem;
-  }
-  80%{
-    height: 57rem;
-       width: 57rem;
-  }
-  90%{
-    height: 56rem;
-       width: 56rem;
-  }
-  100%{
-    height: 55rem;
-       width: 55rem;
-  }
-}
-
-@keyframes first{
-  10%{
-  height: 76rem;
-  width: 76rem;
-  }
-  20%{
-  height: 77rem;
-  width: 77rem;
-  }
-  30%{
-    height: 78rem;
-    width: 78rem;
-  }
-  40%{
-    height: 79rem;
-       width: 79rem;
-  }
-  50%{
-    height: 80rem;
-       width: 80rem;
-  }
-  60%{
-    height: 79rem;
-       width: 79rem;
-  }
-  70%{
-    height: 78rem;
-       width: 78rem;
-  }
-  80%{
-    height: 77rem;
-       width: 77rem;
-  }
-  90%{
-    height: 76rem;
-       width: 76rem;
-  }
-  100%{
-    height: 75rem;
-       width: 75rem;
-  }
+@keyframes biggest {
+	10% {
+		height: 56rem;
+		width: 56rem;
+	}
+	20% {
+		height: 57rem;
+		width: 57rem;
+	}
+	30% {
+		height: 58rem;
+		width: 58rem;
+	}
+	40% {
+		height: 59rem;
+		width: 59rem;
+	}
+	50% {
+		height: 60rem;
+		width: 60rem;
+	}
+	60% {
+		height: 59rem;
+		width: 59rem;
+	}
+	70% {
+		height: 58rem;
+		width: 58rem;
+	}
+	80% {
+		height: 57rem;
+		width: 57rem;
+	}
+	90% {
+		height: 56rem;
+		width: 56rem;
+	}
+	100% {
+		height: 55rem;
+		width: 55rem;
+	}
 }
 
+@keyframes first {
+	10% {
+		height: 76rem;
+		width: 76rem;
+	}
+	20% {
+		height: 77rem;
+		width: 77rem;
+	}
+	30% {
+		height: 78rem;
+		width: 78rem;
+	}
+	40% {
+		height: 79rem;
+		width: 79rem;
+	}
+	50% {
+		height: 80rem;
+		width: 80rem;
+	}
+	60% {
+		height: 79rem;
+		width: 79rem;
+	}
+	70% {
+		height: 78rem;
+		width: 78rem;
+	}
+	80% {
+		height: 77rem;
+		width: 77rem;
+	}
+	90% {
+		height: 76rem;
+		width: 76rem;
+	}
+	100% {
+		height: 75rem;
+		width: 75rem;
+	}
+}

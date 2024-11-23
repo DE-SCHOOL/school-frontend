@@ -73,7 +73,9 @@ function StudentResultSequence() {
 			)}
 
 			{student !== undefined && Object.entries(student).length !== 0 && (
-				<TableResultsSequence student={student} />
+				<div className="main-table-container">
+					<TableResultsSequence student={student} />
+				</div>
 			)}
 			<span
 				className="button-main button-main-medium no-display"

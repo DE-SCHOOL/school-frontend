@@ -41,7 +41,9 @@ function PrintList() {
 			<section className="students">
 				{/* Show student table information only if students data has loaded */}
 				{students.length !== 0 && (
-					<TablePrint styles="mg-top" tableData={students} />
+					<div className="main-table-container">
+						<TablePrint styles="mg-top" tableData={students} />
+					</div>
 				)}
 			</section>
 			{students?.length === 0 && load.isLoading === false && (

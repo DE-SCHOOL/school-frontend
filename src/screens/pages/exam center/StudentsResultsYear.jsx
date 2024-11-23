@@ -48,7 +48,9 @@ function StudentsResultsYear() {
 			/>
 
 			<section className="students">
-				<TableAllResultDataYear styles="no-position" />
+				<div className="main-table-container">
+					<TableAllResultDataYear styles="no-position" />
+				</div>
 			</section>
 			<Button styles={scroll} />
 			{load.isLoading && <Loader />}

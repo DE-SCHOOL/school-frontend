@@ -68,14 +68,16 @@ function StudentsResults() {
 
 				{/* Show student table information only if students data has loaded */}
 				{students.length !== 0 && (
-					<TableStudents
-						styles="mg-top"
-						// parse student data, or student searched data in case a search was performed
-						tableData={studentsState.length !== 0 ? studentsState : students}
-						header={studentHeader}
-						paggingNum={numPages}
-						tableType="results"
-					/>
+					<div className="main-table-container">
+						<TableStudents
+							styles="mg-top"
+							// parse student data, or student searched data in case a search was performed
+							tableData={studentsState.length !== 0 ? studentsState : students}
+							header={studentHeader}
+							paggingNum={numPages}
+							tableType="results"
+						/>
+					</div>
 				)}
 
 				{/* <SectionResultIntro title="View all results" styles="mg-bt mg-top" /> */}
