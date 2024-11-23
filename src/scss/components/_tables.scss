@@ -4,6 +4,7 @@ table {
 	&.standard {
 		border-collapse: collapse;
 		width: 100%;
+		min-width: 1020px;
 		tr.stud {
 			th {
 				text-align: center;
