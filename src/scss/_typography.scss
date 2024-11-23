@@ -129,7 +129,11 @@
 		width: 6rem;
 	}
 }
-
+@media only screen and (max-width: 500px) {
+	span.logo {
+		display: none !important;
+	}
+}
 .flex-align {
 	display: flex;
 	justify-content: space-between;
