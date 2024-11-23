@@ -10,6 +10,7 @@ import Loader from './../../components/loaders/Loader';
 //importing the action creator function
 import { login } from '../../store/auth/authSlice';
 import Failure from '../../components/signal/Failure';
+import { lmuLogo } from '../../assets/logos';
 
 function Signin() {
 	//initializing states for email and password
@@ -56,6 +57,9 @@ function Signin() {
 
 			<div className="form">
 				<form onSubmit={handleSignIn}>
+					<center>
+						<img src={lmuLogo} alt="Application logo" />
+					</center>
 					<h1>Login</h1>
 					<p>Enter your email and password to access your account</p>
 
