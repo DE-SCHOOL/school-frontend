@@ -70,15 +70,17 @@ function TimetableList() {
 
 				{/* Show student table information only if students data has loaded */}
 				{timetables.length !== 0 && (
-					<TableTimetable
-						styles="mg-top"
-						// parse student data, or student searched data in case a search was performed
-						tableData={
-							timetableState.length !== 0 ? timetableState : timetables
-						}
-						header={timetableHeader}
-						paggingNum={numPages}
-					/>
+					<div className="main-table-container">
+						<TableTimetable
+							styles="mg-top"
+							// parse student data, or student searched data in case a search was performed
+							tableData={
+								timetableState.length !== 0 ? timetableState : timetables
+							}
+							header={timetableHeader}
+							paggingNum={numPages}
+						/>
+					</div>
 				)}
 
 				{/* Show student table information only if timetables data has loaded */}

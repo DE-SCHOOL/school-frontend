@@ -57,14 +57,16 @@ function SpecialtyList() {
 				/>
 				{<PaggingNumSelect setItemsPerPage={setNumPages} />}
 				{specialties !== undefined && specialties?.length !== 0 && (
-					<TableSpecialties
-						styles="mg-top"
-						tableData={
-							specialtyState.length !== 0 ? specialtyState : specialties
-						}
-						header={departmentHeader}
-						paggingNum={Number(numPages)}
-					/>
+					<div className="main-table-container">
+						<TableSpecialties
+							styles="mg-top"
+							tableData={
+								specialtyState.length !== 0 ? specialtyState : specialties
+							}
+							header={departmentHeader}
+							paggingNum={Number(numPages)}
+						/>
+					</div>
 				)}
 
 				{/* Display paggination page only if staffs have been searched from db */}

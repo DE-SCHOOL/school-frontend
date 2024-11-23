@@ -65,13 +65,15 @@ function PollList() {
 
 				{/* Show student table information only if students data has loaded */}
 				{questions !== undefined && (
-					<TableQuestions
-						styles="mg-top"
-						// parse student data, or student searched data in case a search was performed
-						tableData={questionState.length !== 0 ? questionState : questions}
-						header={courseHeader}
-						paggingNum={numPages}
-					/>
+					<div className="main-table-container">
+						<TableQuestions
+							styles="mg-top"
+							// parse student data, or student searched data in case a search was performed
+							tableData={questionState.length !== 0 ? questionState : questions}
+							header={courseHeader}
+							paggingNum={numPages}
+						/>
+					</div>
 				)}
 
 				{/* Show student table information only if students data has loaded */}

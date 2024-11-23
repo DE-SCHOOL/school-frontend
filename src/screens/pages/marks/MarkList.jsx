@@ -70,14 +70,16 @@ function MarkList() {
 
 				{/* Show student table information only if students data has loaded */}
 				{courses !== undefined && courses?.length !== 0 && (
-					<TableCourses
-						styles="mg-top"
-						// parse student data, or student searched data in case a search was performed
-						tableData={coursesState.length !== 0 ? coursesState : courses}
-						header={courseHeader}
-						paggingNum={numPages}
-						tableType="course-marks"
-					/>
+					<div className="main-table-container">
+						<TableCourses
+							styles="mg-top"
+							// parse student data, or student searched data in case a search was performed
+							tableData={coursesState.length !== 0 ? coursesState : courses}
+							header={courseHeader}
+							paggingNum={numPages}
+							tableType="course-marks"
+						/>
+					</div>
 				)}
 
 				{/* Show student table information only if students data has loaded */}

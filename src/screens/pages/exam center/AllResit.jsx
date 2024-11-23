@@ -41,7 +41,9 @@ function PrintList() {
 			<section className="students">
 				{/* Show student table information only if students data has loaded */}
 				{students.length !== 0 && (
-					<TableAllResit styles="mg-top" tableData={students} />
+					<div className="main-table-container">
+						<TableAllResit styles="mg-top" tableData={students} />
+					</div>
 				)}
 			</section>
 			<Button styles={scroll} />

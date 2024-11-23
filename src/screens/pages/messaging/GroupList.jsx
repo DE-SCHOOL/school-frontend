@@ -76,13 +76,15 @@ function GroupList() {
 
 				{/* Show student table information only if students data has loaded */}
 				{students.length !== 0 && (
-					<TableGroups
-						styles="mg-top"
-						// parse student data, or student searched data in case a search was performed
-						tableData={groupsState.length !== 0 ? groupsState : groups}
-						header={groupHeader}
-						paggingNum={numPages}
-					/>
+					<div className="main-table-container">
+						<TableGroups
+							styles="mg-top"
+							// parse student data, or student searched data in case a search was performed
+							tableData={groupsState.length !== 0 ? groupsState : groups}
+							header={groupHeader}
+							paggingNum={numPages}
+						/>
+					</div>
 				)}
 
 				{/* Show student table information only if students data has loaded */}

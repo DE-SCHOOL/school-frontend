@@ -48,7 +48,9 @@ function StudentResultAll() {
 			/>
 
 			<section className="students">
-				<TableAllResultData styles="no-position" />
+				<div className="main-table-container">
+					<TableAllResultData styles="no-position" />
+				</div>
 			</section>
 			<Button styles={scroll} />
 			{load.isLoading && <Loader />}
