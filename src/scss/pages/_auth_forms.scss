@@ -18,6 +18,10 @@
 		background: $color-white;
 		// margin-top: 3rem;
 
+		& img {
+			display: none;
+		}
+
 		& h1 {
 			font-size: 4rem;
 		}
@@ -53,17 +57,69 @@
 	& .forgot {
 		display: flex;
 		align-items: center;
-		padding: 5px;
+		// padding: 5px;
 		margin-top: 10px;
 
 		& button {
 			margin-right: auto;
+			font-size: 2.2rem;
+			padding: 2rem;
+			width: 20rem;
+			height: 6rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
 		& a {
 			text-align: end;
 			// margin-left: 20px;
 			text-decoration: none;
 			color: $color-primary-light;
+		}
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	.auth {
+		background-color: $color-white;
+		& .form {
+			width: 100vw;
+			padding: 3rem;
+			margin-right: 0;
+
+			& img {
+				width: 20rem;
+				margin-top: 5rem;
+			}
+
+			& h1 {
+				font-size: 6rem;
+				text-align: center;
+			}
+
+			& p {
+				font-size: 2.2rem;
+			}
+
+			& .email,
+			& .password {
+				padding-right: 4rem;
+				label {
+					font-size: 1.7;
+					text-transform: capitalize;
+				}
+				& input,
+				& select {
+					box-sizing: content-box;
+					height: 20px;
+					width: 100%;
+					border: 1px solid #333;
+					padding: 2rem;
+					outline: none;
+					border-radius: 0.5rem;
+					font-size: 1.8rem;
+				}
+			}
 		}
 	}
 }
