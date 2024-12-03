@@ -63,7 +63,7 @@ function MarkTableFormExam({ students, length, semester, academicYear }) {
 				marks: studentsMark, //array of students marks
 				students: studentIDs, //array of students id
 				markType: `${semester}Exam`, //semester definition
-				academicYear
+				academicYear,
 			})
 		);
 	};
@@ -75,7 +75,7 @@ function MarkTableFormExam({ students, length, semester, academicYear }) {
 	if (marks?.markSheet?.length === 0) {
 		return;
 	}
-	console.log(marks, semester);
+	// console.log(marks, semester);
 	return (
 		<div className="table-form">
 			<form
@@ -125,17 +125,17 @@ function MarkTableFormExam({ students, length, semester, academicYear }) {
 					<tbody>
 						{semester !== undefined &&
 							marks?.markSheet?.map((sheet, index) => {
-								let studentLevel = correctStudentLevelData(
+								let studentSpecialty = correctStudentLevelData(
 									sheet?.student,
 									students
-								)?.level;
+								)?.specialty?.name;
 								return (
 									<tr key={index}>
 										<td>{index + 1}</td>
 										<td className="stud-name">
 											{sheet?.student.name} ({sheet?.student.matricule})
 										</td>
-										<td>{returnClassString(studentLevel)}</td>
+										<td>{studentSpecialty}</td>
 										<td>
 											<input
 												type="number"
