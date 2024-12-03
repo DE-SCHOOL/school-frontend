@@ -98,13 +98,13 @@ function StudentInfo({ student, styles = '', identify = '', isTerm = true }) {
 						<td className="title title-border">full names</td>
 						<td>{student.name}</td>
 						<td className="title title-border">class</td>
-						<td>{returnClassString(student.level)}</td>
+						<td>{student.specialty.name}</td>
 					</tr>
 					<tr>
 						<td className="title title-border">registration number</td>
 						<td>f1280373</td>
-						<td className="title title-border">specialty</td>
-						<td>{student.specialty.name}</td>
+						<td className="title title-border"></td>
+						<td></td>
 					</tr>
 					<tr>
 						<td className="title">date of birth</td>
