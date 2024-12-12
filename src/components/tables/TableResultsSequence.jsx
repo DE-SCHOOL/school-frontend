@@ -23,7 +23,11 @@ function TableResultsSequence({ student, styles = '' }) {
 	let studentAverages = [];
 	let studentRanking = [];
 	// console.log(marksInfo.length, 'JASIO', marksInfo, marksInfo.flat().length);
-	if (marksInfo.length > 0 && marksInfo.flat().length > 0) {
+	if (
+		marksInfo.length > 0 &&
+		marksInfo.flat().length > 0 &&
+		!marksInfo.some((markArray) => markArray.length === 0)
+	) {
 		const data = JSON.parse(JSON.stringify([...marksInfo]));
 		marksInfoNew = rankStudentResults(data);
 		studentAverages = calculateStudentAverages(data);
