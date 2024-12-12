@@ -52,7 +52,11 @@ function TableAllResultDataTerm({ student, styles = '' }) {
 	}, [students?.length, academicYear?._id]);
 
 	//If no student is found
-	if (students?.length === 0) {
+	if (
+		students?.length === 0 &&
+		marksInfo.flat().length > 0 &&
+		!marksInfo.some((markArray) => markArray.length === 0)
+	) {
 		return (
 			<h1
 				style={{ textAlign: 'center' }}

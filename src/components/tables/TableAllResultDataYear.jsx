@@ -59,7 +59,11 @@ function TableAllResultDataYear({ student, styles = '' }) {
 	let marksInfoNewII = [];
 	let courseAverages = null;
 	let studentRanks = null;
-	if (marksInfo.length > 0) {
+	if (
+		marksInfo.length > 0 &&
+		marksInfo.flat().length > 0 &&
+		!marksInfo.some((markArray) => markArray.length === 0)
+	) {
 		const data = JSON.parse(JSON.stringify([...marksInfo]));
 		marksInfoNew = rankStudentResults(data);
 		marksInfoNewII = calculateStudentYearlyCourseRank(
