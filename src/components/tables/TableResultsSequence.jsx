@@ -22,7 +22,7 @@ function TableResultsSequence({ student, styles = '' }) {
 	let marksInfoNew = [];
 	let studentAverages = [];
 	let studentRanking = [];
-	// console.log(marksInfo.length, 'JASIO', marksInfo, marksInfo.flat().length);
+	console.log(marksInfo.length, 'JASIO', marksInfo, marksInfo.flat().length);
 	if (marksInfo.length > 0 && marksInfo.flat().length > 0) {
 		const data = JSON.parse(JSON.stringify([...marksInfo]));
 		marksInfoNew = rankStudentResults(data);
