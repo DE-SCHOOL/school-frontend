@@ -71,7 +71,7 @@ function TableResultsSequence({ student, styles = '' }) {
 									{markInfo.course.credit_value * markInfo[`${sequence}Exam`]}
 								</td>
 								<td>{markInfo[`${sequence}ExamRank`]}</td>
-								<td>{markInfo[`${sequence}ExamClassAverage`]}</td>
+								<td>{markInfo[`${sequence}ExamClassAverage`]?.toFixed(2)}</td>
 								<td>{getGradeRemark(markInfo[`${sequence}Exam`])}</td>
 							</tr>
 						);
@@ -91,7 +91,7 @@ function TableResultsSequence({ student, styles = '' }) {
 						<td>Average</td>
 						<td>
 							{studentRanking.length > 0 && (
-								<span>{studentRank[0].totalAverage}</span>
+								<span>{studentRank[0].totalAverage?.toFixed(2)}</span>
 							)}
 						</td>
 					</tr>

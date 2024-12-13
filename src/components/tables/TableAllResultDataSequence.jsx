@@ -129,7 +129,7 @@ function TableAllResultDataSequence({ student, styles = '' }) {
 																studResult[`${sequence}Exam`]}
 														</td>
 														<td>{studResult[`${sequence}ExamRank`]}</td>
-														<td>{studResult[`${sequence}ExamClassAverage`]}</td>
+														<td>{studResult[`${sequence}ExamClassAverage`]?.toFixed(2)}</td>
 														<td>
 															{getGradeRemark(studResult[`${sequence}Exam`])}
 														</td>
@@ -151,7 +151,7 @@ function TableAllResultDataSequence({ student, styles = '' }) {
 									<tbody>
 										<tr>
 											<td>Average</td>
-											<td>{studentResult.totalAverage}</td>
+											<td>{studentResult.totalAverage?.toFixed(2)}</td>
 										</tr>
 										<tr>
 											<td>Position</td>

@@ -81,7 +81,7 @@ function TableResults({ student, styles = '' }) {
 								</td>
 								<td>{markInfo[`${periodInfo.academicTerm()}TotalRank`]}</td>
 								<td>
-									{markInfo[`${periodInfo.academicTerm()}TotalClassAverage`]}
+									{markInfo[`${periodInfo.academicTerm()}TotalClassAverage`]?.toFixed(2)}
 								</td>
 								<td>
 									{getGradeRemark(
@@ -106,7 +106,7 @@ function TableResults({ student, styles = '' }) {
 						<td>Average</td>
 						<td>
 							{studentRanking.length > 0 && (
-								<span>{studentRank[0].totalAverage}</span>
+								<span>{studentRank[0].totalAverage?.toFixed(2)}</span>
 							)}
 						</td>
 					</tr>

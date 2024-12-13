@@ -212,7 +212,7 @@ function TableAllResultDataTerm({ student, styles = '' }) {
 															{
 																studResult[
 																	`${periodInfo.academicTerm()}TotalClassAverage`
-																]
+																]?.toFixed(2)
 															}
 														</td>
 														<td>
@@ -271,7 +271,7 @@ function TableAllResultDataTerm({ student, styles = '' }) {
 									<tbody>
 										<tr>
 											<td>Average</td>
-											<td>{studentResult.totalAverage}</td>
+											<td>{studentResult.totalAverage?.toFixed(2)}</td>
 										</tr>
 										<tr>
 											<td>Position</td>
