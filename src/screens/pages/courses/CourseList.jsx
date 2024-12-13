@@ -62,7 +62,7 @@ function CourseList() {
 				<SectionMainIntro
 					title="Subjects"
 					styles="mg-bt mg-top"
-					link={'/courses/add'}
+					link={'/subjects/add'}
 				/>
 
 				{/* Select the number of items to be shown on a page */}
