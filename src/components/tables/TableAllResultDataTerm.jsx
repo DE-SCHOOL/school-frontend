@@ -70,7 +70,11 @@ function TableAllResultDataTerm({ student, styles = '' }) {
 	let marksInfoNew = [];
 	let studentAverages = [];
 	let studentRanking = [];
-	if (marksInfo.length > 0) {
+	if (
+		marksInfo.length > 0 &&
+		marksInfo.flat().length > 0 &&
+		!marksInfo.some((markArray) => markArray.length === 0)
+	) {
 		const data = JSON.parse(JSON.stringify([...marksInfo]));
 		marksInfoNew = rankStudentResults(data);
 		studentAverages = calculateStudentAverages(data);
@@ -209,11 +213,9 @@ function TableAllResultDataTerm({ student, styles = '' }) {
 															}
 														</td>
 														<td>
-															{
-																studResult[
-																	`${periodInfo.academicTerm()}TotalClassAverage`
-																]?.toFixed(2)
-															}
+															{studResult[
+																`${periodInfo.academicTerm()}TotalClassAverage`
+															]?.toFixed(2)}
 														</td>
 														<td>
 															{getGradeRemark(
