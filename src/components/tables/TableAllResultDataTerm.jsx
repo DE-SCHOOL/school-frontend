@@ -139,6 +139,7 @@ function TableAllResultDataTerm({ student, styles = '' }) {
 											<th>Position</th>
 											<th>Class Avg</th>
 											<th>Remark</th>
+											<th>Signature</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -222,6 +223,7 @@ function TableAllResultDataTerm({ student, styles = '' }) {
 																studResult[`${periodInfo.academicTerm()}Total`]
 															)}
 														</td>
+														<td></td>
 													</tr>
 												);
 											} else {
