@@ -70,6 +70,7 @@ function TableAllResultDataTerm({ student, styles = '' }) {
 	let marksInfoNew = [];
 	let studentAverages = [];
 	let studentRanking = [];
+	let maxAvg, minAvg, totalPassed, classAverage;
 	if (
 		marksInfo.length > 0 &&
 		marksInfo.flat().length > 0 &&
@@ -82,6 +83,13 @@ function TableAllResultDataTerm({ student, styles = '' }) {
 			studentAverages,
 			`${periodInfo.academicTerm()}TotalAverage`
 		);
+		maxAvg = Math.max(...studentRanking.map((el) => el.totalAverage));
+		minAvg = Math.min(...studentRanking.map((el) => el.totalAverage));
+		totalPassed = studentRanking.filter((el) => el.totalAverage >= 10).length;
+		classAverage =
+			studentRanking
+				.map((el) => el.totalAverage)
+				.reduce((sum, cur) => sum + cur, 0) / studentRanking.length;
 	}
 
 	return (
@@ -266,34 +274,51 @@ function TableAllResultDataTerm({ student, styles = '' }) {
 								<table className="results student-results border">
 									<thead>
 										<tr>
-											<th colSpan={2}>Student's Results</th>
-											<th colSpan={2}>The Principal</th>
+											<th colSpan={4}>Student's Results</th>
+											<th colSpan={4}>The Principal</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
+											<td>Total Marks</td>
+											<td>
+												{TOTAL_MARKS} /{20 * TOTAL_COEF}
+											</td>
+											<td>Total Coefficient</td>
+											<td>{TOTAL_COEF}</td>
+										</tr>
+										<tr></tr>
+										<tr>
 											<td>Average</td>
 											<td>{studentResult.totalAverage?.toFixed(2)}</td>
-										</tr>
-										<tr>
 											<td>Position</td>
 											<td>
 												{studentResult.rank} / {studentRanking.length}
 											</td>
 										</tr>
 										<tr>
-											<td>Total Marks</td>
+											<td>Max Average</td>
+											<td>{maxAvg.toFixed(2)}</td>
+											<td>Min Average</td>
+											<td>{minAvg.toFixed(2)}</td>
+										</tr>
+										<tr>
+											<td>Class Average</td>
+											<td>{classAverage.toFixed(2)}</td>
+											<td>% passed</td>
 											<td>
-												{TOTAL_MARKS} /{20 * TOTAL_COEF}
+												{((totalPassed / studentRanking.length) * 100).toFixed(
+													2
+												)}
 											</td>
 										</tr>
 										<tr>
-											<td>Total Coefficient</td>
-											<td>{TOTAL_COEF}</td>
-										</tr>
-										<tr>
-											<td colSpan={2}>
-												{getGradeRemark(studentResult.totalAverage)}
+											<td colSpan={4}>
+												{studentRanking.length > 0 && (
+													<span>
+														{getGradeRemark(studentResult.totalAverage)}
+													</span>
+												)}
 											</td>
 										</tr>
 									</tbody>

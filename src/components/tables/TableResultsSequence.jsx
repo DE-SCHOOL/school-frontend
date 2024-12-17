@@ -40,6 +40,15 @@ function TableResultsSequence({ student, styles = '' }) {
 		(el) => el.studentId === student._id
 	);
 
+	const maxAvg = Math.max(...studentRanking.map((el) => el.totalAverage));
+	const minAvg = Math.min(...studentRanking.map((el) => el.totalAverage));
+	const totalPassed = studentRanking.filter(
+		(el) => el.totalAverage >= 10
+	).length;
+	const classAverage =
+		studentRanking
+			.map((el) => el.totalAverage)
+			.reduce((sum, cur) => sum + cur, 0) / studentRanking.length;
 	let TOTAL_MARKS = 0;
 	let TOTAL_COEF = 0;
 	return (
@@ -82,11 +91,19 @@ function TableResultsSequence({ student, styles = '' }) {
 			<table className="results student-results border">
 				<thead>
 					<tr>
-						<th colSpan={2}>Student's Results</th>
-						<th colSpan={2}>The Principal</th>
+						<th colSpan={4}>Student's Results</th>
+						<th colSpan={4}>The Principal</th>
 					</tr>
 				</thead>
 				<tbody>
+					<tr>
+						<td>Total Marks</td>
+						<td>
+							{TOTAL_MARKS} /{20 * TOTAL_COEF}
+						</td>
+						<td>Total Coefficient</td>
+						<td>{TOTAL_COEF}</td>
+					</tr>
 					<tr>
 						<td>Average</td>
 						<td>
@@ -94,8 +111,6 @@ function TableResultsSequence({ student, styles = '' }) {
 								<span>{studentRank[0].totalAverage?.toFixed(2)}</span>
 							)}
 						</td>
-					</tr>
-					<tr>
 						<td>Position</td>
 						<td>
 							{studentRanking.length > 0 && (
@@ -106,17 +121,19 @@ function TableResultsSequence({ student, styles = '' }) {
 						</td>
 					</tr>
 					<tr>
-						<td>Total Marks</td>
-						<td>
-							{TOTAL_MARKS} /{20 * TOTAL_COEF}
-						</td>
+						<td>Max Average</td>
+						<td>{maxAvg.toFixed(2)}</td>
+						<td>Min Average</td>
+						<td>{minAvg.toFixed(2)}</td>
 					</tr>
 					<tr>
-						<td>Total Coefficient</td>
-						<td>{TOTAL_COEF}</td>
+						<td>Class Average</td>
+						<td>{classAverage.toFixed(2)}</td>
+						<td>% passed</td>
+						<td>{((totalPassed / studentRanking.length) * 100).toFixed(2)}</td>
 					</tr>
 					<tr>
-						<td colSpan={2}>
+						<td colSpan={4}>
 							{studentRanking.length > 0 && (
 								<span>{getGradeRemark(studentRank[0].totalAverage)}</span>
 							)}
