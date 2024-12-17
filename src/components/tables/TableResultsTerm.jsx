@@ -81,7 +81,9 @@ function TableResults({ student, styles = '' }) {
 								</td>
 								<td>{markInfo[`${periodInfo.academicTerm()}TotalRank`]}</td>
 								<td>
-									{markInfo[`${periodInfo.academicTerm()}TotalClassAverage`]?.toFixed(2)}
+									{markInfo[
+										`${periodInfo.academicTerm()}TotalClassAverage`
+									]?.toFixed(2)}
 								</td>
 								<td>
 									{getGradeRemark(
@@ -131,7 +133,12 @@ function TableResults({ student, styles = '' }) {
 						<td>{TOTAL_COEF}</td>
 					</tr>
 					<tr>
-						<td colSpan={2}>
+						<td>Conduct</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Performance Remark</td>
+						<td>
 							{studentRanking.length > 0 && (
 								<span>{getGradeRemark(studentRank[0].totalAverage)}</span>
 							)}

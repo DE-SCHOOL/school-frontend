@@ -129,7 +129,11 @@ function TableAllResultDataSequence({ student, styles = '' }) {
 																studResult[`${sequence}Exam`]}
 														</td>
 														<td>{studResult[`${sequence}ExamRank`]}</td>
-														<td>{studResult[`${sequence}ExamClassAverage`]?.toFixed(2)}</td>
+														<td>
+															{studResult[
+																`${sequence}ExamClassAverage`
+															]?.toFixed(2)}
+														</td>
 														<td>
 															{getGradeRemark(studResult[`${sequence}Exam`])}
 														</td>
@@ -170,9 +174,12 @@ function TableAllResultDataSequence({ student, styles = '' }) {
 											<td>{TOTAL_COEF}</td>
 										</tr>
 										<tr>
-											<td colSpan={2}>
-												{getGradeRemark(studentResult.totalAverage)}
-											</td>
+											<td>Conduct</td>
+											<td></td>
+										</tr>
+										<tr>
+											<td>Performance Remark</td>
+											<td>{getGradeRemark(studentResult.totalAverage)}</td>
 										</tr>
 									</tbody>
 								</table>

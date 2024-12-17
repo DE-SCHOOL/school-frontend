@@ -116,7 +116,12 @@ function TableResultsSequence({ student, styles = '' }) {
 						<td>{TOTAL_COEF}</td>
 					</tr>
 					<tr>
-						<td colSpan={2}>
+						<td>Conduct</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Performance Remark</td>
+						<td>
 							{studentRanking.length > 0 && (
 								<span>{getGradeRemark(studentRank[0].totalAverage)}</span>
 							)}

@@ -292,9 +292,12 @@ function TableAllResultDataTerm({ student, styles = '' }) {
 											<td>{TOTAL_COEF}</td>
 										</tr>
 										<tr>
-											<td colSpan={2}>
-												{getGradeRemark(studentResult.totalAverage)}
-											</td>
+											<td>Conduct</td>
+											<td></td>
+										</tr>
+										<tr>
+											<td>Performance Remark</td>
+											<td>{getGradeRemark(studentResult.totalAverage)}</td>
 										</tr>
 									</tbody>
 								</table>

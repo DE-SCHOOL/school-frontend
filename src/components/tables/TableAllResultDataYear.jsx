@@ -283,9 +283,12 @@ function TableAllResultDataYear({ student, styles = '' }) {
 											<td>{TOTAL_COEF}</td>
 										</tr>
 										<tr>
-											<td colSpan={2}>
-												{getGradeRemark(studentResult.overallAverage)}
-											</td>
+											<td>Conduct</td>
+											<td></td>
+										</tr>
+										<tr>
+											<td>Performance Remark</td>
+											<td>{getGradeRemark(studentResult.overallAverage)}</td>
 										</tr>
 									</tbody>
 								</table>
