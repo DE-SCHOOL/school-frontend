@@ -54,6 +54,7 @@ function TableResultsSequence({ student, styles = '' }) {
 						<th>Position</th>
 						<th>Class Avg</th>
 						<th>Remark</th>
+						<th>Signature</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -73,6 +74,7 @@ function TableResultsSequence({ student, styles = '' }) {
 								<td>{markInfo[`${sequence}ExamRank`]}</td>
 								<td>{markInfo[`${sequence}ExamClassAverage`]?.toFixed(2)}</td>
 								<td>{getGradeRemark(markInfo[`${sequence}Exam`])}</td>
+								<td></td>
 							</tr>
 						);
 					})}
@@ -83,7 +85,8 @@ function TableResultsSequence({ student, styles = '' }) {
 				<thead>
 					<tr>
 						<th colSpan={2}>Student's Results</th>
-						<th colSpan={2}>The Principal</th>
+						<th>The Dean</th>
+						<th>The Principal</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -94,6 +97,7 @@ function TableResultsSequence({ student, styles = '' }) {
 								<span>{studentRank[0].totalAverage?.toFixed(2)}</span>
 							)}
 						</td>
+						<td className="border-bt-none"></td>
 					</tr>
 					<tr>
 						<td>Position</td>
@@ -104,20 +108,24 @@ function TableResultsSequence({ student, styles = '' }) {
 								</span>
 							)}
 						</td>
+						<td className="border-bt-none"></td>
 					</tr>
 					<tr>
 						<td>Total Marks</td>
 						<td>
 							{TOTAL_MARKS} /{20 * TOTAL_COEF}
 						</td>
+						<td className="border-bt-none"></td>
 					</tr>
 					<tr>
 						<td>Total Coefficient</td>
 						<td>{TOTAL_COEF}</td>
+						<td className="border-bt-none"></td>
 					</tr>
 					<tr>
 						<td>Conduct</td>
 						<td></td>
+						<td className="border-bt-none"></td>
 					</tr>
 					<tr>
 						<td>Performance Remark</td>
@@ -126,6 +134,7 @@ function TableResultsSequence({ student, styles = '' }) {
 								<span>{getGradeRemark(studentRank[0].totalAverage)}</span>
 							)}
 						</td>
+						<td className="border-bt-none"></td>
 					</tr>
 				</tbody>
 			</table>
