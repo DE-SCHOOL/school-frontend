@@ -267,37 +267,44 @@ function TableAllResultDataTerm({ student, styles = '' }) {
 									<thead>
 										<tr>
 											<th colSpan={2}>Student's Results</th>
-											<th colSpan={2}>The Principal</th>
+											<th>The Dean</th>
+											<th>The Principal</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
 											<td>Average</td>
 											<td>{studentResult.totalAverage?.toFixed(2)}</td>
+											<td className="border-bt-none"></td>
 										</tr>
 										<tr>
 											<td>Position</td>
 											<td>
 												{studentResult.rank} / {studentRanking.length}
 											</td>
+											<td className="border-bt-none"></td>
 										</tr>
 										<tr>
 											<td>Total Marks</td>
 											<td>
 												{TOTAL_MARKS} /{20 * TOTAL_COEF}
 											</td>
+											<td className="border-bt-none"></td>
 										</tr>
 										<tr>
 											<td>Total Coefficient</td>
 											<td>{TOTAL_COEF}</td>
+											<td className="border-bt-none"></td>
 										</tr>
 										<tr>
 											<td>Conduct</td>
 											<td></td>
+											<td className="border-bt-none"></td>
 										</tr>
 										<tr>
 											<td>Performance Remark</td>
 											<td>{getGradeRemark(studentResult.totalAverage)}</td>
+											<td className="border-bt-none"></td>
 										</tr>
 									</tbody>
 								</table>
