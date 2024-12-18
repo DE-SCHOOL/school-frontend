@@ -111,9 +111,9 @@ function TableResults({ student, styles = '' }) {
 			<table className="results student-results border">
 				<thead>
 					<tr>
-						<th colSpan={2}>Student's Results</th>
-						<th>The Dean</th>
-						<th>The Principal</th>
+						<th colSpan={4}>Student's Results</th>
+						<th colSpan={2}>The Dean</th>
+						<th colSpan={2}>The Principal</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -124,6 +124,7 @@ function TableResults({ student, styles = '' }) {
 						</td>
 						<td>Total Coefficient</td>
 						<td>{TOTAL_COEF}</td>
+						<td className="border-bt-none" colSpan={2}></td>
 					</tr>
 					<tr>
 						<td>Average</td>
@@ -132,7 +133,6 @@ function TableResults({ student, styles = '' }) {
 								<span>{studentRank[0].totalAverage?.toFixed(2)}</span>
 							)}
 						</td>
-						<td className="border-bt-none"></td>
 						<td>Position</td>
 						<td>
 							{studentRanking.length > 0 && (
@@ -141,26 +141,21 @@ function TableResults({ student, styles = '' }) {
 								</span>
 							)}
 						</td>
-						<td className="border-bt-none"></td>
+						<td className="border-bt-none" colSpan={2}></td>
 					</tr>
 					<tr>
 						<td>Max Average</td>
 						<td>{maxAvg.toFixed(2)}</td>
 						<td>Min Average</td>
 						<td>{minAvg.toFixed(2)}</td>
-						<td className="border-bt-none"></td>
+						<td className="border-bt-none" colSpan={2}></td>
 					</tr>
 					<tr>
 						<td>Class Average</td>
 						<td>{classAverage.toFixed(2)}</td>
 						<td>% passed</td>
 						<td>{((totalPassed / studentRanking.length) * 100).toFixed(2)}</td>
-						<td className="border-bt-none"></td>
-					</tr>
-					<tr>
-						<td>Conduct</td>
-						<td></td>
-						<td className="border-bt-none"></td>
+						<td className="border-bt-none" colSpan={2}></td>
 					</tr>
 					<tr>
 						<td>Performance Remark</td>
@@ -169,7 +164,22 @@ function TableResults({ student, styles = '' }) {
 								<span>{getGradeRemark(studentRank[0].totalAverage)}</span>
 							)}
 						</td>
-						<td className="border-bt-none"></td>
+						<td>Conduct</td>
+						<td></td>
+						<td className="border-bt-none" colSpan={2}></td>
+					</tr>
+					<tr>
+						<td colSpan={4}>
+							<span className="caps">
+								Assessment of Conduct: Excellent/V. Good/Fair/Poor
+							</span>
+							<br />
+							<span className="caps">
+								Final Class Council Decision: Honour
+								Roll/Passed/Failed/Warned/Expelled
+							</span>
+						</td>
+						<td className="border-bt-none" colSpan={2}></td>
 					</tr>
 				</tbody>
 			</table>
