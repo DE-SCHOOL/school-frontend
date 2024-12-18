@@ -65,6 +65,7 @@ function TableAllResultDataSequence({ student, styles = '' }) {
 	let marksInfoNew = [];
 	let studentAverages = [];
 	let studentRanking = [];
+	let maxAvg, minAvg, totalPassed, classAverage;
 	if (
 		marksInfo.length > 0 &&
 		marksInfo.flat().length > 0 &&
@@ -74,6 +75,13 @@ function TableAllResultDataSequence({ student, styles = '' }) {
 		marksInfoNew = rankStudentResults(data);
 		studentAverages = calculateStudentAverages(data);
 		studentRanking = rankStudents(studentAverages, `${sequence}ExamAverage`);
+		maxAvg = Math.max(...studentRanking.map((el) => el.totalAverage));
+		minAvg = Math.min(...studentRanking.map((el) => el.totalAverage));
+		totalPassed = studentRanking.filter((el) => el.totalAverage >= 10).length;
+		classAverage =
+			studentRanking
+				.map((el) => el.totalAverage)
+				.reduce((sum, cur) => sum + cur, 0) / studentRanking.length;
 	}
 
 	return (
@@ -157,11 +165,18 @@ function TableAllResultDataSequence({ student, styles = '' }) {
 									</thead>
 									<tbody>
 										<tr>
+											<td>Total Marks</td>
+											<td>
+												{TOTAL_MARKS} /{20 * TOTAL_COEF}
+											</td>
+											<td>Total Coefficient</td>
+											<td>{TOTAL_COEF}</td>
+										</tr>
+										<tr></tr>
+										<tr>
 											<td>Average</td>
 											<td>{studentResult.totalAverage?.toFixed(2)}</td>
 											<td className="border-bt-none"></td>
-										</tr>
-										<tr>
 											<td>Position</td>
 											<td>
 												{studentResult.rank} / {studentRanking.length}
@@ -169,9 +184,19 @@ function TableAllResultDataSequence({ student, styles = '' }) {
 											<td className="border-bt-none"></td>
 										</tr>
 										<tr>
-											<td>Total Marks</td>
+											<td>Max Average</td>
+											<td>{maxAvg.toFixed(2)}</td>
+											<td>Min Average</td>
+											<td>{minAvg.toFixed(2)}</td>
+										</tr>
+										<tr>
+											<td>Class Average</td>
+											<td>{classAverage.toFixed(2)}</td>
+											<td>% passed</td>
 											<td>
-												{TOTAL_MARKS} /{20 * TOTAL_COEF}
+												{((totalPassed / studentRanking.length) * 100).toFixed(
+													2
+												)}
 											</td>
 											<td className="border-bt-none"></td>
 										</tr>
