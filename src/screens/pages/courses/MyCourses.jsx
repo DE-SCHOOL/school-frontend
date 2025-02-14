@@ -76,7 +76,7 @@ function MyCourses() {
 							}
 							header={courseHeader}
 							paggingNum={numPages}
-							tableType="personal"
+							// tableType="personal"
 						/>
 					</div>
 				)}
