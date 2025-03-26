@@ -15,6 +15,17 @@ function StaffCourseForm({ styles }) {
 	const courses = useSelector((state) => state.courses.courses.data);
 	const staffs = useSelector((state) => state.staffs.teachers.data);
 	const staffCourse = useSelector((state) => state.dashboard);
+	let sortedStaffs = [];
+	let sortedCourses = [];
+	if (staffs?.length > 0) {
+		sortedStaffs = [...staffs];
+	}
+	sortedStaffs.sort((a, b) => (a.name > b.name ? 1 : -1));
+
+	if (courses?.length > 0) {
+		sortedCourses = [...courses];
+	}
+	sortedCourses.sort((a, b) => (a.name > b.name ? 1 : -1));
 
 	//initialize the main hooks
 	const staff = useRef();
@@ -58,7 +69,7 @@ function StaffCourseForm({ styles }) {
 						Staff name <em>*</em>
 					</span>
 					<select name="staff" id="" ref={staff}>
-						{staffs?.map((staf, index) => (
+						{sortedStaffs?.map((staf, index) => (
 							<option value={staf._id} key={index}>
 								{`${staf.name} (${staf.matricule})`}
 							</option>
@@ -69,8 +80,8 @@ function StaffCourseForm({ styles }) {
 					<span className="desc">
 						Course name <em>*</em>
 					</span>
-					<select name="credit" id="" ref={course} multiple size="3">
-						{courses?.map((course, index) => (
+					<select name="credit" id="" ref={course} multiple size="15">
+						{sortedCourses?.map((course, index) => (
 							<option value={course._id} key={index}>
 								{`${course.name} (${course.code})`}
 							</option>
