@@ -76,7 +76,7 @@ function StaffCourseForm({ styles }) {
 						))}
 					</select>
 				</div>
-				<div className="form-item">
+				<div className="form-item" style={{ width: '45%' }}>
 					<span className="desc">
 						Course name <em>*</em>
 					</span>
