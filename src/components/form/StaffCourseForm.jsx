@@ -20,12 +20,16 @@ function StaffCourseForm({ styles }) {
 	if (staffs?.length > 0) {
 		sortedStaffs = [...staffs];
 	}
-	sortedStaffs.sort((a, b) => (a.name > b.name ? 1 : -1));
+	sortedStaffs.sort((a, b) =>
+		a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
+	);
 
 	if (courses?.length > 0) {
 		sortedCourses = [...courses];
 	}
-	sortedCourses.sort((a, b) => (a.name > b.name ? 1 : -1));
+	sortedCourses.sort((a, b) =>
+		a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
+	);
 
 	//initialize the main hooks
 	const staff = useRef();
