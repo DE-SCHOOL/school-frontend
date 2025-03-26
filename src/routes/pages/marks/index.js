@@ -40,7 +40,9 @@ function MarkRoute() {
 			<Route
 				path="/marks/:courseID/exam/add"
 				element={
-					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
+					<Protected restrict={RIGHTS.TO_ALL_STAFF}>
+						{' '}
+						{/**Was to main_admin */}
 						<MarksAddExam />
 					</Protected>
 				}
