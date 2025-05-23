@@ -19,7 +19,8 @@ function AllCourseStats() {
 	const coursesStats = useSelector((state) => state.courses.allCourseStats);
 	const load = useSelector((state) => state.courses);
 	const [scroll, setScroll] = useState(0);
-
+	const academicYear = useSelector((state) => state.years.currentYear);
+	
 	useEffect(() => {
 		dispatch(getCourses());
 	}, [dispatch]);
@@ -29,8 +30,8 @@ function AllCourseStats() {
 		let courseIDs = [];
 		const SEMESTER = semester();
 		if (courses?.data?.length > 0) {
-			courses.data?.map((course) => {
-				if (course.semester === SEMESTER) {
+			courses.data?.map((course, index) => {
+				if (course.semester === SEMESTER && index <= 25) {
 					courseIDs.push(course._id);
 				}
 				return course;
@@ -38,7 +39,8 @@ function AllCourseStats() {
 
 			const dbOpt = {
 				semester: SEMESTER,
-				academicYear: '2023/2024',
+				// academicYear: '2023/2024',
+				academicYear: academicYear?.schoolYear,
 				courseIDs,
 			};
 			// console.log(dbOpt);
