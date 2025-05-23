@@ -11,6 +11,7 @@ import {
 } from '../../../store/courses/courseSlice';
 import { semester } from '../../../utilities/periodInfo';
 import SectionNotFound from '../../../components/layout/SectionNotFound';
+import { getCurrentYear } from '../../../store/academic year/academicYearSlice';
 
 function AllCourseStats() {
 	//Defining the dispatch function, and the useSelector to get students data
@@ -20,16 +21,17 @@ function AllCourseStats() {
 	const load = useSelector((state) => state.courses);
 	const [scroll, setScroll] = useState(0);
 	const academicYear = useSelector((state) => state.years.currentYear);
-	
+
 	useEffect(() => {
 		dispatch(getCourses());
+		dispatch(getCurrentYear());
 	}, [dispatch]);
 
 	//useEffect to dispatch student data after initial render
 	useEffect(() => {
 		let courseIDs = [];
 		const SEMESTER = semester();
-		if (courses?.data?.length > 0) {
+		if (courses?.data?.length > 0 && academicYear?.schoolYear !== undefined) {
 			courses.data?.map((course, index) => {
 				if (course.semester === SEMESTER && index <= 25) {
 					courseIDs.push(course._id);
@@ -47,7 +49,7 @@ function AllCourseStats() {
 			dispatch(getAllCourseStats(dbOpt));
 		}
 		//eslint-disable-next-line
-	}, [dispatch, courses?.data?.length]);
+	}, [dispatch, courses?.data?.length, academicYear?.schoolYear]);
 
 	window.onscroll = () => {
 		if (window.scrollY > 200) {
