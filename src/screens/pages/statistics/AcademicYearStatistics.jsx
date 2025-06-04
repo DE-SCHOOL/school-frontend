@@ -18,6 +18,7 @@ function AcademicYearStatistics() {
 	const load = useSelector((state) => state.marks);
 	const academicYear = useSelector((state) => state.years.currentYear);
 	const [scroll, setScroll] = useState(0);
+	const [specialty, setSpecialtyFromSearch] = useState('');
 
 	// console.log(students, students.length);
 	//useEffect to dispatch student data after initial render
@@ -46,12 +47,14 @@ function AcademicYearStatistics() {
 				styles={'mg-top-md mg-bt-md'}
 				type="print"
 				form="STUDENT RESULTS"
+				setSpecialtyFromSearch={setSpecialtyFromSearch}
 			/>
 
 			<SchoolHeader />
+
 			<section className="students">
 				<div className="main-table-container">
-					<TableAcademicStats styles="no-position" />
+					<TableAcademicStats styles="no-position" specialty={specialty} />
 				</div>
 			</section>
 			<Button styles={scroll} />
