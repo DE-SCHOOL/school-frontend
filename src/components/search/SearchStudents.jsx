@@ -13,7 +13,12 @@ import { getCurrentYear } from '../../store/academic year/academicYearSlice';
 
 let TITLE = `ALL STUDENTS`;
 let LEVEL = '';
-function SearchStudents({ styles, type = '', form }) {
+function SearchStudents({
+	styles,
+	type = '',
+	form,
+	setSpecialtyFromSearch = () => {},
+}) {
 	//create dispatch to dispatch actions and useSelect for getting out information
 	const dispatch = useDispatch();
 	const year = useSelector((state) => state.years.currentYear);
@@ -56,6 +61,7 @@ function SearchStudents({ styles, type = '', form }) {
 				delete searchData[x];
 		}
 
+		setSpecialtyFromSearch(spty.current.selectedOptions[0].innerText);
 		dispatch(getStudentsPerSearch(searchData));
 
 		if (level.current?.value !== '') {
