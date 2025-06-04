@@ -11,6 +11,7 @@ import {
 } from '../../../screens/pages/statistics';
 import Protected from '../../../components/auth/Protected';
 import StudentStatistics from '../../../screens/pages/statistics/StudentStatistics';
+import AcademicYearStatistics from '../../../screens/pages/statistics/AcademicYearStatistics';
 
 function StatisticRoute() {
 	return (
@@ -68,6 +69,14 @@ function StatisticRoute() {
 				element={
 					<Protected restrict={['admin']}>
 						<AllCourseStats />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/statistics/academic-year"
+				element={
+					<Protected restrict={['admin']}>
+						<AcademicYearStatistics />
 					</Protected>
 				}
 			/>
