@@ -82,7 +82,7 @@ function TableAllResultDataYear({ student, styles = '' }) {
 				.map((el) => el.overallAverage)
 				.reduce((sum, cur) => sum + cur, 0) / studentRanks.length;
 	}
-	console.log(studentRanks);
+
 	return (
 		<React.Fragment>
 			{marksInfoNewII?.map((studResults, index) => {
