@@ -259,6 +259,12 @@ const data = [
 						roles: ['admin'],
 						target: true,
 					},
+					{
+						name: 'academic stats',
+						link: 'academic-year',
+						roles: ['admin'],
+						target: true,
+					},
 				],
 			},
 			{
