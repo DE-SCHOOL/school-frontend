@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Glo Skul",
+  "name": "Glo Skul - Smart School Management System",
+  "description": "Glo Skul is a smart, modern school management system designed to simplify administration, teaching, and student engagement.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +19,10 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/index.html",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait",
+  "theme_color": "#1E90FF",
+  "background_color": "#FFFFFF",
+  "lang": "en"
 }
