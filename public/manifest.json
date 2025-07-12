@@ -4,7 +4,7 @@
   "description": "Glo Skul is a smart, modern school management system designed to simplify administration, teaching, and student engagement.",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "lmu-logo.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
