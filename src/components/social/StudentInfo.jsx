@@ -29,12 +29,12 @@ function StudentInfo({ student, styles = '', identify = '', isTerm = true }) {
 						<h4>DIVISIONAL DELEGATION OF SECONDARY EDUCATION FOR FAKO</h4>
 					</div>
 					<div className="">
-						<h4>GOVERNMENT TEACHERS TRAINING COLLEGE</h4>
-						<h5>GTTC BUEA</h5>
+						<h4>GOVERNMENT SECONDARY SCHOOL</h4>
+						<h5>Glo Skul</h5>
 						<span>
 							PO BOX: 222 Buea •{' '}
 							<a href="#nothing" style={{ textTransform: 'lowercase' }}>
-								www.gttcbuea.com
+								www.gloskul.com
 							</a>
 						</span>
 					</div>
@@ -55,12 +55,12 @@ function StudentInfo({ student, styles = '', identify = '', isTerm = true }) {
 						</h4>
 					</div>
 					<div className="">
-						<h4>ECOLE NORMALE D’INSTITUTEURS DE L’ENSEIGNEMENT GÉNÉRAL</h4>
-						<h5>(ENIEG) DE BUÉA</h5>
+						<h4>COLLÈGE D’ENSEIGNEMENT SECONDAIRE GOUVERNEMENTAL</h4>
+						<h5>Glo Skul</h5>
 						<span>
 							B.P: 222 Buea • {'  '}
 							<a href="#nothing" style={{ textTransform: 'lowercase' }}>
-								info@gttcbuea.com
+								gloskull24@gmail.com
 							</a>
 						</span>
 					</div>
