@@ -147,6 +147,7 @@ function TableAllResultDataTerm({ student, styles = '' }) {
 											<th>Position</th>
 											<th>Class Avg</th>
 											<th>Remark</th>
+											<th>Signature</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -230,6 +231,7 @@ function TableAllResultDataTerm({ student, styles = '' }) {
 																studResult[`${periodInfo.academicTerm()}Total`]
 															)}
 														</td>
+														<td></td>
 													</tr>
 												);
 											} else {
@@ -275,7 +277,8 @@ function TableAllResultDataTerm({ student, styles = '' }) {
 									<thead>
 										<tr>
 											<th colSpan={4}>Student's Results</th>
-											<th colSpan={4}>The Principal</th>
+											<th colSpan={2}>The Dean</th>
+											<th colSpan={2}>The Principal</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -286,8 +289,8 @@ function TableAllResultDataTerm({ student, styles = '' }) {
 											</td>
 											<td>Total Coefficient</td>
 											<td>{TOTAL_COEF}</td>
+											<td className="border-bt-none" colSpan={2}></td>
 										</tr>
-										<tr></tr>
 										<tr>
 											<td>Average</td>
 											<td>{studentResult.totalAverage?.toFixed(2)}</td>
@@ -295,12 +298,14 @@ function TableAllResultDataTerm({ student, styles = '' }) {
 											<td>
 												{studentResult.rank} / {studentRanking.length}
 											</td>
+											<td className="border-bt-none" colSpan={2}></td>
 										</tr>
 										<tr>
 											<td>Max Average</td>
 											<td>{maxAvg.toFixed(2)}</td>
 											<td>Min Average</td>
 											<td>{minAvg.toFixed(2)}</td>
+											<td className="border-bt-none" colSpan={2}></td>
 										</tr>
 										<tr>
 											<td>Class Average</td>
@@ -311,15 +316,27 @@ function TableAllResultDataTerm({ student, styles = '' }) {
 													2
 												)}
 											</td>
+											<td className="border-bt-none" colSpan={2}></td>
+										</tr>
+										<tr>
+											<td>Performance Remark</td>
+											<td>{getGradeRemark(studentResult.totalAverage)}</td>
+											<td>Conduct</td>
+											<td></td>
+											<td className="border-bt-none" colSpan={2}></td>
 										</tr>
 										<tr>
 											<td colSpan={4}>
-												{studentRanking.length > 0 && (
-													<span>
-														{getGradeRemark(studentResult.totalAverage)}
-													</span>
-												)}
+												<span className="caps">
+													Assessment of Conduct: Excellent/V. Good/Fair/Poor
+												</span>
+												<br />
+												<span className="caps">
+													Final Class Council Decision: Honour
+													Roll/Passed/Failed/Warned/Expelled
+												</span>
 											</td>
+											<td className="border-bt-none" colSpan={2}></td>
 										</tr>
 									</tbody>
 								</table>

@@ -13,7 +13,7 @@ import Loader from '../loaders/Loader';
 
 //initialize default information
 const defaultInfo = {
-	level: '100',
+	level: '',
 	gender: 'male',
 	matricule: '',
 	name: '',
@@ -37,6 +37,7 @@ function StudentForm({ styles, type = '' }) {
 	//initialize the main hooks
 	const [studentData, setStudentData] = useState(defaultInfo);
 	const specialty = useRef();
+	const level = useRef();
 	// console.log(studentData, 'DATA');
 
 	//Get all specialties after initial render
@@ -58,6 +59,7 @@ function StudentForm({ styles, type = '' }) {
 			addStudent({
 				...studentData,
 				specialty: specialty.current.value,
+				level: level.current.value,
 				yearID: year?._id,
 			})
 		);
@@ -262,16 +264,7 @@ function StudentForm({ styles, type = '' }) {
 					<span className="desc">
 						Class <em>*</em>
 					</span>
-					<select
-						name="level"
-						id=""
-						onChange={(e) =>
-							setStudentData((prev) => {
-								return { ...prev, level: Number(e.target.value) };
-							})
-						}
-						required
-					>
+					<select name="level" id="" ref={level} required>
 						<option value="">Select class</option>
 						<option value="100">Form 1</option>
 						<option value="200">Form 2</option>

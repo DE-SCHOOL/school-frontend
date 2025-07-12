@@ -187,6 +187,10 @@ table {
 			text-transform: uppercase;
 		}
 	}
+
+	tbody tr td.border-bt-none {
+		border-bottom: 1px solid transparent !important;
+	}
 }
 .total-gpa {
 	display: flex;

@@ -141,14 +141,12 @@ function MarksAddExam() {
 			)}
 			{markSheet?.length === students?.length && (
 				<section className="marks mg-top">
-					<div className="main-table-container">
-						<MarkTableFormExam
-							students={students}
-							length={markSheet.length}
-							semester={semester()}
-							academicYear={academicYear?.schoolYear}
-						/>
-					</div>
+					<MarkTableFormExam
+						students={students}
+						length={markSheet.length}
+						semester={semester()}
+						academicYear={academicYear?.schoolYear}
+					/>
 				</section>
 			)}
 			{marks.error === true && marks.errorMessage && (

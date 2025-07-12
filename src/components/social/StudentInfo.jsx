@@ -72,14 +72,14 @@ function StudentInfo({ student, styles = '', identify = '', isTerm = true }) {
 			</h4>
 			{isTerm === null && (
 				<h2 className="header-secondary center mg-top-lg report-title">
-					Academic Transcript
+					Progress Academic Transcript
 				</h2>
 			)}
 			{isTerm === true && (
 				<h2 className="header-secondary center mg-top-lg report-title">
 					{academicTerm() === 't1' ? 'First Term' : ''}
 					{academicTerm() === 't2' ? 'Second Term' : ''}
-					{academicTerm() === 't3' ? 'Third Term' : ''} Report Card
+					{academicTerm() === 't3' ? 'Third Term' : ''} Progress Report Card
 				</h2>
 			)}
 			{isTerm === false && (
@@ -89,7 +89,7 @@ function StudentInfo({ student, styles = '', identify = '', isTerm = true }) {
 					{semester() === 's3' ? 'Third Sequence' : ''}
 					{semester() === 's4' ? 'Fourth Sequence' : ''}
 					{semester() === 's5' ? 'Fifth Sequence' : ''}
-					{semester() === 's6' ? 'Sixth Sequence' : ''} Report Card
+					{semester() === 's6' ? 'Sixth Sequence' : ''} Progress Report Card
 				</h2>
 			)}
 			<table className="results mg-top">
@@ -98,13 +98,13 @@ function StudentInfo({ student, styles = '', identify = '', isTerm = true }) {
 						<td className="title title-border">full names</td>
 						<td>{student.name}</td>
 						<td className="title title-border">class</td>
-						<td>{returnClassString(student.level)}</td>
+						<td>{student.specialty.name}</td>
 					</tr>
 					<tr>
 						<td className="title title-border">registration number</td>
 						<td>f1280373</td>
-						<td className="title title-border">specialty</td>
-						<td>{student.specialty.name}</td>
+						<td className="title title-border"></td>
+						<td></td>
 					</tr>
 					<tr>
 						<td className="title">date of birth</td>

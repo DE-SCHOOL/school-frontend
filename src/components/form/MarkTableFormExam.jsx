@@ -63,7 +63,7 @@ function MarkTableFormExam({ students, length, semester, academicYear }) {
 				marks: studentsMark, //array of students marks
 				students: studentIDs, //array of students id
 				markType: `${semester}Exam`, //semester definition
-				academicYear
+				academicYear,
 			})
 		);
 	};
@@ -75,7 +75,7 @@ function MarkTableFormExam({ students, length, semester, academicYear }) {
 	if (marks?.markSheet?.length === 0) {
 		return;
 	}
-	console.log(marks, semester);
+	// console.log(marks, semester);
 	return (
 		<div className="table-form">
 			<form
@@ -84,75 +84,77 @@ function MarkTableFormExam({ students, length, semester, academicYear }) {
 				onSubmit={handleSubmitMarks}
 			>
 				<SchoolHeader school={schoolHeaderProp} />
-				<table className="marks mg-top">
-					<thead>
-						<tr>
-							<th>SN</th>
-							<th>Name (Matricule)</th>
-							<th>Class</th>
-							{semester === 's1' && (
-								<th>
-									1<sup>st</sup> Sequence Exam
-								</th>
-							)}
-							{semester === 's2' && (
-								<th>
-									2<sup>nd</sup> Sequence Exam
-								</th>
-							)}
-							{semester === 's3' && (
-								<th>
-									3<sup>rd</sup> Sequence Exam
-								</th>
-							)}
-							{semester === 's4' && (
-								<th>
-									4<sup>th</sup> Sequence Exam
-								</th>
-							)}
-							{semester === 's5' && (
-								<th>
-									5<sup>th</sup> Sequence Exam
-								</th>
-							)}
-							{semester === 's6' && (
-								<th>
-									6<sup>th</sup> Sequence Exam
-								</th>
-							)}
-						</tr>
-					</thead>
-					<tbody>
-						{semester !== undefined &&
-							marks?.markSheet?.map((sheet, index) => {
-								let studentLevel = correctStudentLevelData(
-									sheet?.student,
-									students
-								)?.level;
-								return (
-									<tr key={index}>
-										<td>{index + 1}</td>
-										<td className="stud-name">
-											{sheet?.student.name} ({sheet?.student.matricule})
-										</td>
-										<td>{returnClassString(studentLevel)}</td>
-										<td>
-											<input
-												type="number"
-												// required
-												name={sheet?.student._id}
-												defaultValue={sheet[`${semester}Exam`]}
-												autoComplete={`${sheet?.student._id}`}
-												max={20}
-												min={0}
-												step="0.1"
+				<div className="main-table-container">
+					<table className="marks mg-top">
+						<thead>
+							<tr>
+								<th>SN</th>
+								<th>Name (Matricule)</th>
+								<th>Class</th>
+								{semester === 's1' && (
+									<th>
+										1<sup>st</sup> Sequence Exam
+									</th>
+								)}
+								{semester === 's2' && (
+									<th>
+										2<sup>nd</sup> Sequence Exam
+									</th>
+								)}
+								{semester === 's3' && (
+									<th>
+										3<sup>rd</sup> Sequence Exam
+									</th>
+								)}
+								{semester === 's4' && (
+									<th>
+										4<sup>th</sup> Sequence Exam
+									</th>
+								)}
+								{semester === 's5' && (
+									<th>
+										5<sup>th</sup> Sequence Exam
+									</th>
+								)}
+								{semester === 's6' && (
+									<th>
+										6<sup>th</sup> Sequence Exam
+									</th>
+								)}
+							</tr>
+						</thead>
+						<tbody>
+							{semester !== undefined &&
+								marks?.markSheet?.map((sheet, index) => {
+									let studentSpecialty = correctStudentLevelData(
+										sheet?.student,
+										students
+									)?.specialty?.name;
+									return (
+										<tr key={index}>
+											<td>{index + 1}</td>
+											<td className="stud-name">
+												{sheet?.student.name} ({sheet?.student.matricule})
+											</td>
+											<td>{studentSpecialty}</td>
+											<td>
+												<input
+													type="number"
+													// required
+													name={sheet?.student._id}
+													defaultValue={sheet[`${semester}Exam`]}
+													autoComplete={`${sheet?.student._id}`}
+													max={20}
+													min={0}
+													step="0.1"
 											/>
-										</td>
-									</tr>
-								);
-							})}
-					</tbody>
-				</table>
+											</td>
+										</tr>
+									);
+								})}
+						</tbody>
+					</table>
+				</div>
 				<div className="mg-top button-marks">
 					<button
 						className="button-main button-main-medium caps mg-top"
