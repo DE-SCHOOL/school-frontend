@@ -105,19 +105,22 @@ export const calculateStudentAverages = (data) => {
 
 export const rankStudents = (data, averageKey) => {
 	// Extract and rank students based on the given average key
-	const rankings = data.map((studentCourses) => {
-		// Pick the first entry to get the student's ID, name, and the target averageKey value
-		const { student, [averageKey]: totalAverage } = studentCourses[0];
-		return {
-			studentId: student._id,
-			studentName: student.name,
-			totalAverage,
-			level: student.level,
-			matricule: student.matricule,
-			specialty: student.specialty?.name,
-			gender: student.gender,
-		};
-	});
+	const rankings = data
+		.filter((studentCourses) => studentCourses.length > 0)
+		.map((studentCourses) => {
+			// Pick the first entry to get the student's ID, name, and the target averageKey value
+
+			const { student, [averageKey]: totalAverage } = studentCourses[0];
+			return {
+				studentId: student._id,
+				studentName: student.name,
+				totalAverage,
+				level: student.level,
+				matricule: student.matricule,
+				specialty: student.specialty?.name,
+				gender: student.gender,
+			};
+		});
 
 	// Sort by totalAverage in descending order
 	rankings.sort((a, b) => b.totalAverage - a.totalAverage);
