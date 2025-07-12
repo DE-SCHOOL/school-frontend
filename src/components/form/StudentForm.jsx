@@ -162,9 +162,7 @@ function StudentForm({ styles, type = '' }) {
 					/>
 				</div>
 				<div className="form-item">
-					<span className="desc">
-						Email (optional)
-					</span>
+					<span className="desc">Email (optional)</span>
 					<input
 						type="email"
 						placeholder="Enter email"
@@ -179,9 +177,7 @@ function StudentForm({ styles, type = '' }) {
 					/>
 				</div>
 				<div className="form-item">
-					<span className="desc">
-						Student Tel (optional)
-					</span>
+					<span className="desc">Student Tel (optional)</span>
 					<input
 						type="number"
 						placeholder="Enter student tel"
@@ -213,9 +209,7 @@ function StudentForm({ styles, type = '' }) {
 					/>
 				</div>
 				<div className="form-item">
-					<span className="desc">
-						Parent email (optional)
-					</span>
+					<span className="desc">Parent email (optional)</span>
 					<input
 						type="email"
 						placeholder="Enter parent email"
@@ -259,6 +253,7 @@ function StudentForm({ styles, type = '' }) {
 							})
 						}
 					>
+						<option value="">Select gender</option>
 						<option value="male">Male</option>
 						<option value="female">Female</option>
 					</select>
