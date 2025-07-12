@@ -15,8 +15,8 @@ function LeftNav() {
 			className={`left-nav ${stateUi === true ? 'left-nav-responsive' : ''}`}
 		>
 			<header className="header-logo">
-				<img src={lmuLogo} alt="Landmark Logo" className="logo-pic rounded" />
-				<span className="logo">gttc buea</span>
+				<img src={lmuLogo} alt="Glo Skul Logo" className="logo-pic rounded" />
+				<span className="logo">glo skul</span>
 			</header>
 			<br />
 			<br />
