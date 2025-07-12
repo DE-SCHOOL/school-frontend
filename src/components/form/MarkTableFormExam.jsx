@@ -145,6 +145,7 @@ function MarkTableFormExam({ students, length, semester, academicYear }) {
 												autoComplete={`${sheet?.student._id}`}
 												max={20}
 												min={0}
+												step="0.1"
 											/>
 										</td>
 									</tr>
