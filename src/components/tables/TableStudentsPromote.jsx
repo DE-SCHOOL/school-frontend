@@ -14,6 +14,7 @@ import {
 import { detectNewClassOnPromotion } from '../../utilities/detectNewClassOnPromotion';
 import { determineNextAcademicYear } from '../../utilities/determineNextAcademicYear';
 import { setDeleteEntity } from '../../store/ui-state/ui-stateSlice';
+import { returnClassString } from '../../utilities/getClassString';
 // import { detectNewClassOnDemote } from '../../utilities/detectNewClassOnDemote';
 
 //Styled in the table sass file of the component styles
@@ -219,7 +220,7 @@ function TableStudentsPromote({
 									<span className="text name">{row.name}</span>
 								</td>
 								<td>
-									<span className="text">Level {row.level}</span>
+									<span className="text">{returnClassString(row.level)}</span>
 								</td>
 								<td>
 									<span className="text">{getDateFromDateObject(row.dob)}</span>
