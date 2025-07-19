@@ -266,13 +266,14 @@ function StudentForm({ styles, type = '' }) {
 					</span>
 					<select name="level" id="" ref={level} required>
 						<option value="">Select class</option>
-						<option value="100">Form 1</option>
-						<option value="200">Form 2</option>
-						<option value="300">Form 3</option>
-						<option value="400">Form 4</option>
-						<option value="500">Form 5</option>
-						<option value="601">Lower sixth</option>
-						<option value="602">Upper sixth</option>
+						<option value="100">Nursery 1</option>
+						<option value="200">Nursery 2</option>
+						<option value="300">Class 1</option>
+						<option value="400">Class 2</option>
+						<option value="500">Class 3</option>
+						<option value="601">Class 4</option>
+						<option value="602">Class 5</option>
+						<option value="603">Class 6</option>
 					</select>
 				</div>
 				<div className="form-item">
