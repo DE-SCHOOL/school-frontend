@@ -266,43 +266,49 @@ function StudentFormEdit({ styles }) {
 							value="100"
 							selected={student?.level === 100 ? true : false}
 						>
-							Form 1
+							Class 1
 						</option>
 						<option
 							value="200"
 							selected={student?.level === 200 ? true : false}
 						>
-							Form 2
+							Class 2
 						</option>
 						<option
 							value="300"
 							selected={student?.level === 300 ? true : false}
 						>
-							Form 3
+							Class 1
 						</option>
 						<option
 							value="400"
 							selected={student?.level === 400 ? true : false}
 						>
-							Form 4
+							Class 2
 						</option>
 						<option
 							value="500"
 							selected={student?.level === 500 ? true : false}
 						>
-							Form 5
+							Class 3
 						</option>
 						<option
 							value="601"
 							selected={student?.level === 601 ? true : false}
 						>
-							Lower sixth
+							Class 4
 						</option>
 						<option
 							value="602"
 							selected={student?.level === 602 ? true : false}
 						>
-							Upper sixth
+							Class 5
+						</option>
+						<option
+							value="603"
+							selected={student?.level === 603 ? true : false}
+						>
+							Class 6
 						</option>
 					</select>
 				</div>
