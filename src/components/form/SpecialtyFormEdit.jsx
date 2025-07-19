@@ -96,43 +96,49 @@ function SpecialtyFormEdit({ styles }) {
 							value="100"
 							selected={specialty?.level === 100 ? true : false}
 						>
-							Form 1
+							Nursery 1
 						</option>
 						<option
 							value="200"
 							selected={specialty?.level === 200 ? true : false}
 						>
-							Form 2
+							Nursery 2
 						</option>
 						<option
 							value="300"
 							selected={specialty?.level === 300 ? true : false}
 						>
-							Form 3
+							Class 1
 						</option>
 						<option
 							value="400"
 							selected={specialty?.level === 400 ? true : false}
 						>
-							Form 4
+							Class 2
 						</option>
 						<option
 							value="500"
 							selected={specialty?.level === 500 ? true : false}
 						>
-							Form 5
+							Class 3
 						</option>
 						<option
 							value="601"
 							selected={specialty?.level === 601 ? true : false}
 						>
-							Lower sixth
+							Class 4
 						</option>
 						<option
 							value="602"
 							selected={specialty?.level === 602 ? true : false}
 						>
-							Upper sixth
+							Class 5
+						</option>
+						<option
+							value="603"
+							selected={specialty?.level === 603 ? true : false}
+						>
+							Class 6
 						</option>
 					</select>
 				</div>
