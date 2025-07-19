@@ -96,25 +96,28 @@ function CourseForm({ styles }) {
 						title="use the CTRL key to select multiple options"
 					>
 						<option value="100" selected={course?.levels?.includes(100)}>
-							Form 1
+							Nursery 1
 						</option>
 						<option value="200" selected={course?.levels?.includes(200)}>
-							Form 2
+							Nursery 2
 						</option>
 						<option value="300" selected={course?.levels?.includes(300)}>
-							Form 3
+							Class 1
 						</option>
 						<option value="400" selected={course?.levels?.includes(400)}>
-							Form 4
+							Class 2
 						</option>
 						<option value="500" selected={course?.levels?.includes(500)}>
-							Form 5
+							Class 3
 						</option>
 						<option value="601" selected={course?.levels?.includes(601)}>
-							Lower sixth
+							Class 4
 						</option>
 						<option value="602" selected={course?.levels?.includes(602)}>
-							Upper sixth
+							Class 5
+						</option>
+						<option value="603" selected={course?.levels?.includes(603)}>
+							Class 6
 						</option>
 					</select>
 				</div>
