@@ -121,7 +121,7 @@ function CourseForm({ styles }) {
 						Credit Value <em>*</em>
 					</span>
 					<select name="credit" id="" ref={credits}>
-						{Array.from({ length: 20 }).map((_, index) => (
+						{Array.from({ length: 40 }).map((_, index) => (
 							<option value={`${index + 1}`} key={index}>
 								{index + 1}
 							</option>
