@@ -5,7 +5,7 @@ function SchoolGrading() {
 	return (
 		<div className="total-gpa school-grading">
 			<div className="registrar">
-				<span>Dr. Mugri Ruth Mbayeneh-nwi</span>
+				<span>Dr. Ruth Mugri</span>
 				<br />
 				<span>REGISTRAR</span>
 			</div>
