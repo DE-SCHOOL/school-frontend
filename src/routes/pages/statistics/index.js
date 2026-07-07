@@ -12,6 +12,7 @@ import {
 import Protected from '../../../components/auth/Protected';
 import StudentStatistics from '../../../screens/pages/statistics/StudentStatistics';
 import AcademicYearStatistics from '../../../screens/pages/statistics/AcademicYearStatistics';
+import SequenceStatistics from '../../../screens/pages/statistics/SequenceStatistics';
 
 function StatisticRoute() {
 	return (
@@ -77,6 +78,14 @@ function StatisticRoute() {
 				element={
 					<Protected restrict={['admin']}>
 						<AcademicYearStatistics />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/statistics/sequence"
+				element={
+					<Protected restrict={['admin']}>
+						<SequenceStatistics />
 					</Protected>
 				}
 			/>
