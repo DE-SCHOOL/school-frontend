@@ -274,3 +274,74 @@ export function calculateStudentsFinalYearlyRank(students) {
 
 	return students;
 }
+
+/**
+ * Calculate per-sequence weighted averages and annual rank for all students.
+ *
+ * @param {Array[][]} data  - 2D array: outer array per student, inner array of
+ *                            mark records (each has s1Exam–s6Exam and course.credit_value)
+ * @returns {{ studentSequenceAverages: Array }} flat array of one object per student
+ */
+export function calculateSequenceAverages(data) {
+	const SEQUENCES = ['s1Exam', 's2Exam', 's3Exam', 's4Exam', 's5Exam', 's6Exam'];
+
+	// Helper: compute weighted average of a single sequence key across all courses
+	const weightedAvg = (records, key) => {
+		let totalWeighted = 0;
+		let totalCredits = 0;
+		records.forEach((record) => {
+			const credit = record.course?.credit_value || 1;
+			const score = record[key] || 0;
+			totalWeighted += score * credit;
+			totalCredits += credit;
+		});
+		return totalCredits === 0 ? 0 : totalWeighted / totalCredits;
+	};
+
+	// Build one summary object per student
+	const studentSequenceAverages = data.map((studentRecords) => {
+		const student = studentRecords[0]?.student;
+
+		const seqAverages = {};
+		SEQUENCES.forEach((seq) => {
+			seqAverages[seq] = weightedAvg(studentRecords, seq);
+		});
+
+		// Annual average = average of all 6 sequence weighted averages
+		const annualAvg =
+			SEQUENCES.reduce((sum, seq) => sum + seqAverages[seq], 0) /
+			SEQUENCES.length;
+
+		return {
+			studentId: student?._id,
+			studentName: student?.name,
+			matricule: student?.matricule,
+			level: student?.level,
+			gender: student?.gender,
+			specialty: student?.specialty?.name,
+			s1Avg: seqAverages.s1Exam,
+			s2Avg: seqAverages.s2Exam,
+			s3Avg: seqAverages.s3Exam,
+			s4Avg: seqAverages.s4Exam,
+			s5Avg: seqAverages.s5Exam,
+			s6Avg: seqAverages.s6Exam,
+			annualAvg,
+		};
+	});
+
+	// Sort by annualAvg descending and assign ranks (ties get same rank)
+	studentSequenceAverages.sort((a, b) => b.annualAvg - a.annualAvg);
+	let rank = 1;
+	for (let i = 0; i < studentSequenceAverages.length; i++) {
+		if (
+			i > 0 &&
+			studentSequenceAverages[i].annualAvg <
+				studentSequenceAverages[i - 1].annualAvg
+		) {
+			rank = i + 1;
+		}
+		studentSequenceAverages[i].rank = rank;
+	}
+
+	return { studentSequenceAverages };
+}
