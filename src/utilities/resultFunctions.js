@@ -345,3 +345,95 @@ export function calculateSequenceAverages(data) {
 
 	return { studentSequenceAverages };
 }
+
+/**
+ * Calculate combined sequence + term weighted averages and annual rank for all students.
+ *
+ * Produces columns in display order:
+ *   Seq 1, Seq 2, Term 1, Seq 3, Seq 4, Term 2, Seq 5, Seq 6, Term 3, Annual Avg, Rank
+ *
+ * @param {Array[][]} data  - 2D array: outer array per student, inner array of
+ *                            mark records (each has s1Exam–s6Exam, t1Total–t3Total,
+ *                            and course.credit_value)
+ * @returns {{ studentOverallAverages: Array }} flat array, one object per student
+ */
+export function calculateOverallAverages(data) {
+	const FIELDS = [
+		's1Exam',
+		's2Exam',
+		't1Total',
+		's3Exam',
+		's4Exam',
+		't2Total',
+		's5Exam',
+		's6Exam',
+		't3Total',
+	];
+
+	// Credit-weighted average of a single field across all of a student's courses
+	const weightedAvg = (records, key) => {
+		let totalWeighted = 0;
+		let totalCredits = 0;
+		records.forEach((record) => {
+			const credit = record.course?.credit_value || 1;
+			const score = record[key] || 0;
+			totalWeighted += score * credit;
+			totalCredits += credit;
+		});
+		return totalCredits === 0 ? 0 : totalWeighted / totalCredits;
+	};
+
+	// Build one summary object per student
+	const studentOverallAverages = data.map((studentRecords) => {
+		const student = studentRecords[0]?.student;
+
+		const avgs = {};
+		FIELDS.forEach((field) => {
+			avgs[field] = weightedAvg(studentRecords, field);
+		});
+
+		// Annual average = mean of the six sequence weighted averages
+		const SEQUENCES = ['s1Exam', 's2Exam', 's3Exam', 's4Exam', 's5Exam', 's6Exam'];
+		const annualAvg =
+			SEQUENCES.reduce((sum, seq) => sum + avgs[seq], 0) / SEQUENCES.length;
+
+		return {
+			studentId: student?._id,
+			studentName: student?.name,
+			matricule: student?.matricule,
+			level: student?.level,
+			gender: student?.gender,
+			specialty: student?.specialty?.name,
+			// Sequences
+			s1Avg: avgs.s1Exam,
+			s2Avg: avgs.s2Exam,
+			s3Avg: avgs.s3Exam,
+			s4Avg: avgs.s4Exam,
+			s5Avg: avgs.s5Exam,
+			s6Avg: avgs.s6Exam,
+			// Terms
+			t1Avg: avgs.t1Total,
+			t2Avg: avgs.t2Total,
+			t3Avg: avgs.t3Total,
+			// Annual
+			annualAvg,
+		};
+	});
+
+	// Sort by annualAvg descending and assign ranks (ties share the same rank)
+	studentOverallAverages.sort((a, b) => b.annualAvg - a.annualAvg);
+	let rank = 1;
+	for (let i = 0; i < studentOverallAverages.length; i++) {
+		if (
+			i > 0 &&
+			studentOverallAverages[i].annualAvg <
+				studentOverallAverages[i - 1].annualAvg
+		) {
+			rank = i + 1;
+		}
+		studentOverallAverages[i].rank = rank;
+	}
+
+	return { studentOverallAverages };
+}
+

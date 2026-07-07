@@ -13,6 +13,7 @@ import Protected from '../../../components/auth/Protected';
 import StudentStatistics from '../../../screens/pages/statistics/StudentStatistics';
 import AcademicYearStatistics from '../../../screens/pages/statistics/AcademicYearStatistics';
 import SequenceStatistics from '../../../screens/pages/statistics/SequenceStatistics';
+import OverallStatistics from '../../../screens/pages/statistics/OverallStatistics';
 
 function StatisticRoute() {
 	return (
@@ -86,6 +87,14 @@ function StatisticRoute() {
 				element={
 					<Protected restrict={['admin']}>
 						<SequenceStatistics />
+					</Protected>
+				}
+			/>
+			<Route
+				path="/statistics/overall"
+				element={
+					<Protected restrict={['admin']}>
+						<OverallStatistics />
 					</Protected>
 				}
 			/>
