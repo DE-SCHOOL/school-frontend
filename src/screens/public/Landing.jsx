@@ -15,13 +15,18 @@ function Landing() {
 
 			<header className="hero">
 				<div className="hero-copy">
-					<span className="eyebrow">School management, built for Cameroon</span>
-					<h1>Run your whole school. Pay and get paid on Stellar.</h1>
+					<span className="eyebrow">Built for Cameroonian schools, from the register to the report card</span>
+					<h1>The administration behind your school, finally organised.</h1>
 					<p>
-						DE-SCHOOL is a multi-tenant school management platform: admissions, grades,
-						attendance, timetables, staff and reports — with tuition, canteen top-ups,
-						and subscriptions settled instantly over the Stellar network, no bank delays,
-						no reconciliation headaches.
+						DE-SCHOOL replaces the exercise books, the scattered Excel sheets, and the
+						end-of-term scramble to compile mark sheets with one system your whole
+						institution runs on — admissions, continuous assessment, mock and sit-in
+						exams, attendance, timetabling, and staff records, built around how
+						Cameroonian schools actually operate: matricule numbers, CA and exam
+						weighting, resit lists, and reports your inspectors will recognise. School
+						fees, canteen top-ups, and platform subscriptions settle over the Stellar
+						network in seconds, so a payment made in Douala reaches the school's
+						account before the parent has left the queue.
 					</p>
 					<div className="hero-ctas">
 						<Link to="/book-demo" className="btn btn-primary">
@@ -35,110 +40,123 @@ function Landing() {
 
 				<div className="hero-badge">
 					<span className="stat">1</span>
-					<span className="stat-label">school already live on the platform</span>
+					<span className="stat-label">institution already running its full academic year on DE-SCHOOL</span>
 					<hr />
 					<span className="stat">1,300+</span>
-					<span className="stat-label">real student records managed</span>
+					<span className="stat-label">student records, and every mark sheet behind them, managed end to end</span>
 				</div>
 			</header>
 
 			<section className="features">
-				<h2>Everything a school needs, one account per student</h2>
+				<h2>Everything a registrar's office, a bursary, and a principal's office each rely on</h2>
 				<p className="section-sub">
-					Every school gets its own private, isolated workspace. Students who move
-					between DE-SCHOOL schools keep one identity across all of them.
+					Every school that joins DE-SCHOOL gets its own private workspace, walled off
+					from every other school on the platform. Nothing about your students, your
+					staff, or your finances is ever visible to anyone outside your institution.
 				</p>
 
 				<div className="feature-grid">
 					<div className="feature-card flagship">
-						<span className="icon">⭐</span>
-						<h3>Stellar-powered payments</h3>
+						<span className="icon">01</span>
+						<h3>Fee collection that reconciles itself</h3>
 						<p>
 							Tuition invoices, subscription billing, and canteen top-ups settle in
-							USDC over the Stellar network in seconds — with an optional, fully
-							on-chain smart-contract billing record for full transparency. Mobile
-							money and card payments are on the roadmap.
+							USDC over the Stellar network in seconds, with an optional fully
+							on-chain billing record a proprietor or a board can audit directly. No
+							more chasing a bank teller's stamp, no more disputed cash receipts.
+							Mobile money and card rails are the next thing we're building.
 						</p>
 					</div>
 					<div className="feature-card">
-						<span className="icon">🏫</span>
-						<h3>True multi-tenant SaaS</h3>
+						<span className="icon">02</span>
+						<h3>One school, fully separated from every other</h3>
 						<p>
-							Your school's data is fully isolated from every other school on the
-							platform — enforced at the database layer, not just the UI.
+							Multi-tenant by design: your data lives in its own isolated space,
+							enforced where it actually matters — at the database — not left to a
+							login screen's good faith.
 						</p>
 					</div>
 					<div className="feature-card">
-						<span className="icon">🎓</span>
-						<h3>One student identity, many schools</h3>
+						<span className="icon">03</span>
+						<h3>A student's record follows the student</h3>
 						<p>
-							A student's account follows them if they enroll at more than one
-							DE-SCHOOL school — no duplicate sign-ups, one login.
+							A learner enrolled at more than one DE-SCHOOL institution keeps a single
+							identity across all of them — no re-registering from scratch, no
+							duplicate accounts to manage.
 						</p>
 					</div>
 					<div className="feature-card">
-						<span className="icon">📊</span>
-						<h3>Grades, attendance & reports</h3>
+						<span className="icon">04</span>
+						<h3>Marks, attendance, and the reports built from them</h3>
 						<p>
-							Mark sheets, course statistics, resit lists, and transcripts —
-							generated per school, with your own school's letterhead.
+							CA and exam entry, mock results, resit lists, course statistics, and
+							transcripts — generated under your own school's letterhead, formatted
+							the way your registrar's office already expects them.
 						</p>
 					</div>
 					<div className="feature-card">
-						<span className="icon">🍽️</span>
-						<h3>Canteen, without the queue</h3>
+						<span className="icon">05</span>
+						<h3>A canteen line that actually moves</h3>
 						<p>
-							Students top up a spendable balance once; point-of-sale purchases
-							deduct instantly, no waiting on a payment network at the till.
+							Students and parents top up a spendable balance once; every purchase at
+							the till deducts instantly, with no payment network to wait on during
+							the lunch rush.
 						</p>
 					</div>
 					<div className="feature-card">
-						<span className="icon">🔐</span>
-						<h3>Role-based staff access</h3>
+						<span className="icon">06</span>
+						<h3>Access that matches each role</h3>
 						<p>
-							Lecturers, secretariat, HODs, directors, and admins each see exactly
-							what their role needs — nothing more.
+							Lecturers, secretariat staff, heads of department, directors, and
+							administrators each see exactly what their office needs — nothing they
+							don't.
 						</p>
 					</div>
 				</div>
 			</section>
 
 			<section className="how-it-works">
-				<h2>How schools get started</h2>
+				<h2>From first conversation to your staff signing in</h2>
 				<div className="steps">
 					<div className="step">
 						<span className="step-num">1</span>
 						<h3>Book a demo</h3>
-						<p>Tell us about your school — we'll reach out to schedule a walkthrough.</p>
+						<p>
+							Tell us about your institution — student numbers, current record-keeping,
+							what's costing your registrar the most time. We schedule a walkthrough
+							around your school's own data, not a generic script.
+						</p>
 					</div>
 					<div className="step">
 						<span className="step-num">2</span>
-						<h3>We set up your school</h3>
+						<h3>Your school is provisioned</h3>
 						<p>
-							Your school's own private workspace is created, and your first
-							administrator account is issued.
+							A private workspace is created for your institution, and its first
+							administrator account is issued directly to your proprietor or principal
+							— no waiting on a support queue.
 						</p>
 					</div>
 					<div className="step">
 						<span className="step-num">3</span>
-						<h3>Your team logs in</h3>
+						<h3>Your staff sign in and get to work</h3>
 						<p>
-							Your admin invites staff, and everyone signs in with their own email —
-							no separate app, no setup on your end.
+							Your administrator brings on the rest of your staff, each with their own
+							login and their own role. Nothing else to install, nothing else to
+							configure.
 						</p>
 					</div>
 				</div>
 			</section>
 
 			<section className="cta-band">
-				<h2>Ready to see it running on your school's own data?</h2>
+				<h2>See it running against a set of records like your own.</h2>
 				<Link to="/book-demo" className="btn btn-primary">
 					Book a Free Demo
 				</Link>
 			</section>
 
 			<footer className="public-footer">
-				<p>DE-SCHOOL — school management, powered by Stellar. Built in Cameroon.</p>
+				<p>DE-SCHOOL — school administration for Cameroon, settled on Stellar.</p>
 			</footer>
 		</div>
 	);

@@ -46,12 +46,12 @@ function BookDemo() {
 				<div className="public-form-card">
 					{isSubmitted ? (
 						<div className="success-state">
-							<span className="icon">✅</span>
-							<h1>Thanks — we've got it</h1>
+							<span className="eyebrow">Request received</span>
+							<h1>We'll be in touch shortly</h1>
 							<p>
-								Your demo request has been received. Someone from the DE-SCHOOL team
-								will reach out to the contact email you provided to schedule a
-								walkthrough.
+								A member of the DE-SCHOOL team will write to the contact email you
+								provided to arrange a walkthrough built around your own institution's
+								records, not a generic demo.
 							</p>
 							<div className="form-actions">
 								<Link to="/" className="btn btn-solid">
@@ -63,8 +63,8 @@ function BookDemo() {
 						<>
 							<h1>Book a free demo</h1>
 							<p className="form-sub">
-								Tell us a bit about your school. This takes about a minute — no
-								account needed.
+								Tell us about your institution. This takes about a minute, and no
+								account is required.
 							</p>
 
 							<form onSubmit={handleSubmit}>
