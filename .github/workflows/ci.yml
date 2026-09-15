@@ -19,6 +19,11 @@ jobs:
 
       - run: npm ci
 
+      # Fails only on real errors (broken hooks usage, undefined
+      # references) — see eslint.config.js for why the large pre-existing
+      # unused-variable warning count is a warning, not a blocker, here.
+      - run: npm run lint
+
       - run: npm test
 
       - run: npm run build
