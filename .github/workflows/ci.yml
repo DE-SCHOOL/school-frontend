@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm test
+
+      - run: npm run build
+
+      # High/critical only — see the equivalent note in school-backend's
+      # workflow. Frontend is at 0 vulnerabilities as of the Stage 2.2
+      # migration; this is a going-forward gate, not a current fix.
+      - run: npm audit --audit-level=high
