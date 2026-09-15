@@ -19,6 +19,8 @@ import Promotions from './pages/promotions';
 import MessagingRoute from './pages/messaging';
 import TimetableRoute from './pages/timetable';
 import FormBRoute from './pages/form-b';
+import PublicRoute from './public';
+import PlatformRoute from './platform';
 
 function Router() {
 	return (
@@ -40,6 +42,8 @@ function Router() {
 			<MessagingRoute />
 			<TimetableRoute />
 			<FormBRoute />
+			<PlatformRoute />
+			<PublicRoute />
 			<ErrorRoute />
 		</React.Fragment>
 	);

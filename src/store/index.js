@@ -21,6 +21,9 @@ import messageReducer from './messaging/messagingSlice';
 import timetableReducer from './timetable/timetableSlice';
 import formBReducer from './form-b/formBSlice';
 import schoolReducer from './school/schoolSlice';
+import platformAuthReducer from './platform/platformAuthSlice';
+import platformReducer from './platform/platformSlice';
+import demoRequestReducer from './demo-request/demoRequestSlice';
 
 //CREATING THE VARIOUS REDUCERS
 const store = configureStore({
@@ -45,6 +48,9 @@ const store = configureStore({
 		timetable: timetableReducer,
 		formB: formBReducer,
 		school: schoolReducer,
+		platformAuth: platformAuthReducer,
+		platform: platformReducer,
+		demoRequest: demoRequestReducer,
 	},
 });
 
