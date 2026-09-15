@@ -24,6 +24,7 @@ import {
 	getCurrentYear,
 	updateAcademicYears,
 } from '../../store/academic-year/academicYearSlice';
+import { getMySchool } from '../../store/school/schoolSlice';
 import { FaHome, FaTimes } from 'react-icons/fa';
 
 function MainNav({ styleClass = '' }) {
@@ -69,6 +70,7 @@ function MainNav({ styleClass = '' }) {
 		dispatch(loggedIn());
 		dispatch(getAcademicYears());
 		dispatch(getCurrentYear());
+		dispatch(getMySchool());
 	}, [dispatch]);
 
 	window.onresize = function (e) {

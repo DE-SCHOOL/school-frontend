@@ -5,13 +5,14 @@ import { FaArrowDown } from 'react-icons/fa6';
 import Failure from './../signal/Failure';
 import Loader from '../loaders/Loader';
 import SchoolHeader from '../social/SchoolHeader';
-import { schoolHeaderProp } from '../../utilities/appData';
+import { mapSchoolToHeaderProp } from '../../utilities/appData';
 import SearchCourses from '../search/SearchCourses';
 
 function TableAllCourseStats({ coursesStats }) {
 	//length is to help getMarkSheetsPerCoursePerStudents everytime this component is involved in any render
 	// console.log(coursesStats);
 	let marks = useSelector((state) => state.marks);
+	const school = useSelector((state) => state.school.school);
 
 	const handleDownloadDoc = () => {
 		window.print();
@@ -19,7 +20,7 @@ function TableAllCourseStats({ coursesStats }) {
 
 	return (
 		<div className="table-form table-form-modified">
-			<SchoolHeader school={schoolHeaderProp} />
+			<SchoolHeader school={mapSchoolToHeaderProp(school)} />
 			{/* <h1 className="title" style={{ textAlign: 'center' }}>
 				All Course Statistics
 			</h1> */}

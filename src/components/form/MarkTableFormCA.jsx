@@ -8,13 +8,14 @@ import Failure from '../signal/Failure';
 import Loader from '../loaders/Loader';
 import { updateStudentsMark } from '../../store/marks/markSlice';
 import SchoolHeader from '../social/SchoolHeader';
-import { schoolHeaderProp } from '../../utilities/appData';
+import { mapSchoolToHeaderProp } from '../../utilities/appData';
 import { correctStudentLevelData } from '../../utilities/correctStudentLevelData';
 
 function MarkTableFormCA({ students, length, semester, academicYear }) {
 	//length is to help getMarkSheetsPerCoursePerStudents everytime this component is involved in any render
 
 	let marks = useSelector((state) => state.marks);
+	const school = useSelector((state) => state.school.school);
 	const dispatch = useDispatch();
 	const params = useParams();
 	const studentIDs = [];
@@ -81,7 +82,7 @@ function MarkTableFormCA({ students, length, semester, academicYear }) {
 				className="table-form mg-top"
 				onSubmit={handleSubmitMarks}
 			>
-				<SchoolHeader school={schoolHeaderProp} />
+				<SchoolHeader school={mapSchoolToHeaderProp(school)} />
 				<table className="marks mg-top">
 					<thead>
 						<tr>

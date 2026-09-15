@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { FaArrowDown } from 'react-icons/fa6';
 
 import SchoolHeader from '../social/SchoolHeader';
-import { schoolHeaderProp } from '../../utilities/appData';
+import { mapSchoolToHeaderProp } from '../../utilities/appData';
 import { semester } from '../../utilities/periodInfo';
 
 let DATA_CONST;
@@ -11,6 +12,7 @@ function TableAllResit({ tableData }) {
 	//declaring state variables
 	const [isSortedBy] = useState('');
 	const [studentData] = useState(tableData);
+	const school = useSelector((state) => state.school.school);
 
 	//Defining function to complete sorting
 	if (tableData.length === studentData.length) {
@@ -52,7 +54,7 @@ function TableAllResit({ tableData }) {
 				count = 0;
 				return (
 					<div key={index}>
-						<SchoolHeader school={schoolHeaderProp} />
+						<SchoolHeader school={mapSchoolToHeaderProp(school)} />
 						<br />
 						<br />
 						<h1 className="title print-title">

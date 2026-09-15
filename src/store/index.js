@@ -20,6 +20,7 @@ import academicYearReducer from './academic-year/academicYearSlice';
 import messageReducer from './messaging/messagingSlice';
 import timetableReducer from './timetable/timetableSlice';
 import formBReducer from './form-b/formBSlice';
+import schoolReducer from './school/schoolSlice';
 
 //CREATING THE VARIOUS REDUCERS
 const store = configureStore({
@@ -43,6 +44,7 @@ const store = configureStore({
 		groupChat: messageReducer,
 		timetable: timetableReducer,
 		formB: formBReducer,
+		school: schoolReducer,
 	},
 });
 

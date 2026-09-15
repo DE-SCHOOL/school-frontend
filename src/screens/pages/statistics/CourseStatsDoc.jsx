@@ -7,7 +7,7 @@ import { getCourse, getCourseStats } from '../../../store/courses/courseSlice';
 import Loader from '../../../components/loaders/Loader';
 import { semester } from '../../../utilities/periodInfo';
 
-import { schoolHeaderProp } from '../../../utilities/appData';
+import { mapSchoolToHeaderProp } from '../../../utilities/appData';
 import { FaArrowDown } from 'react-icons/fa';
 
 function CourseStats() {
@@ -16,6 +16,7 @@ function CourseStats() {
 	const load = useSelector((state) => state.courses);
 	const course = useSelector((state) => state.courses.course);
 	const courseStats = useSelector((state) => state.courses.courseStats);
+	const school = useSelector((state) => state.school.school);
 
 	useEffect(() => {
 		dispatch(getCourse({ id: params.courseID }));
@@ -31,7 +32,7 @@ function CourseStats() {
 		<React.Fragment>
 			{/* School header */}
 			<div className="container-stats">
-				<SchoolHeader school={schoolHeaderProp} />
+				<SchoolHeader school={mapSchoolToHeaderProp(school)} />
 				{/* <div className="line mg-top"></div> */}
 				<p>Course Name: {course?.name || ''}</p>
 				<p>Course Code: {course?.code || ''}</p>
