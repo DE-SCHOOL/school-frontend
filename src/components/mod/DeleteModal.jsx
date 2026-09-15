@@ -11,13 +11,13 @@ import { deleteQuestion } from '../../store/question/questionSlice';
 import {
 	deletePromotedStudent,
 	getStudentPerAcademicYearNextStudents,
-} from '../../store/academic year/academicYearSlice';
+} from '../../store/academic-year/academicYearSlice';
 import { deleteGroup } from '../../store/messaging/messagingSlice';
 import {
 	deleteTimetable,
 	getAllTimetables,
 } from '../../store/timetable/timetableSlice';
-import { deleteFormB, getAllFormBs } from '../../store/form b/formBSlice';
+import { deleteFormB, getAllFormBs } from '../../store/form-b/formBSlice';
 
 function DeleteModal({
 	name,
@@ -52,7 +52,7 @@ function DeleteModal({
 		reactDeleteElement = (
 			<div className="modal-text">
 				Note: <span>{name}</span> is about to be deleted from the
-				{' ' + nextAcademicYear?.schoolYear} academic year. After this delete,
+				{' ' + nextAcademicYear?.schoolYear} academic-year. After this delete,
 				the action would be irreversible. Type
 				<span> {id}</span> in the field below to confirm deletion.
 			</div>
@@ -65,7 +65,7 @@ function DeleteModal({
 				dispatch(deleteStudent({ id, academicYearID: year._id }));
 			else
 				alert(
-					"Student must be deleted from an academic year, switch to an academic year where you'll want to delete this student"
+					"Student must be deleted from an academic-year, switch to an academic-year where you'll want to delete this student"
 				);
 		} else if (type === 'staff') {
 			dispatch(deleteStaff({ id }));

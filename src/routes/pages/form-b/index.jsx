@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 //IMPORTING the different pages
-import { FormBList, UploadFormB } from '../../../screens/pages/form Bs';
+import { FormBList, UploadFormB } from '../../../screens/pages/form-bs';
 
 //importing a protector component
 import Protected from '../../../components/auth/Protected';
@@ -13,7 +13,7 @@ function FormBRoute() {
 	return (
 		<Routes>
 			<Route
-				path="/form bs/formb-list"
+				path="/form-bs/formb-list"
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
 						<FormBList />
@@ -21,7 +21,7 @@ function FormBRoute() {
 				}
 			/>
 			<Route
-				path="/form bs/upload-form-bs"
+				path="/form-bs/upload-form-bs"
 				element={
 					<Protected restrict={RIGHTS.TO_ALL_OFFICE_ADMIN}>
 						<UploadFormB />

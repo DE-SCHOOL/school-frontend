@@ -8,7 +8,7 @@ import { getSpecialties } from '../../store/specialty/specialtySlice';
 import { getDepartments } from './../../store/departments/departmentSlice';
 import { getPrograms } from '../../store/program/programSlice';
 import { getStudentsPerSearch } from '../../store/exams/examSlice';
-import { getCurrentYear } from '../../store/academic year/academicYearSlice';
+import { getCurrentYear } from '../../store/academic-year/academicYearSlice';
 
 let TITLE = `ALL STUDENTS`;
 let LEVEL = '';

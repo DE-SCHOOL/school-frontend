@@ -5,12 +5,12 @@ import { getStudentsExam } from '../../../store/exams/examSlice';
 
 import Loader from '../../../components/loaders/Loader';
 import Button from '../../../components/buttons/Button';
-import { TableAllResultAcademicTranscript } from '../../../components/tables';
+import { TableAllResultData } from '../../../components/tables';
 import Failure from '../../../components/signal/Failure';
-import { getCurrentYear } from '../../../store/academic year/academicYearSlice';
+import { getCurrentYear } from '../../../store/academic-year/academicYearSlice';
 import { getAllStudentsPerAcademicYear } from '../../../store/students/studentSlice';
 
-function StudentAcademicTranscript() {
+function StudentResultAll() {
 	//Defining the dispatch function, and the useSelector to get students data
 	const dispatch = useDispatch();
 	// const students = useSelector((state) => state.exams.students);
@@ -48,7 +48,9 @@ function StudentAcademicTranscript() {
 			/>
 
 			<section className="students">
-				<TableAllResultAcademicTranscript styles="no-position" />
+				<div className="main-table-container">
+					<TableAllResultData styles="no-position" />
+				</div>
 			</section>
 			<Button styles={scroll} />
 			{load.isLoading && <Loader />}
@@ -60,4 +62,4 @@ function StudentAcademicTranscript() {
 	);
 }
 
-export default StudentAcademicTranscript;
+export default StudentResultAll;

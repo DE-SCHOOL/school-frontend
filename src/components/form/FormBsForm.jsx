@@ -10,7 +10,7 @@ import { getSpecialties } from '../../store/specialty/specialtySlice';
 import Failure from './../signal/Failure';
 import Success from './../signal/Success';
 import Loader from '../loaders/Loader';
-import { uploadFile } from '../../store/form b/formBSlice';
+import { uploadFile } from '../../store/form-b/formBSlice';
 
 //initialize default information
 const defaultInfo = {
@@ -126,7 +126,7 @@ function FormBsForm({ styles, type = '' }) {
 						required
 						title="use the CTRL key to select multiple options"
 					>
-						<option value="">Select academic year</option>
+						<option value="">Select academic-year</option>
 
 						{academicYears?.map((year) => {
 							return (

@@ -3,7 +3,7 @@ import { getDateFromDateObject } from '../../utilities/getDate';
 import { semester } from '../../utilities/periodInfo';
 import { useSelector, useDispatch } from 'react-redux';
 import { lmuLogo } from './../../assets/logos';
-import { getCurrentYear } from '../../store/academic year/academicYearSlice';
+import { getCurrentYear } from '../../store/academic-year/academicYearSlice';
 
 function StudentInfo({ student, styles = '', identify = '', type = null }) {
 	const academicYear = useSelector((state) => state.years.currentYear);

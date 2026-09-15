@@ -141,7 +141,7 @@ function TimetableForm({ styles, type = '' }) {
 						required
 						title="use the CTRL key to select multiple options"
 					>
-						<option value="">Select academic year</option>
+						<option value="">Select academic-year</option>
 
 						{academicYears?.map((year) => {
 							return (

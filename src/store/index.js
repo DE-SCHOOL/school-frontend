@@ -8,18 +8,18 @@ import departmentReducer from './departments/departmentSlice';
 import authReducer from './auth/authSlice';
 import programReducer from './program/programSlice';
 import courseReducer from './courses/courseSlice';
-import curPageReducer from './cur page/curPageSlice';
+import curPageReducer from './cur-page/curPageSlice';
 import dashboardReducer from './dashboard/dashboardSlice';
 import markReducer from './marks/markSlice';
 import examReducer from './exams/examSlice';
 import uiStateReducer from './ui-state/ui-stateSlice';
 import questionReducer from './question/questionSlice';
 import reviewReducer from './reviews/reviewSlice';
-import questionCategoryReducer from './question category/questionCategorySlice';
-import academicYearReducer from './academic year/academicYearSlice';
+import questionCategoryReducer from './question-category/questionCategorySlice';
+import academicYearReducer from './academic-year/academicYearSlice';
 import messageReducer from './messaging/messagingSlice';
 import timetableReducer from './timetable/timetableSlice';
-import formBReducer from './form b/formBSlice';
+import formBReducer from './form-b/formBSlice';
 
 //CREATING THE VARIOUS REDUCERS
 const store = configureStore({

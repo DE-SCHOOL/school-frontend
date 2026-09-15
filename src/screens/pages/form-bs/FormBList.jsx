@@ -10,7 +10,7 @@ import SearchCategory from '../../../components/search/SearchCategory';
 import { TableFormB } from '../../../components/tables/';
 import DeleteModal from '../../../components/mod/DeleteModal';
 import Loader from './../../../components/loaders/Loader';
-import { getAllFormBs } from '../../../store/form b/formBSlice';
+import { getAllFormBs } from '../../../store/form-b/formBSlice';
 
 const timetableHeader = {
 	name: 'name',
@@ -59,7 +59,7 @@ function FormBList() {
 				<SectionMainIntro
 					title="Form B's"
 					styles="mg-bt mg-top"
-					link={'/form bs/upload-form-bs'}
+					link={'/form-bs/upload-form-bs'}
 				/>
 
 				{/* Select the number of items to be shown on a page */}

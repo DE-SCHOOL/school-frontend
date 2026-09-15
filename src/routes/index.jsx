@@ -12,13 +12,13 @@ import CourseRoute from './pages/courses';
 import MarkRoute from './pages/marks';
 import ErrorRoute from './errors';
 import StatisticRoute from './pages/statistics';
-import HumanResourceRoute from './pages/human resource';
+import HumanResourceRoute from './pages/human-resource';
 import PollRoute from './pages/polls';
-import AcademicYear from './pages/academic year';
+import AcademicYear from './pages/academic-year';
 import Promotions from './pages/promotions';
 import MessagingRoute from './pages/messaging';
 import TimetableRoute from './pages/timetable';
-import FormBRoute from './pages/form B';
+import FormBRoute from './pages/form-b';
 
 function Router() {
 	return (

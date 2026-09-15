@@ -6,7 +6,7 @@ import Loader from '../../../components/loaders/Loader';
 import Button from '../../../components/buttons/Button';
 import TableAllResit from '../../../components/tables/TableAllResit';
 import { semester } from '../../../utilities/periodInfo';
-import { getCurrentYear } from '../../../store/academic year/academicYearSlice';
+import { getCurrentYear } from '../../../store/academic-year/academicYearSlice';
 
 function PrintList() {
 	//Defining the dispatch function, and the useSelector to get students data

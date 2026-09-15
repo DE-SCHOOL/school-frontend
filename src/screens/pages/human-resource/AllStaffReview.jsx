@@ -10,7 +10,7 @@ import { PaggingNumSelect, Paggination } from '../../../components/pagging';
 import { TableStaffReview } from '../../../components/tables';
 import Failure from '../../../components/signal/Failure';
 import Loader from '../../../components/loaders/Loader';
-import PlainHrefText from '../../../components/flex text/PlainHrefText';
+import PlainHrefText from '../../../components/flex-text/PlainHrefText';
 
 //initializing table header information
 const staffCourseHeader = {

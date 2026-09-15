@@ -8,7 +8,7 @@ function PlainHrefText({ data }) {
 				if (dt.staff)
 					return (
 						<Link
-							to={`/human resource/staff-courses/${dt.staff._id}`}
+							to={`/human-resource/staff-courses/${dt.staff._id}`}
 							className="text-link"
 							key={index}
 						>

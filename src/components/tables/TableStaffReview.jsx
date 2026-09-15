@@ -91,7 +91,7 @@ function TableStaffReview({ styles, tableData, header, paggingNum }) {
 								<td>
 									<div className="actions">
 										<Link
-											to={`/human resource/review-staff/${row.staff?._id}`}
+											to={`/human-resource/review-staff/${row.staff?._id}`}
 											style={{ marginLeft: '3rem' }}
 										>
 											<BsEyeFill className="view" />

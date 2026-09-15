@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import Failure from './../signal/Failure';
 import Loader from './../loaders/Loader';
-import { getAllCategory } from '../../store/question category/questionCategorySlice';
+import { getAllCategory } from '../../store/question-category/questionCategorySlice';
 import {
 	createQuestion,
 	getQuestion,

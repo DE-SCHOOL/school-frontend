@@ -117,7 +117,7 @@ export const uploadFile = (data) => async (dispatch) => {
 		throw new Error(
 			`${data.specialtyName}_${data.level}_${data.schoolYear
 				.split('/')
-				.join('-')} form B has already been uploaded`
+				.join('-')} form-b has already been uploaded`
 		);
 	} catch (err) {
 		if (err.code === 'storage/object-not-found') {

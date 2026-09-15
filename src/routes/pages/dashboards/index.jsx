@@ -11,7 +11,7 @@ import {
 	AsignStaffCourses,
 	EditAsignedStaffCourses,
 	ViewAllStaffCourses,
-} from './../../../screens/pages/staff courses';
+} from './../../../screens/pages/staff-courses';
 
 import Protected from './../../../components/auth/Protected';
 import * as RIGHT from './../../../utilities/restrict';

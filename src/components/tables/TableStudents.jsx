@@ -177,13 +177,13 @@ function TableStudent({
 								{tableType === 'results' && (
 									<td>
 										<div className="actions results">
-											<Link to={`/exam center/student-results/${row._id}`}>
+											<Link to={`/exam-center/student-results/${row._id}`}>
 												<button className="marks-action button-main caps">
 													{semester() === 's1' ? 'Semester_I' : 'Semester_II'}
 												</button>
 											</Link>
 											<Link
-												to={`/exam center/student-results/${row._id}/transcript`}
+												to={`/exam-center/student-results/${row._id}/transcript`}
 												className="mg-left-lg"
 											>
 												<button className="marks-action button-main caps">

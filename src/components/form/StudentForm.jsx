@@ -51,7 +51,7 @@ function StudentForm({ styles, type = '' }) {
 
 		if (year?._id === undefined) {
 			alert(
-				'Create academic years first. \n1. Check the navigation panel\n2. Select Academic year\n3. Choose create year and create the academic year'
+				'Create academic-years first. \n1. Check the navigation panel\n2. Select Academic year\n3. Choose create year and create the academic-year'
 			);
 			return;
 		}

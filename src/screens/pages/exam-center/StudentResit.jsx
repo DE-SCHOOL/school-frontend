@@ -57,7 +57,7 @@ function StudentResit() {
 				<SectionResultIntro
 					title="Students"
 					styles="mg-bt mg-top"
-					link="/exam center/all-resit"
+					link="/exam-center/all-resit"
 					text="Download All Resits"
 				/>
 

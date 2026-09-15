@@ -9,7 +9,7 @@ import { Layout, SectionIntro } from '../../../components/layout';
 //importing components
 import Failure from '../../../components/signal/Failure';
 import Loader from '../../../components/loaders/Loader';
-import PlainHrefTextCourses from '../../../components/flex text/PlainHrefTextCourses';
+import PlainHrefTextCourses from '../../../components/flex-text/PlainHrefTextCourses';
 
 function AllStaffReview() {
 	const staffCourse = useSelector((state) => state.dashboard.staffCourse.data);
@@ -39,7 +39,7 @@ function AllStaffReview() {
 					<PlainHrefTextCourses data={staffLectures} staff={data.staff?.name} />
 				)}
 
-				<Link to={'/human resource/review-staff'}>
+				<Link to={'/human-resource/review-staff'}>
 					<h3 className="center mg-top-lg">All Staffs</h3>
 				</Link>
 			</section>

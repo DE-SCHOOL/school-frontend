@@ -14,7 +14,7 @@ import {
 	getStudentPerAcademicYear,
 	getStudentPerAcademicYearNextStudents,
 	promoteStudentsBulk,
-} from '../../../store/academic year/academicYearSlice';
+} from '../../../store/academic-year/academicYearSlice';
 import Failure from '../../../components/signal/Failure';
 import TableStudentsPromote from '../../../components/tables/TableStudentsPromote';
 import { determineNextAcademicYear } from '../../../utilities/determineNextAcademicYear';
@@ -33,7 +33,7 @@ const studentHeader = {
 };
 
 function PromoteStudents() {
-	//students who were not inserted into specific academic year -- assuming the student slice still selects students directly from the student table and the students on that table are not in a particular academic year
+	//students who were not inserted into specific academic-year -- assuming the student slice still selects students directly from the student table and the students on that table are not in a particular academic-year
 	const studOld = useSelector((state) => state.students.students);
 
 	//Defining the dispatch function, and the useSelector to get students data

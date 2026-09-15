@@ -23,7 +23,7 @@ import {
 	getAcademicYears,
 	getCurrentYear,
 	updateAcademicYears,
-} from '../../store/academic year/academicYearSlice';
+} from '../../store/academic-year/academicYearSlice';
 import { FaHome, FaTimes } from 'react-icons/fa';
 
 function MainNav({ styleClass = '' }) {

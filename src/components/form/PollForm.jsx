@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Failure from './../signal/Failure';
 import Loader from './../loaders/Loader';
-import { getAllCategory } from '../../store/question category/questionCategorySlice';
+import { getAllCategory } from '../../store/question-category/questionCategorySlice';
 import { createQuestion } from '../../store/question/questionSlice';
 
 //import action creator slices

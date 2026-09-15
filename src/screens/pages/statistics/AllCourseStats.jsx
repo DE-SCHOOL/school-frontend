@@ -11,7 +11,7 @@ import {
 } from '../../../store/courses/courseSlice';
 import { semester } from '../../../utilities/periodInfo';
 import SectionNotFound from '../../../components/layout/SectionNotFound';
-import { getCurrentYear } from '../../../store/academic year/academicYearSlice';
+import { getCurrentYear } from '../../../store/academic-year/academicYearSlice';
 
 function AllCourseStats() {
 	//Defining the dispatch function, and the useSelector to get students data

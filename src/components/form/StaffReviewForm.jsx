@@ -59,7 +59,7 @@ function StaffReviewForm() {
 	};
 	return (
 		<div className="staff-review">
-			<a href={'/human resource/review-staff'}>
+			<a href={'/human-resource/review-staff'}>
 				{/**To force reload of application */}
 				<h3 className="center">View Lecturers</h3>
 			</a>

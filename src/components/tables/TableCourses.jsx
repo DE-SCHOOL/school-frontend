@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaRightLeft } from 'react-icons/fa6';
 import { useDispatch } from 'react-redux';
 import { BsEyeFill, BsFillPenFill, BsFillTrash3Fill } from 'react-icons/bs';
-import { setCurData } from '../../store/cur page/curPageSlice';
+import { setCurData } from '../../store/cur-page/curPageSlice';
 import { useSelector } from 'react-redux';
 
 //importing the search param function

@@ -171,7 +171,7 @@ function TableGroups({
 								{tableType === 'results' && (
 									<td>
 										<div className="actions results">
-											<Link to={`/exam center/student-marks/${row._id}`}>
+											<Link to={`/exam-center/student-marks/${row._id}`}>
 												<BsEyeFill className="view" />
 											</Link>
 										</div>

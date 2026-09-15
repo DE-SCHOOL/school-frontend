@@ -42,7 +42,7 @@ function LeftNavSectionItem({ icon, list }) {
 							</NavLink>
 						)}
 
-						{/* Print the icons to indicate whether or not a left nav section is open */}
+						{/* Print the icons to indicate whether or not a left-nav section is open */}
 						{list.itemList.length !== 0 && (
 							<span className="icons">
 								{!isItemOpen && (
@@ -52,7 +52,7 @@ function LeftNavSectionItem({ icon, list }) {
 							</span>
 						)}
 					</h2>
-					{/* Send down props for the items under the dropdown of a left nav item */}
+					{/* Send down props for the items under the dropdown of a left-nav item */}
 					<ul className={`left-list ${isItemOpen ? 'open' : ''}`}>
 						{list.itemList.length !== 0 &&
 							list.itemList.map((it, index) => {

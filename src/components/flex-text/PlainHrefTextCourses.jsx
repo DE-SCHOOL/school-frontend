@@ -7,7 +7,7 @@ function PlainHrefTextCourses({ data, staff }) {
 			{data.map((dt, index) => {
 				return (
 					<Link
-						to={`/human resource/review-staff/${dt?._id}?course=${dt.name}&staff=${staff}`}
+						to={`/human-resource/review-staff/${dt?._id}?course=${dt.name}&staff=${staff}`}
 						className="text-link"
 						key={index}
 					>

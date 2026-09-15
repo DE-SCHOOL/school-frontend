@@ -10,7 +10,7 @@ import { sortArrayObject } from '../../utilities/sortingInfo';
 import {
 	getStudentPerAcademicYearNextStudents,
 	promoteStudents,
-} from '../../store/academic year/academicYearSlice';
+} from '../../store/academic-year/academicYearSlice';
 import { detectNewClassOnPromotion } from '../../utilities/detectNewClassOnPromotion';
 import { determineNextAcademicYear } from '../../utilities/determineNextAcademicYear';
 import { setDeleteEntity } from '../../store/ui-state/ui-stateSlice';

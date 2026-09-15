@@ -39,7 +39,7 @@ const data = [
 						roles: ['hod', 'director', 'admin'],
 					},
 					{
-						name: 'staff courses',
+						name: 'staff-courses',
 						link: 'staff-course',
 						roles: ['hod', 'director', 'admin'],
 					},
@@ -221,7 +221,7 @@ const data = [
 				],
 			},
 			{
-				item: 'exam center',
+				item: 'exam-center',
 				visibleRight: ['director', 'admin'],
 				icon: <BootstrapIcon.BsFillBookmarkStarFill />,
 				itemList: [
@@ -255,7 +255,7 @@ const data = [
 				],
 			},
 			{
-				item: 'academic year',
+				item: 'academic-year',
 				visibleRight: ['admin'],
 				icon: <FaY />,
 				itemList: [
@@ -324,25 +324,25 @@ const data = [
 				],
 			},
 			{
-				item: 'form bs',
+				item: 'form-bs',
 				link: 'form-bs',
 				visibleRight: ['hod', 'director', 'admin', 'secreteriat'],
 				icon: <BiTable />,
 				itemList: [
 					{
-						name: "upload form b's",
+						name: "upload form-b's",
 						link: 'upload-form-bs',
 						roles: ['hod', 'director', 'admin'],
 					},
 					{
-						name: "form b's list",
+						name: "form-b's list",
 						link: 'formb-list',
 						roles: ['hod', 'director', 'admin', 'secreteriat'],
 					},
 				],
 			},
 			{
-				item: 'human resource',
+				item: 'human-resource',
 				visibleRight: ['admin'],
 				icon: <FaHandsHoldingChild />,
 				itemList: [

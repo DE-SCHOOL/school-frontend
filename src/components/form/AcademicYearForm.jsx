@@ -6,7 +6,7 @@ import Loader from './../loaders/Loader';
 import {
 	createSchoolYear,
 	getAcademicYears,
-} from '../../store/academic year/academicYearSlice';
+} from '../../store/academic-year/academicYearSlice';
 
 //initialize default information
 const defaultInfo = {
@@ -28,7 +28,7 @@ function AcademicYearForm({ styles }) {
 		dispatch(getAcademicYears());
 	}, [dispatch]);
 
-	//Execute this function when you click submit, to add academic year;
+	//Execute this function when you click submit, to add academic-year;
 	const createAcademicYear = async (e) => {
 		e.preventDefault();
 		const data = {
