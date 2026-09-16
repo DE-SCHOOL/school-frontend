@@ -26,7 +26,26 @@ export const login = createAsyncThunk(
 			//SET DEFAULT SEMESTER
 			localStorage.setItem('semester', JSON.stringify({ current: 's1' }));
 
-			await signInWithCustomToken(auth, res.data.data.customToken);
+			// Best-effort only — school-mobile-app-34c3f is a real, fixed
+			// Firebase project (see firebase.config.js), and this custom
+			// token is only valid there if the backend signed it with that
+			// project's real service account. A dev/CI backend using a
+			// disposable local key (scripts/generate-dev-firebase-key.js,
+			// or the mock API server) can never produce one Firebase will
+			// accept — real, found while setting up local contributor
+			// tooling: login itself was silently rejected in the browser
+			// for anyone in that situation, even though the actual JWT
+			// login above had already succeeded. Real-time chat/push
+			// notifications are the only things that need this; core app
+			// login must not depend on it.
+			try {
+				await signInWithCustomToken(auth, res.data.data.customToken);
+			} catch (firebaseErr) {
+				console.warn(
+					'Firebase sign-in failed (chat/notifications will be unavailable this session):',
+					firebaseErr.message
+				);
+			}
 
 			return res.data;
 		} catch (err) {
