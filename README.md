@@ -14,11 +14,20 @@ lives in [`school-backend`](https://github.com/DE-SCHOOL/school-backend),
 but you only need it running if your work actually depends on real
 data or server-side behavior — see below.
 
+## Which setup do I need?
+
+Pick based on what your task actually touches — most issues filed
+against this repo only need the first row.
+
+| Your task | What to do |
+|---|---|
+| **Frontend only** — a component, a page, styling, routing | `./setup-standalone.sh` (below) — no backend, no MongoDB, no Firebase project at all |
+| **Backend only** — an API endpoint, a model, business logic | You don't need this repo — go straight to [`school-backend`](https://github.com/DE-SCHOOL/school-backend#which-setup-do-i-need) |
+| **Full-stack** — a feature spanning both, or you need to see real data actually flow through a real API | `./setup.sh` here **and** `./setup.sh` in [`school-backend`](https://github.com/DE-SCHOOL/school-backend#which-setup-do-i-need) |
+
 ## Quick start
 
-You need [Node.js 22.x](https://nodejs.org). Pick whichever of these
-two matches what you're actually working on — most issues filed
-against this repo only need the first one.
+You need [Node.js 22.x](https://nodejs.org).
 
 ### Option A — frontend only, no backend needed
 
