@@ -104,7 +104,11 @@ function TableMarks({ styles, tableData, header, paggingNum }) {
 						index + 1 > (Number(temp) - 1) * Number(paggingNum) &&
 						index + 1 <= Number(paggingNum) * (temp * 1)
 					)
-						return (
+						// row.course/row.student are null for marks whose
+						// referenced course or student was later deleted (a
+						// real, pre-existing condition in the migrated data)
+						// — skip rendering rather than crash.
+						return !row.course || !row.student ? null : (
 							<tr key={index} className="course--row">
 								<td style={{ textAlign: 'left' }}>
 									<span className="text" style={{ textAlign: 'left' }}>
