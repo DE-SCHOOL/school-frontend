@@ -9,17 +9,58 @@ subscription, and canteen payments settled over the [Stellar
 network](https://stellar.org).
 
 This is the frontend only — the public marketing site, the staff/student
-dashboard, and DE-SCHOOL's own internal platform console. The API it
-talks to lives in
-[`school-backend`](https://github.com/DE-SCHOOL/school-backend); start
-that one first.
+dashboard, and DE-SCHOOL's own internal platform console. The real API
+lives in [`school-backend`](https://github.com/DE-SCHOOL/school-backend),
+but you only need it running if your work actually depends on real
+data or server-side behavior — see below.
+
+## Which setup do I need?
+
+Pick based on what your task actually touches — most issues filed
+against this repo only need the first row.
+
+| Your task | What to do |
+|---|---|
+| **Frontend only** — a component, a page, styling, routing | `./setup-standalone.sh` (below) — no backend, no MongoDB, no Firebase project at all |
+| **Backend only** — an API endpoint, a model, business logic | You don't need this repo — go straight to [`school-backend`](https://github.com/DE-SCHOOL/school-backend#which-setup-do-i-need) |
+| **Full-stack** — a feature spanning both, or you need to see real data actually flow through a real API | `./setup.sh` here **and** `./setup.sh` in [`school-backend`](https://github.com/DE-SCHOOL/school-backend#which-setup-do-i-need) |
 
 ## Quick start
 
-You need [Node.js 22.x](https://nodejs.org). You also need
-`school-backend` running locally — see [its
-README](https://github.com/DE-SCHOOL/school-backend#readme) for its own
-one-command setup.
+You need [Node.js 22.x](https://nodejs.org).
+
+### Option A — frontend only, no backend needed
+
+For a component, a page, styling, routing — anything where you just
+need to see and click through the app. No MongoDB, no `school-backend`,
+no Firebase project.
+
+```bash
+git clone https://github.com/DE-SCHOOL/school-frontend.git
+cd school-frontend
+./setup-standalone.sh
+```
+
+This installs dependencies, starts a small mock API server
+(`mock-server/` — fictional, hardcoded data, no database of any kind)
+on `http://localhost:8001`, points the app at it, and starts the dev
+server on `http://localhost:3000`. Log in with **any** email and
+password — the mock server accepts anything. Ctrl+C stops both
+servers. Re-run any time.
+
+This won't be right for work that depends on real data, real
+multi-tenancy, real payments, or anything server-side actually
+computing something — for that, use Option B. It's also intentionally
+incomplete: it only has realistic fixture data for the screens most
+commonly touched (login, academic year, school profile, staff,
+students, courses); anything else falls back to an empty list rather
+than crashing. Adding a fixture for a screen that needs one is a good
+first contribution — see `mock-server/server.js`.
+
+### Option B — full stack, real data
+
+For anything that needs real data, real multi-tenancy, real payment
+flows, or backend behavior to actually be correct.
 
 ```bash
 git clone https://github.com/DE-SCHOOL/school-frontend.git
@@ -27,12 +68,11 @@ cd school-frontend
 ./setup.sh
 ```
 
-`setup.sh` installs dependencies, creates a `.env` pointing at
-`http://localhost:8000`, and starts the dev server on
-`http://localhost:3000`. Re-run it any time — it's safe to repeat.
-
-Once both are running, sign in with the demo accounts
-`school-backend`'s setup seeds for you:
+You also need [`school-backend`](https://github.com/DE-SCHOOL/school-backend)
+running locally — see its own README for its one-command setup.
+`setup.sh` installs dependencies, points the app at
+`http://localhost:8000`, and starts the dev server. Sign in with the
+demo accounts `school-backend`'s setup seeds for you:
 
 | Role | Where to sign in | Email | Password |
 |---|---|---|---|
@@ -87,6 +127,7 @@ npm run dev
 | `npm run build` | Production build. |
 | `npm run lint` | ESLint — fails on real errors (broken hook usage, undefined references), not on style. |
 | `npm test` | Vitest suite. |
+| `npm run mock-api` | Standalone fake API server (`mock-server/`) — what `./setup-standalone.sh` runs for you automatically. |
 
 ## Architecture at a glance
 
