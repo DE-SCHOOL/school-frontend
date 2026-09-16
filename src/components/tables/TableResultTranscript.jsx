@@ -99,27 +99,34 @@ function TableResultTranscript({ student, styles = '' }) {
 					</tr>
 				</thead>
 				<tbody>
-					{marksInfo?.map((markInfo) => {
-						TCE += markInfo[`s1CreditEarned`];
-						TGP += markInfo[`s1GradePoint`];
-						TWP += markInfo[`s1WeightedPoints`];
-						TCV += markInfo.course.credit_value;
-						return (
-							<tr key={markInfo._id}>
-								<td>{markInfo.course.code}</td>
-								<td className="caps-upper">{markInfo.course.name}</td>
-								<td>{markInfo.course.status === 'compulsory' ? 'C' : 'E'}</td>
-								<td>{markInfo.course.credit_value.toFixed(2)}</td>
-								<td>{markInfo[`s1CreditEarned`].toFixed(2)}</td>
-								<td>{markInfo[`s1CA`].toFixed(2)}</td>
-								<td>{markInfo[`s1Exam`].toFixed(2)}</td>
-								<td>{markInfo[`s1Total`].toFixed(2)}</td>
-								<td>{markInfo[`s1GradePoint`].toFixed(2)}</td>
-								<td>{markInfo[`s1WeightedPoints`].toFixed(2)}</td>
-								<td>{markInfo[`s1Grade`]}</td>
-							</tr>
-						);
-					})}
+					{/* .course is null for marks whose course was later
+					deleted (a real, pre-existing condition in the migrated
+					data, not something new) — filtered out here rather than
+					rendered with blanks, since a mark with no course can't
+					meaningfully appear in a per-course table row. */}
+					{marksInfo
+						?.filter((markInfo) => markInfo.course)
+						.map((markInfo) => {
+							TCE += markInfo[`s1CreditEarned`];
+							TGP += markInfo[`s1GradePoint`];
+							TWP += markInfo[`s1WeightedPoints`];
+							TCV += markInfo.course.credit_value;
+							return (
+								<tr key={markInfo._id}>
+									<td>{markInfo.course.code}</td>
+									<td className="caps-upper">{markInfo.course.name}</td>
+									<td>{markInfo.course.status === 'compulsory' ? 'C' : 'E'}</td>
+									<td>{markInfo.course.credit_value.toFixed(2)}</td>
+									<td>{markInfo[`s1CreditEarned`].toFixed(2)}</td>
+									<td>{markInfo[`s1CA`].toFixed(2)}</td>
+									<td>{markInfo[`s1Exam`].toFixed(2)}</td>
+									<td>{markInfo[`s1Total`].toFixed(2)}</td>
+									<td>{markInfo[`s1GradePoint`].toFixed(2)}</td>
+									<td>{markInfo[`s1WeightedPoints`].toFixed(2)}</td>
+									<td>{markInfo[`s1Grade`]}</td>
+								</tr>
+							);
+						})}
 				</tbody>
 			</table>
 			<div className="total-gpa">
@@ -176,27 +183,29 @@ function TableResultTranscript({ student, styles = '' }) {
 					</tr>
 				</thead>
 				<tbody>
-					{marksInfoII?.map((markInfo) => {
-						TCEII += markInfo[`s2CreditEarned`];
-						TGPII += markInfo[`s2GradePoint`];
-						TWPII += markInfo[`s2WeightedPoints`];
-						TCVII += markInfo.course.credit_value;
-						return (
-							<tr key={markInfo._id}>
-								<td>{markInfo.course.code}</td>
-								<td className="caps-upper">{markInfo.course.name}</td>
-								<td>{markInfo.course.status === 'compulsory' ? 'C' : 'E'}</td>
-								<td>{markInfo.course.credit_value.toFixed(2)}</td>
-								<td>{markInfo[`s2CreditEarned`].toFixed(2)}</td>
-								<td>{markInfo[`s2CA`].toFixed(2)}</td>
-								<td>{markInfo[`s2Exam`].toFixed(2)}</td>
-								<td>{markInfo[`s2Total`].toFixed(2)}</td>
-								<td>{markInfo[`s2GradePoint`].toFixed(2)}</td>
-								<td>{markInfo[`s2WeightedPoints`].toFixed(2)}</td>
-								<td>{markInfo[`s2Grade`]}</td>
-							</tr>
-						);
-					})}
+					{marksInfoII
+						?.filter((markInfo) => markInfo.course)
+						.map((markInfo) => {
+							TCEII += markInfo[`s2CreditEarned`];
+							TGPII += markInfo[`s2GradePoint`];
+							TWPII += markInfo[`s2WeightedPoints`];
+							TCVII += markInfo.course.credit_value;
+							return (
+								<tr key={markInfo._id}>
+									<td>{markInfo.course.code}</td>
+									<td className="caps-upper">{markInfo.course.name}</td>
+									<td>{markInfo.course.status === 'compulsory' ? 'C' : 'E'}</td>
+									<td>{markInfo.course.credit_value.toFixed(2)}</td>
+									<td>{markInfo[`s2CreditEarned`].toFixed(2)}</td>
+									<td>{markInfo[`s2CA`].toFixed(2)}</td>
+									<td>{markInfo[`s2Exam`].toFixed(2)}</td>
+									<td>{markInfo[`s2Total`].toFixed(2)}</td>
+									<td>{markInfo[`s2GradePoint`].toFixed(2)}</td>
+									<td>{markInfo[`s2WeightedPoints`].toFixed(2)}</td>
+									<td>{markInfo[`s2Grade`]}</td>
+								</tr>
+							);
+						})}
 				</tbody>
 			</table>
 			<div className="total-gpa">
