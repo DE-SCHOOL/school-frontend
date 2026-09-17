@@ -13,14 +13,12 @@ const initialState = {
 
 export const getStudents = createAsyncThunk(
 	'student/getStudents',
-	async (thunkAPI) => {
+	async (_, thunkAPI) => {
 		try {
 			const res = await apiRequest('get', `/api/v1/student`);
-			// console.log(res.data);
 			return res.data;
 		} catch (err) {
 			// const msg = getApiError();
-			// console.log(err);
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
 	}
@@ -37,7 +35,6 @@ export const getStudentsPerCourseOffering = createAsyncThunk(
 			return res.data;
 		} catch (err) {
 			// const msg = getApiError();
-			// console.log(err);
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
 	}
@@ -47,7 +44,6 @@ export const editStudent = createAsyncThunk(
 	'student/editStudent',
 	async ({ reqData, id, yearID }, thunkAPI) => {
 		try {
-			// console.log(name, matricule);
 			const res = await apiRequest(
 				'patch',
 				`/api/v1/student/${id}/academic-year/${yearID}`,
@@ -55,10 +51,8 @@ export const editStudent = createAsyncThunk(
 					...reqData,
 				}
 			);
-			// console.log(res);
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
 	}
@@ -87,7 +81,6 @@ export const addStudent = createAsyncThunk(
 		thunkAPI
 	) => {
 		try {
-			// console.log(name, matricule);
 			const res = await apiRequest(
 				'post',
 				`/api/v1/student/academic-year/${yearID}`,
@@ -108,11 +101,9 @@ export const addStudent = createAsyncThunk(
 					entry_certificate,
 				}
 			);
-			// console.log(res);
 			return res.data;
 		} catch (err) {
-			let error = err.response.data?.message;
-			// console.log(err, 'message');
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -123,11 +114,9 @@ export const getStaffStudents = createAsyncThunk(
 	async ({ id }, thunkAPI) => {
 		try {
 			const res = await apiRequest('get', `/api/v1/student/${id}/students`);
-			// console.log(res.data, 111111);
 			return res.data;
 		} catch (err) {
-			let error = err.response.data?.message;
-			// console.log(err, 'message');
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -144,8 +133,7 @@ export const getStudent = createAsyncThunk(
 			);
 			return res.data;
 		} catch (err) {
-			let error = err.response.data?.message;
-			// console.log(err, 'message');
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -160,11 +148,9 @@ export const deleteStudent = createAsyncThunk(
 				'delete',
 				`/api/v1/student/${id}/academic-year/${academicYearID}`
 			);
-			// console.log(res.data, 111111);
 			return res.data;
 		} catch (err) {
-			let error = err.response.data?.message;
-			// console.log(err, 'message');
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
