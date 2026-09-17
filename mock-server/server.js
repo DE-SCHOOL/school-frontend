@@ -16,10 +16,16 @@
 // Adding a fixture for a screen this doesn't cover yet is a genuinely
 // good first contribution — see fixtures.js and RESOURCE_FIXTURES below.
 
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import * as fixtures from './fixtures.js';
 
+// Was reading process.env.MOCK_API_PORT with nothing ever loading .env
+// into process.env for this plain Node script (Vite's own .env loading
+// only covers import.meta.env in the browser bundle, a separate
+// mechanism) - MOCK_API_PORT was documented in .env.example but had no
+// actual effect. The 'dotenv/config' import above fixes that.
 const PORT = process.env.MOCK_API_PORT || 8001;
 
 const app = express();
