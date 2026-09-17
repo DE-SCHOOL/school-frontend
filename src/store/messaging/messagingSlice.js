@@ -91,7 +91,6 @@ export const createGroup = (data) => async (dispatch) => {
 
 		dispatch(createGroupSuccess());
 	} catch (err) {
-		console.log('Error creating group: ', err);
 		dispatch(createGroupFailed(err));
 	}
 };
@@ -112,7 +111,6 @@ export const getAllGroups = () => (dispatch) => {
 			}
 		});
 	} catch (err) {
-		console.log('Error getting groups info');
 		dispatch(createGroupFailed(err));
 	}
 };
@@ -127,7 +125,6 @@ export const deleteGroup = (deleteId) => async (dispatch) => {
 
 		dispatch(deleteSuccess());
 	} catch (err) {
-		console.log('Error deleting group', err);
 		dispatch(createGroupFailed(err));
 	}
 };
@@ -142,7 +139,6 @@ export const getGroup = (id) => async (dispatch) => {
 
 		dispatch(readGroupSuccess(group));
 	} catch (err) {
-		console.log('Error getting group', err);
 		dispatch(createGroupFailed(err));
 	}
 };
@@ -158,7 +154,6 @@ export const editGroup = (id, data) => async (dispatch) => {
 
 		dispatch(readGroupSuccess(group));
 	} catch (err) {
-		console.log('Error editing group information', err);
 		dispatch(createGroupFailed(err));
 	}
 };
@@ -194,6 +189,10 @@ export const sendMessage = (data) => async (dispatch) => {
 		const colRef = collection(db, 'groupMessages');
 		await addDoc(colRef, { ...data, timestamp: serverTimestamp() });
 	} catch (err) {
-		console.log('Error occurred while sending message', err);
+		// Was a silently empty catch block (a leftover console.log was the
+		// only thing here) — a failed send needs to reach the UI somehow,
+		// not disappear. Reuses the same generic failure action every
+		// other thunk in this slice already dispatches on error.
+		dispatch(createGroupFailed(err));
 	}
 };
