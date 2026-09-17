@@ -36,7 +36,6 @@ function TimetableForm({ styles, type = '' }) {
 	const specialty = useRef();
 	const semester = useRef();
 	const years = useRef();
-	// console.log(timetableData, 'DATA');
 
 	//Get all specialties after initial render
 	useEffect(() => {
