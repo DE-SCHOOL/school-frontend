@@ -72,10 +72,8 @@ function TableQuestions({
 
 			<tbody>
 				{DATA_CONST.map((row, index) => {
-					// console.log(row.levels);
 					//maths to decide what entries to show, using paggination
 					let temp = cur ? cur : 1;
-					// console.log(row);
 					if (index >= (temp - 1) * paggingNum && index < temp * paggingNum)
 						return (
 							<tr key={index} className="course--row">
