@@ -17,7 +17,6 @@ function TableResults({ student, styles = '' }) {
 	const load = useSelector((state) => state.courses);
 	const academicYear = useSelector((state) => state.years.currentYear);
 	let semester = periodInfo.semester();
-	// console.log(marksInfo);
 
 	// const resultInfo  = {};
 	let TCE = 0; // Total credit earned
@@ -38,7 +37,6 @@ function TableResults({ student, styles = '' }) {
 
 		//eslint-disable-next-line
 	}, [dispatch, student?.specialty?._id]);
-	// console.log()
 
 	//Get the coursesID and find the marksinformation of a particular student
 	useEffect(() => {
