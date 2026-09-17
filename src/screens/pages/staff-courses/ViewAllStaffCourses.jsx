@@ -32,7 +32,6 @@ function StaffCourseList() {
 
 	//Setting the default number of entries a user can see on the interface.
 	const [numPages, setNumPages] = useState(25);
-	// console.log(staffCourse);
 
 	//Use Effect to dispatch getting staff actions
 	useEffect(() => {
