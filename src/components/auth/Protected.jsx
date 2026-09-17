@@ -8,7 +8,6 @@ function Protected({ children, restrict }) {
 
 	const user = JSON.parse(localStorage.getItem('loggedIn')) || null;
 
-	// console.log(user, restrict.includes(user.role));
 
 	useEffect(() => {
 		if (!restrict.includes(user?.role)) {

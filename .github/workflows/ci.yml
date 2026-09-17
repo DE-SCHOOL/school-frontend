@@ -24,7 +24,10 @@ jobs:
       # unused-variable warning count is a warning, not a blocker, here.
       - run: npm run lint
 
-      - run: npm test
+      # Coverage thresholds live in vite.config.js and are set below the
+      # store layer's real current coverage, not an aspirational number —
+      # they catch regressions, not enforce a target nobody's hit yet.
+      - run: npm run test:coverage
 
       - run: npm run build
 
@@ -32,3 +35,7 @@ jobs:
       # workflow. Frontend is at 0 vulnerabilities as of the Stage 2.2
       # migration; this is a going-forward gate, not a current fix.
       - run: npm audit --audit-level=high
+
+      # Proves a frontend-only contributor's first command actually works
+      # from a clean clone, not just that it's documented.
+      - run: ./setup-standalone.sh

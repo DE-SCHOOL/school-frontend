@@ -21,7 +21,6 @@ function TableResultTranscript({ student, styles = '' }) {
 	const load = useSelector((state) => state.courses);
 	const academicYear = useSelector((state) => state.years.currentYear);
 	// let semester = periodInfo.semester();
-	// console.log(marksInfo);
 
 	// const resultInfo  = {};
 	let TCE = 0; // Total credit earned
@@ -47,7 +46,6 @@ function TableResultTranscript({ student, styles = '' }) {
 
 		//eslint-disable-next-line
 	}, [dispatch, student?.specialty?._id]);
-	// console.log()
 
 	//Get the coursesID and find the marksinformation of a particular student
 	useEffect(() => {
@@ -79,7 +77,6 @@ function TableResultTranscript({ student, styles = '' }) {
 		}
 		//eslint-disable-next-line
 	}, [courses?.length, academicYear?._id]);
-	console.log();
 	return (
 		<div className={`result-info result-info-transcript ${styles}`}>
 			<table className="results mg-top">

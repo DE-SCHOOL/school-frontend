@@ -10,15 +10,13 @@ const initialState = {
 
 export const getStaffCourse = createAsyncThunk(
 	'dashboard/getStaffCourse',
-	async (thunkAPI) => {
+	async (_, thunkAPI) => {
 		try {
 			const res = await apiRequest('get', `/api/v1/staff-course`);
-			// console.log(res.data);
 			return res.data;
 		} catch (err) {
 			// const msg = getApiError();
-			// console.log(err);
-			let error = err.response.data?.message;
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -33,12 +31,10 @@ export const assignCourse = createAsyncThunk(
 				courses,
 				staff,
 			});
-			// console.log(res.data);
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			// const msg = getApiError();
-			let error = err?.response.data.message;
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -52,12 +48,10 @@ export const editAssignedCourses = createAsyncThunk(
 			const res = await apiRequest('patch', `/api/v1/staff-course/${staffID}`, {
 				courses,
 			});
-			// console.log(res.data);
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			// const msg = getApiError();
-			let error = err?.response.data.message;
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -83,7 +77,6 @@ const dashboardSlice = createSlice({
 				state.errorMessage = null;
 			})
 			.addCase(getStaffCourse.pending, (state, action) => {
-				// console.log(action.payload);
 				state.isLoading = true;
 			})
 			.addCase(getStaffCourse.rejected, (state, action) => {
@@ -120,7 +113,6 @@ const dashboardSlice = createSlice({
 	},
 });
 
-// console.log()
 //import.meta.env
 
 const { reducer } = dashboardSlice;

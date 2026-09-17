@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 //import action creator slices
 // import { getDepartments } from '../../store/departments/departmentSlice';
 import { addStaff } from '../../store/staffs/staffSlice';
+import { staffFormSchema, firstValidationError } from '../../utilities/validation';
+import { GenderOptions, MaritalStatusOptions } from './fields/formOptions';
 import Failure from '../signal/Failure';
 // import Success from '../signal/Success';
 import Loader from './../../components/loaders/Loader';
@@ -34,6 +36,7 @@ const defaultInfo = {
 function StaffForm({ type = '' }) {
 	//initialize the main hooks
 	const [staffData, setStaffData] = useState(defaultInfo);
+	const [validationError, setValidationError] = useState(null);
 	// const department = useRef();
 
 	//create dispatch to dispatch actions and useSelect for getting out information
@@ -52,11 +55,20 @@ function StaffForm({ type = '' }) {
 	const handleAddStaff = (e) => {
 		e.preventDefault();
 
+		// Validated client-side against the same rules school-backend's own
+		// staff schema enforces (see utilities/validation.js), including the
+		// password-confirmation match the form itself never checked before.
+		const error = firstValidationError(staffFormSchema, staffData);
+		if (error) {
+			setValidationError(error);
+			return;
+		}
+		setValidationError(null);
+
 		dispatch(addStaff({ ...staffData }));
 		setStaffData(defaultInfo);
 	};
 
-	// console.log(rle);
 	// alert(rle);
 
 	return (
@@ -226,8 +238,7 @@ function StaffForm({ type = '' }) {
 							})
 						}
 					>
-						<option value="male">Male</option>
-						<option value="female">Female</option>
+						<GenderOptions />
 					</select>
 				</div>
 				<div className="form-item">
@@ -271,10 +282,7 @@ function StaffForm({ type = '' }) {
 							})
 						}
 					>
-						<option value="married">Married</option>
-						<option value="not married">Not Married</option>
-						<option value="seperated">Seperated</option>
-						<option value="devorced">Devorced</option>
+						<MaritalStatusOptions />
 					</select>
 				</div>
 			</div>
@@ -344,12 +352,11 @@ function StaffForm({ type = '' }) {
 			<button className="button-main button-main-medium mg-top-md">
 				submit
 			</button>
-			{staffss.error === true && staffss.errorMessage && (
+			{validationError && <Failure message={validationError} />}
+			{!validationError && staffss.error === true && staffss.errorMessage && (
 				<Failure message={staffss.errorMessage} />
 			)}
-			{/* {staffss.error === false && setStaffData(defaultInfo)} */}
 			{staffss.isLoading && <Loader />}
-			{/* {staffss.success !== null && staffss.success > D<Success />} */}
 		</form>
 	);
 }

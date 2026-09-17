@@ -14,14 +14,12 @@ const initialState = {
 
 export const getCourses = createAsyncThunk(
 	'course/getCourses',
-	async (thunkAPI) => {
+	async (_, thunkAPI) => {
 		try {
 			const res = await apiRequest('get', `/api/v1/course`);
-			// console.log(res.data);
 			return res.data;
 		} catch (err) {
 			const error = err?.response?.data?.message || 'Something went wrong';
-			// console.log(err);
 			return thunkAPI.rejectWithValue({ error });
 		}
 	}
@@ -73,11 +71,9 @@ export const myCourses = createAsyncThunk(
 	async ({ teacherID }, thunkAPI) => {
 		try {
 			const res = await apiRequest('get', `/api/v1/staff-course/${teacherID}`);
-			// console.log(res.data);
 			return res.data;
 		} catch (err) {
 			const error = err?.response?.data?.message || 'Something went wrong';
-			// console.log(err);
 			return thunkAPI.rejectWithValue({ error });
 		}
 	}
@@ -106,11 +102,9 @@ export const getCourse = createAsyncThunk(
 	async ({ id }, thunkAPI) => {
 		try {
 			const res = await apiRequest('get', `/api/v1/course/${id}`);
-			// console.log(res.data, 'COURSE');
 			return res.data;
 		} catch (err) {
 			const error = err?.response?.data?.message || 'Something went wrong';
-			// console.log(err);
 			return thunkAPI.rejectWithValue({ error });
 		}
 	}
@@ -124,11 +118,9 @@ export const getCourseStats = createAsyncThunk(
 				semester,
 				academicYear,
 			});
-			// console.log(res.data, 'COURSE');
 			return res.data;
 		} catch (err) {
 			const error = err?.response?.data?.message || 'Something went wrong';
-			// console.log(err);
 			return thunkAPI.rejectWithValue({ error });
 		}
 	}
@@ -143,11 +135,9 @@ export const getAllCourseStats = createAsyncThunk(
 				academicYear,
 				courseIDs,
 			});
-			// console.log(res.data, 'COURSE');
 			return res.data;
 		} catch (err) {
 			const error = err?.response?.data?.message || 'Something went wrong';
-			// console.log(err);
 			return thunkAPI.rejectWithValue({ error });
 		}
 	}
@@ -158,11 +148,9 @@ export const getCoursesPerSpecialty = createAsyncThunk(
 	async ({ id }, thunkAPI) => {
 		try {
 			const res = await apiRequest('get', `/api/v1/course/specialty/${id}`);
-			// console.log(res.data, 'COURSE');
 			return res.data;
 		} catch (err) {
 			const error = err?.response?.data?.message || 'Something went wrong';
-			// console.log(err);
 			return thunkAPI.rejectWithValue({ error });
 		}
 	}
@@ -171,18 +159,15 @@ export const getCoursesPerSpecialty = createAsyncThunk(
 export const getCoursesPerSpecialtyPerLevel = createAsyncThunk(
 	'course/getCoursesPerSpecialtyPerLevel',
 	async ({ id, level }, thunkAPI) => {
-		// console.log({ level });
 		try {
 			const res = await apiRequest(
 				'post',
 				`/api/v1/course/level/specialty/${id}`,
 				{ level }
 			);
-			// console.log(res.data, 'COURSE');
 			return res.data;
 		} catch (err) {
 			const error = err?.response?.data?.message || 'Something went wrong';
-			// console.log(err);
 			return thunkAPI.rejectWithValue({ error });
 		}
 	}
@@ -193,11 +178,9 @@ export const deleteCourse = createAsyncThunk(
 	async ({ id }, thunkAPI) => {
 		try {
 			const res = await apiRequest('delete', `/api/v1/course/${id}`);
-			// console.log(res.data, 111111);
 			return res.data;
 		} catch (err) {
-			let error = err.response.data?.message;
-			// console.log(err, 'message');
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}

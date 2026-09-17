@@ -23,7 +23,6 @@ function SectionMainIntro({
 	const loc = useLocation();
 	const handleRefresh = () => {
 		window.location = loc.pathname;
-		// console.log(loc);
 	};
 	return (
 		<div className={`section-main-intro ${styles ? styles : ''}`}>

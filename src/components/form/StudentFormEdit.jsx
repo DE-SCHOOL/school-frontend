@@ -7,6 +7,7 @@ import { getSpecialties } from '../../store/specialty/specialtySlice';
 import { editStudent, getStudent } from '../../store/students/studentSlice';
 
 import { getDateFromDateObject } from '../../utilities/getDate';
+import { GenderOptions, StudentLevelOptions } from './fields/formOptions';
 
 //import reactions
 import Failure from '../signal/Failure';
@@ -56,8 +57,6 @@ function StudentFormEdit({ styles }) {
 	const level = useRef();
 	const gender = useRef();
 
-	console.log(dob);
-	console.log(dobN);
 
 	//Get all specialties after initial render
 	useEffect(() => {
@@ -88,7 +87,6 @@ function StudentFormEdit({ styles }) {
 			level: level.current.value,
 			gender: gender.current.value,
 		};
-		console.log(reqData);
 		dispatch(editStudent({ reqData, id: param.id, yearID: year?._id }));
 	};
 	return (
@@ -270,18 +268,7 @@ function StudentFormEdit({ styles }) {
 						}
 						ref={gender}
 					>
-						<option
-							value="male"
-							selected={student?.gender === 'male' ? true : false}
-						>
-							Male
-						</option>
-						<option
-							value="female"
-							selected={student?.gender === 'female' ? true : false}
-						>
-							Female
-						</option>
+						<GenderOptions selectedValue={student?.gender} />
 					</select>
 				</div>
 				<div className="form-item">
@@ -298,36 +285,7 @@ function StudentFormEdit({ styles }) {
 						}
 						ref={level}
 					>
-						<option
-							value="200"
-							selected={student?.level === 200 ? true : false}
-						>
-							200
-						</option>
-						<option
-							value="300"
-							selected={student?.level === 300 ? true : false}
-						>
-							300
-						</option>
-						<option
-							value="400"
-							selected={student?.level === 400 ? true : false}
-						>
-							400
-						</option>
-						<option
-							value="601"
-							selected={student?.level === 601 ? true : false}
-						>
-							600 I
-						</option>
-						<option
-							value="602"
-							selected={student?.level === 602 ? true : false}
-						>
-							600 II
-						</option>
+						<StudentLevelOptions selectedValue={`${student?.level}`} />
 					</select>
 				</div>
 				<div className="form-item">

@@ -57,6 +57,10 @@ students, courses); anything else falls back to an empty list rather
 than crashing. Adding a fixture for a screen that needs one is a good
 first contribution — see `mock-server/server.js`.
 
+Prefer a container instead of a local Node install? `docker compose up
+--build` does the same thing (`docker-compose.yml`) — the app on
+`http://localhost:3000`, the mock API on `http://localhost:8001`.
+
 ### Option B — full stack, real data
 
 For anything that needs real data, real multi-tenancy, real payment
@@ -145,14 +149,8 @@ npm run dev
 
 ## Contributing
 
-- All work happens on feature branches off `master`; open a pull
-  request rather than pushing directly.
-- CI (`.github/workflows/ci.yml`) runs on every PR: lint, `npm test`,
-  and a production build. A PR with a failing check is not ready to
-  merge.
-- Commit messages should explain **why**, not just restate the diff.
-- See the project root's `my-todo.md` (in `school-backend`'s sibling
-  directory, or ask a maintainer) for the full build roadmap.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the workflow, test
+conventions, and code style this repo expects from a pull request.
 
 ## License
 

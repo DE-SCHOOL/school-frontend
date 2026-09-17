@@ -1,0 +1,34 @@
+# Brings up the frontend-only stack: this app plus the fake mock API
+# server (mock-server/), no school-backend, no MongoDB, no Firebase
+# project needed. The containerized equivalent of ./setup-standalone.sh.
+#
+# Usage: docker compose up --build
+# Then open http://localhost:3000 — log in with any email/password.
+#
+# For anything that needs real data or real backend behavior, use
+# school-backend's own setup instead (see README.md).
+
+services:
+  mock-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: node mock-server/server.js
+    environment:
+      MOCK_API_PORT: 8001
+    ports:
+      - '8001:8001'
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # The browser (running on the host, not inside Docker) is what
+        # actually calls this URL, so it has to be the mock-api service's
+        # published host port, not its in-network container name.
+        VITE_NODE_HOST_APP: http://localhost:8001
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mock-api

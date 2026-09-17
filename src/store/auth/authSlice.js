@@ -55,7 +55,7 @@ export const login = createAsyncThunk(
 	}
 );
 
-export const logout = createAsyncThunk('user/logout', async (thunkAPI) => {
+export const logout = createAsyncThunk('user/logout', async (_, thunkAPI) => {
 	try {
 		localStorage.removeItem('loggedIn');
 		const res = await apiRequest('get', `/api/v1/staff/logout`);
@@ -87,7 +87,6 @@ const authSlice = createSlice({
 				state.errorMessage = null;
 			})
 			.addCase(login.rejected, (state, action) => {
-				console.log(action, 'action');
 				state.error = true;
 				state.isLoading = false;
 				state.errorMessage = action.payload?.error;

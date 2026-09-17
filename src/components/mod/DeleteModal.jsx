@@ -30,13 +30,11 @@ function DeleteModal({
 	const [modalText, setModalText] = useState('');
 	const year = useSelector((state) => state.years.currentYear);
 	const dispatch = useDispatch();
-	// console.log(modalText, id);
 	const handleRemoveModal = () => {
 		dispatch(defaultDeleteEntity());
 	};
 
 	window.onclick = (e) => {
-		// console.log(e.target.id);
 		if (e.target.id === 'outer') {
 			handleRemoveModal();
 		}
@@ -80,12 +78,6 @@ function DeleteModal({
 		} else if (type === 'question') {
 			dispatch(deleteQuestion({ id }));
 		} else if (type === 'promotion') {
-			console.log({
-				studentID: id,
-				nextAcademicYearID: nextAcademicYear?._id,
-				newClass,
-				currentYearID: year?._id,
-			});
 			await dispatch(
 				deletePromotedStudent({
 					studentID: id,

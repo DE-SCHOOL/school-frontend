@@ -11,14 +11,12 @@ const initialState = {
 
 export const getSpecialties = createAsyncThunk(
 	'specialty/getSpecialties',
-	async (thunkAPI) => {
+	async (_, thunkAPI) => {
 		try {
 			const res = await apiRequest('get', `/api/v1/specialty`);
 
-			// console.log(res.data);
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
 	}
@@ -30,10 +28,8 @@ export const getSpecialty = createAsyncThunk(
 		try {
 			const res = await apiRequest('get', `/api/v1/specialty/${id}`);
 
-			// console.log(res.data);
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
 	}
@@ -44,10 +40,8 @@ export const getSpecialtyCourses = createAsyncThunk(
 	async ({ id }, thunkAPI) => {
 		try {
 			const res = await apiRequest('get', `/api/v1/course/specialty/${id}`);
-			// console.log(res.data);
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
 	}
@@ -61,10 +55,8 @@ export const createSpecialties = createAsyncThunk(
 				name,
 				department,
 			});
-			// console.log(res.data);
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			const error = err?.response?.data?.message || 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -79,10 +71,8 @@ export const editSpecialty = createAsyncThunk(
 				name,
 				department,
 			});
-			// console.log(res.data);
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			const error = err?.response?.data?.message || 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -94,11 +84,9 @@ export const deleteSpecialty = createAsyncThunk(
 	async ({ id }, thunkAPI) => {
 		try {
 			const res = await apiRequest('delete', `/api/v1/specialty/${id}`);
-			// console.log(res.data, 111111);
 			return res.data;
 		} catch (err) {
-			let error = err.response.data?.message;
-			// console.log(err, 'message');
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -120,7 +108,6 @@ const specialtySlice = createSlice({
 				state.isLoading = true;
 			})
 			.addCase(getSpecialties.fulfilled, (state, action) => {
-				// console.log(action.payload);
 				state.specialties = action.payload;
 				state.specialty = {};
 				state.isLoading = false;
@@ -190,7 +177,6 @@ const specialtySlice = createSlice({
 				state.isLoading = true;
 			})
 			.addCase(getSpecialtyCourses.fulfilled, (state, action) => {
-				console.log(action.payload);
 				state.specialties = action.payload;
 				state.specialtyName = action.payload.data[0]?.specialty[0]?.name || '';
 				state.isLoading = false;

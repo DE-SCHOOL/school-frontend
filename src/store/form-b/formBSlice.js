@@ -133,12 +133,10 @@ export const uploadFile = (data) => async (dispatch) => {
 					const progress =
 						(Number(snapshot.bytesTransferred) / Number(snapshot.totalBytes)) *
 						100;
-					console.log('Upload is ' + progress + '% done');
 					dispatch(uploadProgressUpdate(progress));
 				},
 				(error) => {
 					// Handle unsuccessful uploads
-					console.log('An error occurred uploading the file', error);
 					dispatch(
 						createFormBFailed(
 							'Form B failed to upload, check your internet connection'
@@ -176,7 +174,6 @@ export const getAllFormBs = () => async (dispatch) => {
 		dispatch(getFormBsSuccess(res.data.data));
 	} catch (err) {
 		const error = err?.response?.data?.message || 'Something went wrong';
-		console.log(err);
 		dispatch(getFormBsFailed(error));
 	}
 };
@@ -190,11 +187,9 @@ export const deleteFormB =
 			const res = await apiRequest('delete', `/api/v1/form-b/${id}`);
 			await deleteObject(formBFileRef);
 
-			// console.log(res);
 			return dispatch(deleteFormBSuccess());
 		} catch (err) {
 			const error = err?.response?.data?.message || 'Something went wrong';
-			console.log(err);
 			return dispatch(deleteFormBRejected(error));
 		}
 	};

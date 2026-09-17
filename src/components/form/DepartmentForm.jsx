@@ -22,12 +22,10 @@ function DepartmentForm({ styles }) {
 	const HOD = useSelector((state) => state.staffs.teachers.data);
 	const department = useSelector((state) => state.departments);
 
-	// console.log(department, programs, 123456);
 	//initialize the main hooks
 	const [departmentData, setDepartmentData] = useState(defaultInfo);
 	const program = useRef();
 	const hod = useRef();
-	// console.log(departmentData, 'DATA');
 
 	//Get all specialties after initial render
 	useEffect(() => {

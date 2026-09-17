@@ -20,7 +20,6 @@ function PollFormEdit({ styles, choiceCount }) {
 	const questions = useSelector((state) => state.questions);
 	const [res, setRes] = useState([]);
 
-	console.log(questions, categories);
 	const params = useParams();
 
 	//initialize the main hooks
@@ -77,7 +76,6 @@ function PollFormEdit({ styles, choiceCount }) {
 					>
 						{categories?.length > 0 &&
 							categories?.map((cat, index) => {
-								console.log(cat?.id === questions.question?.category?._id);
 								return (
 									<option
 										key={cat?._id}

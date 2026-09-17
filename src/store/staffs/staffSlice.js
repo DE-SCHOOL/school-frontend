@@ -12,15 +12,13 @@ const initialState = {
 
 export const getStaffs = createAsyncThunk(
 	'staff/getStaffs',
-	async (thunkAPI) => {
+	async (_, thunkAPI) => {
 		try {
 			const res = await apiRequest('get', `/api/v1/staff`);
-			// console.log(res.data);
 			return res.data;
 		} catch (err) {
 			// const msg = getApiError();
-			// console.log(err);
-			let error = err.response.data?.message;
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -66,12 +64,10 @@ export const addStaff = createAsyncThunk(
 				role,
 				picture,
 			});
-			// console.log(res.data);
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			// const msg = getApiError();
-			let error = err?.response.data.message;
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -82,14 +78,11 @@ export const editStaff = createAsyncThunk(
 	'staff/editStaff',
 	async ({ reqData, id }, thunkAPI) => {
 		try {
-			// console.log(name, matricule);
 			const res = await apiRequest('patch', `/api/v1/staff/${id}`, {
 				...reqData,
 			});
-			// console.log(res);
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
 	}
@@ -99,12 +92,9 @@ export const getStaff = createAsyncThunk(
 	'staff/getStaff',
 	async ({ id }, thunkAPI) => {
 		try {
-			// console.log(name, matricule);
 			const res = await apiRequest('get', `/api/v1/staff/${id}`);
-			// console.log(res);
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
 	}
@@ -118,8 +108,7 @@ export const deleteStaff = createAsyncThunk(
 
 			return res.data;
 		} catch (err) {
-			let error = err.response.data?.message;
-			// console.log(err, 'message');
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -146,7 +135,6 @@ const staffSlice = createSlice({
 				state.errorMessage = null;
 			})
 			.addCase(getStaffs.pending, (state, action) => {
-				// console.log(action.payload);
 				state.isLoading = true;
 			})
 			.addCase(getStaffs.rejected, (state, action) => {
@@ -160,7 +148,6 @@ const staffSlice = createSlice({
 				state.errorMessage = null;
 			})
 			.addCase(getStaff.pending, (state, action) => {
-				// console.log(action.payload);
 				state.isLoading = true;
 			})
 			.addCase(getStaff.rejected, (state, action) => {
@@ -175,7 +162,6 @@ const staffSlice = createSlice({
 				state.errorMessage = null;
 			})
 			.addCase(deleteStaff.pending, (state, action) => {
-				// console.log(action.payload);
 				state.isLoading = true;
 			})
 			.addCase(deleteStaff.rejected, (state, action) => {
@@ -212,7 +198,6 @@ const staffSlice = createSlice({
 	},
 });
 
-// console.log()
 //import.meta.env
 
 const { reducer } = staffSlice;

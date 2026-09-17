@@ -20,7 +20,6 @@ function DepartmentFormEdit({ styles }) {
 	const HOD = useSelector((state) => state.staffs.teachers.data);
 	const departments = useSelector((state) => state.departments);
 	const department = useSelector((state) => state.departments.department);
-	console.log(department);
 
 	//initialize the main hooks
 	const param = useParams();

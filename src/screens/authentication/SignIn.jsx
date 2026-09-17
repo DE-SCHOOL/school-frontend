@@ -40,13 +40,11 @@ function Signin() {
 
 	//PREFERABLE TO USE THE USEeFFECT HOOK here -------------------------------------------<<<<<<<<<<<
 	// On successful login, redirect user to new page
-	// console.log(logInData);
 	useEffect(() => {
 		const objArr = Object.keys(logInData.user || {});
 		let user = JSON.parse(localStorage.getItem('loggedIn'));
 		user = user ? user : {};
 		if (objArr.length > 0 || Object.keys(user).length > 0) {
-			console.log('User successfully logged in');
 			navigate('/teachers/list');
 		}
 	}, [logInData, navigate]);

@@ -33,7 +33,6 @@ function SpecialtyView() {
 	);
 	const specialtyName = useSelector((state) => state.specialty.specialtyName);
 	const dispatch = useDispatch();
-	// console.log(specialtyCourses);
 	//use params
 	const params = useParams();
 

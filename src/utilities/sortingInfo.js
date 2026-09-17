@@ -11,7 +11,6 @@ export const sortArrayObject = (
 	field,
 	fieldOpt
 ) => {
-	console.log(data);
 	const tempData = data.map((dt) => dt);
 
 	if (field && fieldOpt) {
@@ -19,13 +18,10 @@ export const sortArrayObject = (
 			let first = a[field][fieldOpt] || null;
 			let second = b[field][fieldOpt] || null;
 
-			// console.log(first, second);
 			if (first < second) {
-				// console.log(-1);
 				return -1;
 			}
 			if (second < first) {
-				// console.log(1);
 				return 1;
 			}
 			return 0;
@@ -35,20 +31,16 @@ export const sortArrayObject = (
 			let first = a[field];
 			let second = b[field];
 
-			// console.log(first, second);
 			if (first < second) {
-				// console.log(-1);
 				return -1;
 			}
 			if (second < first) {
-				// console.log(1);
 				return 1;
 			}
 			return 0;
 		});
 	}
 
-	console.log(tempData);
 	setData(tempData);
 	setSortedBy(field);
 };

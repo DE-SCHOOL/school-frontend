@@ -33,7 +33,6 @@ function DepartmentList() {
 	const uiState = useSelector((state) => state.uiState.deleteOpt);
 	const isLoading = useSelector((state) => state.departments.isLoading);
 
-	// console.log(departments, 123);
 
 	const [departmentState, setDepartmentState] = useState([]);
 

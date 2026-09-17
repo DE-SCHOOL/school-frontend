@@ -21,7 +21,6 @@ function SpecialtyForm({ styles }) {
 		(state) => state.departments.departments.data
 	);
 	const specialty = useSelector((state) => state.specialty);
-	console.log(specialty);
 	//initialize the main hooks
 	const [specialtyData, setSpecialtyData] = useState(defaultInfo);
 	const department = useRef();
@@ -35,7 +34,6 @@ function SpecialtyForm({ styles }) {
 	const createSpecialty = (e) => {
 		e.preventDefault();
 
-		console.log(department.current.value);
 		dispatch(
 			createSpecialties({
 				...specialtyData,

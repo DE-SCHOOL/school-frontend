@@ -81,9 +81,6 @@ function PromoteStudents() {
 		});
 		const toYearID = year.currentYear._id;
 
-		// console.log(students, 'ALMOST PROMOTED');
-		// console.log(stud1, 'STUD ONE');
-		// console.log(stud2, 'STUD TWO');
 		await dispatch(createStudentAcademicYearBulk({ students, toYearID }));
 
 		await dispatch(getStudentPerAcademicYear(year.currentYear));
@@ -144,10 +141,6 @@ function PromoteStudents() {
 		}
 		// eslint-disable-next-line
 	}, [studentsToPromote.length, year.currentYear?.schoolYear]);
-	// console.log(studentsState, 'StudState');
-	// console.log(students, 'students');
-	// console.log(studentsState, 'StudState');
-	// console.log(year, 'year');
 	return (
 		<Layout>
 			{/* Displaying the page introduction and directory */}

@@ -45,7 +45,6 @@ function AllCourseStats() {
 				academicYear: academicYear?.schoolYear,
 				courseIDs,
 			};
-			// console.log(dbOpt);
 			dispatch(getAllCourseStats(dbOpt));
 		}
 		//eslint-disable-next-line

@@ -17,7 +17,6 @@ const initialState = {
 export const createInitialMarkSheet = createAsyncThunk(
 	'mark/createInitialMarkSheet',
 	async ({ students, academicYear, id }, thunkAPI) => {
-		console.log(students, academicYear);
 		try {
 			const res = await apiRequest('post', `/api/v1/mark/${id}`, {
 				students,
@@ -26,7 +25,7 @@ export const createInitialMarkSheet = createAsyncThunk(
 			return res.data;
 		} catch (err) {
 			// const msg = getApiError();
-			let error = err.response.data?.message;
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -45,7 +44,7 @@ export const getMarkSheetsPerCoursePerStudents = createAsyncThunk(
 			return res.data;
 		} catch (err) {
 			// const msg = getApiError();
-			let error = err.response.data?.message;
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -53,12 +52,12 @@ export const getMarkSheetsPerCoursePerStudents = createAsyncThunk(
 );
 export const getAllStudentsMarkSheet = createAsyncThunk(
 	'mark/getAllStudentsMarkSheet',
-	async (thunkAPI) => {
+	async (_, thunkAPI) => {
 		try {
 			const res = await apiRequest('get', `/api/v1/mark`);
 			return res.data;
 		} catch (err) {
-			let error = err.response.data?.message;
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -77,7 +76,7 @@ export const updateStudentsMark = createAsyncThunk(
 			return res.data;
 		} catch (err) {
 			// const msg = getApiError();
-			let error = err.response.data?.message;
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -95,7 +94,7 @@ export const getStudentMarkSheetAllCourses = createAsyncThunk(
 			);
 			return res.data;
 		} catch (err) {
-			let error = err.response.data?.message;
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -113,7 +112,7 @@ export const getStudentMarkSheetAllCoursesII = createAsyncThunk(
 			);
 			return res.data;
 		} catch (err) {
-			let error = err.response.data?.message;
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -131,7 +130,7 @@ export const getAllStudentMarkSheetAllCourses = createAsyncThunk(
 			);
 			return res.data;
 		} catch (err) {
-			let error = err.response.data?.message;
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -149,7 +148,7 @@ export const getAllStudentMarkSheetAllCoursesII = createAsyncThunk(
 			);
 			return res.data;
 		} catch (err) {
-			let error = err.response.data?.message;
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -253,12 +252,12 @@ const markSlice = createSlice({
 				state.errorMessage = null;
 			})
 			.addCase(getAllStudentMarkSheetAllCoursesII.rejected, (state, action) => {
-				// state.error = true;
-				// state.isLoading = false;
-				// state.errorMessage = action.payload?.error;
+				state.error = true;
+				state.isLoading = false;
+				state.errorMessage = action.payload?.error;
 			})
-			.addCase(getAllStudentMarkSheetAllCoursesII.pending, (state, action) => {
-				// state.isLoading = true;
+			.addCase(getAllStudentMarkSheetAllCoursesII.pending, (state) => {
+				state.isLoading = true;
 			})
 			.addCase(
 				getAllStudentMarkSheetAllCoursesII.fulfilled,

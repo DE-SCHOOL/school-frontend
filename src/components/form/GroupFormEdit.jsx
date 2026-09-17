@@ -4,9 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 //import action creator slices
 import { getSpecialties } from '../../store/specialty/specialtySlice';
-import { editStudent } from '../../store/students/studentSlice';
-
-import { getDateFromDateObject } from '../../utilities/getDate';
 
 //import reactions
 import Failure from '../signal/Failure';
@@ -32,7 +29,6 @@ function StudentFormEdit({ styles }) {
 	);
 	const programs = useSelector((state) => state.programs.programs.data);
 
-	console.log(group, 'GROUPPPPP');
 
 	//initialize the main hooks
 	const specialty = useRef();
@@ -88,7 +84,6 @@ function StudentFormEdit({ styles }) {
 			description: description.current.value,
 			name: name.current.value,
 		};
-		console.log(data);
 		dispatch(editGroup(param.id, data));
 	};
 	return (
@@ -99,265 +94,6 @@ function StudentFormEdit({ styles }) {
 			className={`${styles ? styles : ''}`}
 			onSubmit={modifyGroup}
 		>
-			{/* <div className="form">
-				<div className="form-item">
-					<span className="desc">
-						Matricule <em>*</em>
-					</span>
-					<input
-						type="text"
-						placeholder="Enter matricule"
-						name="matricule"
-						required
-						// value={studentData.matricule}
-						defaultValue={student?.matricule}
-						ref={matricule}
-					/>
-				</div>
-				<div className="form-item">
-					<span className="desc">
-						Student name <em>*</em>
-					</span>
-					<input
-						type="text"
-						placeholder="Enter student name"
-						required
-						name="name"
-						defaultValue={student?.name}
-						// value={studentData.name}
-						ref={name}
-						autoComplete="name"
-					/>
-				</div>
-				<div className="form-item">
-					<span className="desc">
-						Address <em>*</em>
-					</span>
-					<input
-						type="text"
-						placeholder="Enter address"
-						name="address"
-						required
-						// value={studentData.address}
-						defaultValue={student?.address}
-						ref={address}
-						autoComplete="address"
-					/>
-				</div>
-				{student?.dob && (
-					<div className="form-item">
-						<span className="desc">
-							Date of Birth <em>*</em>
-						</span>
-						<input
-							type="date"
-							placeholder="Enter date of birth"
-							required
-							name="date-of-birth"
-							ref={DOB}
-							autoComplete="date-of-birth"
-							defaultValue={getDateFromDateObject(dob, -1)}
-							value={dobN !== '' ? dobN : getDateFromDateObject(dob, -1)}
-							onChange={(e) => setDOB(e.target.value)}
-						/>
-					</div>
-				)}
-				<div className="form-item">
-					<span className="desc">
-						Place of birth <em>*</em>
-					</span>
-					<input
-						type="text"
-						placeholder="Enter place of birth"
-						required
-						name="place-of-birth"
-						defaultValue={student?.pob}
-						ref={pob}
-					/>
-				</div>
-				<div className="form-item">
-					<span className="desc">
-						Email <em>*</em>
-					</span>
-					<input
-						type="email"
-						placeholder="Enter email"
-						name="email"
-						required
-						defaultValue={student?.email}
-						autoComplete="email"
-						ref={email}
-					/>
-				</div>
-				<div className="form-item">
-					<span className="desc">
-						Student Tel <em>*</em>
-					</span>
-					<input
-						type="number"
-						placeholder="Enter student tel"
-						required
-						name="student-tel"
-						defaultValue={student?.tel}
-						autoComplete="first-name"
-						ref={tel}
-					/>
-				</div>
-				<div className="form-item">
-					<span className="desc">
-						Parent name <em>*</em>
-					</span>
-					<input
-						type="text"
-						placeholder="Enter parent name"
-						required
-						name="parent-name"
-						defaultValue={student?.parent_name}
-						ref={parent_name}
-					/>
-				</div>
-				<div className="form-item">
-					<span className="desc">
-						Parent email <em>*</em>
-					</span>
-					<input
-						type="email"
-						placeholder="Enter parent email"
-						required
-						name="parent-email"
-						defaultValue={student?.parent_email}
-						ref={parent_email}
-					/>
-				</div>
-				<div className="form-item">
-					<span className="desc">
-						Parent tel <em>*</em>
-					</span>
-					<input
-						type="number"
-						placeholder="Enter parent tel"
-						required
-						name="parent-tel"
-						defaultValue={student?.parent_tel}
-						autoComplete="parent tel"
-						ref={parent_tel}
-					/>
-				</div>
-				<div className="form-item">
-					<span className="desc">
-						Highest education level <em>*</em>
-					</span>
-					<input
-						type="text"
-						placeholder="Enter highest education level"
-						required
-						name="entry-level"
-						defaultValue={student?.entry_certificate}
-						ref={entry_certificate}
-					/>
-				</div>
-				<div className="form-item">
-					<span className="desc">
-						Gender <em>*</em>
-					</span>
-					<select
-						name="gender"
-						id=""
-						onChange={(e) =>
-							setStudentData((prev) => {
-								return { ...prev, gender: e.target.value };
-							})
-						}
-						ref={gender}
-					>
-						<option
-							value="male"
-							selected={student?.gender === 'male' ? true : false}
-						>
-							Male
-						</option>
-						<option
-							value="female"
-							selected={student?.gender === 'female' ? true : false}
-						>
-							Female
-						</option>
-					</select>
-				</div>
-				<div className="form-item">
-					<span className="desc">
-						Level <em>*</em>
-					</span>
-					<select
-						name="level"
-						id=""
-						onChange={(e) =>
-							setStudentData((prev) => {
-								return { ...prev, level: e.target.value };
-							})
-						}
-						ref={level}
-					>
-						<option
-							value="200"
-							selected={student?.level === 200 ? true : false}
-						>
-							200
-						</option>
-						<option
-							value="300"
-							selected={student?.level === 300 ? true : false}
-						>
-							300
-						</option>
-						<option
-							value="400"
-							selected={student?.level === 400 ? true : false}
-						>
-							400
-						</option>
-						<option
-							value="601"
-							selected={student?.level === 601 ? true : false}
-						>
-							600 I
-						</option>
-						<option
-							value="602"
-							selected={student?.level === 602 ? true : false}
-						>
-							600 II
-						</option>
-					</select>
-				</div>
-				<div className="form-item">
-					<span className="desc">
-						Specialty <em>*</em>
-					</span>
-					<select name="specialty" id="" ref={specialty}>
-						{specialties?.map((specialty) => {
-							return (
-								<option
-									key={specialty._id}
-									value={specialty._id}
-									selected={
-										specialty._id === `${student?.specialty?._id}`
-											? true
-											: false
-									}
-								>
-									{specialty.name}
-								</option>
-							);
-						})}
-					</select>
-				</div>
-				<div className="form-item mg-top form-file">
-					<span className="text">Upload Student Photo (200px X 200px) </span>
-					<input type="file" name="profile" className="mg-top" />
-				</div>
-			</div> */}
-
 			<div className="form">
 				<div className="form-item">
 					<span className="desc">
@@ -497,7 +233,6 @@ function StudentFormEdit({ styles }) {
 			{studentss.error === true && studentss.errorMessage && (
 				<Failure message={studentss.errorMessage} />
 			)}
-			{/* {studentss.error === false && setStaffData(defaultInfo)} */}
 			{studentss.isLoading && <Loader />}
 		</form>
 	);

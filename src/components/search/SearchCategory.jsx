@@ -62,7 +62,6 @@ function SearchCategory({ styles, dropDown, data, setData, isGroup = false }) {
 				if (found) return std;
 			});
 			setData(students);
-			// console.log(students);
 		} else if (level?.current?.value !== '' && level?.current?.value) {
 			let { value } = level.current;
 
@@ -76,7 +75,6 @@ function SearchCategory({ styles, dropDown, data, setData, isGroup = false }) {
 				if (found) return std;
 			});
 			setData(students);
-			// console.log(students)
 		} else if (dropDn?.current?.value) {
 			let { value } = dropDn.current;
 
@@ -90,7 +88,6 @@ function SearchCategory({ styles, dropDown, data, setData, isGroup = false }) {
 				if (found) return std;
 			});
 			setData(students);
-			// console.log(students)
 		} else {
 			setData(data);
 		}

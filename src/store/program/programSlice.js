@@ -11,15 +11,13 @@ const initialState = {
 
 export const getPrograms = createAsyncThunk(
 	'program/getPrograms',
-	async (thunkAPI) => {
+	async (_, thunkAPI) => {
 		try {
 			const res = await apiRequest('get', `/api/v1/program`);
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went very Wrong';
-			// console.log(error);
 			return thunkAPI.rejectWithValue({ error });
 		}
 	}
@@ -32,10 +30,8 @@ export const getProgram = createAsyncThunk(
 			const res = await apiRequest('get', `/api/v1/program/${id}`);
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went very Wrong';
-			// console.log(error);
 			return thunkAPI.rejectWithValue({ error });
 		}
 	}
@@ -52,10 +48,8 @@ export const createPrograms = createAsyncThunk(
 			});
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went very Wrong';
-			// console.log(error);
 			return thunkAPI.rejectWithValue({ error });
 		}
 	}
@@ -72,10 +66,8 @@ export const editPrograms = createAsyncThunk(
 			});
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went very Wrong';
-			// console.log(error);
 			return thunkAPI.rejectWithValue({ error });
 		}
 	}
@@ -86,11 +78,9 @@ export const deleteProgram = createAsyncThunk(
 	async ({ id }, thunkAPI) => {
 		try {
 			const res = await apiRequest('delete', `/api/v1/program/${id}`);
-			// console.log(res.data, 111111);
 			return res.data;
 		} catch (err) {
-			let error = err.response.data?.message;
-			// console.log(err, 'message');
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -110,7 +100,6 @@ const programSlice = createSlice({
 				state.errorMessage = null;
 			})
 			.addCase(getPrograms.pending, (state, action) => {
-				// console.log(action.payload);
 				state.isLoading = true;
 			})
 			.addCase(getPrograms.rejected, (state, action) => {
@@ -125,7 +114,6 @@ const programSlice = createSlice({
 				state.errorMessage = null;
 			})
 			.addCase(deleteProgram.pending, (state, action) => {
-				// console.log(action.payload);
 				state.isLoading = true;
 			})
 			.addCase(deleteProgram.rejected, (state, action) => {
@@ -140,7 +128,6 @@ const programSlice = createSlice({
 				state.errorMessage = null;
 			})
 			.addCase(getProgram.pending, (state, action) => {
-				// console.log(action.payload);
 				state.isLoading = true;
 			})
 			.addCase(getProgram.rejected, (state, action) => {
@@ -154,7 +141,6 @@ const programSlice = createSlice({
 				state.errorMessage = null;
 			})
 			.addCase(createPrograms.pending, (state, action) => {
-				// console.log(action.payload);
 				state.isLoading = true;
 			})
 			.addCase(createPrograms.rejected, (state, action) => {
@@ -169,7 +155,6 @@ const programSlice = createSlice({
 				state.errorMessage = null;
 			})
 			.addCase(editPrograms.pending, (state, action) => {
-				// console.log(action.payload);
 				state.isLoading = true;
 			})
 			.addCase(editPrograms.rejected, (state, action) => {

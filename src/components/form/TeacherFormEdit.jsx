@@ -3,17 +3,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 //import action creator slices
-// import { getDepartments } from '../../store/departments/departmentSlice';
 import { editStaff, getStaff } from '../../store/staffs/staffSlice';
 import Failure from '../signal/Failure';
 import Loader from './../../components/loaders/Loader';
+import { GenderOptions, MaritalStatusOptions } from './fields/formOptions';
 
 //initialize default information
 const defaultInfo = {
 	gender: 'male',
 	matricule: '',
 	name: '',
-	// department: '',
 	address: '',
 	dob: '',
 	pob: '',
@@ -31,7 +30,6 @@ function TeacherFormEdit() {
 	//initialize the main hooks
 	const param = useParams();
 	const [staffData, setStaffData] = useState(defaultInfo);
-	// const department = useRef();
 
 	//create dispatch to dispatch actions and useSelect for getting out information
 	const dispatch = useDispatch();
@@ -50,7 +48,6 @@ function TeacherFormEdit() {
 		  }`
 		: '2000-01-01';
 
-	// console.log(teacher, dob);
 	useEffect(() => {
 		dispatch(getStaff({ id: param.id }));
 	}, [dispatch, param.id]);
@@ -87,8 +84,6 @@ function TeacherFormEdit() {
 			gender: gender.current.value,
 		};
 		dispatch(editStaff({ reqData, id: param.id }));
-		console.log(reqData);
-		// setStaffData(defaultInfo);
 	};
 
 	return (
@@ -149,7 +144,6 @@ function TeacherFormEdit() {
 							required
 							ref={DOB}
 							defaultValue={dob}
-							// value={dob}
 						/>
 					</div>
 				)}
@@ -207,18 +201,7 @@ function TeacherFormEdit() {
 						}
 						ref={gender}
 					>
-						<option
-							value="male"
-							selected={teacher?.gender === 'male' ? true : false}
-						>
-							Male
-						</option>
-						<option
-							value="female"
-							selected={teacher?.gender === 'female' ? true : false}
-						>
-							Female
-						</option>
+						<GenderOptions selectedValue={teacher?.gender} />
 					</select>
 				</div>
 				<div className="form-item">
@@ -281,32 +264,7 @@ function TeacherFormEdit() {
 						}
 						ref={marital_status}
 					>
-						<option
-							value="married"
-							selected={teacher?.marital_status === 'married' ? true : false}
-						>
-							Married
-						</option>
-						<option
-							value="not married"
-							selected={
-								teacher?.marital_status === 'not married' ? true : false
-							}
-						>
-							Not Married
-						</option>
-						<option
-							value="seperated"
-							selected={teacher?.marital_status === 'seperated' ? true : false}
-						>
-							Seperated
-						</option>
-						<option
-							value="devorced"
-							selected={teacher?.marital_status === 'devorced' ? true : false}
-						>
-							Devorced
-						</option>
+						<MaritalStatusOptions selectedValue={teacher?.marital_status} />
 					</select>
 				</div>
 			</div>
@@ -339,9 +297,7 @@ function TeacherFormEdit() {
 			{staffss.error === true && staffss.errorMessage && (
 				<Failure message={staffss.errorMessage} />
 			)}
-			{/* {staffss.error === false && setStaffData(defaultInfo)} */}
 			{staffss.isLoading && <Loader />}
-			{/* {staffss.success !== null && staffss.success > D<Success />} */}
 		</form>
 	);
 }

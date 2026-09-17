@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 //import action creator slices
 import { getSpecialties } from '../../store/specialty/specialtySlice';
 import { addStudent } from '../../store/students/studentSlice';
+import { studentFormSchema, firstValidationError } from '../../utilities/validation';
+import { GenderOptions, StudentLevelOptions } from './fields/formOptions';
 
 //import reactions
 // import {Failure} from '../signal';
@@ -37,8 +39,8 @@ function StudentForm({ styles, type = '' }) {
 	const year = useSelector((state) => state.years.currentYear);
 	//initialize the main hooks
 	const [studentData, setStudentData] = useState(defaultInfo);
+	const [validationError, setValidationError] = useState(null);
 	const specialty = useRef();
-	// console.log(studentData, 'DATA');
 
 	//Get all specialties after initial render
 	useEffect(() => {
@@ -55,13 +57,24 @@ function StudentForm({ styles, type = '' }) {
 			);
 			return;
 		}
-		dispatch(
-			addStudent({
-				...studentData,
-				specialty: specialty.current.value,
-				yearID: year?._id,
-			})
-		);
+
+		const payload = {
+			...studentData,
+			specialty: specialty.current.value,
+		};
+
+		// Validated client-side against the same rules school-backend's own
+		// student schema enforces (see utilities/validation.js) - a bad
+		// phone number or missing field fails fast here instead of costing
+		// a round trip to the API to discover.
+		const error = firstValidationError(studentFormSchema, payload);
+		if (error) {
+			setValidationError(error);
+			return;
+		}
+		setValidationError(null);
+
+		dispatch(addStudent({ ...payload, yearID: year?._id }));
 		setStudentData(defaultInfo);
 	};
 	return (
@@ -280,8 +293,7 @@ function StudentForm({ styles, type = '' }) {
 							})
 						}
 					>
-						<option value="male">Male</option>
-						<option value="female">Female</option>
+						<GenderOptions />
 					</select>
 				</div>
 				<div className="form-item">
@@ -297,11 +309,7 @@ function StudentForm({ styles, type = '' }) {
 							})
 						}
 					>
-						<option value="200">200</option>
-						<option value="300">300</option>
-						<option value="400">400</option>
-						<option value="601">600 I</option>
-						<option value="602">600 II</option>
+						<StudentLevelOptions />
 					</select>
 				</div>
 				<div className="form-item">
@@ -329,11 +337,11 @@ function StudentForm({ styles, type = '' }) {
 			<button className="button-main button-main-medium mg-top-md">
 				submit
 			</button>
-			{studentss.error === true && studentss.errorMessage && (
+			{validationError && <Failure message={validationError} />}
+			{!validationError && studentss.error === true && studentss.errorMessage && (
 				<Failure message={studentss.errorMessage} />
 			)}
 			{studentss.success === true && <Success />}
-			{/* {studentss.error === false && setStaffData(defaultInfo)} */}
 			{studentss.isLoading && <Loader />}
 		</form>
 	);
