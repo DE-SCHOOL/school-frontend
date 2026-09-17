@@ -35,18 +35,22 @@ log "Installing npm dependencies"
 npm install
 
 log "Setting up environment variables (pointing at the mock API, not a real backend)"
-if [ -f .env ]; then
-	if sed --version >/dev/null 2>&1; then
-		sed -i "s#^VITE_NODE_HOST_APP=.*#VITE_NODE_HOST_APP=http://localhost:${MOCK_PORT}#" .env
-	else
-		sed -i '' "s#^VITE_NODE_HOST_APP=.*#VITE_NODE_HOST_APP=http://localhost:${MOCK_PORT}#" .env
-	fi
+if [ ! -f .env ]; then
+	cp .env.example .env
+fi
+if sed --version >/dev/null 2>&1; then
+	sed -i "s#^VITE_NODE_HOST_APP=.*#VITE_NODE_HOST_APP=http://localhost:${MOCK_PORT}#" .env
+	sed -i "s#^MOCK_API_PORT=.*#MOCK_API_PORT=${MOCK_PORT}#" .env
 else
-	echo "VITE_NODE_HOST_APP=http://localhost:${MOCK_PORT}" > .env
+	sed -i '' "s#^VITE_NODE_HOST_APP=.*#VITE_NODE_HOST_APP=http://localhost:${MOCK_PORT}#" .env
+	sed -i '' "s#^MOCK_API_PORT=.*#MOCK_API_PORT=${MOCK_PORT}#" .env
 fi
 
 log "Starting the mock API server on http://localhost:${MOCK_PORT} (fictional data, no database)"
-npm run mock-api &
+# Started directly via node, not `npm run mock-api` — npm's own PID isn't
+# the mock server's, so the exit trap below would kill npm and leave the
+# actual server process orphaned.
+node mock-server/server.js &
 MOCK_PID=$!
 trap 'kill "$MOCK_PID" 2>/dev/null || true' EXIT
 
@@ -54,5 +58,17 @@ trap 'kill "$MOCK_PID" 2>/dev/null || true' EXIT
 sleep 1
 
 log "Setup complete. Log in with any email/password — the mock API accepts anything."
+
+# GitHub Actions (and most other CI systems) set CI=true automatically.
+# CI can verify the mock server actually came up; it can't sit through an
+# interactive `npm run dev` that never exits on its own.
+if [ "${CI:-}" = "true" ]; then
+	log "CI run detected — verifying the mock API server responds, then exiting"
+	curl -sf "http://localhost:${MOCK_PORT}/api/v1/specialty" >/dev/null \
+		|| fail "Mock API server did not respond on http://localhost:${MOCK_PORT}"
+	log "Mock API server responded successfully"
+	exit 0
+fi
+
 echo "Starting the dev server on http://localhost:3000 (Ctrl+C stops both servers)"
 npm run dev
