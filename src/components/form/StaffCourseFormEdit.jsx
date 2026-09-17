@@ -38,7 +38,6 @@ function StaffCourseForm({ styles }) {
 		dispatch(getStaffs());
 		dispatch(myCourses({ teacherID: param.teacherID }));
 	}, [dispatch, param.teacherID]);
-	// console.log(staffCourses, courses);
 
 	//Execute this function when you click submit, to add a course
 	const editAssignedCourse = (e) => {
@@ -46,7 +45,6 @@ function StaffCourseForm({ styles }) {
 
 		const options = course.current.selectedOptions;
 		const courses = Array.from(options).map((option) => option.value);
-		// console.log(courses);
 
 		const values = {
 			courses,
@@ -55,7 +53,6 @@ function StaffCourseForm({ styles }) {
 		// action creator to dispatch information to the database
 		dispatch(editAssignedCourses(values));
 
-		// console.log(values);
 	};
 
 	return (
