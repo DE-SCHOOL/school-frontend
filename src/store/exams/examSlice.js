@@ -18,11 +18,9 @@ export const getStudentsExam = createAsyncThunk(
 				'get',
 				`/api/v1/student/academic-year/${academicYear}`
 			);
-			// console.log(res.data);
 			return res.data;
 		} catch (err) {
 			// const msg = getApiError();
-			// console.log(err);
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
 	}
@@ -66,11 +64,9 @@ export const getStudent = createAsyncThunk(
 				'get',
 				`/api/v1/student/${id}/academic-year/${academicYearID}`
 			);
-			// console.log(res.data);
 			return res.data;
 		} catch (err) {
 			// const msg = getApiError();
-			// console.log(err);
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
 	}
@@ -85,7 +81,6 @@ export const getStudentsPerSearch = createAsyncThunk(
 				`/api/v1/student/search/${searchData.academicYearID}`,
 				searchData
 			);
-			// console.log(res.data);
 			return res.data;
 		} catch (err) {
 			return thunkAPI.rejectWithValue({ error: err.message });
