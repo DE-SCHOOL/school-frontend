@@ -18,7 +18,6 @@ function StudentAcademicTranscript() {
 	const academicYear = useSelector((state) => state.years.currentYear);
 	const [scroll, setScroll] = useState(0);
 
-	// console.log(students, students.length);
 	//useEffect to dispatch student data after initial render
 	useEffect(() => {
 		if (academicYear?._id !== undefined) {
