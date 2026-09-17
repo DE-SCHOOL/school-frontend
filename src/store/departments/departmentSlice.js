@@ -11,12 +11,11 @@ const initialState = {
 
 export const getDepartments = createAsyncThunk(
 	'department/getDepartments',
-	async (thunkAPI) => {
+	async (_, thunkAPI) => {
 		try {
 			const res = await apiRequest('get', `/api/v1/department`);
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
 	}
@@ -29,7 +28,6 @@ export const getDepartment = createAsyncThunk(
 			const res = await apiRequest('get', `/api/v1/department/${id}`);
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			return thunkAPI.rejectWithValue({ error: err.message });
 		}
 	}
@@ -44,10 +42,8 @@ export const createDepartment = createAsyncThunk(
 				hod,
 				program,
 			});
-			// console.log()
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			const error = err?.response?.data?.message || 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -63,10 +59,8 @@ export const editDepartment = createAsyncThunk(
 				hod,
 				program,
 			});
-			// console.log()
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			const error = err?.response?.data?.message || 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -78,11 +72,9 @@ export const deleteDepartment = createAsyncThunk(
 	async ({ id }, thunkAPI) => {
 		try {
 			const res = await apiRequest('delete', `/api/v1/department/${id}`);
-			// console.log(res.data, 111111);
 			return res.data;
 		} catch (err) {
-			let error = err.response.data?.message;
-			// console.log(err, 'message');
+			let error = err?.response?.data?.message;
 			error = error ? error : 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
