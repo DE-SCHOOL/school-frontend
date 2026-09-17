@@ -148,7 +148,6 @@ export default MarkList;
 // 		dispatch(getAllStudentsMarkSheet());
 // 	}, [dispatch]);
 
-// 	// console.log(marks);
 // 	return (
 // 		<Layout>
 // 			{/* Displaying the page introduction and directory */}
