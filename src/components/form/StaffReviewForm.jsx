@@ -19,7 +19,6 @@ function StaffReviewForm() {
 	const dispatch = useDispatch();
 	const param = useParams();
 
-	// console.log(programs);
 
 	useEffect(() => {
 		dispatch(getAllQuestions());
@@ -54,7 +53,6 @@ function StaffReviewForm() {
 			course,
 		};
 
-		console.log(requestData);
 		dispatch(createReviews(requestData));
 	};
 	return (
