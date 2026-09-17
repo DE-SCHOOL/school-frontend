@@ -10,7 +10,6 @@ import SearchCourses from '../search/SearchCourses';
 
 function TableAllCourseStats({ coursesStats }) {
 	//length is to help getMarkSheetsPerCoursePerStudents everytime this component is involved in any render
-	// console.log(coursesStats);
 	let marks = useSelector((state) => state.marks);
 	const school = useSelector((state) => state.school.school);
 
