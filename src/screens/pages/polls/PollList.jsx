@@ -25,7 +25,6 @@ function PollList() {
 	const uiState = useSelector((state) => state.uiState.deleteOpt);
 	const isLoading = useSelector((state) => state.courses.isLoading);
 
-	console.log(questions, 111);
 
 	//saving the student data in a useState
 	const [questionState, setQuestionState] = useState([]);
