@@ -91,7 +91,6 @@ function TableStudentsPromote({
 
 		isChecked(data.studentID);
 	}
-	// console.log(studentsToPromote);
 
 	function handleCheckAll(target) {
 		setAllIsChecked(target.checked);
