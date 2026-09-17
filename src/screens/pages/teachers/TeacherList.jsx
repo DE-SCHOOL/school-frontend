@@ -36,7 +36,6 @@ function TeacherList() {
 	const staffs = useSelector((state) => state.staffs.teachers.data);
 	const isLoading = useSelector((state) => state.staffs.isLoading);
 	const uiState = useSelector((state) => state.uiState.deleteOpt);
-	// console.log(staffs, isLoading);
 	const dispatch = useDispatch();
 
 	const [staffsState, setStaffsState] = useState([]);
