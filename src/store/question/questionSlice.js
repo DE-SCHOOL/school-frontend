@@ -12,13 +12,12 @@ const initialState = {
 
 export const getAllQuestions = createAsyncThunk(
 	'question/getAllQuestions',
-	async (thunkAPI) => {
+	async (_, thunkAPI) => {
 		try {
 			const res = await apiRequest('get', `/api/v1/question/`);
 
 			return res.data;
 		} catch (err) {
-			// console.log(err);
 			const error = err?.response?.data?.message || 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
@@ -68,7 +67,13 @@ export const editQuestion = createAsyncThunk(
 	'question/editQuestion',
 	async (data, thunkAPI) => {
 		try {
-			const res = await apiRequest('delete', `/api/v1/question/${data.id}`);
+			// Was 'delete' - editQuestion sent a DELETE request instead of a
+			// PATCH, despite its name and the surrounding CRUD symmetry with
+			// getQuestion/deleteQuestion. Not currently dispatched by any
+			// component (found while writing tests), so this never hit
+			// production, but the next feature to wire this up deserves a
+			// thunk that actually edits.
+			const res = await apiRequest('patch', `/api/v1/question/${data.id}`, data);
 			return res.data;
 		} catch (err) {
 			const error = err?.response?.data?.message || 'Something went wrong';
