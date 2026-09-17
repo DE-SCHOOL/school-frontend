@@ -32,7 +32,6 @@ function StaffCourseForm({ styles }) {
 
 		const options = course.current.selectedOptions;
 		const courses = Array.from(options).map((option) => option.value);
-		console.log(courses);
 
 		const values = {
 			courses,
