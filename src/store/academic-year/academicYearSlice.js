@@ -110,7 +110,7 @@ export const createSchoolYear = createAsyncThunk(
 
 export const getAcademicYears = createAsyncThunk(
 	'academicYear/getAllYears',
-	async (thunkAPI) => {
+	async (_, thunkAPI) => {
 		try {
 			const res = await apiRequest('get', '/api/v1/academic-year');
 			return res.data;
@@ -136,7 +136,7 @@ export const updateAcademicYears = createAsyncThunk(
 
 export const getCurrentYear = createAsyncThunk(
 	'academicYear/getCurrent',
-	async (thunkAPI) => {
+	async (_, thunkAPI) => {
 		try {
 			const res = await apiRequest('get', `/api/v1/academic-year/current`);
 			return res.data;
@@ -162,7 +162,6 @@ export const deletePromotedStudent = createAsyncThunk(
 			);
 			return res.data;
 		} catch (err) {
-			console.log(err, data);
 			const error = err?.response?.data?.message || 'Something went wrong';
 			return thunkAPI.rejectWithValue({ error });
 		}
