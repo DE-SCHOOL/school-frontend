@@ -32,7 +32,6 @@ function FormBsForm({ styles, type = '' }) {
 	const [formBsData, setFormBsData] = useState(defaultInfo);
 	const specialty = useRef();
 	const years = useRef();
-	// console.log(formBsData, 'DATA');
 
 	//Get all specialties after initial render
 	useEffect(() => {
