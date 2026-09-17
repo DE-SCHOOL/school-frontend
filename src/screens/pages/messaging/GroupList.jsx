@@ -33,7 +33,6 @@ function GroupList() {
 	const year = useSelector((state) => state.years.currentYear);
 	const groups = useSelector((state) => state.groupChat.groups);
 
-	// console.log(groups, 'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjj');
 
 	//saving the student data in a useState
 	const [groupsState, setGroupsState] = useState(groups);
