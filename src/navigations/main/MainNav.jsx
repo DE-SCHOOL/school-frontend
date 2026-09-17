@@ -39,7 +39,6 @@ function MainNav({ styleClass = '' }) {
 		: academicYears?.length > 0
 		? academicYears?.filter((year) => year.isCurrent)[0]
 		: [];
-	// console.log(academicYears);
 
 	const handleSetSemester = (semester) => {
 		setShowSemester((prev) => !prev);
@@ -62,7 +61,6 @@ function MainNav({ styleClass = '' }) {
 
 	const authUser = useSelector((state) => state.auth);
 	const stateUi = useSelector((state) => state.uiState.leftNavResponsive);
-	// console.log(authUser);
 	const dispatch = useDispatch();
 
 	//dispatch to check if user is logged in
