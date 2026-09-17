@@ -133,12 +133,10 @@ export const uploadFile = (data) => async (dispatch) => {
 					const progress =
 						(Number(snapshot.bytesTransferred) / Number(snapshot.totalBytes)) *
 						100;
-					console.log('Upload is ' + progress + '% done');
 					dispatch(uploadProgressUpdate(progress));
 				},
 				(error) => {
 					// Handle unsuccessful uploads
-					console.log('An error occurred uploading the file', error);
 					dispatch(
 						createTimetableFailed(
 							'Timetable failed to upload, check your internet connection'
@@ -176,7 +174,6 @@ export const getAllTimetables = () => async (dispatch) => {
 		dispatch(getTimetablesSuccess(res.data.data));
 	} catch (err) {
 		const error = err?.response?.data?.message || 'Something went wrong';
-		console.log(err);
 		dispatch(getTimetablesFailed(error));
 	}
 };
@@ -190,11 +187,9 @@ export const deleteTimetable =
 			const res = await apiRequest('delete', `/api/v1/timetable/${id}`);
 			await deleteObject(timetableFileRef);
 
-			// console.log(res);
 			return dispatch(deleteTimetableSuccess());
 		} catch (err) {
 			const error = err?.response?.data?.message || 'Something went wrong';
-			console.log(err);
 			return dispatch(deleteTimetableRejected(error));
 		}
 	};
