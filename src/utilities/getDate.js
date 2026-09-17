@@ -12,7 +12,6 @@ export const getDateFromDateObject = (Obj, spec = 0) => {
 	let day = dateObj.getDate();
 	day = day < 10 ? `0${day + spec}` : day + spec;
 
-	// console.log(`${year}-${month}-${day}`);
 	if (spec === 0) return `${month}-${day}-${year}`;
 
 	return `${year}-${month}-${day}`;
